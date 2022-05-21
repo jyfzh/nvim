@@ -57,7 +57,7 @@ cmp.setup(
 		)
 	},
 	-- 对补全建议排序
-	--[[sorting = {
+	sorting = {
 		comparators = {
 			cmp.config.compare.offset,
 			cmp.config.compare.exact,
@@ -70,7 +70,7 @@ cmp.setup(
 			cmp.config.compare.length,
 			cmp.config.compare.order
 		}
-	},]]
+	},
 	-- 绑定补全相关的按键
 	mapping = cmp.mapping.preset.insert({
 		["<C-p>"] = cmp.mapping.select_prev_item(),
