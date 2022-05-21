@@ -2,37 +2,37 @@
 -- https://github.com/wbthomason/packer.nvim
 local packer = require("packer")
 packer.startup(
-{
-	-- 所有插件的安装都书写在 function 中
-	function()
-		-- 包管理器
-		use {
-			"wbthomason/packer.nvim"
-		}
+	{
+		-- 所有插件的安装都书写在 function 中
+		function()
+			-- 包管理器
+			use {
+				"wbthomason/packer.nvim"
+			}
 
-		use {
-			'navarasu/onedark.nvim',
-		}
+			use {
+				'navarasu/onedark.nvim',
+			}
 
-		-- 安装其它插件
-		-- 中文文档
-		use {
-			"yianwillis/vimcdoc",
-		}
-		-- nvim-tree
-		use {
-			"kyazdani42/nvim-tree.lua",
-			requires = {
-				-- 依赖一个图标插件
-				"kyazdani42/nvim-web-devicons"
-			},
-			config = function()
-		-- 插件加载完成后自动运行 lua/conf/nvim-tree.lua 文件中的代码
-				require("conf.nvim-tree")
-			end
-		}
-		use {
-			'nvim-treesitter/nvim-treesitter',
+			-- 安装其它插件
+			-- 中文文档
+			use {
+				"yianwillis/vimcdoc",
+			}
+			-- nvim-tree
+			use {
+				"kyazdani42/nvim-tree.lua",
+				requires = {
+					-- 依赖一个图标插件
+					"kyazdani42/nvim-web-devicons"
+				},
+				config = function()
+					-- 插件加载完成后自动运行 lua/conf/nvim-tree.lua 文件中的代码
+					require("conf.nvim-tree")
+				end
+			}
+			use {
+				'nvim-treesitter/nvim-treesitter',
 				run = ':TSUpdate',
 				requires = {
 					"p00f/nvim-ts-rainbow" -- 彩虹括号
@@ -136,13 +136,13 @@ packer.startup(
 			}
 		}
 	}
-	)
-	-- 实时生效配置
-	vim.cmd(
+)
+-- 实时生效配置
+vim.cmd(
 	[[
 	augroup packer_user_config
 	autocmd!
 	autocmd BufWritePost plugins.lua source <afile> | PackerCompile
 	augroup end
 	]]
-	)
+)

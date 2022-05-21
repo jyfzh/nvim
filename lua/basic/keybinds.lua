@@ -45,11 +45,10 @@ vim.keybinds.gmap("n","<C-p>","<cmd>lua require('lspsaga.action').smart_scroll_w
 vim.keybinds.gmap("n","<C-n>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>",vim.keybinds.opts)
 
 -- 运行代码
-vim.keybinds.gmap("","<F5>" ,":w!<CR><cmd>!clang++ --target=x86_64-pc-windows-gnu -Wall -O2 % -o %<.exe <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("","<F5>" ,":w!<CR><cmd>!g++ -g3 -Wall % -o %<.exe <CR>", vim.keybinds.opts)
 vim.keybinds.gmap("","<F6>" ,"<cmd>!%< <CR>", vim.keybinds.opts)
 
-
-vim.keybinds.gmap("n", "<C-\\>", "gcc", {})
-vim.keybinds.gmap("v", "<C-\\>", "gc", {})
-
+-- 代码注释
+vim.keybinds.gmap("n", "<leader>\\", "gcc", {})
+vim.keybinds.gmap("v", "<leader>\\", "gc", {})
 
