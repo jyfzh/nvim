@@ -22,6 +22,8 @@ vim.keybinds.gmap("n", "<C-down>", "<cmd>res -5<CR>", vim.keybinds.opts)
 vim.keybinds.gmap("n", "<C-left>", "<cmd>vertical resize-5<CR>", vim.keybinds.opts)
 vim.keybinds.gmap("n", "<C-right>", "<cmd>vertical resize+5<CR>", vim.keybinds.opts)
 
+vim.keybinds.gmap("n", "<CR><CR>" , "<cmd>noh<CR>",vim.keybinds.opts)
+
 -- lsp设置
 -- 跳转到定义（代替内置 LSP 的窗口，telescope 插件让跳转定义更方便）
 vim.keybinds.gmap("n", "gd", "<cmd>Telescope lsp_definitions theme=dropdown<CR>", vim.keybinds.opts)
