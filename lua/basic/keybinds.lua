@@ -46,11 +46,6 @@ vim.keybinds.gmap("n","<C-p>","<cmd>lua require('lspsaga.action').smart_scroll_w
 -- 悬浮窗口下翻页，由 Lspsaga 提供
 vim.keybinds.gmap("n","<C-n>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>",vim.keybinds.opts)
 
--- 运行代码
-vim.keybinds.gmap("","<F5>" ,":w!<CR><cmd>!g++ -g3 -std=c++2a -Wall % -o %< <CR>", vim.keybinds.opts)
--- vim.keybinds.gmap("","<F5>" ,":w!<CR><cmd>!make clean && make <CR>", vim.keybinds.opts)
-vim.keybinds.gmap("","<F6>" ,"<cmd>!./%< <CR>", vim.keybinds.opts)
-
 -- 代码格式化
 vim.keybinds.gmap("","<C-k>" ,":w!<CR><cmd>!clang-format -i % <CR>", vim.keybinds.opts)
 
@@ -61,3 +56,29 @@ vim.keybinds.gmap("v", "<leader>\\", "gc", {})
 -- 代码折叠
 vim.keybinds.gmap("n","<leader>[","zc",{});
 vim.keybinds.gmap("v","<leader>]","zo",{});
+
+
+function Run()
+	vim.cmd("w!")
+	if(vim.bo.filetype=="cpp") then
+		vim.cmd("!g++ -g3 -std=c++2a -Wall % -o %<")
+		vim.cmd("!./%<")
+	elseif(vim.bo.filetype=="c") then
+		vim.cmd("!gcc -g3 -std=c2x -Wall % -o %<")
+		vim.cmd("!./%<")
+	elseif(vim.bo.filetype=="python")then
+		vim.cmd("!python -u %")
+	elseif (vim.bo.filetype=="java") then
+		vim.cmd("!java %")	
+	elseif (vim.bo.filetype=="make") then
+		vim.cmd("!make .")
+	elseif (vim.bo.filetype=="txt") then
+		vim.cmd("!cmake ..")	
+	elseif (vim.bo.filetype=="sh") then
+		vim.cmd("!bash %")
+	end
+end
+
+-- 运行代码
+vim.keybinds.gmap("","<F5>" ,"<cmd>lua Run() <CR>", vim.keybinds.opts)
+-- vim.keybinds.gmap("","<F5>" ,":w!<CR><cmd>!make clean && make <CR>", vim.keybinds.opts)
