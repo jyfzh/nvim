@@ -4,6 +4,15 @@ vim.o.fencs="utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936"
 vim.o.encoding = "utf-8"
 vim.o.fileencodings= "utf-8,chinese,latin-1,gbk,gb18030,gk2312"
 
+if vim.fn.has('wsl') then
+  vim.cmd [[
+  augroup Yank
+  autocmd!
+  autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
+  augroup END
+  ]]
+end
+
 -- 取消搜索高亮
 vim.o.hlsearch = false
 
