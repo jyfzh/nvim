@@ -127,21 +127,31 @@ packer.startup(
 			config = function()
 				require('conf.comment')
 			end
-		}
-		--java
-		-- use 'mfussenegger/nvim-jdtls'
-	end,
-	-- 使用浮动窗口
-	config = {
-		display = {
-			open_fn = require("packer.util").float
+			}
+			use {
+				"rcarriga/nvim-dap-ui",
+				requires = {
+					"mfussenegger/nvim-dap"
+				},
+				config = function ()
+					require('conf.nvim-dap-ui')
+					require('conf.nvim-dap')
+				end
+			}
+			--java
+			-- use 'mfussenegger/nvim-jdtls'
+		end,
+		-- 使用浮动窗口
+		config = {
+			display = {
+				open_fn = require("packer.util").float
+			}
 		}
 	}
-}
 )
 -- 实时生效配置
 vim.cmd(
-[[
+	[[
 augroup packer_user_config
 autocmd!
 autocmd BufWritePost plugins.lua source <afile> | PackerCompile
