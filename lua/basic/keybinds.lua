@@ -8,21 +8,58 @@ vim.keybinds = {
 	opts = {noremap = true, silent = true}
 }
 
+function Run()
+	vim.cmd("w!")
+	if(vim.bo.filetype=="cpp") then
+		vim.cmd("!g++ -g3 -std=c++2a -Wall % -o %<")
+		vim.cmd("!./%<")
+	elseif(vim.bo.filetype=="c") then
+		vim.cmd("!gcc -g3 -std=c2x -Wall % -o %<")
+		vim.cmd("!./%<")
+	elseif(vim.bo.filetype=="python")then
+		vim.cmd("!python -u %")
+	elseif (vim.bo.filetype=="java") then
+		vim.cmd("!java %")
+	elseif (vim.bo.filetype=="make") then
+		vim.cmd("!make clean&&make&&./%<")
+	elseif (vim.bo.filetype=="txt") then
+		vim.cmd("!cmake ..")
+	elseif (vim.bo.filetype=="sh") then
+		vim.cmd("!bash %")
+	end
+end
+
 -- 基础按键
 vim.keybinds.gmap("n", "<C-u>", "10k", vim.keybinds.opts)
 vim.keybinds.gmap("n", "<C-d>", "10j", vim.keybinds.opts)
 
-vim.keybinds.gmap("i", "<A-k>", "<up>", vim.keybinds.opts)
-vim.keybinds.gmap("i", "<A-j>", "<down>", vim.keybinds.opts)
-vim.keybinds.gmap("i", "<A-h>", "<left>", vim.keybinds.opts)
-vim.keybinds.gmap("i", "<A-l>", "<right>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<C-up>", 	"<cmd> res+5				<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<C-down>", 	"<cmd> res-5				<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<C-left>", 	"<cmd> vertical resize-5	<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<C-right>", "<cmd> vertical resize+5	<CR>", vim.keybinds.opts)
 
-vim.keybinds.gmap("n", "<C-up>", "<cmd>res +5<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n", "<C-down>", "<cmd>res -5<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n", "<C-left>", "<cmd>vertical resize-5<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n", "<C-right>", "<cmd>vertical resize+5<CR>", vim.keybinds.opts)
-
+-- 取消find
 vim.keybinds.gmap("n", "<CR><CR>" , "<cmd>noh<CR>",vim.keybinds.opts)
+
+-- 运行代码
+vim.keybinds.gmap("n","<leader>n" ,"<cmd>lua Run() <CR>", vim.keybinds.opts)
+
+-- 调试代码
+vim.keybinds.gmap("n", "<F9>","<cmd>lua require'dap'.toggle_breakpoint()<CR>" ,vim.keybinds.opts)
+vim.keybinds.gmap("n", "<F5>","<cmd>lua require'dap'.continue() 		<CR>" ,vim.keybinds.opts)
+vim.keybinds.gmap("n", "<F10>","<cmd>lua require'dap'.step_over() 		<CR>" ,vim.keybinds.opts)
+vim.keybinds.gmap("n", "<F12>","<cmd>lua require'dap'.step_into() 		<CR>" ,vim.keybinds.opts)
+
+-- 代码格式化
+vim.keybinds.gmap("n","<C-k>" ,":w!<CR><cmd>!clang-format -i % <CR>", vim.keybinds.opts)
+
+-- 代码注释
+vim.keybinds.gmap("n", "<leader>\\", "gcc", vim.keybinds.opts)
+vim.keybinds.gmap("v", "<leader>\\", "gc", vim.keybinds.opts)
+
+-- 代码折叠
+vim.keybinds.gmap("n", "<leader>[", "zc", vim.keybinds.opts);
+vim.keybinds.gmap("v", "<leader>]", "zo", vim.keybinds.opts);
 
 -- lsp设置
 -- 跳转到定义（代替内置 LSP 的窗口，telescope 插件让跳转定义更方便）
@@ -46,39 +83,3 @@ vim.keybinds.gmap("n","<C-p>","<cmd>lua require('lspsaga.action').smart_scroll_w
 -- 悬浮窗口下翻页，由 Lspsaga 提供
 vim.keybinds.gmap("n","<C-n>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>",vim.keybinds.opts)
 
--- 代码格式化
-vim.keybinds.gmap("","<C-k>" ,":w!<CR><cmd>!clang-format -i % <CR>", vim.keybinds.opts)
-
--- 代码注释
-vim.keybinds.gmap("n", "<leader>\\", "gcc", {})
-vim.keybinds.gmap("v", "<leader>\\", "gc", {})
-
--- 代码折叠
-vim.keybinds.gmap("n","<leader>[","zc",{});
-vim.keybinds.gmap("v","<leader>]","zo",{});
-
-
-function Run()
-	vim.cmd("w!")
-	if(vim.bo.filetype=="cpp") then
-		vim.cmd("!g++ -g3 -std=c++2a -Wall % -o %<")
-		vim.cmd("!./%<")
-	elseif(vim.bo.filetype=="c") then
-		vim.cmd("!gcc -g3 -std=c2x -Wall % -o %<")
-		vim.cmd("!./%<")
-	elseif(vim.bo.filetype=="python")then
-		vim.cmd("!python -u %")
-	elseif (vim.bo.filetype=="java") then
-		vim.cmd("!java %")	
-	elseif (vim.bo.filetype=="make") then
-		vim.cmd("!make .")
-	elseif (vim.bo.filetype=="txt") then
-		vim.cmd("!cmake ..")	
-	elseif (vim.bo.filetype=="sh") then
-		vim.cmd("!bash %")
-	end
-end
-
--- 运行代码
-vim.keybinds.gmap("","<F5>" ,"<cmd>lua Run() <CR>", vim.keybinds.opts)
--- vim.keybinds.gmap("","<F5>" ,":w!<CR><cmd>!make clean && make <CR>", vim.keybinds.opts)
