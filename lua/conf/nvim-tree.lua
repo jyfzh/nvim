@@ -4,7 +4,7 @@ require("nvim-tree").setup(
         -- 视图
         view = {
             -- 宽度
-            width = 30,
+            width = 25,
             -- 高度
             height = 30,
             -- 隐藏顶部的根目录显示

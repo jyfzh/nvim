@@ -54,12 +54,24 @@ vim.keybinds.gmap("n", "<F12>","<cmd>lua require'dap'.step_into() 		<CR>" ,vim.k
 vim.keybinds.gmap("n","<C-k>" ,":w!<CR><cmd>!clang-format -i % <CR>", vim.keybinds.opts)
 
 -- 代码注释
-vim.keybinds.gmap("n", "<leader>\\", "gcc", vim.keybinds.opts)
-vim.keybinds.gmap("v", "<leader>\\", "gc", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<leader>\\", "gcc", {})
+vim.keybinds.gmap("v", "<leader>\\", "gc", {})
 
 -- 代码折叠
-vim.keybinds.gmap("n", "<leader>[", "zc", vim.keybinds.opts);
-vim.keybinds.gmap("v", "<leader>]", "zo", vim.keybinds.opts);
+vim.keybinds.gmap("n", "<leader>[", "zc", {});
+vim.keybinds.gmap("v", "<leader>]", "zo", {});
+
+-- bufferline
+vim.keybinds.gmap("","<A-1>", "<Cmd>BufferLineGoToBuffer 1 <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("","<A-2>", "<Cmd>BufferLineGoToBuffer 2 <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("","<A-3>", "<Cmd>BufferLineGoToBuffer 3 <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("","<A-4>", "<Cmd>BufferLineGoToBuffer 4 <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("","<A-5>", "<Cmd>BufferLineGoToBuffer 5 <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("","<A-6>", "<Cmd>BufferLineGoToBuffer 6 <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("","<A-7>", "<Cmd>BufferLineGoToBuffer 7 <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("","<A-8>", "<Cmd>BufferLineGoToBuffer 8 <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("","<A-9>", "<Cmd>BufferLineGoToBuffer 9 <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("","<A-$>", "<Cmd>BufferLineGoToBuffer -1<CR>", vim.keybinds.opts)
 
 -- lsp设置
 -- 跳转到定义（代替内置 LSP 的窗口，telescope 插件让跳转定义更方便）

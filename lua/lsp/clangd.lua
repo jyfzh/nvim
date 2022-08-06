@@ -7,4 +7,3 @@ require'lspconfig'.clangd.setup({
 		clangdFileStatus = true
 	},
 })
-
