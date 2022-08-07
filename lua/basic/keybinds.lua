@@ -7,15 +7,8 @@ vim.keybinds = {
 	dbmap = vim.api.nvim_buf_del_keymap,
 	opts = {noremap = true, silent = true}
 }
--- nnoremap <silent> <F9> :PreviousColorScheme<cr>
--- inoremap <silent> <F9> <esc> :PreviousColorScheme<cr>
--- nnoremap <silent> <F10> :NextColorScheme<cr>
--- inoremap <silent> <F10> <esc> :NextColorScheme<cr>
--- nnoremap <silent> <F11> :RandomColorScheme<cr>
--- inoremap <silent> <F11> <esc> :RandomColorScheme<cr>
--- nnoremap <silent> <F12> :ShowColorScheme<cr>
--- inoremap <silent> <F12> <esc> :ShowColorScheme<cr>
 
+-- colorscheme
 vim.keybinds.gmap("n", "<F3>", 	"<cmd> PreviousColorScheme <CR>", vim.keybinds.opts)
 vim.keybinds.gmap("n", "<F4>",  "<cmd> NextColorScheme <CR>", vim.keybinds.opts)
 
@@ -102,9 +95,9 @@ vim.keybinds.gmap("n", "g[", "<cmd>Lspsaga diagnostic_jump_prev<CR>", vim.keybin
 -- 跳转到下一个问题（代替内置 LSP 的窗口，Lspsaga 让跳转问题更美观）
 vim.keybinds.gmap("n", "g]", "<cmd>Lspsaga diagnostic_jump_next<CR>", vim.keybinds.opts)
 -- 悬浮窗口上翻页，由 Lspsaga 提供
-vim.keybinds.gmap("n","<C-p>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>",vim.keybinds.opts)
+-- vim.keybinds.gmap("n","<C-p>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>",vim.keybinds.opts)
 -- 悬浮窗口下翻页，由 Lspsaga 提供
-vim.keybinds.gmap("n","<C-n>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>",vim.keybinds.opts)
+-- vim.keybinds.gmap("n","<C-n>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>",vim.keybinds.opts)
 
 -- 查找文件
 vim.keybinds.gmap("n", "<leader>ff", "<cmd>Telescope find_files <CR>", vim.keybinds.opts)
@@ -118,3 +111,16 @@ vim.keybinds.gmap("n", "<leader>fh", "<cmd>Telescope help_tags <CR>", vim.keybin
 vim.keybinds.gmap("n", "<leader>fo", "<cmd>Telescope oldfiles <CR>", vim.keybinds.opts)
 -- 查找 marks 标记
 vim.keybinds.gmap("n", "<leader>fm", "<cmd>Telescope marks <CR>", vim.keybinds.opts)
+
+
+---: 
+-- buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+--     buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+--     buf_set_keymap('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+--     -- buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+--     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+--     buf_set_keymap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+--     buf_set_keymap('n', 'ge' , '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+--     buf_set_keymap('n', 'gpe', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+--     buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+--     buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)

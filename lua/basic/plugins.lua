@@ -15,6 +15,8 @@ packer.startup(
 				'chxuan/change-colorscheme',
 				'navarasu/onedark.nvim',
 				'folke/tokyonight.nvim',
+				-- {'shaunsingh/oxocarbon.nvim', run = './install.sh'}, --need cargo
+				'luisiacc/gruvbox-baby',
 			}
 
 			-- 安装其它插件
@@ -62,6 +64,7 @@ packer.startup(
 				end
 			}
 			-- LSP 基础服务
+			-- lsp状态显示
 			use {
 				'j-hui/fidget.nvim',
 				config = function()
