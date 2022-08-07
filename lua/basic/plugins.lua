@@ -10,9 +10,9 @@ packer.startup(
 				"wbthomason/packer.nvim"
 			}
 			-- onedark
-			use {
-				'navarasu/onedark.nvim',
-			}
+			-- use {
+			-- 	'navarasu/onedark.nvim',
+			-- }
 
 			-- 安装其它插件
 			-- 中文文档
@@ -74,9 +74,9 @@ packer.startup(
 
 			-- 自动安装 LSP
 			use {
-				"williamboman/nvim-lsp-installer",
+				"williamboman/mason.nvim",
 				config = function()
-					require("conf.nvim-lsp-installer")
+					require("conf.mason")
 				end
 			}
 
@@ -126,8 +126,8 @@ packer.startup(
 				"nvim-telescope/telescope.nvim",
 				requires = {
 					"nvim-lua/plenary.nvim", -- Lua 开发模块
-					"BurntSushi/ripgrep", -- 文字查找
-					"sharkdp/fd" -- 文件查找
+					-- "BurntSushi/ripgrep", -- 文字查找
+					-- "sharkdp/fd" -- 文件查找
 				},
 				config = function()
 					require("conf.telescope")

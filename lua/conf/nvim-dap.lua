@@ -1,11 +1,6 @@
 local dap = require('dap')
 
 require("dap.cpptools")
-dap.adapters.cppdbg = {
-  id = 'cppdbg',
-  type = 'executable',
-  command = '/home/jyf/.local/share/nvim/dap/cpptools/extension/debugAdapters/bin/OpenDebugAD7'
-}
 
 local dapui = require("dapui")
 dap.listeners.after.event_initialized["dapui_config"] = function()

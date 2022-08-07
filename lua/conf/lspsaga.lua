@@ -12,7 +12,7 @@ require("lspsaga").setup(
         code_action_prompt = {
             -- 显示写入行提示
             -- 如果为 true ，则写代码时会在左侧行号栏中显示你所定义的图标
-            enable = false,
+            enable = true,
             sign = true,
             sign_priority = 40,
             virtual_text = true

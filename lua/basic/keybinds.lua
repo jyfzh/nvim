@@ -33,10 +33,10 @@ end
 vim.keybinds.gmap("n", "<C-u>", "10k", vim.keybinds.opts)
 vim.keybinds.gmap("n", "<C-d>", "10j", vim.keybinds.opts)
 
-vim.keybinds.gmap("n", "<C-up>", 	"<cmd> res+5				<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n", "<C-down>", 	"<cmd> res-5				<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n", "<C-left>", 	"<cmd> vertical resize-5	<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n", "<C-right>", "<cmd> vertical resize+5	<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<A-up>", 	"<cmd> res+5				<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<A-down>", 	"<cmd> res-5				<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<A-left>", 	"<cmd> vertical resize-5	<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<A-right>", "<cmd> vertical resize+5	<CR>", vim.keybinds.opts)
 
 -- 取消find
 vim.keybinds.gmap("n", "<CR><CR>" , "<cmd>noh<CR>",vim.keybinds.opts)
@@ -95,3 +95,15 @@ vim.keybinds.gmap("n","<C-p>","<cmd>lua require('lspsaga.action').smart_scroll_w
 -- 悬浮窗口下翻页，由 Lspsaga 提供
 vim.keybinds.gmap("n","<C-n>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>",vim.keybinds.opts)
 
+-- 查找文件
+vim.keybinds.gmap("n", "<leader>ff", "<cmd>Telescope find_files <CR>", vim.keybinds.opts)
+-- 查找文字
+vim.keybinds.gmap("n", "<leader>fg", "<cmd>Telescope live_grep <CR>", vim.keybinds.opts)
+-- 查找特殊符号
+vim.keybinds.gmap("n", "<leader>fb", "<cmd>Telescope buffers <CR>", vim.keybinds.opts)
+-- 查找帮助文档
+vim.keybinds.gmap("n", "<leader>fh", "<cmd>Telescope help_tags <CR>", vim.keybinds.opts)
+-- 查找最近打开的文件
+vim.keybinds.gmap("n", "<leader>fo", "<cmd>Telescope oldfiles <CR>", vim.keybinds.opts)
+-- 查找 marks 标记
+vim.keybinds.gmap("n", "<leader>fm", "<cmd>Telescope marks <CR>", vim.keybinds.opts)
