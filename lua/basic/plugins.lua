@@ -9,10 +9,13 @@ packer.startup(
 			use {
 				"wbthomason/packer.nvim"
 			}
-			-- onedark
-			-- use {
-			-- 	'navarasu/onedark.nvim',
-			-- }
+			-- theme
+			use {
+				-- 切换主题
+				'chxuan/change-colorscheme',
+				'navarasu/onedark.nvim',
+				'folke/tokyonight.nvim',
+			}
 
 			-- 安装其它插件
 			-- 中文文档
