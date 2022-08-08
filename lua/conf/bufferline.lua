@@ -7,7 +7,7 @@ vim.opt.termguicolors = true
 bufferline.setup {
 	options = {
 		--numbers = "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-		--numbers = "both",
+		numbers = "ordinal",
 		--- @deprecated, please specify numbers as a function to customize the styling
 		--number_style = "superscript" | "subscript" | "" | { "none", "subscript" }, -- buffer_id at index 1, ordinal at index 2
 		--number_style = "none",
@@ -54,12 +54,6 @@ bufferline.setup {
 			local icon = level:match("error") and " " or " "
 			return " " .. icon .. count
 		end,
-		offsets = {{
-			filetype = "NvimTree",
-			text = "File Explorer",
-			highlight = "Directory",
-			text_align = "left"
-		}},
 		-- NOTE: this will be called a lot so don't do any heavy processing here
 		custom_filter = function(buf_number)
 			--如果是defx则隐藏

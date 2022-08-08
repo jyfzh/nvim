@@ -4,10 +4,14 @@ local packer = require("packer")
 packer.startup(
 	{
 		-- 所有插件的安装都书写在 function 中
-		function()
+		function(use)
 			-- 包管理器
 			use {
 				"wbthomason/packer.nvim"
+			}
+			-- 启动时间管理
+			use {
+				"tweekmonster/startuptime.vim"
 			}
 			-- theme
 			use {
@@ -19,22 +23,9 @@ packer.startup(
 				'luisiacc/gruvbox-baby',
 			}
 
-			-- 安装其它插件
 			-- 中文文档
 			use {
 				"yianwillis/vimcdoc",
-			}
-			-- nvim-tree
-			use {
-				"kyazdani42/nvim-tree.lua",
-				requires = {
-					-- 依赖一个图标插件
-					"kyazdani42/nvim-web-devicons"
-				},
-				config = function()
-					-- 插件加载完成后自动运行 lua/conf/nvim-tree.lua 文件中的代码
-					require("conf.nvim-tree")
-				end
 			}
 			-- lua-line
 			use {
@@ -57,7 +48,8 @@ packer.startup(
 				'nvim-treesitter/nvim-treesitter',
 				run = ':TSUpdate',
 				requires = {
-					"p00f/nvim-ts-rainbow" -- 彩虹括号
+					-- 彩虹括号
+					"p00f/nvim-ts-rainbow"
 				},
 				config = function()
 					require("conf.nvim-treesitter")
@@ -71,13 +63,13 @@ packer.startup(
 					require("conf.fidget")
 				end
 			}
+			-- lsp配置
 			use {
 				"neovim/nvim-lspconfig",
 				config = function()
 					require("conf.nvim-lspconfig")
 				end
 			}
-
 			-- 自动安装 LSP
 			use {
 				"williamboman/mason.nvim",
@@ -85,7 +77,6 @@ packer.startup(
 					require("conf.mason")
 				end
 			}
-
 			-- LSP UI 美化
 			use {
 				"tami5/lspsaga.nvim",
@@ -132,13 +123,13 @@ packer.startup(
 				"nvim-telescope/telescope.nvim",
 				requires = {
 					"nvim-lua/plenary.nvim", -- Lua 开发模块
-					-- "BurntSushi/ripgrep", -- 文字查找
-					-- "sharkdp/fd" -- 文件查找
 				},
 				config = function()
 					require("conf.telescope")
 				end
 			}
+			use "nvim-telescope/telescope-file-browser.nvim"
+
 			-- 注释
 			use {
 				'numToStr/Comment.nvim',
@@ -149,18 +140,17 @@ packer.startup(
 					require('conf.comment')
 				end
 			}
+			-- debug
 			use {
+				"mfussenegger/nvim-dap",
+				"theHamsta/nvim-dap-virtual-text",
 				"rcarriga/nvim-dap-ui",
-				requires = {
-					"mfussenegger/nvim-dap"
-				},
 				config = function ()
 					require('conf.nvim-dap-ui')
 					require('conf.nvim-dap')
+					require("conf.nvim-dap-virtual-text")
 				end
 			}
-			--java
-			-- use 'mfussenegger/nvim-jdtls'
 		end,
 		-- 使用浮动窗口
 		config = {
@@ -169,13 +159,4 @@ packer.startup(
 			}
 		}
 	}
-)
--- 实时生效配置
-vim.cmd(
-	[[
-augroup packer_user_config
-autocmd!
-autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-augroup end
-]]
 )
