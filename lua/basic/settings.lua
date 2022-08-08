@@ -11,13 +11,15 @@ if vim.fn.has('wsl') then
   autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
   augroup END
   ]]
+else
+-- 是否启用系统剪切板
+	vim.o.clipboard = "unnamedplus"
 end
 
 -- 取消搜索高亮
 vim.o.hlsearch = false
-
 --智能补全
-vim.o.completeopt="longest,menu"
+vim.o.completeopt="menu,preview"
 -- 不要备份文件（根据自己需要取舍）
 vim.o.backup=false
 vim.o.writebackup=false
@@ -54,8 +56,6 @@ vim.o.scrolloff = 10
 vim.o.mouse = "a"
 vim.o.selection="exclusive"
 vim.o.selectmode="mouse,key"
--- 是否启用系统剪切板
-vim.o.clipboard = "unnamedplus"
 -- 是否开启备份文件
 vim.o.backup = false
 --不要换行
