@@ -3,7 +3,7 @@ local dap = require('dap')
 dap.adapters.cppdbg = {
   id = 'cppdbg',
   type = 'executable',
-  command = Execute_path..'OpenDebugAD7'
+  command = 'OpenDebugAD7'
 }
 
 dap.configurations.cpp = {

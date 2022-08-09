@@ -103,21 +103,22 @@ vim.keybinds.gmap("n","<C-p>","<cmd>lua require('lspsaga.action').smart_scroll_w
 -- 悬浮窗口下翻页，由 Lspsaga 提供
 vim.keybinds.gmap("n","<C-n>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>",vim.keybinds.opts)
 
--- -- 查找文件
+-- 查找文件
 vim.keybinds.gmap("n", "<leader>ff", "<cmd>Telescope find_files <CR>", vim.keybinds.opts)
--- -- 查找文字
+-- 查找文字
 vim.keybinds.gmap("n", "<leader>fg", "<cmd>Telescope live_grep <CR>", vim.keybinds.opts)
--- -- 查找特殊符号
-vim.keybinds.gmap("n", "<leader>fb", "<cmd>Telescope buffers <CR>", vim.keybinds.opts)
--- -- 查找帮助文档
+-- 查找帮助文档
 vim.keybinds.gmap("n", "<leader>fh", "<cmd>Telescope help_tags <CR>", vim.keybinds.opts)
--- -- 查找最近打开的文件
+-- 查找最近打开的文件
 vim.keybinds.gmap("n", "<leader>fo", "<cmd>Telescope oldfiles <CR>", vim.keybinds.opts)
--- -- 查找 marks 标记
+-- 查找 marks 标记
 vim.keybinds.gmap("n", "<leader>fm", "<cmd>Telescope marks <CR>", vim.keybinds.opts)
-
+-- 文件浏览器
 vim.keybinds.gmap("n", "<leader>fb", "<cmd>Telescope file_browser<CR>", vim.keybinds.opts)
-
+-- packer
+vim.keybinds.gmap("n", "<leader>p", "<cmd>Telescope packer<CR>", vim.keybinds.opts)
+-- 工作区
+vim.keybinds.gmap("n", "<leader>fp", "<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>", vim.keybinds.opts)
 ---: 
 -- buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 --     buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)

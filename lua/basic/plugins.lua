@@ -98,7 +98,6 @@ packer.startup(
 					{"f3fora/cmp-spell"}, -- 拼写建议
 					{"rafamadriz/friendly-snippets"}, -- 提供多种语言的代码片段
 					{"lukas-reineke/cmp-under-comparator"}, -- 让补全结果的排序更加智能
-					--{"tzachar/cmp-tabnine", run = "./install.ps1"} -- tabnine 源,提供基于 AI 的智能补全
 				},
 				config = function()
 					require("conf.nvim-cmp")
@@ -129,6 +128,8 @@ packer.startup(
 				end
 			}
 			use "nvim-telescope/telescope-file-browser.nvim"
+			use "nvim-telescope/telescope-packer.nvim"
+			use "nvim-telescope/telescope-project.nvim"
 
 			-- 注释
 			use {
@@ -142,15 +143,27 @@ packer.startup(
 			}
 			-- debug
 			use {
-				"mfussenegger/nvim-dap",
-				"theHamsta/nvim-dap-virtual-text",
-				"rcarriga/nvim-dap-ui",
-				config = function ()
-					require('conf.nvim-dap-ui')
-					require('conf.nvim-dap')
-					require("conf.nvim-dap-virtual-text")
-				end
-			}
+				{
+					"mfussenegger/nvim-dap",
+					config = function()
+						require('conf.nvim-dap')
+					end
+				},
+				{
+					"rcarriga/nvim-dap-ui",
+					config = function ()
+						require('conf.nvim-dap-ui')
+					end
+				},
+				{
+					"theHamsta/nvim-dap-virtual-text",
+					require = {
+						"mfussenegger/nvim-dap",
+					},
+					config = function ()
+						require("conf.nvim-dap-virtual-text")
+					end
+			}}
 		end,
 		-- 使用浮动窗口
 		config = {
