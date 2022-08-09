@@ -45,9 +45,6 @@ require('telescope').setup{
 		find_files = {
 			-- theme = "dropdown",
 		},
-		live_grep = {
-			-- theme = "dropdown",
-		},
 		diagnostics = {
 			theme = "dropdown",
 		},
@@ -113,5 +110,5 @@ require('telescope').setup{
 
 -- you need to call load_extension, somewhere after setup function:
 require("telescope").load_extension 'file_browser'
-require("telescope").load_extension "packer"
-require'telescope'.load_extension('project')
+require("telescope").load_extension 'packer'
+require'telescope'.load_extension 'project'
