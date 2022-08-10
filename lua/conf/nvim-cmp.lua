@@ -28,9 +28,6 @@ local lspkind = require("lspkind")
 local cmp = require("cmp")
 cmp.setup(
 	{
-		view = {
-			entries = "custom" -- can be "custom", "wildmenu" or "native"
-		},
 		-- 指定补全引擎
 		snippet = {
 			expand = function(args)
@@ -152,12 +149,10 @@ cmp.setup.cmdline('/', {
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
 	mapping = cmp.mapping.preset.cmdline(),
-	sources = cmp.config.sources({
-		{ name = 'path' }
-		},
-		{
-			{ name = 'cmdline' }
-	})
+	sources = cmp.config.sources(
+		{{ name = 'path' }},
+		{{ name = 'cmdline'}}
+	)
 })
 
 -- Setup lspconfig.

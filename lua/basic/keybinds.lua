@@ -64,8 +64,26 @@ vim.keybinds.gmap("v", "<leader>\\", "gc", {})
 -- 代码折叠
 vim.keybinds.gmap("n", "<leader>[", "zc", {});
 vim.keybinds.gmap("v", "<leader>]", "zo", {});
-
 -- lsp设置
+vim.keybinds.gmap("n", "lf", "<cmd>Lspsaga lsp_finder<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "pd", "<cmd>Lspsaga preview_definition<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "cf", "<cmd>Lspsaga close_floaterm<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "of", "<cmd>Lspsaga open_floaterm<CR>", vim.keybinds.opts)
+-- 显示代码可用操作（代替内置 LSP 的窗口，Lspsaga 插件让代码行为更方便）
+vim.keybinds.gmap("n", "ca", "<cmd>Lspsaga code_action <CR>", vim.keybinds.opts)
+-- 变量重命名（代替内置 LSP 的窗口，Lspsaga 让变量重命名更美观）
+vim.keybinds.gmap("n", "rn", "<cmd>Lspsaga rename<CR>", vim.keybinds.opts)
+-- 查看帮助信息（代替内置 LSP 的窗口，Lspsaga 让查看帮助信息更美观）
+vim.keybinds.gmap("n", "hd", "<cmd>Lspsaga hover_doc<CR>", vim.keybinds.opts)
+-- 跳转到上一个问题（代替内置 LSP 的窗口，Lspsaga 让跳转问题更美观）
+vim.keybinds.gmap("n", "j[", "<cmd>Lspsaga diagnostic_jump_prev<CR>", vim.keybinds.opts)
+-- 跳转到下一个问题（代替内置 LSP 的窗口，Lspsaga 让跳转问题更美观）
+vim.keybinds.gmap("n", "j]", "<cmd>Lspsaga diagnostic_jump_next<CR>", vim.keybinds.opts)
+-- 悬浮窗口上翻页，由 Lspsaga 提供
+vim.keybinds.gmap("n","<C-p>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>",vim.keybinds.opts)
+-- 悬浮窗口下翻页，由 Lspsaga 提供
+vim.keybinds.gmap("n","<C-n>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>",vim.keybinds.opts)
+
 -- 跳转到定义（代替内置 LSP 的窗口，telescope 插件让跳转定义更方便）
 vim.keybinds.gmap("n", "gd", "<cmd>Telescope lsp_definitions <CR>", vim.keybinds.opts)
 -- 跳转到实现
@@ -74,20 +92,6 @@ vim.keybinds.gmap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", vim.keybi
 vim.keybinds.gmap("n", "gr", "<cmd>Telescope lsp_references <CR>", vim.keybinds.opts)
 -- 工作区诊断（代替内置 LSP 的窗口，telescope 插件让工作区诊断更方便）
 vim.keybinds.gmap("n", "go", "<cmd>Telescope diagnostics <CR>", vim.keybinds.opts)
--- 显示代码可用操作（代替内置 LSP 的窗口，telescope 插件让代码行为更方便）
-vim.keybinds.gmap("n", "<leader>ca", "<cmd>Telescope lsp_code_actions <CR>", vim.keybinds.opts)
--- 变量重命名（代替内置 LSP 的窗口，Lspsaga 让变量重命名更美观）
-vim.keybinds.gmap("n", "<F2>", "<cmd>Lspsaga rename<CR>", vim.keybinds.opts)
--- 查看帮助信息（代替内置 LSP 的窗口，Lspsaga 让查看帮助信息更美观）
-vim.keybinds.gmap("n", "gh", "<cmd>Lspsaga hover_doc<CR>", vim.keybinds.opts)
--- 跳转到上一个问题（代替内置 LSP 的窗口，Lspsaga 让跳转问题更美观）
-vim.keybinds.gmap("n", "g[", "<cmd>Lspsaga diagnostic_jump_prev<CR>", vim.keybinds.opts)
--- 跳转到下一个问题（代替内置 LSP 的窗口，Lspsaga 让跳转问题更美观）
-vim.keybinds.gmap("n", "g]", "<cmd>Lspsaga diagnostic_jump_next<CR>", vim.keybinds.opts)
--- 悬浮窗口上翻页，由 Lspsaga 提供
-vim.keybinds.gmap("n","<C-p>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>",vim.keybinds.opts)
--- 悬浮窗口下翻页，由 Lspsaga 提供
-vim.keybinds.gmap("n","<C-n>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>",vim.keybinds.opts)
 -- 查找文件
 vim.keybinds.gmap("n", "<leader>ff", "<cmd>Telescope find_files <CR>", vim.keybinds.opts)
 -- 查找文字
