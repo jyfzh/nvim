@@ -12,6 +12,7 @@ vim.keybinds = {
 vim.keybinds.gmap("n", "<F3>", 	"<cmd> PreviousColorScheme <CR>", vim.keybinds.opts)
 vim.keybinds.gmap("n", "<F4>",  "<cmd> NextColorScheme <CR>", vim.keybinds.opts)
 
+
 function Run()
 	vim.cmd("w!")
 	if(vim.bo.filetype=="cpp") then
@@ -32,6 +33,7 @@ function Run()
 		vim.cmd("!bash %")
 	end
 end
+
 
 -- 基础按键
 vim.keybinds.gmap("n", "<C-u>", "10k", vim.keybinds.opts)
@@ -64,11 +66,10 @@ vim.keybinds.gmap("v", "<leader>\\", "gc", {})
 -- 代码折叠
 vim.keybinds.gmap("n", "<leader>[", "zc", {});
 vim.keybinds.gmap("v", "<leader>]", "zo", {});
+
 -- lsp设置
 vim.keybinds.gmap("n", "lf", "<cmd>Lspsaga lsp_finder<CR>", vim.keybinds.opts)
 vim.keybinds.gmap("n", "pd", "<cmd>Lspsaga preview_definition<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n", "cf", "<cmd>Lspsaga close_floaterm<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n", "of", "<cmd>Lspsaga open_floaterm<CR>", vim.keybinds.opts)
 -- 显示代码可用操作（代替内置 LSP 的窗口，Lspsaga 插件让代码行为更方便）
 vim.keybinds.gmap("n", "ca", "<cmd>Lspsaga code_action <CR>", vim.keybinds.opts)
 -- 变量重命名（代替内置 LSP 的窗口，Lspsaga 让变量重命名更美观）
