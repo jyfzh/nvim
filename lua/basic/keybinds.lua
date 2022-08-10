@@ -65,20 +65,6 @@ vim.keybinds.gmap("v", "<leader>\\", "gc", {})
 vim.keybinds.gmap("n", "<leader>[", "zc", {});
 vim.keybinds.gmap("v", "<leader>]", "zo", {});
 
--- bufferline
-vim.keybinds.gmap("","b1", "<Cmd>BufferLineGoToBuffer 1 <CR>", vim.keybinds.opts)
-vim.keybinds.gmap("","b2", "<Cmd>BufferLineGoToBuffer 2 <CR>", vim.keybinds.opts)
-vim.keybinds.gmap("","b3", "<Cmd>BufferLineGoToBuffer 3 <CR>", vim.keybinds.opts)
-vim.keybinds.gmap("","b4", "<Cmd>BufferLineGoToBuffer 4 <CR>", vim.keybinds.opts)
-vim.keybinds.gmap("","b5", "<Cmd>BufferLineGoToBuffer 5 <CR>", vim.keybinds.opts)
-vim.keybinds.gmap("","b6", "<Cmd>BufferLineGoToBuffer 6 <CR>", vim.keybinds.opts)
-vim.keybinds.gmap("","b7", "<Cmd>BufferLineGoToBuffer 7 <CR>", vim.keybinds.opts)
-vim.keybinds.gmap("","b8", "<Cmd>BufferLineGoToBuffer 8 <CR>", vim.keybinds.opts)
-vim.keybinds.gmap("","b9", "<Cmd>BufferLineGoToBuffer 9 <CR>", vim.keybinds.opts)
-vim.keybinds.gmap("","b$", "<Cmd>BufferLineGoToBuffer -1<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("","bp", "<Cmd>BufferLineCyclePrev<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("","bn", "<Cmd>BufferLineCycleNext<CR>", vim.keybinds.opts)
-
 -- lsp设置
 -- 跳转到定义（代替内置 LSP 的窗口，telescope 插件让跳转定义更方便）
 vim.keybinds.gmap("n", "gd", "<cmd>Telescope lsp_definitions <CR>", vim.keybinds.opts)
@@ -102,7 +88,6 @@ vim.keybinds.gmap("n", "g]", "<cmd>Lspsaga diagnostic_jump_next<CR>", vim.keybin
 vim.keybinds.gmap("n","<C-p>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>",vim.keybinds.opts)
 -- 悬浮窗口下翻页，由 Lspsaga 提供
 vim.keybinds.gmap("n","<C-n>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>",vim.keybinds.opts)
-
 -- 查找文件
 vim.keybinds.gmap("n", "<leader>ff", "<cmd>Telescope find_files <CR>", vim.keybinds.opts)
 -- 查找文字
@@ -115,18 +100,12 @@ vim.keybinds.gmap("n", "<leader>fo", "<cmd>Telescope oldfiles <CR>", vim.keybind
 vim.keybinds.gmap("n", "<leader>fm", "<cmd>Telescope marks <CR>", vim.keybinds.opts)
 -- 文件浏览器
 vim.keybinds.gmap("n", "<leader>fb", "<cmd>Telescope file_browser<CR>", vim.keybinds.opts)
+-- buffer
+vim.keybinds.gmap("n", "<leader>b", "<cmd>Telescope buffers<CR>", vim.keybinds.opts)
 -- packer
 vim.keybinds.gmap("n", "<leader>p", "<cmd>Telescope packer<CR>", vim.keybinds.opts)
 -- 工作区
 vim.keybinds.gmap("n", "<leader>fp", "<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>", vim.keybinds.opts)
 ---: 
--- buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
---     buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
---     buf_set_keymap('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
---     -- buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
---     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
---     buf_set_keymap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
---     buf_set_keymap('n', 'ge' , '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
---     buf_set_keymap('n', 'gpe', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 --     buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 --     buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)

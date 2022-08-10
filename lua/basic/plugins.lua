@@ -36,13 +36,13 @@ packer.startup(
 				end
 			}
 			-- bufferline 
-			use {
-				'akinsho/bufferline.nvim',
-				requires = 'kyazdani42/nvim-web-devicons',
-				config = function()
-					require("conf.bufferline")
-				end
-			}
+			-- use {
+			-- 	'akinsho/bufferline.nvim',
+			-- 	requires = 'kyazdani42/nvim-web-devicons',
+			-- 	config = function()
+			-- 		require("conf.bufferline")
+			-- 	end
+			-- }
 			-- treesitter
 			use {
 				'nvim-treesitter/nvim-treesitter',

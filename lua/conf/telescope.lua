@@ -26,28 +26,44 @@ require('telescope').setup{
 		mappings = {
 			n = { ["q"] = require("telescope.actions").close },
 		},
-		layout_strategy = "horizontal",
-		layout_config = {
-			horizontal = {
-				prompt_position = "bottom",
-				preview_width = 0.6,
-				results_width = 0.5,
-			},
-			vertical = {
-				mirror = false,
-			},
-			width = 0.9,
-			height = 0.9,
-			preview_cutoff = 60,
-		},
 	},
 	pickers = {
 		find_files = {
-			-- theme = "dropdown",
+			layout_strategy = "horizontal",
+			layout_config = {
+				horizontal = {
+					prompt_position = "bottom",
+					preview_width = 0.6,
+					results_width = 0.5,
+				},
+				vertical = {
+					mirror = false,
+				},
+				width = 0.9,
+				height = 0.9,
+				preview_cutoff = 60,
+			}
 		},
 		diagnostics = {
-			theme = "dropdown",
+			theme = "cursor",
+			previewer = false,
 		},
+		buffers = {
+			ayout_strategy = "horizontal",
+			layout_config = {
+				horizontal = {
+					prompt_position = "bottom",
+					preview_width = 0.5,
+					results_width = 0.5,
+				},
+				vertical = {
+					mirror = false,
+				},
+				width = 0.9,
+				height = 0.9,
+				preview_cutoff = 60,
+			}
+		}
 	},
 	extensions = {
 		file_browser = {
@@ -74,27 +90,8 @@ require('telescope').setup{
 				height = .9
 			}
 		},
-		["ui-select"] = {
-			require("telescope.themes").get_dropdown {
-				-- even more opts
-			}
-
-			-- pseudo code / specification for writing custom displays, like the one
-			-- for "codeactions"
-			-- specific_opts = {
-			--   [kind] = {
-			--     make_indexed = function(items) -> indexed_items, width,
-			--     make_displayer = function(widths) -> displayer
-			--     make_display = function(displayer) -> function(e)
-			--     make_ordinal = function(e) -> string
-			--   },
-			--   -- for example to disable the custom builtin "codeactions" display
-			--      do the following
-			--   codeactions = false,
-			-- }
-		},
 		project = {
-			theme = "cursor",
+			theme = "dropdown",
 			base_dirs = {
 				'~/cpp',
 				'~/java',
