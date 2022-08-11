@@ -27,6 +27,16 @@ packer.startup(
 			use {
 				"yianwillis/vimcdoc",
 			}
+			-- range
+			use {
+				'francoiscabrol/ranger.vim',
+				requires = {
+					'rbgrouleff/bclose.vim',
+				},
+				config = function ()
+					vim.o.ranger_map_keys = 0
+				end
+			}
 			-- lua-line
 			use {
 				'nvim-lualine/lualine.nvim',
@@ -123,14 +133,14 @@ packer.startup(
 				"nvim-telescope/telescope.nvim",
 				requires = {
 					"nvim-lua/plenary.nvim", -- Lua 开发模块
+					"nvim-telescope/telescope-file-browser.nvim",
+					"nvim-telescope/telescope-packer.nvim",
+					"nvim-telescope/telescope-project.nvim",
 				},
 				config = function()
 					require("conf.telescope")
 				end
 			}
-			use "nvim-telescope/telescope-file-browser.nvim"
-			use "nvim-telescope/telescope-packer.nvim"
-			use "nvim-telescope/telescope-project.nvim"
 
 			-- 注释
 			use {

@@ -13,11 +13,14 @@ vim.keybinds.gmap("n", "<F3>", 	"<cmd> PreviousColorScheme <CR>", vim.keybinds.o
 vim.keybinds.gmap("n", "<F4>",  "<cmd> NextColorScheme <CR>", vim.keybinds.opts)
 
 
+-- ranger
+vim.keybinds.gmap("n", "<leader>R",  "<cmd> Ranger <CR>", vim.keybinds.opts)
+
 function Run()
 	vim.cmd("w!")
 	if(vim.bo.filetype=="cpp") then
-		vim.cmd("!g++ -g3 -std=c++2a -Wall % -o %<")
-		vim.cmd("!./%<")
+		vim.cmd("!g++ -g3 -std=c++2a -Wall %:p -o %:p:h/%:r")
+		vim.cmd("!%:p:h/%:r")
 	elseif(vim.bo.filetype=="c") then
 		vim.cmd("!gcc -g3 -std=c2x -Wall % -o %<")
 		vim.cmd("!./%<")
@@ -68,31 +71,32 @@ vim.keybinds.gmap("n", "<leader>[", "zc", {});
 vim.keybinds.gmap("v", "<leader>]", "zo", {});
 
 -- lsp设置
-vim.keybinds.gmap("n", "lf", "<cmd>Lspsaga lsp_finder<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n", "pd", "<cmd>Lspsaga preview_definition<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "gt", "<cmd>Lspsaga open_floaterm<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "gp", "<cmd>Lspsaga preview_definition<CR>", vim.keybinds.opts)
 -- 显示代码可用操作（代替内置 LSP 的窗口，Lspsaga 插件让代码行为更方便）
-vim.keybinds.gmap("n", "ca", "<cmd>Lspsaga code_action <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "gc", "<cmd>Lspsaga code_action <CR>", vim.keybinds.opts)
 -- 变量重命名（代替内置 LSP 的窗口，Lspsaga 让变量重命名更美观）
-vim.keybinds.gmap("n", "rn", "<cmd>Lspsaga rename<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "gr", "<cmd>Lspsaga rename<CR>", vim.keybinds.opts)
 -- 查看帮助信息（代替内置 LSP 的窗口，Lspsaga 让查看帮助信息更美观）
-vim.keybinds.gmap("n", "hd", "<cmd>Lspsaga hover_doc<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "gh", "<cmd>Lspsaga hover_doc<CR>", vim.keybinds.opts)
 -- 跳转到上一个问题（代替内置 LSP 的窗口，Lspsaga 让跳转问题更美观）
-vim.keybinds.gmap("n", "j[", "<cmd>Lspsaga diagnostic_jump_prev<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "g[", "<cmd>Lspsaga diagnostic_jump_prev<CR>", vim.keybinds.opts)
 -- 跳转到下一个问题（代替内置 LSP 的窗口，Lspsaga 让跳转问题更美观）
-vim.keybinds.gmap("n", "j]", "<cmd>Lspsaga diagnostic_jump_next<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "g]", "<cmd>Lspsaga diagnostic_jump_next<CR>", vim.keybinds.opts)
 -- 悬浮窗口上翻页，由 Lspsaga 提供
 vim.keybinds.gmap("n","<C-p>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>",vim.keybinds.opts)
 -- 悬浮窗口下翻页，由 Lspsaga 提供
 vim.keybinds.gmap("n","<C-n>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>",vim.keybinds.opts)
 
 -- 跳转到定义（代替内置 LSP 的窗口，telescope 插件让跳转定义更方便）
-vim.keybinds.gmap("n", "gd", "<cmd>Telescope lsp_definitions <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<leader>gd", "<cmd>Telescope lsp_definitions <CR>", vim.keybinds.opts)
 -- 跳转到实现
-vim.keybinds.gmap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<leader>gi", "<cmd>Telescope lsp_implementations<CR>", vim.keybinds.opts)
 -- 列出光标下所有引用（代替内置 LSP 的窗口，telescope 插件让查看引用更方便）
-vim.keybinds.gmap("n", "gr", "<cmd>Telescope lsp_references <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<leader>gr", "<cmd>Telescope lsp_references <CR>", vim.keybinds.opts)
 -- 工作区诊断（代替内置 LSP 的窗口，telescope 插件让工作区诊断更方便）
-vim.keybinds.gmap("n", "go", "<cmd>Telescope diagnostics <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<leader>go", "<cmd>Telescope diagnostics <CR>", vim.keybinds.opts)
 -- 查找文件
 vim.keybinds.gmap("n", "<leader>ff", "<cmd>Telescope find_files <CR>", vim.keybinds.opts)
 -- 查找文字
@@ -104,9 +108,9 @@ vim.keybinds.gmap("n", "<leader>fo", "<cmd>Telescope oldfiles <CR>", vim.keybind
 -- 查找 marks 标记
 vim.keybinds.gmap("n", "<leader>fm", "<cmd>Telescope marks <CR>", vim.keybinds.opts)
 -- 文件浏览器
-vim.keybinds.gmap("n", "<leader>fb", "<cmd>Telescope file_browser<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<leader>FB", "<cmd>Telescope file_browser<CR>", vim.keybinds.opts)
 -- buffer
-vim.keybinds.gmap("n", "<leader>b", "<cmd>Telescope buffers<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", vim.keybinds.opts)
 -- packer
 vim.keybinds.gmap("n", "<leader>p", "<cmd>Telescope packer<CR>", vim.keybinds.opts)
 -- 工作区

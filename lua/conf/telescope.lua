@@ -18,9 +18,9 @@ require('telescope').setup{
 		selection_caret = "  ",
 		entry_prefix = "  ",
 		sorting_strategy = "descending",
-		file_ignore_patterns = { "node_modules" },
+		file_ignore_patterns = { "node_modules",".git" },
 		path_display = { "smart" },
-		winblend = 18,
+		winblend = 0,
 		border = false,
 		set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 		mappings = {
@@ -68,6 +68,7 @@ require('telescope').setup{
 	extensions = {
 		file_browser = {
 			theme = "ivy",
+			border = false,
 			-- disables netrw and use telescope-file-browser in its place
 			hijack_netrw = true,
 			path_display = { "tail" },
@@ -86,12 +87,14 @@ require('telescope').setup{
 		},
 		packer = {
 			theme = "ivy",
+			border = false,
 			layout_config = {
 				height = .9
 			}
 		},
 		project = {
-			theme = "dropdown",
+			theme = "cursor",
+			border = false,
 			base_dirs = {
 				'~/cpp',
 				'~/java',
@@ -100,7 +103,7 @@ require('telescope').setup{
 				-- {path = '~/dev/src5'},
 				-- {path = '~/dev/src5', max_depth = 2},
 			},
-			hidden_files = false, -- default: false
+			hidden_files = true, -- default: false
 		},
 	},
 }
