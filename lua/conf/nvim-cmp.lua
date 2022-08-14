@@ -129,6 +129,7 @@ cmp.setup(
 				cmp.config.compare.exact,
 				cmp.config.compare.score,
 				cmp.config.compare.recently_used,
+				require("clangd_extensions.cmp_scores"),
 				require"cmp-under-comparator".under,
 				cmp.config.compare.kind,
 				cmp.config.compare.sort_text,

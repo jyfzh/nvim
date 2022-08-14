@@ -41,14 +41,12 @@ require'lspconfig'.sumneko_lua.setup{
 }
 
 -- https://clangd.llvm.org/features.html
-require'lspconfig'.clangd.setup({
-	capabilities = capabilities,
-	cmd = {"clangd"},
-	filetypes = {"c", "cpp", "objc", "objcpp"},
-	single_file_support = true,
-	init_options = {
-		clangdFileStatus = true
-	},
-})
-
-
+-- require'lspconfig'.clangd.setup({
+-- 	capabilities = capabilities,
+-- 	cmd = {"clangd"},
+-- 	filetypes = {"c", "cpp", "objc", "objcpp"},
+-- 	single_file_support = true,
+-- 	init_options = {
+-- 		clangdFileStatus = true
+-- 	},
+-- })
