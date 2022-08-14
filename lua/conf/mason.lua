@@ -7,7 +7,7 @@ require("mason").setup({
         }
     }
 })
-Execute_path = vim.fn.stdpath'data'.."/mason/bin/"
+require("mason-lspconfig").setup()
 require("lsp.sumneko_lua")
 require("lsp.clangd")
 require("lsp.jdtls")

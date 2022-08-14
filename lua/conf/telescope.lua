@@ -26,6 +26,20 @@ require('telescope').setup{
 		mappings = {
 			n = { ["q"] = require("telescope.actions").close },
 		},
+		layout_strategy = "horizontal",
+		layout_config = {
+			horizontal = {
+				prompt_position = "bottom",
+				preview_width = 0.6,
+				results_width = 0.5,
+			},
+			vertical = {
+				mirror = false,
+			},
+			width = 0.9,
+			height = 0.9,
+			preview_cutoff = 60,
+		}
 	},
 	pickers = {
 		find_files = {
@@ -33,7 +47,7 @@ require('telescope').setup{
 			layout_config = {
 				horizontal = {
 					prompt_position = "bottom",
-					preview_width = 0.6,
+					preview_width = 0.5,
 					results_width = 0.5,
 				},
 				vertical = {
@@ -49,7 +63,7 @@ require('telescope').setup{
 			previewer = false,
 		},
 		buffers = {
-			ayout_strategy = "horizontal",
+			layout_strategy = "horizontal",
 			layout_config = {
 				horizontal = {
 					prompt_position = "bottom",
@@ -61,7 +75,7 @@ require('telescope').setup{
 				},
 				width = 0.9,
 				height = 0.9,
-				preview_cutoff = 60,
+				preview_cutoff = 90,
 			}
 		}
 	},
@@ -87,24 +101,34 @@ require('telescope').setup{
 		},
 		packer = {
 			theme = "ivy",
+			preview = false,
 			border = false,
 			layout_config = {
 				height = .9
 			}
 		},
 		project = {
-			theme = "cursor",
+			theme = "ivy",
 			border = false,
+			layout_config = {
+				height = .3,
+			},
 			base_dirs = {
 				'~/cpp',
-				'~/java',
-				-- '/home/jyf/.config/nvim',
+				'/home/jyf/.config/nvim',
 				-- {'~/dev/src3', max_depth = 4},
 				-- {path = '~/dev/src5'},
 				-- {path = '~/dev/src5', max_depth = 2},
 			},
 			hidden_files = true, -- default: false
 		},
+		fzf = {
+			fuzzy = true,                    -- false will only do exact matching
+			override_generic_sorter = true,  -- override the generic sorter
+			override_file_sorter = true,     -- override the file sorter
+			case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+			-- the default case_mode is "smart_case"
+		}
 	},
 }
 
@@ -112,3 +136,4 @@ require('telescope').setup{
 require("telescope").load_extension 'file_browser'
 require("telescope").load_extension 'packer'
 require'telescope'.load_extension 'project'
+require('telescope').load_extension 'fzf'

@@ -33,9 +33,6 @@ packer.startup(
 				requires = {
 					'rbgrouleff/bclose.vim',
 				},
-				config = function ()
-					vim.o.ranger_map_keys = 0
-				end
 			}
 			-- lua-line
 			use {
@@ -82,14 +79,17 @@ packer.startup(
 			}
 			-- 自动安装 LSP
 			use {
-				"williamboman/mason.nvim",
-				config = function()
-					require("conf.mason")
-				end
+				{
+					"williamboman/mason.nvim",
+					config = function()
+						require("conf.mason")
+					end
+				},
+				{"williamboman/mason-lspconfig.nvim"},
 			}
 			-- LSP UI 美化
 			use {
-				"glepnir/lspsaga.nvim",
+				"kkharji/lspsaga.nvim",
 				config = function()
 					require("conf.lspsaga")
 				end
@@ -130,18 +130,21 @@ packer.startup(
 			}
 			-- 模糊查找
 			use {
-				"nvim-telescope/telescope.nvim",
-				requires = {
-					"nvim-lua/plenary.nvim", -- Lua 开发模块
-					"nvim-telescope/telescope-file-browser.nvim",
-					"nvim-telescope/telescope-packer.nvim",
-					"nvim-telescope/telescope-project.nvim",
+				{
+					"nvim-telescope/telescope.nvim",
+					requires = {
+						-- Lua 开发模块
+						{"nvim-lua/plenary.nvim"},
+					},
+					config = function()
+						require("conf.telescope")
+					end
 				},
-				config = function()
-					require("conf.telescope")
-				end
+				{"nvim-telescope/telescope-file-browser.nvim"},
+				{"nvim-telescope/telescope-packer.nvim"},
+				{"nvim-telescope/telescope-project.nvim"},
+				{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'} ,
 			}
-
 			-- 注释
 			use {
 				'numToStr/Comment.nvim',
@@ -174,7 +177,13 @@ packer.startup(
 					config = function ()
 						require("conf.nvim-dap-virtual-text")
 					end
-			}}
+				}
+			}
+			-- vim-floaterm
+			use {
+				'voldikss/vim-floaterm'
+			}
+
 		end,
 		-- 使用浮动窗口
 		config = {

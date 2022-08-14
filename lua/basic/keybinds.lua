@@ -13,17 +13,13 @@ vim.keybinds.gmap("n", "<F3>", 	"<cmd> PreviousColorScheme <CR>", vim.keybinds.o
 vim.keybinds.gmap("n", "<F4>",  "<cmd> NextColorScheme <CR>", vim.keybinds.opts)
 
 
--- ranger
-vim.keybinds.gmap("n", "<leader>R",  "<cmd> Ranger <CR>", vim.keybinds.opts)
-
 function Run()
 	vim.cmd("w!")
 	if(vim.bo.filetype=="cpp") then
-		vim.cmd("!g++ -g3 -std=c++2a -Wall %:p -o %:p:h/%:r")
-		vim.cmd("!%:p:h/%:r")
+		vim.cmd("FloatermNew --autoclose=0 --position=bottomright g++ -g3 -std=c++2a -Wall %:p -o %:p:h/%:r && %:p:h/%:r")
 	elseif(vim.bo.filetype=="c") then
-		vim.cmd("!gcc -g3 -std=c2x -Wall % -o %<")
-		vim.cmd("!./%<")
+		vim.cmd("FloatermNew gcc -g3 -std=c2x -Wall % -o %< && %<")
+		vim.cmd("!")
 	elseif(vim.bo.filetype=="python")then
 		vim.cmd("!python -u %")
 	elseif (vim.bo.filetype=="java") then
@@ -51,7 +47,7 @@ vim.keybinds.gmap("n", "<A-right>", "<cmd> vertical resize+5	<CR>", vim.keybinds
 vim.keybinds.gmap("n", "<CR><CR>" , "<cmd>noh<CR>",vim.keybinds.opts)
 
 -- 运行代码
-vim.keybinds.gmap("n","<leader>n" ,"<cmd>lua Run() <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n","<C-A-n>" ,"<cmd>lua Run() <CR>", vim.keybinds.opts)
 
 -- 调试代码
 vim.keybinds.gmap("n", "<F9>","<cmd>lua require'dap'.toggle_breakpoint()<CR>" ,vim.keybinds.opts)
@@ -71,11 +67,8 @@ vim.keybinds.gmap("n", "<leader>[", "zc", {});
 vim.keybinds.gmap("v", "<leader>]", "zo", {});
 
 -- lsp设置
-vim.keybinds.gmap("n", "gt", "<cmd>Lspsaga open_floaterm<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n", "gp", "<cmd>Lspsaga preview_definition<CR>", vim.keybinds.opts)
 -- 显示代码可用操作（代替内置 LSP 的窗口，Lspsaga 插件让代码行为更方便）
-vim.keybinds.gmap("n", "gc", "<cmd>Lspsaga code_action <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "ga", "<cmd>Lspsaga code_action <CR>", vim.keybinds.opts)
 -- 变量重命名（代替内置 LSP 的窗口，Lspsaga 让变量重命名更美观）
 vim.keybinds.gmap("n", "gr", "<cmd>Lspsaga rename<CR>", vim.keybinds.opts)
 -- 查看帮助信息（代替内置 LSP 的窗口，Lspsaga 让查看帮助信息更美观）
