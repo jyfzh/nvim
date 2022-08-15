@@ -19,8 +19,8 @@ packer.startup(
 				'chxuan/change-colorscheme',
 				'navarasu/onedark.nvim',
 				'folke/tokyonight.nvim',
-				-- {'shaunsingh/oxocarbon.nvim', run = './install.sh'}, --need cargo
 				'luisiacc/gruvbox-baby',
+				-- {'shaunsingh/oxocarbon.nvim', run = './install.sh'}, --need cargo
 			}
 			-- 中文文档
 			use {
@@ -47,19 +47,8 @@ packer.startup(
 				},
 				{
 					'nvim-lua/lsp-status.nvim',
-					config = function ()
-						require("conf.lsp-status")
-					end
 				}
 			}
-			-- bufferline 
-			-- use {
-			-- 	'akinsho/bufferline.nvim',
-			-- 	requires = 'kyazdani42/nvim-web-devicons',
-			-- 	config = function()
-			-- 		require("conf.bufferline")
-			-- 	end
-			-- }
 			-- 模糊查找
 			use {
 				{
@@ -155,7 +144,6 @@ packer.startup(
 					{"hrsh7th/cmp-cmdline"}, -- 命令补全
 					{"hrsh7th/cmp-vsnip"}, -- 适用于 vsnip 的代码片段源
 					{"hrsh7th/vim-vsnip"}, -- vsnip 引擎，用于获得代码片段支持
-
 					{"f3fora/cmp-spell"}, -- 拼写建议
 					{"rafamadriz/friendly-snippets"}, -- 提供多种语言的代码片段
 					{"lukas-reineke/cmp-under-comparator"}, -- 让补全结果的排序更加智能
