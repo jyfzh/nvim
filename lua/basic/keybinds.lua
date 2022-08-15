@@ -12,27 +12,27 @@ vim.keybinds = {
 vim.keybinds.gmap("n", "<F3>", 	"<cmd> PreviousColorScheme <CR>", vim.keybinds.opts)
 vim.keybinds.gmap("n", "<F4>",  "<cmd> NextColorScheme <CR>", vim.keybinds.opts)
 
-
 function Run()
 	vim.cmd("w!")
 	if(vim.bo.filetype=="cpp") then
 		vim.cmd("FloatermNew --autoclose=0 --position=bottomright g++ -g3 -std=c++2a -Wall %:p -o %:p:h/%:r && %:p:h/%:r")
 	elseif(vim.bo.filetype=="c") then
-		vim.cmd("FloatermNew gcc -g3 -std=c2x -Wall % -o %< && %<")
-		vim.cmd("!")
+		vim.cmd("FloatermNew --autoclose=0 --position=bottomright gcc -g3 -std=c2x -Wall % -o %< && %<")
 	elseif(vim.bo.filetype=="python")then
-		vim.cmd("!python -u %")
+		vim.cmd("FloatermNew --autoclose=0 --position=bottomright python -u %")
 	elseif (vim.bo.filetype=="java") then
-		vim.cmd("!java %")
+		vim.cmd("FloatermNew --autoclose=0 --position=bottomright java %")
 	elseif (vim.bo.filetype=="make") then
-		vim.cmd("!make clean&&make&&./%<")
+		vim.cmd("FloatermNew --autoclose=0 --position=bottomright make clean&&make&&./%<")
 	elseif (vim.bo.filetype=="txt") then
-		vim.cmd("!cmake ..")
+		vim.cmd("FloatermNew --autoclose=0 --position=bottomright cmake ..")
 	elseif (vim.bo.filetype=="sh") then
-		vim.cmd("!bash %")
+		vim.cmd("FloatermNew --autoclose=0 --position=bottomright bash %")
 	end
 end
 
+-- format
+vim.keybinds.gmap("n", "<S-A-f>", "<cmd>lua vim.lsp.buf.formatting() <CR>", vim.keybinds.opts)
 
 -- 基础按键
 vim.keybinds.gmap("n", "<C-u>", "10k", vim.keybinds.opts)
@@ -55,9 +55,6 @@ vim.keybinds.gmap("n", "<F5>","<cmd>lua require'dap'.continue() 		<CR>" ,vim.key
 vim.keybinds.gmap("n", "<F10>","<cmd>lua require'dap'.step_over() 		<CR>" ,vim.keybinds.opts)
 vim.keybinds.gmap("n", "<F12>","<cmd>lua require'dap'.step_into() 		<CR>" ,vim.keybinds.opts)
 
--- 代码格式化
-vim.keybinds.gmap("n","<C-k>" ,":w!<CR><cmd>!clang-format -i % <CR>", vim.keybinds.opts)
-
 -- 代码注释
 vim.keybinds.gmap("n", "<leader>\\", "gcc", {})
 vim.keybinds.gmap("v", "<leader>\\", "gc", {})
@@ -66,11 +63,12 @@ vim.keybinds.gmap("v", "<leader>\\", "gc", {})
 vim.keybinds.gmap("n", "<leader>[", "zc", {});
 vim.keybinds.gmap("v", "<leader>]", "zo", {});
 
+vim.keybinds.gmap("n", "git", "<cmd>FloatermNew --autoclose=0 git add . && git commit -m . && git push <CR>", vim.keybinds.opts)
 -- lsp设置
 -- 显示代码可用操作（代替内置 LSP 的窗口，Lspsaga 插件让代码行为更方便）
 vim.keybinds.gmap("n", "ga", "<cmd>Lspsaga code_action <CR>", vim.keybinds.opts)
 -- 变量重命名（代替内置 LSP 的窗口，Lspsaga 让变量重命名更美观）
-vim.keybinds.gmap("n", "gr", "<cmd>Lspsaga rename<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "gn", "<cmd>Lspsaga rename<CR>", vim.keybinds.opts)
 -- 查看帮助信息（代替内置 LSP 的窗口，Lspsaga 让查看帮助信息更美观）
 vim.keybinds.gmap("n", "gh", "<cmd>Lspsaga hover_doc<CR>", vim.keybinds.opts)
 -- 跳转到上一个问题（代替内置 LSP 的窗口，Lspsaga 让跳转问题更美观）
@@ -83,13 +81,13 @@ vim.keybinds.gmap("n","<C-p>","<cmd>lua require('lspsaga.action').smart_scroll_w
 vim.keybinds.gmap("n","<C-n>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>",vim.keybinds.opts)
 
 -- 跳转到定义（代替内置 LSP 的窗口，telescope 插件让跳转定义更方便）
-vim.keybinds.gmap("n", "<leader>gd", "<cmd>Telescope lsp_definitions <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "gd", "<cmd>Telescope lsp_definitions <CR>", vim.keybinds.opts)
 -- 跳转到实现
-vim.keybinds.gmap("n", "<leader>gi", "<cmd>Telescope lsp_implementations<CR>", vim.keybinds.opts)
+-- vim.keybinds.gmap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", vim.keybinds.opts)
 -- 列出光标下所有引用（代替内置 LSP 的窗口，telescope 插件让查看引用更方便）
-vim.keybinds.gmap("n", "<leader>gr", "<cmd>Telescope lsp_references <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "gr", "<cmd>Telescope lsp_references <CR>", vim.keybinds.opts)
 -- 工作区诊断（代替内置 LSP 的窗口，telescope 插件让工作区诊断更方便）
-vim.keybinds.gmap("n", "<leader>go", "<cmd>Telescope diagnostics <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "go", "<cmd>Telescope diagnostics <CR>", vim.keybinds.opts)
 -- 查找文件
 vim.keybinds.gmap("n", "<leader>ff", "<cmd>Telescope find_files <CR>", vim.keybinds.opts)
 -- 查找文字
