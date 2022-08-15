@@ -1,14 +1,15 @@
 -- https://github.com/p00f/clangd_extensions.nvim
 -- https://clangd.llvm.org/extensions
 --
--- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
+local lsp_status = require('lsp-status')
+lsp_status.register_progress()
 require("clangd_extensions").setup {
     server = {
         -- options to pass to nvim-lspconfig
         -- i.e. the arguments to require("lspconfig").clangd.setup({})
-		capabilities = capabilities,
+		capabilities = lsp_status.capabilities,
+		on_attach = lsp_status.on_attach,
+		handlers = lsp_status.extensions.clangd.setup(),
 		cmd = {"clangd"},
 		filetypes = {"c", "cpp", "objc", "objcpp"},
 		single_file_support = true,

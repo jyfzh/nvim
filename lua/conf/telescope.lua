@@ -7,18 +7,12 @@
 require('telescope').setup{
 	defaults = {
 		history = {
-			path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
+			path = vim.fn.stdpath "data"..'/databases/telescope_history.sqlite3',
 			limit = 100,
 		},
 		vimgrep_arguments = {
-			"rg",
-			"--color=never",
-			"--no-heading",
-			"--with-filename",
-			"--line-number",
-			"--column",
-			"--smart-case",
-			"--trim"
+			"rg","--color=never","--no-heading","--with-filename",
+			"--line-number","--column","--smart-case","--trim"
 		},
 		prompt_prefix = "   ",
 		selection_caret = "  ",

@@ -22,7 +22,6 @@ packer.startup(
 				-- {'shaunsingh/oxocarbon.nvim', run = './install.sh'}, --need cargo
 				'luisiacc/gruvbox-baby',
 			}
-
 			-- 中文文档
 			use {
 				"yianwillis/vimcdoc",
@@ -39,12 +38,19 @@ packer.startup(
 				'voldikss/vim-floaterm'
 			}
 			-- lua-line
-			use {
+			use {{
 				'nvim-lualine/lualine.nvim',
 				requires = { 'kyazdani42/nvim-web-devicons', opt = true },
 				config = function()
 					require("conf.lualine")
 				end
+				},
+				{
+					'nvim-lua/lsp-status.nvim',
+					config = function ()
+						require("conf.lsp-status")
+					end
+				}
 			}
 			-- bufferline 
 			-- use {
@@ -137,13 +143,6 @@ packer.startup(
 						require("conf.lsp_signature")
 					end
 				},
-				{
-					-- lsp状态显示
-					'j-hui/fidget.nvim',
-					config = function()
-						require("conf.fidget")
-					end
-				}
 			}
 			-- 自动代码补全
 			use {

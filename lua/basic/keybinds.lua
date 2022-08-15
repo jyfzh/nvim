@@ -34,6 +34,7 @@ end
 -- format
 vim.keybinds.gmap("n", "<S-A-f>", "<cmd>lua vim.lsp.buf.formatting() <CR>", vim.keybinds.opts)
 
+
 -- 基础按键
 vim.keybinds.gmap("n", "<C-u>", "10k", vim.keybinds.opts)
 vim.keybinds.gmap("n", "<C-d>", "10j", vim.keybinds.opts)
@@ -48,6 +49,19 @@ vim.keybinds.gmap("n", "<CR><CR>" , "<cmd>noh<CR>",vim.keybinds.opts)
 
 -- 运行代码
 vim.keybinds.gmap("n","<C-A-n>" ,"<cmd>lua Run() <CR>", vim.keybinds.opts)
+
+-- buffer
+vim.keybinds.gmap("n","bd" ,"<cmd>bd<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n","<A-1>" ,"<cmd>LualineBuffersJump! 1<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n","<A-2>" ,"<cmd>LualineBuffersJump! 2<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n","<A-3>" ,"<cmd>LualineBuffersJump! 3<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n","<A-4>" ,"<cmd>LualineBuffersJump! 4<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n","<A-5>" ,"<cmd>LualineBuffersJump! 5<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n","<A-6>" ,"<cmd>LualineBuffersJump! 6<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n","<A-7>" ,"<cmd>LualineBuffersJump! 7<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n","<A-8>" ,"<cmd>LualineBuffersJump! 8<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n","<A-9>" ,"<cmd>LualineBuffersJump! 9<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n","<A-$>" ,"<cmd>LualineBuffersJump! $<CR>", vim.keybinds.opts)
 
 -- 调试代码
 vim.keybinds.gmap("n", "<F9>","<cmd>lua require'dap'.toggle_breakpoint()<CR>" ,vim.keybinds.opts)
