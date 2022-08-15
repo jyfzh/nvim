@@ -121,6 +121,6 @@ vim.keybinds.gmap("n", "<leader>p", "<cmd>Telescope packer<CR>", vim.keybinds.op
 -- 工作区
 vim.keybinds.gmap("n", "<leader>fp", "<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>", vim.keybinds.opts)
 -- symbols
-vim.keybinds.gmap("n", "\\", "<cmd>lua require'telescope.builtin'.symbols{ sources = {'emoji', 'kaomoji', 'gitmoji'}} <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<leader>fe", "<cmd>lua require'telescope.builtin'.symbols{ } <CR>", vim.keybinds.opts)
 -- frequency
 vim.keybinds.gmap("n", "<leader><leader>", "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>", vim.keybinds.opts)

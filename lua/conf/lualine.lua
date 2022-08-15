@@ -1,3 +1,4 @@
+-- https://github.com/nvim-lualine/lualine.nvim
 require('lualine').setup {
 	options = {
 		icons_enabled = true,
@@ -12,7 +13,7 @@ require('lualine').setup {
 		always_divide_middle = true,
 		globalstatus = false,
 		refresh = {
-			statusline = 500,
+			statusline = 200,
 			tabline = 1000,
 			winbar = 1000,
 		}
@@ -20,10 +21,10 @@ require('lualine').setup {
 	sections = {
 		lualine_a = {'mode'},
 		lualine_b = {'branch', 'diff' },
-		lualine_c = {},
-		lualine_x = {},
-		lualine_y = {"require'lsp-status'.status()"},
-		lualine_z = {},
+		lualine_c = {'filename'},
+		lualine_x = {"require'lsp-status'.status()"},
+		lualine_y = {'encoding', 'fileformat', 'filetype'},
+		lualine_z = {'progress'},
 	},
 	inactive_sections = {
 		lualine_a = {},
