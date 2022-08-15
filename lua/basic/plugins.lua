@@ -69,7 +69,22 @@ packer.startup(
 				{"nvim-telescope/telescope-file-browser.nvim"},
 				{"nvim-telescope/telescope-packer.nvim"},
 				{"nvim-telescope/telescope-project.nvim"},
-				{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'} ,
+				{
+					"nvim-telescope/telescope-smart-history.nvim",
+					requires = {"tami5/sqlite.lua"}
+				},
+				{
+					"nvim-telescope/telescope-frecency.nvim",
+					config = function()
+						require"telescope".load_extension("frecency")
+					end,
+					requires = {"tami5/sqlite.lua"}
+				},
+				{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'},
+				{"nvim-telescope/telescope-dap.nvim",requires = {"mfussenegger/nvim-dap"}},
+				{"nvim-telescope/telescope-symbols.nvim"},
+				{'nvim-telescope/telescope-cheat.nvim',requires = {"tami5/sqlite.lua"}},
+
 			}
 			-- treesitter
 			use {

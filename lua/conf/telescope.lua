@@ -2,8 +2,14 @@
 -- WARN: telescope 手动安装依赖 fd 和 repgrep
 -- https://github.com/sharkdp/fd
 -- https://github.com/BurntSushi/ripgrep
+-- sudo apt install sqlite3 libsqlite3-dev  -y
+--
 require('telescope').setup{
 	defaults = {
+		history = {
+			path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
+			limit = 100,
+		},
 		vimgrep_arguments = {
 			"rg",
 			"--color=never",
@@ -30,7 +36,7 @@ require('telescope').setup{
 		layout_config = {
 			horizontal = {
 				prompt_position = "bottom",
-				preview_width = 0.6,
+				preview_width = 0.5,
 				results_width = 0.5,
 			},
 			vertical = {
@@ -42,39 +48,16 @@ require('telescope').setup{
 		}
 	},
 	pickers = {
-		find_files = {
-			layout_strategy = "horizontal",
+		find_files = {},
+		diagnostics = {
+			theme = "ivy",
+			previewer = false,
 			layout_config = {
-				horizontal = {
-					prompt_position = "bottom",
-					preview_width = 0.5,
-					results_width = 0.5,
-				},
-				vertical = {
-					mirror = false,
-				},
-				width = 0.9,
-				height = 0.9,
-				preview_cutoff = 60,
+				height = 0.3
 			}
 		},
-		diagnostics = {
-			theme = "cursor",
-			previewer = false,
-		},
 		buffers = {
-			layout_strategy = "horizontal",
 			layout_config = {
-				horizontal = {
-					prompt_position = "bottom",
-					preview_width = 0.5,
-					results_width = 0.5,
-				},
-				vertical = {
-					mirror = false,
-				},
-				width = 0.9,
-				height = 0.9,
 				preview_cutoff = 90,
 			}
 		}
@@ -101,26 +84,22 @@ require('telescope').setup{
 		},
 		packer = {
 			theme = "ivy",
-			preview = false,
+			previewer = false,
 			border = false,
 			layout_config = {
 				height = .9
 			}
 		},
 		project = {
-			theme = "ivy",
 			border = false,
-			layout_config = {
-				height = .3,
-			},
+			hidden_files = true, -- default: false
 			base_dirs = {
 				'~/cpp',
 				'/home/jyf/.config/nvim',
 				-- {'~/dev/src3', max_depth = 4},
 				-- {path = '~/dev/src5'},
 				-- {path = '~/dev/src5', max_depth = 2},
-			},
-			hidden_files = true, -- default: false
+			}
 		},
 		fzf = {
 			fuzzy = true,                    -- false will only do exact matching
@@ -128,12 +107,27 @@ require('telescope').setup{
 			override_file_sorter = true,     -- override the file sorter
 			case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
 			-- the default case_mode is "smart_case"
+		},
+		frecency = {
+			db_root = "/home/jyf/.local/share/nvim/databases",
+			show_scores = false,
+			show_unindexed = true,
+			ignore_patterns = {"*.git/*", "*/tmp/*"},
+			disable_devicons = false,
+			workspaces = {
+				["conf"]    = "/home/jyf/.config",
+				["data"]    = "/home/jyf/.local/share",
+				["project"] = "/home/jyf/jyf",
+			}
 		}
 	},
 }
 
 -- you need to call load_extension, somewhere after setup function:
-require("telescope").load_extension 'file_browser'
-require("telescope").load_extension 'packer'
-require'telescope'.load_extension 'project'
-require('telescope').load_extension 'fzf'
+require("telescope").load_extension'file_browser'
+require("telescope").load_extension'packer'
+require'telescope'.load_extension'project'
+require('telescope').load_extension'fzf'
+require('telescope').load_extension'smart_history'
+require('telescope').load_extension'dap'
+require'telescope'.load_extension"cheat"
