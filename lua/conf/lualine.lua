@@ -20,9 +20,9 @@ require('lualine').setup {
 	sections = {
 		lualine_a = {'mode'},
 		lualine_b = {'branch', 'diff' },
-		lualine_c = {"require'lsp-status'.status()"},
+		lualine_c = {},
 		lualine_x = {},
-		lualine_y = {},
+		lualine_y = {"require'lsp-status'.status()"},
 		lualine_z = {},
 	},
 	inactive_sections = {
