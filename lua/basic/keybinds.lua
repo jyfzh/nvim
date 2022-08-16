@@ -15,7 +15,7 @@ vim.keybinds.gmap("n", "<F4>",  "<cmd> NextColorScheme <CR>", vim.keybinds.opts)
 function Run()
 	vim.cmd("w!")
 	if(vim.bo.filetype=="cpp") then
-		vim.cmd("FloatermNew --autoclose=0 --position=bottomright g++ -g3 -std=c++2a -Wall %:p -o %:p:h/%:r && %:p:h/%:r")
+		vim.cmd("FloatermNew --autoclose=0 --position=bottomright g++ -g3 -std=c++2a -Wall %:p -o %:p:h/%:r && %:r")
 	elseif(vim.bo.filetype=="c") then
 		vim.cmd("FloatermNew --autoclose=0 --position=bottomright gcc -g3 -std=c2x -Wall % -o %< && %<")
 	elseif(vim.bo.filetype=="python")then

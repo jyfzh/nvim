@@ -3,6 +3,7 @@
 --
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
+
 require("clangd_extensions").setup {
     server = {
         -- options to pass to nvim-lspconfig
@@ -34,9 +35,9 @@ require("clangd_extensions").setup {
 			-- whether to show parameter hints with the inlay hints or not
 			show_parameter_hints = true,
 			-- prefix for parameter hints
-			parameter_hints_prefix = "<- ",
+			parameter_hints_prefix = "func: ",
 			-- prefix for all the other hints (type, chaining)
-			other_hints_prefix = "=> ",
+			other_hints_prefix = "-> ",
 			-- whether to align to the length of the longest line in the file
 			max_len_align = false,
 			-- padding from the left if max_len_align is true
@@ -52,22 +53,22 @@ require("clangd_extensions").setup {
 		},
 		ast = {
 			role_icons = {
-				type = "",
-				declaration = "",
-				expression = "",
-				specifier = "",
-				statement = "",
-				["template argument"] = "",
+				type = "⊿",
+				declaration = "",
+				expression = "😑",
+				specifier = "📌",
+				statement = "",
+				["template argument"] = "🛕",
 			},
 
 			kind_icons = {
-				Compound = "",
-				Recovery = "",
-				TranslationUnit = "",
-				PackExpansion = "",
-				TemplateTypeParm = "",
-				TemplateTemplateParm = "",
-				TemplateParamObject = "",
+				Compound = "匿",
+				Recovery = "",
+				TranslationUnit = "隷",
+				PackExpansion = "📦",
+				TemplateTypeParm = "⦂",
+				TemplateTemplateParm = "ﮕ",
+				TemplateParamObject = "",
 			},
 
 			highlights = {
