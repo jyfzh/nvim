@@ -54,7 +54,7 @@ vim.o.relativenumber = true
 -- 设定光标上下两侧最少保留的屏幕行数
 vim.o.scrolloff = 10
 -- 是否支持鼠标操作
-vim.o.mouse = "a"
+vim.o.mouse = "n"
 vim.o.selection="exclusive"
 vim.o.selectmode="mouse,key"
 -- 是否开启备份文件

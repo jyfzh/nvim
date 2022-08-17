@@ -57,3 +57,28 @@ require'lspconfig'.sumneko_lua.setup{
 -- 		clangdFileStatus = true
 -- 	},
 -- })
+
+
+require('lspconfig')['pylsp'].setup({
+	handlers = lsp_status.extensions.pyls_ms.setup(),
+	capabilities = lsp_status.capabilities,
+	-- on_attach = lsp_status.on_attach(),
+	root_dir = function()
+		return vim.fn.getcwd()
+	end,
+	settings = {
+		python = {
+			workspaceSymbols = {
+				enabled = true
+			}
+		},
+		pylsp= {
+			plugins = {
+				pycodestyle = {
+					ignore = {'W391'},
+					maxLineLength = 100
+				}
+			}
+		}
+	}
+})

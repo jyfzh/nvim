@@ -9,12 +9,6 @@
 -- https://github.com/rafamadriz/friendly-snippets
 -- https://github.com/lukas-reineke/cmp-under-comparator
 -- https://github.com/tzachar/cmp-tabnine
--- FIX: tabline 在某些计算机上有 1 个 BUG
--- 当出现：
---    TabNine is not executable
--- 等字样时，需要手动执行（仅限 Manjaro）：
---    rm ~/.local/share/nvim/plugged/cmp-tabnine/binaries
---    ~/.local/share/nvim/plugged/cmp-tabnine/install.sh
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -30,10 +24,10 @@ cmp.setup(
 	{
 		-- 指定补全引擎
 		snippet = {
-			expand = function(args)
+			-- expand = function(args)
 				-- 使用 vsnip 引擎
-				vim.fn["vsnip#anonymous"](args.body)
-			end
+				-- vim.fn["vsnip#anonymous"](args.body)
+			-- end
 		},
 		window = {
 			complete = cmp.config.window.bordered(),
@@ -47,8 +41,8 @@ cmp.setup(
 			["<Tab>"] = cmp.mapping(function(fallback)
 				if cmp.visible() then
 					cmp.select_next_item()
-				elseif vim.fn["vsnip#available"](1) == 1 then
-					feedkey("<Plug>(vsnip-expand-or-jump)", "")
+				-- elseif vim.fn["vsnip#available"](1) == 1 then
+				-- 	feedkey("<Plug>(vsnip-expand-or-jump)", "")
 				elseif has_words_before() then
 					cmp.complete()
 				else
@@ -59,12 +53,12 @@ cmp.setup(
 			["<S-Tab>"] = cmp.mapping(function()
 				if cmp.visible() then
 					cmp.select_prev_item()
-				elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-					feedkey("<Plug>(vsnip-jump-prev)", "")
+				-- elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+				-- 	feedkey("<Plug>(vsnip-jump-prev)", "")
 				end
 				end, { "i", "s" }),
-			['<C-b>'] = cmp.mapping.scroll_docs(-4),
-			['<C-f>'] = cmp.mapping.scroll_docs(4),
+			['<C-u>'] = cmp.mapping.scroll_docs(-4),
+			['<C-d>'] = cmp.mapping.scroll_docs(4),
 			['<C-Space>'] = cmp.mapping.complete(),
 			-- 选择补全
 			['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
@@ -73,7 +67,7 @@ cmp.setup(
 		sources = cmp.config.sources(
 			{
 				{name = 'nvim_lsp'},
-				{name = 'vsnip'},
+				-- {name = 'vsnip'},
 			},
 			{
 				{name = 'path'},
@@ -155,4 +149,3 @@ cmp.setup.cmdline(':', {
 		{{ name = 'cmdline'}}
 	)
 })
-
