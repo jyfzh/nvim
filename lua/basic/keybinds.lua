@@ -80,7 +80,7 @@ vim.keybinds.gmap("n", "<leader>[", "zc", {});
 vim.keybinds.gmap("v", "<leader>]", "zo", {});
 
 vim.keybinds.gmap("n", "<leader>ft", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n", "git", "<cmd>FloatermNew --autoclose=0 git add . && git commit -m . && git push <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<leader>git", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9 git add . && git commit -m . && git push <CR>", vim.keybinds.opts)
 -- lsp设置
 -- 显示代码可用操作（代替内置 LSP 的窗口，Lspsaga 插件让代码行为更方便）
 vim.keybinds.gmap("n", "ga", "<cmd>Lspsaga code_action <CR>", vim.keybinds.opts)
