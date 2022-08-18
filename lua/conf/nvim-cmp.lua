@@ -24,10 +24,10 @@ cmp.setup(
 	{
 		-- 指定补全引擎
 		snippet = {
-			-- expand = function(args)
+			expand = function(args)
 				-- 使用 vsnip 引擎
-				-- vim.fn["vsnip#anonymous"](args.body)
-			-- end
+				vim.fn["vsnip#anonymous"](args.body)
+			end
 		},
 		window = {
 			complete = cmp.config.window.bordered(),
@@ -41,8 +41,8 @@ cmp.setup(
 			["<Tab>"] = cmp.mapping(function(fallback)
 				if cmp.visible() then
 					cmp.select_next_item()
-				-- elseif vim.fn["vsnip#available"](1) == 1 then
-				-- 	feedkey("<Plug>(vsnip-expand-or-jump)", "")
+				elseif vim.fn["vsnip#available"](1) == 1 then
+					feedkey("<Plug>(vsnip-expand-or-jump)", "")
 				elseif has_words_before() then
 					cmp.complete()
 				else
@@ -53,8 +53,8 @@ cmp.setup(
 			["<S-Tab>"] = cmp.mapping(function()
 				if cmp.visible() then
 					cmp.select_prev_item()
-				-- elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-				-- 	feedkey("<Plug>(vsnip-jump-prev)", "")
+				elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+					feedkey("<Plug>(vsnip-jump-prev)", "")
 				end
 				end, { "i", "s" }),
 			['<C-u>'] = cmp.mapping.scroll_docs(-4),
@@ -67,7 +67,7 @@ cmp.setup(
 		sources = cmp.config.sources(
 			{
 				{name = 'nvim_lsp'},
-				-- {name = 'vsnip'},
+				{name = 'vsnip'},
 			},
 			{
 				{name = 'path'},
