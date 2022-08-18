@@ -213,8 +213,8 @@ require("onedark").setup{
 	colors = {}, -- Override default colors
 	highlights = {
 		-- TSKeyword = {fg = '$green'},
-		-- TSString = {mt = 'bold'},
-		TSFunction = { sp = '$cyan', fmt = 'underline'},
+		-- TSString = {fmt = 'bold'},
+		TSFunction = { sp = '$cyan', fmt = 'bold'},
 		Pmenu = { bg = 'NONE' },
 		FloatermBorder = { bg= 'NONE' }
 
