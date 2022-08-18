@@ -20,10 +20,10 @@ require('lualine').setup {
 	},
 	sections = {
 		lualine_a = {'mode'},
-		lualine_b = {'branch', 'diff' },
-		lualine_c = {'filename'},
-		lualine_x = {"require'lsp-status'.status()"},
-		lualine_y = {'encoding', 'fileformat', 'filetype'},
+		lualine_b = { },
+		lualine_c = {'branch', 'diff'},
+		lualine_x = {'encoding', 'fileformat', 'filetype'},
+		lualine_y = {},
 		lualine_z = {'progress'},
 	},
 	inactive_sections = {
@@ -38,9 +38,9 @@ require('lualine').setup {
 		lualine_a = {''},
 		lualine_b = {'buffers',''},
 		lualine_c = {''},
-		lualine_x = {},
+		lualine_x = {"require'lsp-status'.status()"},
 		lualine_y = {},
-		lualine_z = {'tabs'}
+		lualine_z = {}
 	},
 	winbar = {},
 	inactive_winbar = {},
