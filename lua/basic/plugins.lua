@@ -15,12 +15,10 @@ packer.startup(
 			}
 			-- theme
 			use {
-				-- 切换主题
 				'chxuan/change-colorscheme',
 				'navarasu/onedark.nvim',
 				'folke/tokyonight.nvim',
 				'luisiacc/gruvbox-baby',
-				-- {'shaunsingh/oxocarbon.nvim', run = './install.sh'}, --need cargo
 			}
 			-- range
 			use {
@@ -60,19 +58,19 @@ packer.startup(
 				{"nvim-telescope/telescope-project.nvim"},
 				{
 					"nvim-telescope/telescope-smart-history.nvim",
-					requires = {"tami5/sqlite.lua"}
+					requires = {"kkharji/sqlite.lua"}
 				},
 				{
 					"nvim-telescope/telescope-frecency.nvim",
 					config = function()
 						require"telescope".load_extension("frecency")
 					end,
-					requires = {"tami5/sqlite.lua"}
+					requires = {"kkharji/sqlite.lua"}
 				},
-				{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'},
+				{'nvim-telescope/telescope-cheat.nvim',requires = {"kkharji/sqlite.lua"}},
+				{'nvim-telescope/telescope-fzf-native.nvim' , run = 'make'},
 				{"nvim-telescope/telescope-dap.nvim",requires = {"mfussenegger/nvim-dap"}},
 				{"nvim-telescope/telescope-symbols.nvim"},
-				{'nvim-telescope/telescope-cheat.nvim',requires = {"tami5/sqlite.lua"}},
 
 			}
 			-- treesitter
@@ -193,43 +191,5 @@ packer.startup(
 				end
 			}
 		}
-	}
-)
--- vim.cmd[[colorscheme tokyonight]]
--- https://github.com/navarasu/onedark.nvim
-require("onedark").setup{
-	transparent = true,
-	term_colors = true, -- Change terminal color as per the selected theme style
-	toggle_style_key = "<C-s>",
-	code_style = {
-		comments = 'none',
-		keywords = 'none',
-		functions = 'none',
-		strings = 'none',
-		variables = 'none'
-	},
-	-- Custom Highlights --
-	colors = {}, -- Override default colors
-	highlights = {
-		-- TSKeyword = {fg = '$green'},
-		-- TSString = {fmt = 'bold'},
-		TSFunction = { sp = '$cyan', fmt = 'bold'},
-		Pmenu = { bg = 'NONE' },
-		FloatermBorder = { bg= 'NONE' }
-
-	}, -- Override highlight groups
-	diagnostics = {
-		darker = false, -- darker colors for diagnostic
-		undercurl = false,   -- use undercurl instead of underline for diagnostics
-		background = false,    -- use background color for virtual text
-	},
-}
-require("onedark").load()
-vim.api.nvim_create_autocmd({"VimEnter"},{
-	callback = function ()
-		vim.fn.timer_start(200,function ()
-			vim.api.nvim_command("colo onedark")
-		end)
-	end
 	}
 )

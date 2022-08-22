@@ -1,18 +1,25 @@
 -- 设定各种文本的字符编码
-vim.o.fenc="utf-8"
-vim.o.fencs="utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936"
+vim.o.fenc = "utf-8"
+vim.o.fencs = "utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936"
 vim.o.encoding = "utf-8"
-vim.o.fileencodings= "utf-8,chinese,latin-1,gbk,gb18030,gk2312"
+vim.o.fileencodings = "utf-8,chinese,latin-1,gbk,gb18030,gk2312"
 
 if vim.fn.has('wsl') then
-  vim.cmd [[
-  augroup Yank
-  autocmd!
-  autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
-  augroup END
-  ]]
+	vim.cmd [[
+	let g:clipboard = {
+          \   'name': 'myClipboard',
+          \   'copy': {
+          \      '+': ['/mnt/c/windows/system32/clip.exe'],
+          \      '*': ['/mnt/c/windows/system32/clip.exe'],
+          \    },
+          \   'paste': {
+          \      '+': ['/mnt/c/windows/system32/clip.exe'],
+          \      '*': ['/mnt/c/windows/system32/clip.exe'],
+          \   },
+          \   'cache_enabled': 1,
+          \ }
+]]
 else
--- 是否启用系统剪切板
 	vim.o.clipboard = "unnamedplus"
 end
 
@@ -25,19 +32,19 @@ vim.o.hlsearch = false
 --智能补全
 vim.o.completeopt = "longest,menu,menuone,noselect"
 -- 不要备份文件（根据自己需要取舍）
-vim.o.backup=false
-vim.o.writebackup=false
+vim.o.backup = false
+vim.o.writebackup = false
 
 -- 不要生成swap文件，当buffer被丢弃的时候隐藏它
-vim.o.bufhidden="hide"
-vim.o.swapfile=false
+vim.o.bufhidden = "hide"
+vim.o.swapfile = false
 
 -- 使回格键（backspace）正常处理indent, eol, start等
 --vim.o.backspace=2
 
 -- tab的长度
-vim.o.tabstop=4
-vim.o.shiftwidth=4
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
 -- 是否在屏幕最后一行显示命令
 vim.o.showcmd = true
 -- 是否允许缓冲区未保存时就切换
@@ -58,12 +65,12 @@ vim.o.relativenumber = true
 vim.o.scrolloff = 10
 -- 是否支持鼠标操作
 vim.o.mouse = "n"
-vim.o.selection="exclusive"
-vim.o.selectmode="mouse,key"
+vim.o.selection = "exclusive"
+vim.o.selectmode = "mouse,key"
 -- 是否开启备份文件
 vim.o.backup = false
 --不要换行
-vim.o.wrap=false
+vim.o.wrap = false
 -- 是否开启交换文件
 vim.o.swapfile = false
 -- 是否特殊显示空格等字符
@@ -92,4 +99,3 @@ vim.o.foldenable = true
 vim.o.foldmethod = "indent"
 -- 指定代码折叠的最高层级为 100
 vim.o.foldlevel = 100
-
