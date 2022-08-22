@@ -103,7 +103,7 @@ require('telescope').setup{
 			-- the default case_mode is "smart_case"
 		},
 		frecency = {
-			db_root = "/home/jyf/.local/share/nvim/databases",
+			db_root = "/home/jyf/.local/share/nvim",
 			show_scores = false,
 			show_unindexed = true,
 			ignore_patterns = {"*.git/*", "*/tmp/*"},
