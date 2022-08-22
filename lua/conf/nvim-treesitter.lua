@@ -36,15 +36,7 @@ require("nvim-treesitter.configs").setup(
 			enable = true,
 			extended_mode = true,
 			max_file_lines = nil, -- Do not enable for files with more than n lines, int
-			colors = {
-				"#ff003c",
-				"#ca0bd4",
-				"#e973f0",
-				"#710578",
-				"#780527",
-				"#a600ff",
-				"#eb445d"
-			}, -- table of hex strings
+			-- colors = {}, -- table of hex strings
 			-- termcolors = {} -- table of colour name strings
 		},
 		-- 根据当前上下文定义文件类型，由 nvim-ts-context-commentstring 插件提供
