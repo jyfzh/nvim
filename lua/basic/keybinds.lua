@@ -12,30 +12,38 @@ vim.keybinds = {
 vim.keybinds.gmap("n", "<F3>", 	"<cmd> PreviousColorScheme <CR>", vim.keybinds.opts)
 vim.keybinds.gmap("n", "<F4>",  "<cmd> NextColorScheme <CR>", vim.keybinds.opts)
 
+--ranger
+vim.keybinds.gmap("n", "<leader>r",  "<cmd> Ranger <CR>", vim.keybinds.opts)
+
+-- vim-floaterm
+vim.keybinds.gmap("t", "<ESC>",  "<C-\\><C-n> <CR>", vim.keybinds.opts)
+
 function Run()
 	vim.cmd("w!")
 	if(vim.bo.filetype=="cpp") then
-		vim.cmd("FloatermNew --autoclose=0 --position=bottomright g++ -g3 -std=c++2a -Wall %:p -o %:p:h/%:r && %:p:h/%:r && rm -f %:p:h/%:r")
+		vim.cmd("FloatermNew --autoclose=0 --position=topright g++ -g3 -std=c++2a -Wall %:p -o %:p:h/%:r && %:p:h/%:r && rm -f %:p:h/%:r")
 	elseif(vim.bo.filetype=="c") then
-		vim.cmd("FloatermNew --autoclose=0 --position=bottomright gcc -g3 -std=c2x -Wall % -o %< && %< && rm -f %:p:h/%:r")
+		vim.cmd("FloatermNew --autoclose=0 --position=topright gcc -g3 -std=c2x -Wall % -o %< && %< && rm -f %:p:h/%:r")
 	elseif(vim.bo.filetype=="python")then
-		vim.cmd("FloatermNew --autoclose=0 --position=bottomright python -u %")
+		vim.cmd("FloatermNew --autoclose=0 --position=topright python -u %")
 	elseif (vim.bo.filetype=="java") then
-		vim.cmd("FloatermNew --autoclose=0 --position=bottomright java %")
+		vim.cmd("FloatermNew --autoclose=0 --position=topright java %")
 	elseif (vim.bo.filetype=="make") then
-		vim.cmd("FloatermNew --autoclose=0 --position=bottomright make clean&&make&&./%<")
+		vim.cmd("FloatermNew --autoclose=0 --position=topright make clean&&make&&./%<")
 	elseif (vim.bo.filetype=="txt") then
-		vim.cmd("FloatermNew --autoclose=0 --position=bottomright cmake ..")
+		vim.cmd("FloatermNew --autoclose=0 --position=topright cmake ..")
 	elseif (vim.bo.filetype=="sh") then
-		vim.cmd("FloatermNew --autoclose=0 --position=bottomright bash %")
+		vim.cmd("FloatermNew --autoclose=0 --position=topright bash %")
 	elseif (vim.bo.filetype=="markdown") then
 		vim.cmd("FloatermNew --autoclose=0 --position=center --height=0.9 --width=0.9 glow %:p")
 	end
 end
 
+-- 运行代码
+vim.keybinds.gmap("n","<C-A-n>" ,"<cmd>lua Run() <CR>", vim.keybinds.opts)
+
 -- format
 vim.keybinds.gmap("n", "<S-A-f>", "<cmd>lua vim.lsp.buf.formatting() <CR>", vim.keybinds.opts)
-
 
 -- 基础按键
 vim.keybinds.gmap("n", "<C-u>", "10k", vim.keybinds.opts)
@@ -49,8 +57,6 @@ vim.keybinds.gmap("n", "<A-right>", "<cmd> vertical resize+5	<CR>", vim.keybinds
 -- 取消find
 vim.keybinds.gmap("n", "<CR><CR>" , "<cmd>noh<CR>",vim.keybinds.opts)
 
--- 运行代码
-vim.keybinds.gmap("n","<C-A-n>" ,"<cmd>lua Run() <CR>", vim.keybinds.opts)
 
 -- buffer
 vim.keybinds.gmap("n","bd" ,"<cmd>bd<CR>", vim.keybinds.opts)
@@ -80,8 +86,10 @@ vim.keybinds.gmap("n", "<leader>[", "zc", {});
 vim.keybinds.gmap("v", "<leader>]", "zo", {});
 
 vim.keybinds.gmap("n", "<leader>ft", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("t", "q", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9<CR>", vim.keybinds.opts)
 vim.keybinds.gmap("n", "<leader>git", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9 git add . && git commit -m . && git push <CR>", vim.keybinds.opts)
 -- lsp设置
+vim.keybinds.gmap("n", "gf", "<cmd>Lspsaga lsp_finder <CR>", vim.keybinds.opts)
 -- 显示代码可用操作（代替内置 LSP 的窗口，Lspsaga 插件让代码行为更方便）
 vim.keybinds.gmap("n", "ga", "<cmd>Lspsaga code_action <CR>", vim.keybinds.opts)
 -- 变量重命名（代替内置 LSP 的窗口，Lspsaga 让变量重命名更美观）

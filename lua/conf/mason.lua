@@ -1,5 +1,7 @@
 -- https://github.com/williamboman/mason.nvim
 -- https://github.com/williamboman/mason-lspconfig.nvim
+-- https://github.com/nvim-lua/lsp-status.nvim
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 require("mason").setup({
     ui = {
         icons = {
@@ -9,34 +11,22 @@ require("mason").setup({
         }
     }
 })
-require("mason-lspconfig").setup({
-	    -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "sumneko_lua" }
-    -- This setting has no relation with the `automatic_installation` setting.
-    ensure_installed = {"lua-language-server","clangd","pylsp"},
 
-    -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
-    -- This setting has no relation with the `ensure_installed` setting.
-    -- Can either be:
-    --   - false: Servers are not automatically installed.
-    --   - true: All servers set up via lspconfig are automatically installed.
-    --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
-    --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
-    automatic_installation = true,
+require("mason-lspconfig").setup({
+    ensure_installed = {"lua-language-server","clangd","pylsp","marksman"},
+    automatic_installation = {"lua-language-server","clangd","pylsp","marksman"},
 })
--- completion_customize_lsp_label as used in completion-nvim
--- Optional: customize the kind labels used in identifying the current function.
--- g:completion_customize_lsp_label is a dict mapping from LSP symbol kind 
--- to the string you want to display as a label
--- lsp_status.config { kind_labels = vim.g.completion_customize_lsp_label }
 
 -- Register the progress handler
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
 
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
+
 require'lspconfig'.sumneko_lua.setup{
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 	on_attach = lsp_status.on_attach,
-	-- 比如这里修改成了中文提示信息，具体语言服务器是否支持中文提示还需要查看该语言服务器的配置项
 	cmd = {	"lua-language-server"},
 	filetypes = {"lua"},
 	log_level = 2,
@@ -76,7 +66,7 @@ require'lspconfig'.sumneko_lua.setup{
 
 require('lspconfig')['pylsp'].setup({
 	handlers = lsp_status.extensions.pyls_ms.setup(),
-	capabilities = lsp_status.capabilities,
+	capabilities = capabilities,
 	-- on_attach = lsp_status.on_attach(),
 	root_dir = function()
 		return vim.fn.getcwd()
@@ -97,3 +87,8 @@ require('lspconfig')['pylsp'].setup({
 		}
 	}
 })
+
+require'lspconfig'.marksman.setup{
+	-- on_attach = lsp_status.on_attach(),
+	capabilities = capabilities,
+}

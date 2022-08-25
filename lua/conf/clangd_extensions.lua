@@ -4,11 +4,12 @@
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
 
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
+
 require("clangd_extensions").setup {
-    server = {
-        -- options to pass to nvim-lspconfig
-        -- i.e. the arguments to require("lspconfig").clangd.setup({})
-		capabilities = lsp_status.capabilities,
+	server = {
+		capabilities = capabilities,
 		on_attach = lsp_status.on_attach,
 		handlers = lsp_status.extensions.clangd.setup(),
 		cmd = {"clangd"},
@@ -25,13 +26,13 @@ require("clangd_extensions").setup {
 		-- These apply to the default ClangdSetInlayHints command
 		inlay_hints = {
 			-- Only show inlay hints for the current line
-			only_current_line = false,
+			only_current_line = true,
 			-- Event which triggers a refersh of the inlay hints.
 			-- You can make this "CursorMoved" or "CursorMoved,CursorMovedI" but
 			-- not that this may cause  higher CPU usage.
 			-- This option is only respected when only_current_line and
 			-- autoSetHints both are true.
-			only_current_line_autocmd = "CursorHold",
+			only_current_line_autocmd = "CursorHold,CursorHoldI",
 			-- whether to show parameter hints with the inlay hints or not
 			show_parameter_hints = true,
 			-- prefix for parameter hints

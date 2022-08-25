@@ -62,7 +62,7 @@ require('telescope').setup{
 			border = false,
 			-- disables netrw and use telescope-file-browser in its place
 			hijack_netrw = true,
-			path_display = { "tail" },
+			path_display = { "truncate" },
 			preview_cutoff = 60,
 			layout_config = {
 				height = .9

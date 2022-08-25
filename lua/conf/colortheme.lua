@@ -1,6 +1,6 @@
 -- vim.cmd[[colorscheme tokyonight]]
 -- https://github.com/navarasu/onedark.nvim
-require("onedark").setup{
+require("onedark").setup {
 	transparent = true,
 	term_colors = true, -- Change terminal color as per the selected theme style
 	toggle_style_key = "<C-s>",
@@ -16,15 +16,21 @@ require("onedark").setup{
 	highlights = {
 		-- TSKeyword = {fg = '$green'},
 		-- TSString = {fmt = 'bold'},
-		TSFunction = { sp = '$cyan', fmt = 'bold'},
-		Pmenu = { bg = 'NONE' },
-		FloatermBorder = { bg= 'NONE' },
-		rainbowcol1 = { fg='#22222' },
+		Pmenu          = { bg = 'NONE' },
+		TSFunction     = { sp = '$cyan', fmt = 'bold' },
+		-- lsp_signature
+		NormalFloat    = { bg = 'NONE' },
+		FloatBorder    = { bg = 'NONE' },
+		-- vim-floaterm
+		Floaterm       = { bg = 'NONE' },
+		FloatermBorder = { bg = 'NONE' },
+		-- ts-rainbow 
+		rainbowcol1    = { fg = '#22222' },
 	}, -- Override highlight groups
 	diagnostics = {
 		darker = false, -- darker colors for diagnostic
-		undercurl = false,   -- use undercurl instead of underline for diagnostics
-		background = false,    -- use background color for virtual text
+		undercurl = false, -- use undercurl instead of underline for diagnostics
+		background = false, -- use background color for virtual text
 	},
 }
 require("onedark").load()

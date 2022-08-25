@@ -23,6 +23,10 @@ else
 	vim.o.clipboard = "unnamedplus"
 end
 
+-- 报错信息和行号一体
+vim.opt.signcolumn = "number"
+-- cursorhold的间隔时间
+vim.g.updatetime=1000
 -- 不显示mode
 vim.o.showmode = false
 
