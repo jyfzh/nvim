@@ -1,14 +1,13 @@
 -- https://github.com/hrsh7th/nvim-cmp
 -- https://github.com/hrsh7th/vim-vsnip
--- https://github.com/hrsh7th/cmp-vsnip
 -- https://github.com/hrsh7th/cmp-nvim-lsp
 -- https://github.com/hrsh7th/cmp-path
 -- https://github.com/hrsh7th/cmp-buffer
 -- https://github.com/hrsh7th/cmp-cmdline
 -- https://github.com/f3fora/cmp-spell
--- https://github.com/rafamadriz/friendly-snippets
 -- https://github.com/lukas-reineke/cmp-under-comparator
 -- https://github.com/tzachar/cmp-tabnine
+-- https://github.com/saadparwaiz1/cmp_luasnip
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
