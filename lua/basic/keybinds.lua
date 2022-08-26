@@ -15,9 +15,6 @@ vim.keybinds.gmap("n", "<F4>",  "<cmd> NextColorScheme <CR>", vim.keybinds.opts)
 --ranger
 vim.keybinds.gmap("n", "<leader>r",  "<cmd> Ranger <CR>", vim.keybinds.opts)
 
--- vim-floaterm
-vim.keybinds.gmap("t", "<ESC>",  "<C-\\><C-n> <CR>", vim.keybinds.opts)
-
 function Run()
 	vim.cmd("w!")
 	if(vim.bo.filetype=="cpp") then
@@ -81,9 +78,10 @@ vim.keybinds.gmap("n", "<F12>","<cmd>lua require'dap'.step_into() 		<CR>" ,vim.k
 vim.keybinds.gmap("n", "<leader>\\", "gcc", {})
 vim.keybinds.gmap("v", "<leader>\\", "gc", {})
 
+-- vim-floaterm
+vim.keybinds.gmap("t", "<ESC>",  "<C-\\><C-n> <CR>", vim.keybinds.opts)
 vim.keybinds.gmap("n", "<leader>ft", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("t", "q", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n", "<leader>git", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9 git add . && git commit -m . && git push <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<leader>git", "<cmd>FloatermNew --autoclose=1 --height=0.6 --width=0.9 git add . && git commit -m . && git push <CR>", vim.keybinds.opts)
 -- lsp设置
 vim.keybinds.gmap("n", "gf", "<cmd>Lspsaga lsp_finder <CR>", vim.keybinds.opts)
 -- 显示代码可用操作（代替内置 LSP 的窗口，Lspsaga 插件让代码行为更方便）

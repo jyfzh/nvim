@@ -150,8 +150,10 @@ packer.startup(
 					{"hrsh7th/cmp-buffer"}, -- 缓冲区补全
 					{"hrsh7th/cmp-path"}, -- 路径补全
 					{"hrsh7th/cmp-cmdline"}, -- 命令补全
-					{"hrsh7th/cmp-vsnip"}, -- 适用于 vsnip 的代码片段源
-					{"hrsh7th/vim-vsnip"}, -- vsnip 引擎，用于获得代码片段支持
+					-- {"hrsh7th/cmp-vsnip"}, -- 适用于 vsnip 的代码片段源
+					-- {"hrsh7th/vim-vsnip"}, -- vsnip 引擎，用于获得代码片段支持
+					{"L3MON4D3/LuaSnip"},
+					{"saadparwaiz1/cmp_luasnip"},
 					{"f3fora/cmp-spell"}, -- 拼写建议
 					{"lukas-reineke/cmp-under-comparator"}, -- 让补全结果的排序更加智能
 				},
