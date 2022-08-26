@@ -19,7 +19,7 @@ require("onedark").setup {
 		Pmenu          = { bg = 'NONE' },
 		TSFunction     = { sp = '$cyan', fmt = 'bold' },
 		-- lsp_signature
-		NormalFloat    = { bg = 'NONE' },
+		NormalFloat    = { sp = 'NONE', bg = 'NONE' },
 		FloatBorder    = { bg = 'NONE' },
 		-- vim-floaterm
 		Floaterm       = { bg = 'NONE' },

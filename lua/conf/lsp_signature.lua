@@ -1,14 +1,13 @@
--- https://github.com/ray-x/lsp_signature.nvim
+-- https://github.com/ray-x/lsp_signature.nvimsign
 require("lsp_signature").setup(
 	{
 		debug = false, -- set to true to enable debug logging
 		log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on
 		-- default is  ~/.cache/nvim/lsp_signature.log
 		verbose = false, -- show debug line number
-
-		bind = false, -- This is mandatory, otherwise border config won't get registered.
+		bind = true, -- This is mandatory, otherwise border config won't get registered.
 		-- If you want to hook lspsaga or other signature handler, pls set to false
-		doc_lines = 10, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
+		doc_lines = 0, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
 		-- set to 0 if you DO NOT want any API comments be shown
 		-- This setting only take effect in insert mode, it does not affect signature help in normal
 		-- mode, 10 by default
@@ -28,7 +27,7 @@ require("lsp_signature").setup(
 
 		close_timeout = 4000, -- close floating window after ms when laster parameter is entered
 		fix_pos = false,  -- set to true, the floating window will not auto-close until finish all parameters
-		hint_enable = true, -- virtual hint enable
+		hint_enable = false, -- virtual hint enable
 		hint_prefix = "! ",  -- Panda for parameter, NOTE: for the terminal not support emoji, might crash
 		hint_scheme = "String",
 		hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight

@@ -81,10 +81,6 @@ vim.keybinds.gmap("n", "<F12>","<cmd>lua require'dap'.step_into() 		<CR>" ,vim.k
 vim.keybinds.gmap("n", "<leader>\\", "gcc", {})
 vim.keybinds.gmap("v", "<leader>\\", "gc", {})
 
--- 代码折叠
-vim.keybinds.gmap("n", "<leader>[", "zc", {});
-vim.keybinds.gmap("v", "<leader>]", "zo", {});
-
 vim.keybinds.gmap("n", "<leader>ft", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9<CR>", vim.keybinds.opts)
 vim.keybinds.gmap("t", "q", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9<CR>", vim.keybinds.opts)
 vim.keybinds.gmap("n", "<leader>git", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9 git add . && git commit -m . && git push <CR>", vim.keybinds.opts)

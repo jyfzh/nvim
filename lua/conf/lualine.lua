@@ -3,8 +3,8 @@ require('lualine').setup {
 	options = {
 		icons_enabled = true,
 		theme = 'auto',
-		component_separators = { left = '', right = ''},
-		section_separators = { left = '', right = ''},
+		component_separators = { left = '', right = '' },
+		section_separators = { left = '', right = '' },
 		disabled_filetypes = {
 			statusline = {},
 			winbar = {},
@@ -19,30 +19,30 @@ require('lualine').setup {
 		}
 	},
 	sections = {
-		lualine_a = {'mode'},
+		lualine_a = { 'mode' },
 		lualine_b = { },
-		lualine_c = {'branch', 'diff'},
-		lualine_x = {'encoding', 'fileformat', 'filetype'},
-		lualine_y = {},
-		lualine_z = {'progress'},
+		lualine_c = { 'branch', 'diff' },
+		lualine_x = { 'encoding', 'fileformat', 'filetype' },
+		lualine_y = { },
+		lualine_z = { 'progress' },
 	},
 	inactive_sections = {
 		lualine_a = {},
 		lualine_b = {},
-		lualine_c = {'filename'},
-		lualine_x = {'location'},
-		lualine_y = {'filetype'},
+		lualine_c = { 'filename' },
+		lualine_x = { 'location' },
+		lualine_y = { 'filetype' },
 		lualine_z = {}
 	},
 	tabline = {
-		lualine_a = {''},
-		lualine_b = {'buffers',''},
-		lualine_c = {''},
-		lualine_x = {"require'lsp-status'.status()"},
+		lualine_a = { '' },
+		lualine_b = { 'buffers', '' },
+		lualine_c = { '' },
+		lualine_x = { "require'lsp-status'.status()" },
 		lualine_y = {},
 		lualine_z = {}
 	},
 	winbar = {},
 	inactive_winbar = {},
-	extensions = {'quickfix'}
+	extensions = { 'quickfix' }
 }

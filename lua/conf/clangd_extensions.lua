@@ -7,10 +7,17 @@ lsp_status.register_progress()
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
 
+local lsp_signature = require("lsp_signature")
+
+local on_attach = function(client, bufnr)
+	lsp_status.on_attach(client)
+	lsp_signature.on_attach(client, bufnr) -- Note: add in lsp client on-attach
+end
+
 require("clangd_extensions").setup {
 	server = {
 		capabilities = capabilities,
-		on_attach = lsp_status.on_attach,
+		on_attach = on_attach,
 		handlers = lsp_status.extensions.clangd.setup(),
 		cmd = {"clangd"},
 		filetypes = {"c", "cpp", "objc", "objcpp"},
@@ -32,7 +39,7 @@ require("clangd_extensions").setup {
 			-- not that this may cause  higher CPU usage.
 			-- This option is only respected when only_current_line and
 			-- autoSetHints both are true.
-			only_current_line_autocmd = "CursorHold,CursorHoldI",
+			only_current_line_autocmd = "CursorMovedI,CursorHoldI",
 			-- whether to show parameter hints with the inlay hints or not
 			show_parameter_hints = true,
 			-- prefix for parameter hints
