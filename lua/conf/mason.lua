@@ -98,3 +98,9 @@ require 'lspconfig'.marksman.setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
 }
+
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+require 'lspconfig'.jsonls.setup {
+	on_attach = on_attach,
+	capabilities = capabilities,
+}

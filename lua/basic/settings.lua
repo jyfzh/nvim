@@ -43,9 +43,7 @@ vim.o.writebackup = false
 vim.o.bufhidden = "hide"
 vim.o.swapfile = false
 
--- 使回格键（backspace）正常处理indent, eol, start等
---vim.o.backspace=2
-
+vim.o.expandtab = true
 -- tab的长度
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
