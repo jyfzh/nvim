@@ -1,13 +1,12 @@
 -- https://github.com/hrsh7th/nvim-cmp
--- https://github.com/hrsh7th/vim-vsnip
 -- https://github.com/hrsh7th/cmp-nvim-lsp
 -- https://github.com/hrsh7th/cmp-path
 -- https://github.com/hrsh7th/cmp-buffer
 -- https://github.com/hrsh7th/cmp-cmdline
 -- https://github.com/f3fora/cmp-spell
 -- https://github.com/lukas-reineke/cmp-under-comparator
--- https://github.com/tzachar/cmp-tabnine
 -- https://github.com/saadparwaiz1/cmp_luasnip
+--
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -57,13 +56,11 @@ cmp.setup(
 			['<C-u>'] = cmp.mapping.scroll_docs(-4),
 			['<C-d>'] = cmp.mapping.scroll_docs(4),
 			['<C-Space>'] = cmp.mapping.complete(),
-			-- 选择补全
 			['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 		}),
-		-- 指定补全源（安装了补全源插件就在这里指定）
 		sources = cmp.config.sources(
 			{
-				{ name = 'nvim_lsp' },
+				{ name = 'nvim_lsp',max_item_count = 5 },
 				{ name = 'luasnip' }, -- For luasnip users.
 			},
 			{
@@ -72,7 +69,6 @@ cmp.setup(
 				{ name = 'spell' },
 			}
 		),
-		-- 格式化补全菜单
 		formatting = {
 			format = lspkind.cmp_format(
 				{

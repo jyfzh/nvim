@@ -7,7 +7,7 @@
 require('telescope').setup{
 	defaults = {
 		history = {
-			path = vim.fn.stdpath "data"..'/databases/telescope_history.sqlite3',
+			path = vim.fn.stdpath "data"..'/telescope_history.sqlite3',
 			limit = 100,
 		},
 		vimgrep_arguments = {
@@ -88,7 +88,7 @@ require('telescope').setup{
 			border = false,
 			hidden_files = true, -- default: false
 			base_dirs = {
-				'~/cpp',
+				-- '~/cpp',
 				'/home/jyf/.config/nvim',
 				-- {'~/dev/src3', max_depth = 4},
 				-- {path = '~/dev/src5'},

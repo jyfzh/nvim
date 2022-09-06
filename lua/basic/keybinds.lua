@@ -1,87 +1,89 @@
 vim.g.mapleader = " "
 
 vim.keybinds = {
-	gmap = vim.api.nvim_set_keymap,
-	bmap = vim.api.nvim_buf_set_keymap,
-	dgmap = vim.api.nvim_del_keymap,
-	dbmap = vim.api.nvim_buf_del_keymap,
-	opts = {noremap = true, silent = true}
+    gmap = vim.api.nvim_set_keymap,
+    bmap = vim.api.nvim_buf_set_keymap,
+    dgmap = vim.api.nvim_del_keymap,
+    dbmap = vim.api.nvim_buf_del_keymap,
+    opts = { noremap = true, silent = true }
 }
 
 -- colorscheme
-vim.keybinds.gmap("n", "<F3>", 	"<cmd> PreviousColorScheme <CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n", "<F4>",  "<cmd> NextColorScheme <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<F3>", "<cmd> PreviousColorScheme <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<F4>", "<cmd> NextColorScheme <CR>", vim.keybinds.opts)
 
 --ranger
-vim.keybinds.gmap("n", "<leader>r",  "<cmd> Ranger <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<leader>r", "<cmd> Ranger <CR>", vim.keybinds.opts)
 
 function Run()
-	vim.cmd("w!")
-	if(vim.bo.filetype=="cpp") then
-		vim.cmd("FloatermNew --autoclose=0 --position=topright g++ -g3 -std=c++2a -Wall %:p -o %:p:h/%:r && %:p:h/%:r && rm -f %:p:h/%:r")
-	elseif(vim.bo.filetype=="c") then
-		vim.cmd("FloatermNew --autoclose=0 --position=topright gcc -g3 -std=c2x -Wall % -o %< && %< && rm -f %:p:h/%:r")
-	elseif(vim.bo.filetype=="python")then
-		vim.cmd("FloatermNew --autoclose=0 --position=topright python -u %")
-	elseif (vim.bo.filetype=="java") then
-		vim.cmd("FloatermNew --autoclose=0 --position=topright java %")
-	elseif (vim.bo.filetype=="make") then
-		vim.cmd("FloatermNew --autoclose=0 --position=topright make clean&&make&&./%<")
-	elseif (vim.bo.filetype=="txt") then
-		vim.cmd("FloatermNew --autoclose=0 --position=topright cmake ..")
-	elseif (vim.bo.filetype=="sh") then
-		vim.cmd("FloatermNew --autoclose=0 --position=topright bash %")
-	elseif (vim.bo.filetype=="markdown") then
-		vim.cmd("FloatermNew --autoclose=0 --position=center --height=0.9 --width=0.9 glow %:p")
-	end
+    vim.cmd("w!")
+    if (vim.bo.filetype == "cpp") then
+        vim.cmd("FloatermNew --autoclose=0 --position=topright g++ -g3 -std=c++2a -Wall %:p -o %:p:h/%:r && %:p:h/%:r && rm -f %:p:h/%:r")
+    elseif (vim.bo.filetype == "c") then
+        vim.cmd("FloatermNew --autoclose=0 --position=topright gcc -g3 -std=c2x -Wall % -o %< && %< && rm -f %:p:h/%:r")
+    elseif (vim.bo.filetype == "python") then
+        vim.cmd("FloatermNew --autoclose=0 --position=topright python -u %")
+    elseif (vim.bo.filetype == "java") then
+        vim.cmd("FloatermNew --autoclose=0 --position=topright java %")
+    elseif (vim.bo.filetype == "make") then
+        vim.cmd("FloatermNew --autoclose=0 --position=topright make clean&&make&&./%<")
+    elseif (vim.bo.filetype == "txt") then
+        vim.cmd("FloatermNew --autoclose=0 --position=topright cmake ..")
+    elseif (vim.bo.filetype == "sh") then
+        vim.cmd("FloatermNew --autoclose=0 --position=topright bash %")
+    elseif (vim.bo.filetype == "markdown") then
+        vim.cmd("FloatermNew --autoclose=0 --position=center --height=0.9 --width=0.9 glow %:p")
+    end
 end
 
 -- 运行代码
-vim.keybinds.gmap("n","<C-A-n>" ,"<cmd>lua Run() <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<C-A-n>", "<cmd>lua Run() <CR>", vim.keybinds.opts)
 
 -- format
-vim.keybinds.gmap("n", "<S-A-f>", "<cmd>lua vim.lsp.buf.formatting() <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<S-A-f>", "<cmd>lua vim.lsp.buf.format()<CR>", vim.keybinds.opts)
 
 -- 基础按键
 vim.keybinds.gmap("n", "<C-u>", "10k", vim.keybinds.opts)
 vim.keybinds.gmap("n", "<C-d>", "10j", vim.keybinds.opts)
 
-vim.keybinds.gmap("n", "<A-up>", 	"<cmd> res+5				<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n", "<A-down>", 	"<cmd> res-5				<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n", "<A-left>", 	"<cmd> vertical resize-5	<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<A-up>", "<cmd> res+5				<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<A-down>", "<cmd> res-5				<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<A-left>", "<cmd> vertical resize-5	<CR>", vim.keybinds.opts)
 vim.keybinds.gmap("n", "<A-right>", "<cmd> vertical resize+5	<CR>", vim.keybinds.opts)
 
 -- 取消find
-vim.keybinds.gmap("n", "<CR><CR>" , "<cmd>noh<CR>",vim.keybinds.opts)
+vim.keybinds.gmap("n", "<CR><CR>", "<cmd>noh<CR>", vim.keybinds.opts)
 
 
 -- buffer
-vim.keybinds.gmap("n","bd" ,"<cmd>bd<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n","<A-1>" ,"<cmd>LualineBuffersJump! 1<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n","<A-2>" ,"<cmd>LualineBuffersJump! 2<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n","<A-3>" ,"<cmd>LualineBuffersJump! 3<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n","<A-4>" ,"<cmd>LualineBuffersJump! 4<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n","<A-5>" ,"<cmd>LualineBuffersJump! 5<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n","<A-6>" ,"<cmd>LualineBuffersJump! 6<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n","<A-7>" ,"<cmd>LualineBuffersJump! 7<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n","<A-8>" ,"<cmd>LualineBuffersJump! 8<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n","<A-9>" ,"<cmd>LualineBuffersJump! 9<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n","<A-$>" ,"<cmd>LualineBuffersJump! $<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "bd", "<cmd>bd<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<A-1>", "<cmd>LualineBuffersJump! 1<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<A-2>", "<cmd>LualineBuffersJump! 2<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<A-3>", "<cmd>LualineBuffersJump! 3<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<A-4>", "<cmd>LualineBuffersJump! 4<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<A-5>", "<cmd>LualineBuffersJump! 5<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<A-6>", "<cmd>LualineBuffersJump! 6<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<A-7>", "<cmd>LualineBuffersJump! 7<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<A-8>", "<cmd>LualineBuffersJump! 8<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<A-9>", "<cmd>LualineBuffersJump! 9<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<A-$>", "<cmd>LualineBuffersJump! $<CR>", vim.keybinds.opts)
 
 -- 调试代码
-vim.keybinds.gmap("n", "<F9>","<cmd>lua require'dap'.toggle_breakpoint()<CR>" ,vim.keybinds.opts)
-vim.keybinds.gmap("n", "<F5>","<cmd>lua require'dap'.continue() 		<CR>" ,vim.keybinds.opts)
-vim.keybinds.gmap("n", "<F10>","<cmd>lua require'dap'.step_over() 		<CR>" ,vim.keybinds.opts)
-vim.keybinds.gmap("n", "<F12>","<cmd>lua require'dap'.step_into() 		<CR>" ,vim.keybinds.opts)
+vim.keybinds.gmap("n", "<F9>", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<F5>", "<cmd>lua require'dap'.continue() 		<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<F10>", "<cmd>lua require'dap'.step_over() 		<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<F12>", "<cmd>lua require'dap'.step_into() 		<CR>", vim.keybinds.opts)
 
 -- 代码注释
 vim.keybinds.gmap("n", "<leader>\\", "gcc", {})
 vim.keybinds.gmap("v", "<leader>\\", "gc", {})
 
 -- vim-floaterm
-vim.keybinds.gmap("t", "<ESC>",  "<C-\\><C-n> <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("t", "<ESC>", "<C-\\><C-n> <CR>", vim.keybinds.opts)
 vim.keybinds.gmap("n", "<leader>ft", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9<CR>", vim.keybinds.opts)
-vim.keybinds.gmap("n", "<leader>git", "<cmd>FloatermNew --autoclose=1 --height=0.6 --width=0.7 git add . && git commit -m . && git push <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<leader>git",
+    "<cmd>FloatermNew --autoclose=1 --height=0.6 --width=0.7 git add . && git commit -m . && git push <CR>",
+    vim.keybinds.opts)
 -- lsp设置
 vim.keybinds.gmap("n", "gf", "<cmd>Lspsaga lsp_finder <CR>", vim.keybinds.opts)
 -- 显示代码可用操作（代替内置 LSP 的窗口，Lspsaga 插件让代码行为更方便）
@@ -95,9 +97,9 @@ vim.keybinds.gmap("n", "g[", "<cmd>Lspsaga diagnostic_jump_prev<CR>", vim.keybin
 -- 跳转到下一个问题（代替内置 LSP 的窗口，Lspsaga 让跳转问题更美观）
 vim.keybinds.gmap("n", "g]", "<cmd>Lspsaga diagnostic_jump_next<CR>", vim.keybinds.opts)
 -- 悬浮窗口上翻页，由 Lspsaga 提供
-vim.keybinds.gmap("n","<C-p>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>",vim.keybinds.opts)
+vim.keybinds.gmap("n", "<C-p>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", vim.keybinds.opts)
 -- 悬浮窗口下翻页，由 Lspsaga 提供
-vim.keybinds.gmap("n","<C-n>","<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>",vim.keybinds.opts)
+vim.keybinds.gmap("n", "<C-n>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", vim.keybinds.opts)
 
 -- 跳转到定义（代替内置 LSP 的窗口，telescope 插件让跳转定义更方便）
 vim.keybinds.gmap("n", "gd", "<cmd>Telescope lsp_definitions <CR>", vim.keybinds.opts)
@@ -124,8 +126,36 @@ vim.keybinds.gmap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", vim.keybinds.
 -- packer
 vim.keybinds.gmap("n", "<leader>p", "<cmd>Telescope packer<CR>", vim.keybinds.opts)
 -- 工作区
-vim.keybinds.gmap("n", "<leader>fp", "<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<leader>fp", "<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>"
+    , vim.keybinds.opts)
 -- symbols
-vim.keybinds.gmap("n", "<leader>fe", "<cmd>lua require'telescope.builtin'.symbols{'nerd','emoji','gitemoji','julia'} <CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<leader>fe",
+    "<cmd>lua require'telescope.builtin'.symbols{'nerd','emoji','gitemoji','julia'} <CR>", vim.keybinds.opts)
 -- frequency
-vim.keybinds.gmap("n", "<leader><leader>", "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>", vim.keybinds.opts)
+vim.keybinds.gmap("n", "<leader><leader>", "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>",
+    vim.keybinds.opts)
+-- cheatsheet
+vim.api.nvim_buf_set_keymap(0, "n", "<leader>?", "<cmd>Cheatsheet<CR>", { noremap = true })
+
+-- venn.nvim: enable or disable keymappings
+function _G.Toggle_venn()
+    local venn_enabled = vim.inspect(vim.b.venn_enabled)
+    if venn_enabled == "nil" then
+        vim.b.venn_enabled = true
+        vim.cmd [[setlocal ve=all]]
+        -- draw a line on HJKL keystokes
+        vim.api.nvim_buf_set_keymap(0, "n", "J", "<C-v>j:VBox<CR>", { noremap = true })
+        vim.api.nvim_buf_set_keymap(0, "n", "K", "<C-v>k:VBox<CR>", { noremap = true })
+        vim.api.nvim_buf_set_keymap(0, "n", "L", "<C-v>l:VBox<CR>", { noremap = true })
+        vim.api.nvim_buf_set_keymap(0, "n", "H", "<C-v>h:VBox<CR>", { noremap = true })
+        -- draw a box by pressing "f" with visual selection
+        vim.api.nvim_buf_set_keymap(0, "v", "f", ":VBox<CR>", { noremap = true })
+    else
+        vim.cmd [[setlocal ve=]]
+        vim.cmd [[mapclear <buffer>]]
+        vim.b.venn_enabled = nil
+    end
+end
+
+-- toggle keymappings for venn using <leader>v
+vim.api.nvim_set_keymap('n', '<leader>v', "<cmd>lua print('hello')<CR>:lua Toggle_venn()<CR>", { noremap = true })

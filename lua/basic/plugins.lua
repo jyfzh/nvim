@@ -20,16 +20,27 @@ packer.startup(
                 'folke/tokyonight.nvim',
                 'luisiacc/gruvbox-baby',
             }
-            -- range
-            use {
-                'francoiscabrol/ranger.vim',
-                requires = {
-                    'rbgrouleff/bclose.vim',
-                },
-            }
             -- vim-floaterm
             use {
                 'voldikss/vim-floaterm',
+            }
+            --  draw
+            use {
+                "jbyuki/venn.nvim",
+                config = function ()
+                    require("conf.venn")
+                end
+            }
+            use {
+                'sudormrfbin/cheatsheet.nvim',
+                requires = {
+                    { 'nvim-telescope/telescope.nvim' },
+                    { 'nvim-lua/popup.nvim' },
+                    { 'nvim-lua/plenary.nvim' },
+                },
+                config = function()
+                    require("conf.cheatsheet")
+                end
             }
             -- lua-line
             use { {
@@ -71,7 +82,6 @@ packer.startup(
                 { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
                 { "nvim-telescope/telescope-dap.nvim", requires = { "mfussenegger/nvim-dap" } },
                 { "nvim-telescope/telescope-symbols.nvim" },
-
             }
             -- treesitter
             use {
