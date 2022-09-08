@@ -1,3 +1,6 @@
+-- https://github.com/mfussenegger/nvim-dap
+--
+-- depend on gdb
 local dap = require('dap')
 local dapui = require("dapui")
 

@@ -1,11 +1,10 @@
 ---@diagnostic disable: undefined-global
 -- https://github.com/wbthomason/packer.nvim
+
 local packer = require("packer")
 packer.startup(
     {
-        -- 所有插件的安装都书写在 function 中
         function(use)
-            -- 包管理器
             use {
                 "wbthomason/packer.nvim"
             }
@@ -15,21 +14,52 @@ packer.startup(
             }
             -- theme
             use {
-                'chxuan/change-colorscheme',
-                'navarasu/onedark.nvim',
-                'folke/tokyonight.nvim',
-                'luisiacc/gruvbox-baby',
+                { 'chxuan/change-colorscheme' },
+                {
+                    -- 'folke/tokyonight.nvim',
+                    -- 'luisiacc/gruvbox-baby',
+                    'navarasu/onedark.nvim',
+                    config = function()
+                    end
+                },
             }
             -- vim-floaterm
             use {
                 'voldikss/vim-floaterm',
             }
+            -- hydra
+            use {
+                'anuvyklack/hydra.nvim',
+                config = function()
+                    require("conf.hydra")
+                end
+            }
+            -- notify
+            use {
+                'rcarriga/nvim-notify',
+            }
             --  draw
             use {
                 "jbyuki/venn.nvim",
-                config = function ()
+                config = function()
                     require("conf.venn")
                 end
+            }
+            use {
+                {
+                    'CRAG666/code_runner.nvim',
+                    requires = 'nvim-lua/plenary.nvim',
+                    config = function()
+                        require("conf.code_runner")
+                    end
+                },
+                {
+                    'michaelb/sniprun',
+                    run = 'bash ./install.sh',
+                    config = function()
+                        require("conf.sniprun")
+                    end
+                }
             }
             use {
                 'sudormrfbin/cheatsheet.nvim',
@@ -67,6 +97,9 @@ packer.startup(
                 { "nvim-telescope/telescope-file-browser.nvim" },
                 { "nvim-telescope/telescope-packer.nvim" },
                 { "nvim-telescope/telescope-project.nvim" },
+                { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+                { "nvim-telescope/telescope-dap.nvim", requires = { "mfussenegger/nvim-dap" } },
+                { "nvim-telescope/telescope-symbols.nvim" },
                 {
                     "nvim-telescope/telescope-smart-history.nvim",
                     requires = { "kkharji/sqlite.lua" }
@@ -78,10 +111,6 @@ packer.startup(
                     end,
                     requires = { "kkharji/sqlite.lua" }
                 },
-                { 'nvim-telescope/telescope-cheat.nvim', requires = { "kkharji/sqlite.lua" } },
-                { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-                { "nvim-telescope/telescope-dap.nvim", requires = { "mfussenegger/nvim-dap" } },
-                { "nvim-telescope/telescope-symbols.nvim" },
             }
             -- treesitter
             use {
@@ -95,12 +124,12 @@ packer.startup(
                 end
             }
             -- clangd
-            use {
-                "p00f/clangd_extensions.nvim",
-                config = function()
-                    require("conf.clangd_extensions")
-                end
-            }
+            -- use {
+            --     "p00f/clangd_extensions.nvim",
+            --     config = function()
+            --         require("conf.clangd_extensions")
+            --     end
+            -- }
             -- 自动匹配括号
             use {
                 "windwp/nvim-autopairs",
@@ -166,8 +195,14 @@ packer.startup(
                     { "hrsh7th/cmp-buffer" }, -- 缓冲区补全
                     { "hrsh7th/cmp-path" }, -- 路径补全
                     { "hrsh7th/cmp-cmdline" }, -- 命令补全
-                    { "L3MON4D3/LuaSnip" },
+                    {
+                        "L3MON4D3/LuaSnip",
+                        config = function()
+                            require("luasnip.loaders.from_vscode").lazy_load()
+                        end
+                    },
                     { "saadparwaiz1/cmp_luasnip" },
+                    { "rafamadriz/friendly-snippets" },
                     { "f3fora/cmp-spell" }, -- 拼写建议
                     { "lukas-reineke/cmp-under-comparator" }, -- 让补全结果的排序更加智能
                 },
