@@ -21,13 +21,17 @@ require("mason-lspconfig").setup({
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
 local lsp_signature = require("lsp_signature")
-
+--navic
+local navic = require("nvim-navic")
+local aerial = require("aerial")
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
 
 local on_attach = function(client, bufnr)
     lsp_status.on_attach(client)
-    lsp_signature.on_attach(client, bufnr) -- Note: add in lsp client on-attach
+    lsp_signature.on_attach(client, bufnr)
+    navic.attach(client, bufnr)
+    aerial.on_attach(client,bufnr)
 end
 
 local runtime_path = vim.split(package.path, ";")
@@ -65,7 +69,9 @@ require 'lspconfig'.sumneko_lua.setup {
 
 -- https://clangd.llvm.org/features.html
 require'lspconfig'.clangd.setup({
+    handlers = lsp_status.extensions.clangd.setup(),
 	capabilities = capabilities,
+    on_attach = on_attach,
 	cmd = {"clangd"},
 	filetypes = {"c", "cpp", "objc", "objcpp"},
 	single_file_support = true,

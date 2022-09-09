@@ -1,4 +1,5 @@
 -- https://github.com/nvim-lualine/lualine.nvim
+
 require('lualine').setup {
     options = {
         icons_enabled = true,
@@ -6,14 +7,14 @@ require('lualine').setup {
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
-            statusline = {},
-            winbar = {},
+            statusline = {'aerial'},
+            winbar = {'aerial'},
         },
         ignore_focus = {},
         always_divide_middle = true,
-        globalstatus = false,
+        globalstatus = true,
         refresh = {
-            statusline = 200,
+            statusline = 1000,
             tabline = 1000,
             winbar = 1000,
         }
@@ -42,7 +43,21 @@ require('lualine').setup {
         lualine_y = {},
         lualine_z = {}
     },
-    winbar = {},
-    inactive_winbar = {},
+    winbar = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { require("nvim-navic").get_location, cond = require("nvim-navic").is_availabl },
+        lualine_x = { 'location' },
+        lualine_y = {},
+        lualine_z = {}
+    },
+    inactive_winbar = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { 'filetype' },
+        lualine_x = { 'location' },
+        lualine_y = {},
+        lualine_z = {}
+    },
     extensions = { 'quickfix', 'nvim-dap-ui', }
 }

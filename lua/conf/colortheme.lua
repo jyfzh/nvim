@@ -14,7 +14,7 @@ require("onedark").setup {
     -- Custom Highlights --
     colors = {}, -- Override default colors
     highlights = {
-        Normal = {bg = '0x000000'},
+        Normal = {bg = '0xFFFFFF'},
         -- TSKeyword = {fg = '$green'},
         -- TSString = {fmt = 'bold'},
         Pmenu          = { bg = 'NONE' },
@@ -25,8 +25,9 @@ require("onedark").setup {
         -- vim-floaterm
         Floaterm       = { bg = 'NONE' },
         FloatermBorder = { bg = 'NONE' },
-        -- ts-rainbow
-        -- rainbowcol1    = { fg = '#c678dd' },
+        TelescopePromptBorder = { fg = '#a7b8d6' },
+        TelescopePreviewBorder = { fg = '#a7b8d6' },
+        TelescopeResultsBorder = { fg = '#a7b8d6' },
     }, -- Override highlight groups
     diagnostics = {
         darker = false, -- darker colors for diagnostic

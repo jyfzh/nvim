@@ -1,5 +1,4 @@
 -- https://github.com/CRAG666/code_runner.nvim
--- https://github.com/arjunmahishi/run-code.nvim
 require('code_runner').setup {
 -- put here the commands by filetype
     filetype = {

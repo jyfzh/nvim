@@ -7,12 +7,11 @@ vim.keybinds = {
     dbmap = vim.api.nvim_buf_del_keymap,
 }
 
--- colorscheme
-vim.api.nvim_set_keymap("n", "<F3>", "<cmd> PreviousColorScheme <CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<F4>", "<cmd> NextColorScheme <CR>", { noremap = true, silent = true })
-
+-- aerial
+vim.api.nvim_set_keymap('n', '<leader>a', '<cmd>AerialToggle<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>h', '<cmd>AerialGo<CR>', { noremap = true, silent = true })
 -- 运行代码
-vim.api.nvim_set_keymap("n", "<C-A-n>", "<cmd>w!<CR> <plug>RunCode <CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-A-n>", "<cmd>w!<CR> <cmd>RunFile<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("", "<C-A-m>", "<plug>SnipRun<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("", "<C-A-r>", "<plug>SnipReset<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("", "<C-A-c>", "<plug>SnipClose<CR>", { noremap = true, silent = true })
@@ -56,9 +55,13 @@ vim.api.nvim_set_keymap("v", "<leader>\\", "gc", {})
 
 -- vim-floaterm
 vim.api.nvim_set_keymap("t", "<ESC>", "<C-\\><C-n> <CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>ft", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9<CR>",{ noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>git","<cmd>FloatermNew --autoclose=1 --height=0.6 --width=0.7 git add . && git commit -m . && git push <CR>",{ noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>m", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9 glow % <CR>",{ noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>ft", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9<CR>",
+    { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>git",
+    "<cmd>FloatermNew --autoclose=1 --height=0.6 --width=0.7 git add . && git commit -m . && git push <CR>",
+    { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>m", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9 glow % <CR>",
+    { noremap = true, silent = true })
 -- lsp设置
 vim.api.nvim_set_keymap("n", "gf", "<cmd>Lspsaga lsp_finder <CR>", { noremap = true, silent = true })
 -- 显示代码可用操作（代替内置 LSP 的窗口，Lspsaga 插件让代码行为更方便）
@@ -103,21 +106,21 @@ vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { norem
 -- packer
 vim.api.nvim_set_keymap("n", "<leader>p", "<cmd>Telescope packer<CR>", { noremap = true, silent = true })
 -- 工作区
-vim.api.nvim_set_keymap("n", "<leader>fp",
-    "<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>"
-    , { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>fp","<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>", { noremap = true, silent = true })
 -- symbols
-vim.api.nvim_set_keymap("n", "<leader>fe",
-    "<cmd>lua require'telescope.builtin'.symbols{'nerd','emoji','gitemoji','julia'} <CR>", { noremap = true,
-    silent = true })
+vim.api.nvim_set_keymap("n", "<leader>fe","<cmd>lua require'telescope.builtin'.symbols{'nerd','emoji','gitemoji','julia'} <CR>", { noremap = true,silent = true })
 -- frequency
-vim.api.nvim_set_keymap("n", "<leader><leader>", "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>",
-    { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader><leader>", "<cmd>lua require('telescope').extensions.frecency.frecency()<CR>",{ noremap = true, silent = true })
+-- notify
+vim.api.nvim_set_keymap("n", "<leader>fn", "<Cmd>Telescope notify theme=dropdown <CR>",{ noremap = true, silent = true })
+-- aerial
+vim.api.nvim_set_keymap("n", "<leader>fa", "<Cmd>Telescope aerial theme=dropdown <CR>",{ noremap = true, silent = true })
 -- cheatsheet
 vim.api.nvim_set_keymap("n", "<leader>?", "<cmd>Cheatsheet<CR>", { noremap = true })
 
 -- venn.nvim: enable or disable keymappings
 function _G.Toggle_venn()
+    require"notify"("venn draw")
     local venn_enabled = vim.inspect(vim.b.venn_enabled)
     if venn_enabled == "nil" then
         vim.b.venn_enabled = true
@@ -137,4 +140,4 @@ function _G.Toggle_venn()
 end
 
 -- toggle keymappings for venn using <leader>v
-vim.api.nvim_set_keymap('n', '<leader>v', "<cmd>lua print('hello')<CR>:lua Toggle_venn()<CR>", { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<leader>v', ":lua Toggle_venn()<CR> <cmd>IndentBlanklineDisable<CR>", { noremap = true })

@@ -1,50 +1,77 @@
 -- https://github.com/numToStr/Comment.nvim
 -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
-local comment_string = require("ts_context_commentstring")
 require("Comment").setup(
     {
+        ---Add a space b/w comment and the line
+        padding = true,
+        ---Whether the cursor should stay at its position
+        sticky = true,
+        ---Lines to be ignored while (un)comment
+        ignore = '^$',
+        ---LHS of toggle mappings in NORMAL mode
         toggler = {
-            -- 切换行注释
-            line = "gcc",
-            --- 切换块注释
-            block = "gbc"
+            ---Line-comment toggle keymap
+            line = 'gcc',
+            ---Block-comment toggle keymap
+            block = 'gbc',
         },
+        ---LHS of operator-pending mappings in NORMAL and VISUAL mode
         opleader = {
-            -- 可视模式下的行注释
-            line = "gc",
-            -- 可视模式下的块注释
-            block = "gb"
+            ---Line-comment keymap
+            line = 'gc',
+            ---Block-comment keymap
+            block = 'gb',
         },
+        ---LHS of extra mappings
         extra = {
-            -- 在当前行上方新增行注释
-            above = "gcO",
-            -- 在当前行下方新增行注释
-            below = "gco",
-            -- 在当前行行尾新增行注释
-            eol = "gcA"
+            ---Add comment on the line above
+            above = 'gcO',
+            ---Add comment on the line below
+            below = 'gco',
+            ---Add comment at the end of line
+            eol = 'gcA',
         },
-        -- 根据当前光标所在上下文判断不同类别的注释
-        -- 由 nvim-ts-context-commentstring  提供
+        ---Enable keybindings
+        ---NOTE: If given `false` then the plugin won't create any mappings
+        mappings = {
+            ---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
+            basic = true,
+            ---Extra mapping; `gco`, `gcO`, `gcA`
+            extra = true,
+            ---Extended mapping; `g>` `g<` `g>[count]{motion}` `g<[count]{motion}`
+            extended = false,
+        },
+        ---Function to call before (un)comment
         pre_hook = function(ctx)
             -- Only calculate commentstring for tsx filetypes
-            if vim.bo.filetype == "typescriptreact" then
-                local U = require("Comment.utils")
-                -- Detemine whether to use linewise or blockwise commentstring
-                local type = ctx.ctype == U.ctype.line and "__default" or "__multiline"
+            if vim.bo.filetype == 'typescriptreact' then
+                local U = require('Comment.utils')
+
+                -- Determine whether to use linewise or blockwise commentstring
+                local type = ctx.ctype == U.ctype.linewise and '__default' or '__multiline'
+
                 -- Determine the location where to calculate commentstring from
                 local location = nil
-                if ctx.ctype == U.ctype.block then
-                    location = comment_string.utils.get_cursor_location()
+                if ctx.ctype == U.ctype.blockwise then
+                    location = require('ts_context_commentstring.utils').get_cursor_location()
                 elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
-                    location = comment_string.utils.get_visual_start_location()
+                    location = require('ts_context_commentstring.utils').get_visual_start_location()
                 end
-                return comment_string.calculate_commentstring(
-                    {
-                        key = type,
-                        location = location
-                    }
-                )
+
+                return require('ts_context_commentstring.internal').calculate_commentstring({
+                    key = type,
+                    location = location,
+                })
             end
-        end
+        end,
+        ---Function to call after (un)comment
+        -- post_hook = function(ctx)
+        --     local U = require('Comment.utils')
+        --     local srow = ctx.range.erow
+        --     local erow = srow + 1
+        --     local line = U.get_lines({ srow = srow, erow = erow })
+        --     local _, col = U.grab_indent(line[1])
+        --     vim.api.nvim_win_set_cursor(0, { erow, col })
+        -- end,
     }
 )

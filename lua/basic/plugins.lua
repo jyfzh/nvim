@@ -1,5 +1,49 @@
----@diagnostic disable: undefined-global
+-- @diagnostic disable: undefined-global
 -- https://github.com/wbthomason/packer.nvim
+-- use {
+--   'myusername/example',        -- The plugin location string
+--   -- The following keys are all optional
+--   disable = boolean,           -- Mark a plugin as inactive
+--   as = string,                 -- Specifies an alias under which to install the plugin
+--   installer = function,        -- Specifies custom installer. See "custom installers" below.
+--   updater = function,          -- Specifies custom updater. See "custom installers" below.
+--   after = string or list,      -- Specifies plugins to load before this plugin. See "sequencing" below
+--   rtp = string,                -- Specifies a subdirectory of the plugin to add to runtimepath.
+--   opt = boolean,               -- Manually marks a plugin as optional.
+--   bufread = boolean,           -- Manually specifying if a plugin needs BufRead after being loaded
+--   branch = string,             -- Specifies a git branch to use
+--   tag = string,                -- Specifies a git tag to use. Supports '*' for "latest tag"
+--   commit = string,             -- Specifies a git commit to use
+--   lock = boolean,              -- Skip updating this plugin in updates/syncs. Still cleans.
+--   run = string, function, or table, -- Post-update/install hook. See "update/install hooks".
+--   requires = string or list,   -- Specifies plugin dependencies. See "dependencies".
+--   rocks = string or list,      -- Specifies Luarocks dependencies for the plugin
+--   config = string or function, -- Specifies code to run after this plugin is loaded.
+--   -- The setup key implies opt = true
+--   setup = string or function,  -- Specifies code to run before this plugin is loaded.
+--   -- The following keys all imply lazy-loading and imply opt = true
+--   cmd = string or list,        -- Specifies commands which load this plugin. Can be an autocmd pattern.
+--   ft = string or list,         -- Specifies filetypes which load this plugin.
+--   keys = string or list,       -- Specifies maps which load this plugin. See "Keybindings".
+--   event = string or list,      -- Specifies autocommand events which load this plugin.
+--   fn = string or list          -- Specifies functions which load this plugin.
+--   cond = string, function, or list of strings/functions,   -- Specifies a conditional test to load this plugin
+--   module = string or list      -- Specifies Lua module names for require. When requiring a string which starts
+--                                -- with one of these module names, the plugin will be loaded.
+--   module_pattern = string/list -- Specifies Lua pattern of Lua module names for require. When requiring a string which matches one of these patterns, the plugin will be loaded.
+-- }
+local ensure_packer = function()
+    local fn = vim.fn
+    local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+    if fn.empty(fn.glob(install_path)) > 0 then
+        fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+        vim.cmd [[packadd packer.nvim]]
+        return true
+    end
+    return false
+end
+
+local packer_bootstrap = ensure_packer()
 
 local packer = require("packer")
 packer.startup(
@@ -10,18 +54,14 @@ packer.startup(
             }
             -- 启动时间管理
             use {
-                "tweekmonster/startuptime.vim"
+                "tweekmonster/startuptime.vim",
+                cmd = "StartupTime"
             }
             -- theme
             use {
-                { 'chxuan/change-colorscheme' },
-                {
-                    -- 'folke/tokyonight.nvim',
-                    -- 'luisiacc/gruvbox-baby',
-                    'navarasu/onedark.nvim',
-                    config = function()
-                    end
-                },
+                -- 'folke/tokyonight.nvim',
+                -- 'luisiacc/gruvbox-baby',
+                'navarasu/onedark.nvim',
             }
             -- vim-floaterm
             use {
@@ -30,6 +70,7 @@ packer.startup(
             -- hydra
             use {
                 'anuvyklack/hydra.nvim',
+                -- event = "VimEnter",
                 config = function()
                     require("conf.hydra")
                 end
@@ -41,14 +82,17 @@ packer.startup(
             --  draw
             use {
                 "jbyuki/venn.nvim",
+                keys = "<leader>v",
                 config = function()
                     require("conf.venn")
                 end
             }
+            -- code_runner
             use {
                 {
                     'CRAG666/code_runner.nvim',
                     requires = 'nvim-lua/plenary.nvim',
+                    -- event = "VimEnter",
                     config = function()
                         require("conf.code_runner")
                     end
@@ -56,6 +100,7 @@ packer.startup(
                 {
                     'michaelb/sniprun',
                     run = 'bash ./install.sh',
+                    -- event = "VimEnter",
                     config = function()
                         require("conf.sniprun")
                     end
@@ -63,6 +108,7 @@ packer.startup(
             }
             use {
                 'sudormrfbin/cheatsheet.nvim',
+                -- event = "VimEnter",
                 requires = {
                     { 'nvim-telescope/telescope.nvim' },
                     { 'nvim-lua/popup.nvim' },
@@ -75,6 +121,7 @@ packer.startup(
             -- lua-line
             use { {
                 'nvim-lualine/lualine.nvim',
+                -- event = "VimEnter",
                 requires = { 'kyazdani42/nvim-web-devicons', opt = true },
                 config = function()
                     require("conf.lualine")
@@ -86,6 +133,7 @@ packer.startup(
             use {
                 {
                     "nvim-telescope/telescope.nvim",
+                    -- event = "VimEnter",
                     requires = {
                         -- Lua 开发模块
                         { "nvim-lua/plenary.nvim" },
@@ -114,32 +162,42 @@ packer.startup(
             }
             -- treesitter
             use {
-                'nvim-treesitter/nvim-treesitter',
-                run = ':TSUpdate',
-                requires = {
-                    "p00f/nvim-ts-rainbow"
+                {
+                    'nvim-treesitter/nvim-treesitter',
+                    run = ':TSUpdate',
+                    requires = {
+                        "p00f/nvim-ts-rainbow"
+                    },
+                    config = function()
+                        require("conf.nvim-treesitter")
+                    end
                 },
-                config = function()
-                    require("conf.nvim-treesitter")
-                end
+                {
+                    "Badhi/nvim-treesitter-cpp-tools",
+                    ft = "cpp",
+                    requires = { "nvim-treesitter/nvim-treesitter" },
+                }
             }
-            -- clangd
-            -- use {
-            --     "p00f/clangd_extensions.nvim",
-            --     config = function()
-            --         require("conf.clangd_extensions")
-            --     end
-            -- }
             -- 自动匹配括号
             use {
                 "windwp/nvim-autopairs",
+                after = "nvim-treesitter",
                 config = function()
                     require("conf.nvim-autopairs")
                 end
             }
-            -- 注释
+            -- indent_vlankline
+            use {
+                "lukas-reineke/indent-blankline.nvim",
+                -- event = "VimEnter",
+                config = function()
+                    require("conf.indent_blankline")
+                end
+            }
+            -- comment
             use {
                 'numToStr/Comment.nvim',
+                -- event = "VimEnter",
                 requires = {
                     "JoosepAlviste/nvim-ts-context-commentstring"
                 },
@@ -147,12 +205,31 @@ packer.startup(
                     require('conf.comment')
                 end
             }
-            -- use {
-            --     'mfussenegger/nvim-lint',
-            --     config = function ()
-            --         require("conf.nvim-lint")
-            --     end
-            -- }
+            -- lint
+            use {
+                'mfussenegger/nvim-lint',
+                -- event = "VimEnter",
+                config = function()
+                    require("conf.nvim-lint")
+                end
+            }
+            -- navic
+            use {
+                "SmiteshP/nvim-navic",
+                -- event = "VimEnter",
+                requires = "neovim/nvim-lspconfig",
+                config = function()
+                    require("conf.nvim-navic")
+                end
+            }
+            -- aerial
+            use {
+                'stevearc/aerial.nvim',
+                -- event = "VimEnter",
+                config = function()
+                    require("conf.aerial")
+                end
+            }
             -- LSP 基础服务
             use {
                 {
@@ -167,13 +244,12 @@ packer.startup(
                         require("conf.mason")
                     end
                 },
-                {
-                    "williamboman/mason-lspconfig.nvim"
-                },
+                { "williamboman/mason-lspconfig.nvim" },
             }
             -- LSP UI 美化
             use { {
                 "kkharji/lspsaga.nvim",
+                -- event = "VimEnter",
                 config = function()
                     require("conf.lspsaga")
                 end
@@ -181,6 +257,7 @@ packer.startup(
                 {
                     -- 插入模式获得函数签名
                     "ray-x/lsp_signature.nvim",
+                    -- event = "VimEnter",
                     config = function()
                         require("conf.lsp_signature")
                     end
@@ -213,6 +290,7 @@ packer.startup(
             -- debug
             use { {
                 "mfussenegger/nvim-dap",
+                keys = { "<F5>", "<F9>", "<F10>", "<F12>" },
                 config = function()
                     require('conf.nvim-dap')
                 end
@@ -233,6 +311,9 @@ packer.startup(
                     end
                 }
             }
+            if packer_bootstrap then
+                require('packer').sync()
+            end
         end,
         -- 使用浮动窗口
         config = {
@@ -241,6 +322,6 @@ packer.startup(
                     return require('packer.util').float({ border = 'single' })
                 end
             }
-        }
+        },
     }
 )
