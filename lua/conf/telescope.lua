@@ -80,6 +80,25 @@ require('telescope').setup {
                 ["project"] = "/home/jyf/jyf",
             }
         },
+        ["ui-select"] = {
+            require("telescope.themes").get_dropdown {
+                -- even more opts
+            }
+
+            -- pseudo code / specification for writing custom displays, like the one
+            -- for "codeactions"
+            -- specific_opts = {
+            --   [kind] = {
+            --     make_indexed = function(items) -> indexed_items, width,
+            --     make_displayer = function(widths) -> displayer
+            --     make_display = function(displayer) -> function(e)
+            --     make_ordinal = function(e) -> string
+            --   },
+            --   -- for example to disable the custom builtin "codeactions" display
+            --      do the following
+            --   codeactions = false,
+            -- }
+        },
     },
 }
 -- you need to call load_extension, somewhere after setup function:
@@ -90,3 +109,4 @@ require('telescope').load_extension 'fzf'
 require('telescope').load_extension 'smart_history'
 require('telescope').load_extension 'dap'
 require('telescope').load_extension 'notify'
+require("telescope").load_extension("ui-select")

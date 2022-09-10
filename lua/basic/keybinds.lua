@@ -7,7 +7,6 @@ vim.keybinds = {
     dbmap = vim.api.nvim_buf_del_keymap,
 }
 
-
 vim.api.nvim_set_keymap("n", "<leader>1", "<cmd>NvimTreeToggle<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>2", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true })
 -- 运行代码
@@ -15,9 +14,6 @@ vim.api.nvim_set_keymap("n", "<C-A-n>", "<cmd>w!<CR> <cmd>RunFile<CR>", { norema
 vim.api.nvim_set_keymap("", "<C-A-m>", "<plug>SnipRun<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("", "<C-A-r>", "<plug>SnipReset<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("", "<C-A-c>", "<plug>SnipClose<CR>", { noremap = true, silent = true })
-
--- format
-vim.api.nvim_set_keymap("n", "<S-A-f>", "<cmd>lua vim.lsp.buf.format()<CR>", { noremap = true, silent = true })
 
 -- 基础按键
 vim.api.nvim_set_keymap("n", "<C-u>", "10k", { noremap = true, silent = true })
@@ -62,33 +58,7 @@ vim.api.nvim_set_keymap("n", "<leader>git",
     { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>m", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9 glow % <CR>",
     { noremap = true, silent = true })
--- lsp设置
-vim.api.nvim_set_keymap("n", "gf", "<cmd>Lspsaga lsp_finder <CR>", { noremap = true, silent = true })
--- 显示代码可用操作（代替内置 LSP 的窗口，Lspsaga 插件让代码行为更方便）
-vim.api.nvim_set_keymap("n", "ga", "<cmd>Lspsaga code_action <CR>", { noremap = true, silent = true })
--- 变量重命名（代替内置 LSP 的窗口，Lspsaga 让变量重命名更美观）
-vim.api.nvim_set_keymap("n", "gn", "<cmd>Lspsaga rename<CR>", { noremap = true, silent = true })
--- 查看帮助信息（代替内置 LSP 的窗口，Lspsaga 让查看帮助信息更美观）
-vim.api.nvim_set_keymap("n", "gh", "<cmd>Lspsaga hover_doc<CR>", { noremap = true, silent = true })
--- 跳转到上一个问题（代替内置 LSP 的窗口，Lspsaga 让跳转问题更美观）
-vim.api.nvim_set_keymap("n", "g[", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { noremap = true, silent = true })
--- 跳转到下一个问题（代替内置 LSP 的窗口，Lspsaga 让跳转问题更美观）
-vim.api.nvim_set_keymap("n", "g]", "<cmd>Lspsaga diagnostic_jump_next<CR>", { noremap = true, silent = true })
--- 悬浮窗口上翻页，由 Lspsaga 提供
-vim.api.nvim_set_keymap("n", "<C-p>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>",
-    { noremap = true, silent = true })
--- 悬浮窗口下翻页，由 Lspsaga 提供
-vim.api.nvim_set_keymap("n", "<C-n>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>",
-    { noremap = true, silent = true })
 
--- 跳转到定义（代替内置 LSP 的窗口，telescope 插件让跳转定义更方便）
-vim.api.nvim_set_keymap("n", "gd", "<cmd>Telescope lsp_definitions <CR>", { noremap = true, silent = true })
--- 跳转到实现
--- vim.api.nvim_set_keymap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", {noremap = true,silent = true})
--- 列出光标下所有引用（代替内置 LSP 的窗口，telescope 插件让查看引用更方便）
-vim.api.nvim_set_keymap("n", "gr", "<cmd>Telescope lsp_references <CR>", { noremap = true, silent = true })
--- 工作区诊断（代替内置 LSP 的窗口，telescope 插件让工作区诊断更方便）
-vim.api.nvim_set_keymap("n", "go", "<cmd>Telescope diagnostics <CR>", { noremap = true, silent = true })
 -- 查找文件
 vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>Telescope find_files <CR>", { noremap = true, silent = true })
 -- 查找文字

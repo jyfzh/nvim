@@ -73,7 +73,7 @@ packer.startup(
                     'kyazdani42/nvim-web-devicons', -- optional, for file icons
                 },
                 tag = 'nightly', -- optional, updated every week. (see issue #1193)
-                config = function ()
+                config = function()
                     require("conf.nvim-tree")
                 end
             }
@@ -152,7 +152,7 @@ packer.startup(
                         require("conf.telescope")
                     end
                 },
-                { "nvim-telescope/telescope-file-browser.nvim" },
+                { "nvim-telescope/telescope-ui-select.nvim" },
                 { "nvim-telescope/telescope-packer.nvim" },
                 { "nvim-telescope/telescope-project.nvim" },
                 { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
@@ -250,19 +250,12 @@ packer.startup(
                 { "williamboman/mason-lspconfig.nvim" },
             }
             -- LSP UI 美化
-            use { {
-                "kkharji/lspsaga.nvim",
+            use {
+                -- 插入模式获得函数签名
+                "ray-x/lsp_signature.nvim",
                 config = function()
-                    require("conf.lspsaga")
+                    require("conf.lsp_signature")
                 end
-            },
-                {
-                    -- 插入模式获得函数签名
-                    "ray-x/lsp_signature.nvim",
-                    config = function()
-                        require("conf.lsp_signature")
-                    end
-                },
             }
             -- 自动代码补全
             use {

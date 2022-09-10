@@ -32,7 +32,7 @@ vim.o.compatible = false
 -- 取消搜索高亮
 vim.o.hlsearch = false
 --智能补全
-vim.o.completeopt = "longest,menu,menuone,noselect"
+vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 -- 不要备份文件（根据自己需要取舍）
 vim.o.backup = false
 vim.o.writebackup = false
