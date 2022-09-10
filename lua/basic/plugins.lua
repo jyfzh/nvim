@@ -55,7 +55,6 @@ packer.startup(
             -- 启动时间管理
             use {
                 "tweekmonster/startuptime.vim",
-                cmd = "StartupTime"
             }
             -- theme
             use {
@@ -67,10 +66,20 @@ packer.startup(
             use {
                 'voldikss/vim-floaterm',
             }
+            -- nvim-tree
+            use {
+                'kyazdani42/nvim-tree.lua',
+                requires = {
+                    'kyazdani42/nvim-web-devicons', -- optional, for file icons
+                },
+                tag = 'nightly', -- optional, updated every week. (see issue #1193)
+                config = function ()
+                    require("conf.nvim-tree")
+                end
+            }
             -- hydra
             use {
                 'anuvyklack/hydra.nvim',
-                -- event = "VimEnter",
                 config = function()
                     require("conf.hydra")
                 end
@@ -82,9 +91,14 @@ packer.startup(
             --  draw
             use {
                 "jbyuki/venn.nvim",
-                keys = "<leader>v",
                 config = function()
                     require("conf.venn")
+                end
+            }
+            use {
+                'lewis6991/gitsigns.nvim',
+                config = function()
+                    require("conf.gitsigns")
                 end
             }
             -- code_runner
@@ -92,7 +106,6 @@ packer.startup(
                 {
                     'CRAG666/code_runner.nvim',
                     requires = 'nvim-lua/plenary.nvim',
-                    -- event = "VimEnter",
                     config = function()
                         require("conf.code_runner")
                     end
@@ -100,7 +113,6 @@ packer.startup(
                 {
                     'michaelb/sniprun',
                     run = 'bash ./install.sh',
-                    -- event = "VimEnter",
                     config = function()
                         require("conf.sniprun")
                     end
@@ -108,7 +120,6 @@ packer.startup(
             }
             use {
                 'sudormrfbin/cheatsheet.nvim',
-                -- event = "VimEnter",
                 requires = {
                     { 'nvim-telescope/telescope.nvim' },
                     { 'nvim-lua/popup.nvim' },
@@ -121,7 +132,6 @@ packer.startup(
             -- lua-line
             use { {
                 'nvim-lualine/lualine.nvim',
-                -- event = "VimEnter",
                 requires = { 'kyazdani42/nvim-web-devicons', opt = true },
                 config = function()
                     require("conf.lualine")
@@ -174,7 +184,6 @@ packer.startup(
                 },
                 {
                     "Badhi/nvim-treesitter-cpp-tools",
-                    ft = "cpp",
                     requires = { "nvim-treesitter/nvim-treesitter" },
                 }
             }
@@ -189,7 +198,6 @@ packer.startup(
             -- indent_vlankline
             use {
                 "lukas-reineke/indent-blankline.nvim",
-                -- event = "VimEnter",
                 config = function()
                     require("conf.indent_blankline")
                 end
@@ -197,7 +205,6 @@ packer.startup(
             -- comment
             use {
                 'numToStr/Comment.nvim',
-                -- event = "VimEnter",
                 requires = {
                     "JoosepAlviste/nvim-ts-context-commentstring"
                 },
@@ -208,7 +215,6 @@ packer.startup(
             -- lint
             use {
                 'mfussenegger/nvim-lint',
-                -- event = "VimEnter",
                 config = function()
                     require("conf.nvim-lint")
                 end
@@ -216,18 +222,15 @@ packer.startup(
             -- navic
             use {
                 "SmiteshP/nvim-navic",
-                -- event = "VimEnter",
                 requires = "neovim/nvim-lspconfig",
                 config = function()
                     require("conf.nvim-navic")
                 end
             }
-            -- aerial
             use {
-                'stevearc/aerial.nvim',
-                -- event = "VimEnter",
+                'simrat39/symbols-outline.nvim',
                 config = function()
-                    require("conf.aerial")
+                    require("conf.symbols-outline")
                 end
             }
             -- LSP 基础服务
@@ -249,7 +252,6 @@ packer.startup(
             -- LSP UI 美化
             use { {
                 "kkharji/lspsaga.nvim",
-                -- event = "VimEnter",
                 config = function()
                     require("conf.lspsaga")
                 end
@@ -257,7 +259,6 @@ packer.startup(
                 {
                     -- 插入模式获得函数签名
                     "ray-x/lsp_signature.nvim",
-                    -- event = "VimEnter",
                     config = function()
                         require("conf.lsp_signature")
                     end
@@ -290,7 +291,6 @@ packer.startup(
             -- debug
             use { {
                 "mfussenegger/nvim-dap",
-                keys = { "<F5>", "<F9>", "<F10>", "<F12>" },
                 config = function()
                     require('conf.nvim-dap')
                 end

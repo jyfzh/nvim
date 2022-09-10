@@ -23,7 +23,7 @@ lsp_status.register_progress()
 local lsp_signature = require("lsp_signature")
 --navic
 local navic = require("nvim-navic")
-local aerial = require("aerial")
+
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
 
@@ -31,7 +31,6 @@ local on_attach = function(client, bufnr)
     lsp_status.on_attach(client)
     lsp_signature.on_attach(client, bufnr)
     navic.attach(client, bufnr)
-    aerial.on_attach(client,bufnr)
 end
 
 local runtime_path = vim.split(package.path, ";")

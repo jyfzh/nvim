@@ -4,6 +4,7 @@ require("onedark").setup {
     transparent = true,
     term_colors = true, -- Change terminal color as per the selected theme style
     toggle_style_key = "<C-s>",
+
     code_style = {
         comments = 'none',
         keywords = 'none',
@@ -18,7 +19,7 @@ require("onedark").setup {
         -- TSKeyword = {fg = '$green'},
         -- TSString = {fmt = 'bold'},
         Pmenu          = { bg = 'NONE' },
-        TSFunction     = { sp = '$cyan', fmt = 'bold' },
+        -- TSFunction     = { sp = '$cyan', fmt = 'bold' },
         -- lsp_signature
         NormalFloat    = { sp = 'NONE', bg = 'NONE' },
         FloatBorder    = { bg = 'NONE' },

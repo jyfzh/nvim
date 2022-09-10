@@ -15,7 +15,7 @@ require('telescope').setup {
         selection_caret = "  ",
         entry_prefix = "  ",
         sorting_strategy = "descending",
-        file_ignore_patterns = { "node_modules", ".git" },
+        file_ignore_patterns = { "^node_modules/", "^.git/" },
         path_display = { "smart" },
         winblend = 0,
         set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
@@ -47,7 +47,7 @@ require('telescope').setup {
             theme = "ivy",
             border = true,
             -- disables netrw and use telescope-file-browser in its place
-            hijack_netrw = true,
+            hijack_netrw = false,
             path_display = { "truncate" },
             mappings = {
                 ["i"] = {
@@ -70,7 +70,6 @@ require('telescope').setup {
             theme = "dropdown",
             hidden_files = true, -- default: false
             base_dirs = {
-                -- '~/cpp',
                 '/home/jyf/.config/nvim',
                 -- {'~/dev/src3', max_depth = 4},
                 -- {path = '~/dev/src5'},
@@ -102,8 +101,8 @@ require('telescope').setup {
 require("telescope").load_extension 'file_browser'
 require("telescope").load_extension 'packer'
 require 'telescope'.load_extension 'project'
+require "telescope".load_extension("frecency")
 require('telescope').load_extension 'fzf'
 require('telescope').load_extension 'smart_history'
 require('telescope').load_extension 'dap'
 require('telescope').load_extension 'notify'
-require('telescope').load_extension 'aerial'

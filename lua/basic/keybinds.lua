@@ -7,9 +7,9 @@ vim.keybinds = {
     dbmap = vim.api.nvim_buf_del_keymap,
 }
 
--- aerial
-vim.api.nvim_set_keymap('n', '<leader>a', '<cmd>AerialToggle<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>h', '<cmd>AerialGo<CR>', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", "<leader>1", "<cmd>NvimTreeToggle<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>2", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true })
 -- 运行代码
 vim.api.nvim_set_keymap("n", "<C-A-n>", "<cmd>w!<CR> <cmd>RunFile<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("", "<C-A-m>", "<plug>SnipRun<CR>", { noremap = true, silent = true })
@@ -140,4 +140,4 @@ function _G.Toggle_venn()
 end
 
 -- toggle keymappings for venn using <leader>v
--- vim.api.nvim_set_keymap('n', '<leader>v', ":lua Toggle_venn()<CR> <cmd>IndentBlanklineDisable<CR>", { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>v', ":lua Toggle_venn()<CR> <cmd>IndentBlanklineDisable<CR>", { noremap = true })
