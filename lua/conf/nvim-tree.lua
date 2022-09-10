@@ -96,7 +96,7 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
                     staged = "✓",
                     unmerged = "",
                     renamed = "➜",
-                    untracked = "★",
+                    untracked = "?",
                     deleted = "",
                     ignored = "◌",
                 },
