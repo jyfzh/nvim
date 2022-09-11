@@ -31,9 +31,9 @@ capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilitie
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', 'g[', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', 'g]', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', 'gd', "<cmd>Telescope diagnostics<CR>" , opts)
 
 local on_attach = function(client, bufnr)
     vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
@@ -46,7 +46,7 @@ local on_attach = function(client, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+    vim.keymap.set('n', 'gr', "<cmd>Telescope lsp_references theme=dropdown<CR>" , bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
     vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
@@ -58,7 +58,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+    vim.keymap.set('n', '<A-S-f>', vim.lsp.buf.formatting, bufopts)
 end
 
 -- 默认情况下，这些窗口没有任何样式，
@@ -73,9 +73,9 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 )
 
 
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
+-- local runtime_path = vim.split(package.path, ";")
+-- table.insert(runtime_path, "lua/?.lua")
+-- table.insert(runtime_path, "lua/?/init.lua")
 
 require 'lspconfig'.sumneko_lua.setup {
     capabilities = capabilities,
@@ -91,7 +91,7 @@ require 'lspconfig'.sumneko_lua.setup {
         Lua = {
             runtime = {
                 version = "LuaJIT",
-                path = runtime_path
+                -- path = runtime_path
             },
             diagnostics = {
                 globals = { "vim" }
