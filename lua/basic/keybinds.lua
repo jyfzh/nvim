@@ -7,7 +7,7 @@ vim.keybinds = {
     dbmap = vim.api.nvim_buf_del_keymap,
 }
 
--- vim.api.nvim_set_keymap("n", "<leader>1", "<cmd>NvimTreeToggle<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>1", "<cmd>Defx -columns=indent:icons:git:filename:type<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>2", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true })
 -- 运行代码
 vim.api.nvim_set_keymap("n", "<C-A-n>", "<cmd>w!<CR> <cmd>RunFile<CR>", { noremap = true, silent = true })
