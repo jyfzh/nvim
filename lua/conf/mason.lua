@@ -33,7 +33,7 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', 'g[', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', 'g]', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', 'gd', "<cmd>Telescope diagnostics<CR>" , opts)
+vim.keymap.set('n', 'gd', "<cmd>Telescope diagnostics<CR>", opts)
 
 local on_attach = function(client, bufnr)
     vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
@@ -46,7 +46,7 @@ local on_attach = function(client, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'gr', "<cmd>Telescope lsp_references theme=dropdown<CR>" , bufopts)
+    vim.keymap.set('n', 'gr', "<cmd>Telescope lsp_references theme=dropdown<CR>", bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
     vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
@@ -119,6 +119,24 @@ require 'lspconfig'.clangd.setup({
     },
 })
 
+require 'lspconfig'.jdtls.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    cmd = { "jdtls", "-configuration", "/home/jyf/.cache/jdtls/config", "-data", "/home/jyf/.cache/jdtls/workspace" },
+    filetypes = { "java" },
+    init_options = {
+        jvm_args = {},
+        workspace = "/home/jyf/.cache/jdtls/workspace"
+    },
+    root_dir = require "lspconfig".util.root_pattern(".git",
+        'build.xml', -- Ant
+        'pom.xml', -- Maven
+        'settings.gradle', -- Gradle
+        'settings.gradle.kts', -- Gradle
+        'build.gradle',
+        'build.gradle.kts'
+    )
+}
 
 require('lspconfig')['pylsp'].setup({
     handlers = lsp_status.extensions.pyls_ms.setup(),

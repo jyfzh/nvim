@@ -7,8 +7,8 @@ require('lualine').setup {
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
-            statusline = { 'aerial' },
-            winbar = { 'aerial' },
+            statusline = { '' },
+            winbar = { '' },
         },
         ignore_focus = {},
         always_divide_middle = true,
@@ -23,7 +23,7 @@ require('lualine').setup {
         lualine_a = { 'mode' },
         lualine_b = {},
         lualine_c = { 'branch', 'diff' },
-        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_x = { 'location' },
         lualine_y = {},
         lualine_z = { 'progress' },
     },
@@ -39,7 +39,7 @@ require('lualine').setup {
         lualine_a = { 'require("hydra.statusline").get_name()' },
         lualine_b = {},
         lualine_c = { 'buffers' },
-        lualine_x = { 'require"lsp-status".status()' },
+        lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_y = {},
         lualine_z = {}
     },
@@ -47,7 +47,7 @@ require('lualine').setup {
         lualine_a = {},
         lualine_b = {},
         lualine_c = { require("nvim-navic").get_location, cond = require("nvim-navic").is_availabl },
-        lualine_x = { 'location' },
+        lualine_x = { 'require"lsp-status".status()' },
         lualine_y = {},
         lualine_z = {}
     },
@@ -59,5 +59,5 @@ require('lualine').setup {
         lualine_y = {},
         lualine_z = {}
     },
-    extensions = { 'quickfix', 'nvim-dap-ui', }
+    extensions = { 'quickfix', 'nvim-dap-ui', 'symbols-outline'}
 }

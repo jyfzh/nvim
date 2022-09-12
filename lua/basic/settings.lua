@@ -46,8 +46,8 @@ vim.o.expandtab = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 -- 是否在屏幕最后一行显示命令
-vim.o.showcmd = true
-vim.o.cmdheight = 1
+vim.o.showcmd = false
+vim.o.cmdheight = 0
 -- 是否允许缓冲区未保存时就切换
 vim.o.hidden = true
 -- 是否开启 xterm 兼容的终端 24 位色彩支持
