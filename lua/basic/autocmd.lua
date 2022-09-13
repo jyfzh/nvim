@@ -5,4 +5,4 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, { command = "set guicursor=a:ver25-b
 vim.api.nvim_create_autocmd({ "InsertEnter" }, { command = "lua vim.o.relativenumber = false" })
 vim.api.nvim_create_autocmd({ "InsertLeave" }, { command = "lua vim.o.relativenumber = true" })
 
-vim.api.nvim_create_autocmd({ "BufRead" }, { command = "Neotree show" })
+vim.api.nvim_create_autocmd({ "BufWinEnter" }, { command = "Neotree show" })

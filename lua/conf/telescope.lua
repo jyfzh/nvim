@@ -24,11 +24,6 @@ require('telescope').setup {
         },
     },
     pickers = {
-        find_files = {
-            theme = "dropdown",
-            previewer = false,
-            border = true,
-        },
         diagnostics = {
             theme = "ivy",
             previewer = false,
@@ -36,11 +31,6 @@ require('telescope').setup {
                 height = 0.3
             }
         },
-        buffers = {
-            theme = "dropdown",
-            previewer = false,
-            border = true,
-        }
     },
     extensions = {
         packer = {
