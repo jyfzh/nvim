@@ -52,6 +52,17 @@ packer.startup(
                     require("conf.gitsigns")
                 end
             }
+            use {
+                "nvim-neo-tree/neo-tree.nvim",
+                requires = {
+                    { "nvim-lua/plenary.nvim" },
+                    { "kyazdani42/nvim-web-devicons"}, -- not strictly required, but recommended
+                    { "MunifTanjim/nui.nvim" },
+                },
+                config = function ()
+                    require("conf.neo-tree")
+                end
+            }
             -- code_runner
             use {
                 {
@@ -83,7 +94,7 @@ packer.startup(
             -- lua-line
             use { {
                 'nvim-lualine/lualine.nvim',
-                requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+                requires = { 'kyazdani42/nvim-web-devicons'},
                 config = function()
                     require("conf.lualine")
                 end
