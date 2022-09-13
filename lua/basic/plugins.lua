@@ -56,10 +56,10 @@ packer.startup(
                 "nvim-neo-tree/neo-tree.nvim",
                 requires = {
                     { "nvim-lua/plenary.nvim" },
-                    { "kyazdani42/nvim-web-devicons"}, -- not strictly required, but recommended
+                    { "kyazdani42/nvim-web-devicons" }, -- not strictly required, but recommended
                     { "MunifTanjim/nui.nvim" },
                 },
-                config = function ()
+                config = function()
                     require("conf.neo-tree")
                 end
             }
@@ -94,7 +94,7 @@ packer.startup(
             -- lua-line
             use { {
                 'nvim-lualine/lualine.nvim',
-                requires = { 'kyazdani42/nvim-web-devicons'},
+                requires = { 'kyazdani42/nvim-web-devicons' },
                 config = function()
                     require("conf.lualine")
                 end
@@ -210,6 +210,7 @@ packer.startup(
                     end
                 },
                 { "williamboman/mason-lspconfig.nvim" },
+                { "folke/lua-dev.nvim" },
             }
             -- LSP UI 美化
             use {

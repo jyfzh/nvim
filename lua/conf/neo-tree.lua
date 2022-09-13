@@ -3,6 +3,16 @@ require("neo-tree").setup({
         winbar = false,
         statusline = false
     },
+    event_handlers = {
+        {
+            event = "neo_tree_buffer_enter",
+            handler = function (arg)
+                vim.cmd [[
+                    setlocal nonumber
+                ]]
+            end
+        }
+    },
     close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
     popup_border_style = "rounded",
     enable_git_status = true,

@@ -7,7 +7,7 @@ require('lualine').setup {
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
             statusline = { '' },
-            winbar = { '' },
+            winbar = { 'neo-tree','Outline' },
         },
         ignore_focus = {},
         always_divide_middle = true,
@@ -46,7 +46,7 @@ require('lualine').setup {
         lualine_a = {},
         lualine_b = {},
         lualine_c = { require("nvim-navic").get_location, cond = require("nvim-navic").is_availabl },
-        lualine_x = { 'require"lsp-status".status():sub(1,60)'},
+        lualine_x = { "require('lsp-status').status():sub(1,40)" },
         lualine_y = {},
         lualine_z = {}
     },
@@ -58,5 +58,5 @@ require('lualine').setup {
         lualine_y = {},
         lualine_z = {}
     },
-    extensions = { 'quickfix', 'nvim-dap-ui', 'symbols-outline' }
+    extensions = { 'quickfix', 'nvim-dap-ui', 'symbols-outline', 'neo-tree' }
 }
