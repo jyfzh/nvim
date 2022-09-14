@@ -7,6 +7,8 @@ vim.keybinds = {
     dbmap = vim.api.nvim_buf_del_keymap,
 }
 
+-- git
+vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>Neotree git_status<CR>", { noremap = true, silent = true })
 -- 运行代码
 vim.api.nvim_set_keymap("n", "<C-A-n>", "<cmd>w!<CR><cmd>RunFile<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-A-s>", "<plug>SnipRun<CR>", { noremap = true, silent = true })
@@ -46,9 +48,6 @@ vim.api.nvim_set_keymap("n", "<F12>", "<cmd>lua require'dap'.step_into() 		<CR>"
 -- vim-floaterm
 -- vim.api.nvim_set_keymap("t", "<ESC>", "<C-\\><C-n> <CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>ft", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9<CR>",
-    { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>git",
-    "<cmd>FloatermNew --autoclose=1 --height=0.6 --width=0.7 git add . && git commit -m . && git push <CR>",
     { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>m", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9 glow % <CR>",
     { noremap = true, silent = true })

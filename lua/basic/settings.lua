@@ -23,8 +23,9 @@ else
 	vim.o.clipboard = "unnamedplus"
 end
 
+vim.o.shortmess="atI"
 -- 报错信息和行号一体
-vim.opt.signcolumn = "yes"
+vim.g.signcolumn = "yes"
 -- 不显示mode
 vim.o.showmode = false
 
@@ -32,7 +33,7 @@ vim.o.compatible = false
 -- 取消搜索高亮
 vim.o.hlsearch = false
 --智能补全
-vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 -- 不要备份文件（根据自己需要取舍）
 vim.o.backup = false
 vim.o.writebackup = false
@@ -47,7 +48,7 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 -- 是否在屏幕最后一行显示命令
 vim.o.showcmd = false
-vim.o.cmdheight = 0
+vim.o.cmdheight = 1
 -- 是否允许缓冲区未保存时就切换
 vim.o.hidden = true
 -- 是否开启 xterm 兼容的终端 24 位色彩支持
