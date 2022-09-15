@@ -1,12 +1,11 @@
--- @diagnostic disable: undefined-global
 -- https://github.com/wbthomason/packer.nvim
-
+-- @diagnostic disable: undefined-global
 local ensure_packer = function()
     local fn = vim.fn
     local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
     if fn.empty(fn.glob(install_path)) > 0 then
+        vim.notify("Installing Pakcer.nvim ... ")
         fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-        vim.cmd [[packadd packer.nvim]]
         return true
     end
     return false
@@ -146,7 +145,11 @@ packer.startup(
                 },
                 {
                     "Badhi/nvim-treesitter-cpp-tools",
-                    requires = { "nvim-treesitter/nvim-treesitter" },
+                    requires = "nvim-treesitter/nvim-treesitter",
+                },
+                {
+                    "yioneko/nvim-yati",
+                    requires = "nvim-treesitter/nvim-treesitter"
                 }
             }
             -- 自动匹配括号
@@ -273,6 +276,9 @@ packer.startup(
         end,
         -- 使用浮动窗口
         config = {
+            git = {
+                -- default_url_format = "https://hub.fastgit.xyz/%s",
+            },
             display = {
                 open_fn = function()
                     return require('packer.util').float({ border = 'single' })

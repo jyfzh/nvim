@@ -4,7 +4,7 @@
 require("nvim-treesitter.configs").setup(
     {
         -- 安装的高亮支持来源
-        ensure_installed = { "c", "cpp", "lua" },
+        ensure_installed = { "c", "cpp", "lua", "python", "java" },
         -- 同步下载高亮支持
         sync_install = false,
         -- 高亮相关
@@ -29,6 +29,10 @@ require("nvim-treesitter.configs").setup(
             }
         },
         indent = {
+            enable = false,
+            disable = {}
+        },
+        yati = {
             enable = true
         },
         -- nvim-ts-rainbow

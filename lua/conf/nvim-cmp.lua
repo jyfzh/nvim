@@ -15,8 +15,27 @@ end
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 local cmp = require("cmp")
+
 cmp.setup(
     {
+        -- Disabling completion in certain contexts, such as comments
+        enabled = function()
+            -- disable completion in comments
+            local context = require 'cmp.config.context'
+            -- keep command mode completion enabled when cursor is in a comment
+            if vim.api.nvim_get_mode().mode == 'c' then
+                return true
+            else
+                return not context.in_treesitter_capture("comment")
+                    and not context.in_syntax_group("Comment")
+            end
+        end,
+        completion = {
+            completeopt = 'menu,menuone,noselect,noinsert',
+        },
+        experimental = {
+            ghost_text = true -- this feature conflict with copilot.vim's preview.
+        },
         -- 指定补全引擎
         snippet = {
             expand = function(args)
@@ -28,13 +47,14 @@ cmp.setup(
             complete = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
-            ["<C-p>"] = cmp.mapping.select_prev_item(),
+            ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
             -- 下一个
-            ["<C-n>"] = cmp.mapping.select_next_item(),
+            ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
             -- IDend, {"i","s","c",}),
             ["<Tab>"] = cmp.mapping(function(fallback)
                 if cmp.visible() then
-                    cmp.select_next_item()
+                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                    -- https://github.com/L3MON4D3/LuaSnip/issues/532
                 elseif luasnip.expand_or_locally_jumpable() then
                     luasnip.expand_or_jump()
                 elseif has_words_before() then
@@ -46,7 +66,7 @@ cmp.setup(
 
             ["<S-Tab>"] = cmp.mapping(function(fallback)
                 if cmp.visible() then
-                    cmp.select_prev_item()
+                    cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
                 elseif luasnip.jumpable(-1) then
                     luasnip.jump(-1)
                 else
@@ -55,14 +75,14 @@ cmp.setup(
             end, { "i", "s" }),
             ['<C-u>'] = cmp.mapping.scroll_docs(-4),
             ['<C-d>'] = cmp.mapping.scroll_docs(4),
-            ['<C-Space>'] = cmp.mapping.complete({select = true}),
+            ['<C-Space>'] = cmp.mapping.complete({ select = true }),
             ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
             ['<C-e>'] = cmp.mapping.abort(),
         }),
         sources = cmp.config.sources(
             {
                 { name = 'nvim_lsp', max_item_count = 8 },
-                { name = 'luasnip' , max_item_count = 3}, -- For luasnip users.
+                { name = 'luasnip', max_item_count = 3 }, -- For luasnip users.
             },
             {
                 { name = 'path' },
@@ -129,12 +149,15 @@ cmp.setup(
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
     mapping = cmp.mapping.preset.cmdline(),
-    sources = {
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp_document_symbol' }
+    }, {
         { name = 'buffer' }
-    }
+    })
 })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+-- [wsl neovim cmp-cmdline 不能 :! command](https://github.com/hrsh7th/cmp-cmdline/issues/24#issuecomment-1094896592)
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources(
