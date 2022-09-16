@@ -1,22 +1,37 @@
 -- neotree
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
-	callback = function()
-		vim.cmd "Neotree show left"
-		-- https://github.com/nvim-neo-tree/neo-tree.nvim/issues/519
-		local manager = require("neo-tree.sources.manager")
-		local state = manager.get_state("filesystem")
-		local winid = state.winid
-		local bufnr = state.bufnr
-		vim.api.nvim_win_set_option(winid, "number", false)
-	end
+	command = "Neotree show left"
 })
 
 -- 退出光标复原
-vim.api.nvim_create_autocmd({ "VimLeave" }, { command = "set guicursor=a:ver25-blinkon0" })
+vim.api.nvim_create_autocmd({ "VimLeave" }, {
+	command = "set guicursor=a:ver25-blinkon0"
+})
 
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	pattern = "*",
+	callback = function()
+		if not (vim.bo.filetype == "neo-tree") then
+			vim.opt_local.number = true
+		end
+	end,
+})
 --行号切换
-vim.api.nvim_create_autocmd({ "InsertEnter" }, { command = "lua vim.o.relativenumber = false" })
-vim.api.nvim_create_autocmd({ "InsertLeave" }, { command = "lua vim.o.relativenumber = true" })
+vim.api.nvim_create_autocmd({ "InsertEnter" }, {
+	callback = function()
+		if not (vim.bo.filetype == "neo-tree") then
+			vim.opt_local.relativenumber = false
+			vim.cmd [[ set nu]]
+		end
+	end
+})
+vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+	callback = function()
+		if not (vim.bo.filetype == "neo-tree") then
+			vim.opt_local.relativenumber = true
+		end
+	end
+})
 
 -- 自动保存编辑的缓冲区
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
@@ -33,13 +48,5 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			vim.fn.setpos(".", vim.fn.getpos("'\""))
 			vim.cmd("silent! foldopen")
 		end
-	end,
-})
-
--- 关闭新行注释
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-	pattern = "*",
-	callback = function()
-		vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
 	end,
 })

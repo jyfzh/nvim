@@ -1,22 +1,17 @@
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
-
 require("neo-tree").setup({
 	source_selector = {
 		winbar = false,
 		statusline = false
 	},
 	event_handlers = {
-		{
-			event = "neo_tree_buffer_enter",
-			handler = function(arg)
-				vim.cmd [[
-                    setlocal nonumber
-                ]]
-			end
-		}
+		-- {
+			-- event = "neo_tree_window_after_open",
+			-- handler = function()end
+		-- },
 	},
 	close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
-	popup_border_style = "rounded",
+	popup_border_style = "single",
 	enable_git_status = true,
 	enable_diagnostics = true,
 	sort_case_insensitive = false, -- used when sorting files and directories in the tree
@@ -33,7 +28,7 @@ require("neo-tree").setup({
 			enable_character_fade = true
 		},
 		indent = {
-			indent_size = 1,
+			indent_size = 2,
 			padding = 0, -- extra padding on left hand side
 			-- indent guides
 			with_markers = true,
@@ -72,7 +67,7 @@ require("neo-tree").setup({
 				deleted   = "✖", -- this can only be used in the git_status source
 				renamed   = "", -- this can only be used in the git_status source
 				-- Status type
-				untracked = "",
+				untracked = "!",
 				ignored   = "",
 				unstaged  = "",
 				staged    = "",
@@ -138,6 +133,30 @@ require("neo-tree").setup({
 	},
 	nesting_rules = {},
 	filesystem = {
+		renderers = {
+			directory = {
+				{ "indent" },
+				{ "icon" },
+				{ "current_filter" },
+				{ "name" },
+				{ "clipboard" },
+				{ "diagnostics", errors_only = true },
+			},
+			file = {
+				{ "indent" },
+				{ "icon" },
+				{
+					"name",
+					use_git_status_colors = true,
+					zindex = 10
+				},
+				{ "clipboard" },
+				{ "bufnr" },
+				{ "modified" },
+				{ "diagnostics" },
+				{ "git_status" },
+			}
+		},
 		filtered_items = {
 			visible = false, -- when true, they will just be displayed differently than normal items
 			hide_dotfiles = true,

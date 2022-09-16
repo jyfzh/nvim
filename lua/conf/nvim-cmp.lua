@@ -28,7 +28,7 @@ cmp.setup(
 			if not vim.api.nvim_get_mode().mode == 'c' and (context.in_treesitter_capture("comment") or context.in_syntax_group("Comment")) then
 				return false
 			end
-			if vim.bo.filetype == "TelescopePrompt" then
+			if vim.bo.filetype == "TelescopePrompt" or vim.bo.filetype == "neo-tree-popup" then
 				return false
 			else
 				return true

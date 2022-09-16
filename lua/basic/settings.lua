@@ -5,7 +5,7 @@ vim.o.encoding = "utf-8"
 vim.o.fileencodings = "utf-8,chinese,latin-1,gbk,gb18030,gk2312"
 
 if vim.fn.has('wsl') then
-    vim.cmd [[
+	vim.cmd [[
 	let g:clipboard = {
           \   'name': 'myClipboard',
           \   'copy': {
@@ -20,10 +20,14 @@ if vim.fn.has('wsl') then
           \ }
 ]]
 else
-    vim.o.clipboard = "unnamedplus"
+	vim.o.clipboard = "unnamedplus"
 end
 
+vim.cmd("set cc=80")
+-- 消息设定
 vim.o.shortmess = "tI"
+-- 关闭新行注释
+vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
 -- 报错信息和行号一体
 vim.g.signcolumn = "yes"
 -- 不显示mode
@@ -67,7 +71,7 @@ vim.o.syntax = "enable"
 -- 侦测文件类型
 vim.o.filetype = "enable"
 -- 是否显示绝对行号
-vim.o.number = true
+-- vim.o.number = true
 -- 设定光标上下两侧最少保留的屏幕行数
 vim.o.scrolloff = 10
 -- 是否支持鼠标操作

@@ -7,6 +7,9 @@ vim.keybinds = {
 	dbmap = vim.api.nvim_buf_del_keymap,
 }
 
+vim.api.nvim_set_keymap("n", "<leader>1", "<cmd>NeoTreeShowToggle<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>2", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true })
+
 -- git
 vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>Neotree git_status<CR>", { noremap = true, silent = true })
 -- 运行代码
