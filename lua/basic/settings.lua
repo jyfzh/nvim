@@ -23,7 +23,7 @@ else
     vim.o.clipboard = "unnamedplus"
 end
 
-vim.o.shortmess = "I"
+vim.o.shortmess = "tI"
 -- 报错信息和行号一体
 vim.g.signcolumn = "yes"
 -- 不显示mode
@@ -67,9 +67,7 @@ vim.o.syntax = "enable"
 -- 侦测文件类型
 vim.o.filetype = "enable"
 -- 是否显示绝对行号
-vim.o.number = false
--- 是否显示相对行号
-vim.o.relativenumber = false
+vim.o.number = true
 -- 设定光标上下两侧最少保留的屏幕行数
 vim.o.scrolloff = 10
 -- 是否支持鼠标操作
