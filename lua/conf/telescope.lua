@@ -58,43 +58,14 @@ require('telescope').setup {
             case_mode = "smart_case", -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
         },
-        frecency = {
-            db_root = "/home/jyf/.local/share/nvim",
-            show_scores = false,
-            show_unindexed = true,
-            ignore_patterns = { "*.git/*", "*/tmp/*" },
-            disable_devicons = false,
-            workspaces = {
-                ["conf"]    = "/home/jyf/.config",
-                ["data"]    = "/home/jyf/.local/share",
-                ["project"] = "/home/jyf/jyf",
-            }
-        },
         ["ui-select"] = {
-            require("telescope.themes").get_dropdown {
-                -- even more opts
-            }
-
-            -- pseudo code / specification for writing custom displays, like the one
-            -- for "codeactions"
-            -- specific_opts = {
-            --   [kind] = {
-            --     make_indexed = function(items) -> indexed_items, width,
-            --     make_displayer = function(widths) -> displayer
-            --     make_display = function(displayer) -> function(e)
-            --     make_ordinal = function(e) -> string
-            --   },
-            --   -- for example to disable the custom builtin "codeactions" display
-            --      do the following
-            --   codeactions = false,
-            -- }
+            require("telescope.themes").get_dropdown {}
         },
     },
 }
 -- you need to call load_extension, somewhere after setup function:
 require("telescope").load_extension 'packer'
 require('telescope').load_extension 'project'
-require("telescope").load_extension("frecency")
 require('telescope').load_extension 'fzf'
 require('telescope').load_extension 'smart_history'
 require('telescope').load_extension 'dap'

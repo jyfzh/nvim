@@ -50,7 +50,7 @@ require("lua-dev").setup({
         types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
         -- plugins = true, -- installed opt or start plugins in packpath
         -- you can also specify the list of plugins to make available as a workspace library
-        plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
+        plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim", { plugins = { "neotest" }, types = true } },
     },
     setup_jsonls = true, -- configures jsonls to provide completion for project specific .luarc.json files
     -- for your Neovim config directory, the config.library settings will be used as is

@@ -23,7 +23,7 @@ else
     vim.o.clipboard = "unnamedplus"
 end
 
-vim.o.shortmess = "atI"
+vim.o.shortmess = "I"
 -- 报错信息和行号一体
 vim.g.signcolumn = "yes"
 -- 不显示mode
@@ -85,7 +85,7 @@ vim.o.swapfile = false
 -- 是否特殊显示空格等字符
 vim.o.list = false
 -- 是否开启自动缩进
-vim.o.autoindent = false
+vim.o.autoindent = true
 -- 设定自动缩进的策略为 plugin
 vim.o.filetype = "plugin"
 -- 是否开启高亮搜索

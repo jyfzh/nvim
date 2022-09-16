@@ -7,7 +7,7 @@ require('code_runner').setup {
         python = "python3 -u",
         typescript = "deno run",
         rust = "cd $dir && rustc $fileName && $dir/$fileNameWithoutExt",
-        vim = function()
+        lua = function()
             vim.cmd "w | source $MYVIMRC | source %"
         end,
         markdown = function ()
