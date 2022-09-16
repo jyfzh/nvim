@@ -19,6 +19,7 @@ local cmp = require("cmp")
 cmp.setup(
 	{
 		-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
+		-- https://github.com/nvim-telescope/telescope.nvim/issues/94
 		-- Disabling completion in certain contexts, such as comments
 		enabled = function()
 			-- disable completion in comments
