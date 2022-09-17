@@ -3,7 +3,8 @@ require('code_runner').setup {
     -- put here the commands by filetype
     filetype = {
         java = "cd $dir && javac $fileName && java $fileNameWithoutExt && rm $fileNameWithoutExt.class",
-        cpp = "cd $dir && g++ $fileName -Wall -g3 -o $fileNameWithoutExt && ./$fileNameWithoutExt && rm $fileNameWithoutExt",
+        c = "cd $dir && gcc $fileName -Wall -g3 -o $fileNameWithoutExt && ./$fileNameWithoutExt && rm -f $fileNameWithoutExt",
+        cpp = "cd $dir && g++ $fileName -Wall -g3 -o $fileNameWithoutExt && ./$fileNameWithoutExt && rm -f $fileNameWithoutExt",
         python = "python3 -u",
         typescript = "deno run",
         rust = "cd $dir && rustc $fileName && $dir/$fileNameWithoutExt",

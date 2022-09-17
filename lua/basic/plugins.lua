@@ -20,10 +20,6 @@ packer.startup(
 			use {
 				"wbthomason/packer.nvim"
 			}
-			-- 启动时间管理
-			use {
-				"tweekmonster/startuptime.vim",
-			}
 			-- theme
 			use {
 				-- 'folke/tokyonight.nvim',
