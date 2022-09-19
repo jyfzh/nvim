@@ -14,13 +14,13 @@ vim.api.nvim_set_keymap("n", "<leader>2", "<cmd>SymbolsOutline<CR>", { noremap =
 vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>Neotree git_status<CR>", { noremap = true, silent = true })
 
 -- vim-floaterm
-vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>FloatermToggle --autoclose=0 --height=0.9 --width=0.9<CR>",
+vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9<CR>",
 	{ noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>m", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9 glow % <CR>",
+vim.api.nvim_set_keymap("n", "<leader>n", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9 glow -p % <CR>",
 	{ noremap = true, silent = true })
 
 -- 运行代码
-vim.api.nvim_set_keymap("n", "<C-A-n>", "<cmd>w!<CR><cmd>RunCode<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-A-n>", "<cmd>AsyncTask run<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-A-s>", "<plug>SnipRun<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-A-r>", "<plug>SnipReset<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-A-c>", "<plug>SnipClose<CR>", { noremap = true, silent = true })

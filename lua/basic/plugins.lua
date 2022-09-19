@@ -76,22 +76,13 @@ packer.startup(
 					end
 				},
 			}
-			-- code_runner
+			-- sniprun
 			use {
-				{
-					'CRAG666/code_runner.nvim',
-					requires = 'nvim-lua/plenary.nvim',
-					config = function()
-						require("conf.code_runner")
-					end
-				},
-				{
 					'michaelb/sniprun',
 					run = 'bash ./install.sh',
 					config = function()
 						require("conf.sniprun")
 					end
-				}
 			}
 			-- test
 			use {
