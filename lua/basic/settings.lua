@@ -25,7 +25,6 @@ end
 
 vim.o.undofile = true
 
-vim.cmd("set cc=80")
 -- 消息设定
 vim.o.shortmess = "tI"
 -- 报错信息和行号一体

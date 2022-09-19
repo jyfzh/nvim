@@ -1,8 +1,9 @@
+-- 取消换行注释
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
-    pattern = "*",
-    callback = function()
-        vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
-    end,
+	pattern = "*",
+	callback = function()
+		vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
+	end,
 })
 -- neotree
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
@@ -25,7 +26,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 --行号切换
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
 	callback = function()
-		if not (vim.bo.filetype == "neo-tree") then
+		if not (vim.bo.filetype == "neo-tree" or vim.bo.filetype == "floaterm") then
 			vim.opt_local.relativenumber = false
 			vim.cmd [[ set nu]]
 		end
@@ -33,7 +34,7 @@ vim.api.nvim_create_autocmd({ "InsertEnter" }, {
 })
 vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 	callback = function()
-		if not (vim.bo.filetype == "neo-tree") then
+		if not (vim.bo.filetype == "neo-tree" or vim.bo.filetype == "floaterm") then
 			vim.opt_local.relativenumber = true
 		end
 	end

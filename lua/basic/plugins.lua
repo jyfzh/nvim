@@ -27,9 +27,9 @@ packer.startup(
 			}
 			-- theme
 			use {
-				-- 'folke/tokyonight.nvim',
-				-- 'luisiacc/gruvbox-baby',
-				'navarasu/onedark.nvim',
+				'folke/tokyonight.nvim',
+				'luisiacc/gruvbox-baby',
+				'navarasu/onedark.nvim'
 			}
 			-- vim-floaterm
 			use {
@@ -78,11 +78,11 @@ packer.startup(
 			}
 			-- sniprun
 			use {
-					'michaelb/sniprun',
-					run = 'bash ./install.sh',
-					config = function()
-						require("conf.sniprun")
-					end
+				'michaelb/sniprun',
+				run = 'bash ./install.sh',
+				config = function()
+					require("conf.sniprun")
+				end
 			}
 			-- test
 			use {
