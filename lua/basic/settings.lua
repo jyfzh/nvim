@@ -28,8 +28,6 @@ vim.o.undofile = true
 vim.cmd("set cc=80")
 -- 消息设定
 vim.o.shortmess = "tI"
--- 关闭新行注释
-vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
 -- 报错信息和行号一体
 vim.g.signcolumn = "yes"
 -- 不显示mode

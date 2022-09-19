@@ -44,7 +44,7 @@ require("neo-tree").setup({
 		icon = {
 			folder_closed = "",
 			folder_open = "",
-			folder_empty = "ﰊ",
+			folder_empty = "",
 			-- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
 			-- then these will never be used.
 			default = "*",
@@ -67,7 +67,7 @@ require("neo-tree").setup({
 				deleted   = "✖", -- this can only be used in the git_status source
 				renamed   = "", -- this can only be used in the git_status source
 				-- Status type
-				untracked = "!",
+				untracked = "⍰",
 				ignored   = "",
 				unstaged  = "",
 				staged    = "",
@@ -77,7 +77,7 @@ require("neo-tree").setup({
 	},
 	window = {
 		position = "left",
-		width = 20,
+		width = 25,
 		mapping_options = {
 			noremap = true,
 			nowait = true,
@@ -158,7 +158,7 @@ require("neo-tree").setup({
 			}
 		},
 		filtered_items = {
-			visible = false, -- when true, they will just be displayed differently than normal items
+			visible = true, -- when true, they will just be displayed differently than normal items
 			hide_dotfiles = true,
 			hide_gitignored = true,
 			hide_hidden = true, -- only works on Windows for hidden files/directories

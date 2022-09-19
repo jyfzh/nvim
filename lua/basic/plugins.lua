@@ -1,11 +1,16 @@
 -- https://github.com/wbthomason/packer.nvim
+
 -- @diagnostic disable: undefined-global
 local ensure_packer = function()
 	local fn = vim.fn
 	local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 	if fn.empty(fn.glob(install_path)) > 0 then
 		vim.notify("Installing Pakcer.nvim ... ")
-		fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+		fn.system({
+			'git', 'clone', '--depth', '1',
+			'https://github.com/wbthomason/packer.nvim',
+			install_path
+		})
 		return true
 	end
 	return false
@@ -59,6 +64,17 @@ packer.startup(
 				config = function()
 					require("conf.neo-tree")
 				end
+			}
+			-- async
+			use {
+				{ 'skywind3000/asynctasks.vim' },
+				{
+					'skywind3000/asyncrun.vim', config = function()
+						vim.cmd [[  
+					    let g:asyncrun_open = 6
+					]]
+					end
+				},
 			}
 			-- code_runner
 			use {
@@ -148,16 +164,16 @@ packer.startup(
 						require("conf.telescope")
 					end
 				},
+				{ "nvim-telescope/telescope-smart-history.nvim", requires = { "kkharji/sqlite.lua" } },
+				{ "nvim-telescope/telescope-dap.nvim", requires = { "mfussenegger/nvim-dap" } },
 				{ "nvim-telescope/telescope-ui-select.nvim" },
 				{ "nvim-telescope/telescope-packer.nvim" },
 				{ "nvim-telescope/telescope-project.nvim" },
 				{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-				{ "nvim-telescope/telescope-dap.nvim", requires = { "mfussenegger/nvim-dap" } },
 				{ "nvim-telescope/telescope-symbols.nvim" },
-				{
-					"nvim-telescope/telescope-smart-history.nvim",
-					requires = { "kkharji/sqlite.lua" }
-				},
+				{ 'nvim-telescope/telescope-z.nvim' },
+				{ 'GustavoKatel/telescope-asynctasks.nvim' },
+				{ 'dawsers/telescope-floaterm.nvim' },
 			}
 			-- treesitter
 			use {

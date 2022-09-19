@@ -5,8 +5,9 @@
 -- https://github.com/hrsh7th/cmp-cmdline
 -- https://github.com/f3fora/cmp-spell
 -- https://github.com/lukas-reineke/cmp-under-comparator
+-- https://github.com/L3MON4D3/LuaSnip
 -- https://github.com/saadparwaiz1/cmp_luasnip
---
+
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -15,6 +16,12 @@ end
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 local cmp = require("cmp")
+
+luasnip.setup({
+	region_check_events = "CursorHold,InsertLeave",
+	-- those are for removing deleted snippets, also a common problem
+	delete_check_events = "TextChanged,InsertEnter",
+})
 
 cmp.setup(
 	{
@@ -40,7 +47,6 @@ cmp.setup(
 		experimental = {
 			ghost_text = true -- this feature conflict with copilot.vim's preview.
 		},
-		-- 指定补全引擎
 		snippet = {
 			expand = function(args)
 				require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
@@ -57,7 +63,8 @@ cmp.setup(
 				if cmp.visible() then
 					cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
 					-- https://github.com/L3MON4D3/LuaSnip/issues/532
-				elseif luasnip.expand_or_locally_jumpable() then
+				elseif luasnip.expand_or_jumpable() then
+					-- elseif luasnip.expand_or_locally_jumpable() then
 					luasnip.expand_or_jump()
 				elseif has_words_before() then
 					cmp.complete()

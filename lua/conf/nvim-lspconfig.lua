@@ -1,17 +1,15 @@
---/- https://github.com/neovim/nvim-lspconfig
--- 更多样式定制，参见：https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
-vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
-vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+-- https://github.com/neovim/nvim-lspconfig
+-- ui https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
 
 local border = {
-	{ " ", "FloatBorder" },
-	{ "▔", "FloatBorder" },
-	{ " ", "FloatBorder" },
-	{ "▕", "FloatBorder" },
-	{ " ", "FloatBorder" },
-	{ "▁", "FloatBorder" },
-	{ " ", "FloatBorder" },
-	{ "▏", "FloatBorder" },
+	{ "┌", "FloatBorder" },
+	{ "─", "FloatBorder" },
+	{ "┐", "FloatBorder" },
+	{ "│", "FloatBorder" },
+	{ "┘", "FloatBorder" },
+	{ "─", "FloatBorder" },
+	{ "└", "FloatBorder" },
+	{ "│", "FloatBorder" },
 }
 -- 诊断样式定制
 vim.diagnostic.config(
@@ -26,10 +24,14 @@ vim.diagnostic.config(
 	}
 )
 -- LSP settings (for overriding per client)
--- local handlers =  {
---   ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border}),
---   ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border }),
--- }
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+	vim.lsp.handlers.hover,
+	{ border = 'single' }
+)
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+	vim.lsp.handlers.signature_help,
+	{ border = 'single' }
+)
 
 -- To instead override globally
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
@@ -48,9 +50,9 @@ require("lua-dev").setup({
 		-- these settings will be used for your Neovim config directory
 		runtime = true, -- runtime path
 		types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
-		-- plugins = true, -- installed opt or start plugins in packpath
+		plugins = true, -- installed opt or start plugins in packpath
 		-- you can also specify the list of plugins to make available as a workspace library
-		plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim", { plugins = { "neotest" }, types = true } },
+		-- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim", "neotest" },
 	},
 	setup_jsonls = true, -- configures jsonls to provide completion for project specific .luarc.json files
 	-- for your Neovim config directory, the config.library settings will be used as is
@@ -100,20 +102,8 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
 	vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
 	vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-	vim.keymap.set('n', '<A-S-f>', vim.lsp.buf.format, bufopts)
+	vim.keymap.set('n', '<A-S-f>', "<cmd>lua vim.lsp.buf.format{async=true}<CR>", bufopts)
 end
-
--- 默认情况下，这些窗口没有任何样式，
--- 但我们可以通过修改每个方法的关联“处理程序”来更改它
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-	vim.lsp.handlers.hover,
-	{ border = 'rounded' }
-)
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-	vim.lsp.handlers.signature_help,
-	{ border = 'rounded' }
-)
-
 
 -- local runtime_path = vim.split(package.path, ";")
 -- table.insert(runtime_path, "lua/?.lua")

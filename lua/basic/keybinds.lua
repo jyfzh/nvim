@@ -7,25 +7,40 @@ vim.keybinds = {
 	dbmap = vim.api.nvim_buf_del_keymap,
 }
 
-vim.api.nvim_set_keymap("n", "<leader>1", "<cmd>NeoTreeShowToggle<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>1", "<cmd>NeoTreeRevealToggle<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>2", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true })
 
 -- git
 vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>Neotree git_status<CR>", { noremap = true, silent = true })
+
+-- vim-floaterm
+vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>FloatermToggle --autoclose=0 --height=0.9 --width=0.9<CR>",
+	{ noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>m", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9 glow % <CR>",
+	{ noremap = true, silent = true })
+
 -- 运行代码
-vim.api.nvim_set_keymap("n", "<C-A-n>", "<cmd>w!<CR><cmd>RunFile<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-A-n>", "<cmd>w!<CR><cmd>RunCode<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-A-s>", "<plug>SnipRun<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-A-r>", "<plug>SnipReset<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-A-c>", "<plug>SnipClose<CR>", { noremap = true, silent = true })
 
 -- 基础按键
-vim.api.nvim_set_keymap("n", "<C-u>", "10k", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-d>", "10j", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-u>", "9k", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-d>", "9j", { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap("n", "<A-up>", "<cmd> res+5				<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<A-down>", "<cmd> res-5				<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<A-left>", "<cmd> vertical resize-5	<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<A-right>", "<cmd> vertical resize+5	<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<A-h>", "<C-w>h", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<A-j>", "<C-w>j", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<A-k>", "<C-w>k", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<A-l>", "<C-w>l", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<A-H>", "<C-w>H", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<A-J>", "<C-w>J", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<A-K>", "<C-w>K", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<A-L>", "<C-w>L", { noremap = true, silent = true })
 
 -- 取消find
 vim.api.nvim_set_keymap("n", "<CR><CR>", "<cmd>noh<CR>", { noremap = true, silent = true })
@@ -48,12 +63,6 @@ vim.api.nvim_set_keymap("n", "<F10>", "<cmd>lua require'dap'.step_over() 		<CR>"
 vim.api.nvim_set_keymap("n", "<F12>", "<cmd>lua require'dap'.step_into() 		<CR>", { noremap = true, silent = true })
 
 
--- vim-floaterm
--- vim.api.nvim_set_keymap("t", "<ESC>", "<C-\\><C-n> <CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>ft", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9<CR>",
-	{ noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>m", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9 glow % <CR>",
-	{ noremap = true, silent = true })
 
 -- find key
 vim.api.nvim_set_keymap("n", "<leader>fk", "<cmd>Telescope  keymaps theme=dropdown<CR>",
@@ -87,12 +96,18 @@ vim.api.nvim_set_keymap("n", "<leader>p", "<cmd>Telescope packer<CR>", { noremap
 vim.api.nvim_set_keymap("n", "<leader>fp",
 	"<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>",
 	{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>z', [[<cmd>lua require'telescope'.extensions.z.list{}<CR>]],
+	{ noremap = true, silent = true })
 -- symbols
 vim.api.nvim_set_keymap("n", "<leader>fe",
 	"<cmd>lua require'telescope.builtin'.symbols{'nerd','emoji','gitemoji','julia'} <CR>",
 	{ noremap = true, silent = true })
 -- notify
 vim.api.nvim_set_keymap("n", "<leader>fn", "<Cmd>Telescope notify theme=dropdown <CR>", { noremap = true, silent = true })
+-- floaterm
+vim.api.nvim_set_keymap("n", "<leader>ft", "<Cmd>Telescope floaterm theme=dropdown <CR>", { noremap = true, silent = true })
+-- asynctasks
+vim.api.nvim_set_keymap("n", "<leader>fa", "<Cmd>Telescope asynctasks all theme=dropdown <CR>", { noremap = true, silent = true })
 -- cheatsheet
 vim.api.nvim_set_keymap("n", "<leader>?", "<cmd>Cheatsheet<CR>", { noremap = true })
 
