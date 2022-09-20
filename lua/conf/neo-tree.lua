@@ -119,29 +119,53 @@ require("neo-tree").setup({
 	},
 	nesting_rules = {},
 	filesystem = {
-		renderers = {
-			directory = {
-				{ "indent" },
-				{ "icon" },
-				{ "current_filter" },
-				{ "name" },
-				{ "clipboard" },
-				{ "diagnostics", errors_only = true },
-			},
-			file = {
-				{ "indent" },
-				{ "icon" },
-				{
-					"name",
-					use_git_status_colors = true,
-					zindex = 10
+		directory = {
+			{ "indent" },
+			{ "icon" },
+			{ "current_filter" },
+			{
+				"container",
+				width = "100%",
+				right_padding = 1,
+				--max_width = 60,
+				content = {
+					{ "name", zindex = 10 },
+					{
+						"symlink_target",
+						zindex = 10,
+						highlight = "NeoTreeSymbolicLinkTarget",
+					},
+					{ "clipboard", zindex = 10 },
+					{ "diagnostics", errors_only = true, zindex = 20, align = "right" },
 				},
-				{ "clipboard" },
-				{ "bufnr" },
-				{ "modified" },
-				{ "diagnostics" },
-				{ "git_status" },
-			}
+			},
+		},
+		file = {
+			{ "indent" },
+			{ "icon" },
+			{
+				"container",
+				width = "100%",
+				right_padding = 1,
+				--max_width = 60,
+				content = {
+					{
+						"name",
+						use_git_status_colors = true,
+						zindex = 10
+					},
+					{
+						"symlink_target",
+						zindex = 10,
+						highlight = "NeoTreeSymbolicLinkTarget",
+					},
+					{ "clipboard", zindex = 10 },
+					{ "bufnr", zindex = 10 },
+					{ "modified", zindex = 20, align = "right" },
+					{ "diagnostics", zindex = 20, align = "right" },
+					{ "git_status", zindex = 20, align = "right" },
+				},
+			},
 		},
 		filtered_items = {
 			visible = true, -- when true, they will just be displayed differently than normal items
