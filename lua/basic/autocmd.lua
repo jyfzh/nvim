@@ -15,27 +15,38 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
 	command = "set guicursor=a:ver25-blinkon0"
 })
 
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-	pattern = "*",
-	callback = function()
-		if not (vim.bo.filetype == "neo-tree") then
-			vim.opt_local.number = true
-		end
-	end,
-})
+local ft = {
+	"neo-tree",
+	"neo-tree-pop",
+	"floaterm",
+	"plugin"
+}
+
 --行号切换
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	callback = function()
+		for _, value in pairs(ft) do
+			if not (vim.bo.filetype == value) then
+				vim.opt_local.relativenumber = true
+			end
+		end
+	end
+})
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
 	callback = function()
-		if not (vim.bo.filetype == "neo-tree" or vim.bo.filetype == "floaterm") then
-			vim.opt_local.relativenumber = false
-			vim.cmd [[ set nu]]
+		for _, value in pairs(ft) do
+			if not (vim.bo.filetype == value) then
+				vim.opt_local.relativenumber = false
+			end
 		end
 	end
 })
 vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 	callback = function()
-		if not (vim.bo.filetype == "neo-tree" or vim.bo.filetype == "floaterm") then
-			vim.opt_local.relativenumber = true
+		for _, value in pairs(ft) do
+			if not (vim.bo.filetype == value) then
+				vim.opt_local.relativenumber = true
+			end
 		end
 	end
 })
