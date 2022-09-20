@@ -1,12 +1,5 @@
 vim.g.mapleader = " "
 
-vim.keybinds = {
-	gmap = vim.api.nvim_set_keymap,
-	bmap = vim.api.nvim_buf_set_keymap,
-	dgmap = vim.api.nvim_del_keymap,
-	dbmap = vim.api.nvim_buf_del_keymap,
-}
-
 vim.api.nvim_set_keymap("n", "<leader>1", "<cmd>NeoTreeRevealToggle<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>2", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true })
 
@@ -20,10 +13,16 @@ vim.api.nvim_set_keymap("n", "<leader>n", "<cmd>FloatermNew --autoclose=0 --heig
 	{ noremap = true, silent = true })
 
 -- 运行代码
-vim.api.nvim_set_keymap("n", "<C-A-n>", "<cmd>AsyncTask run<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-A-s>", "<plug>SnipRun<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<F6>", "<cmd>AsyncTask run<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-A-n>", "<plug>SnipRun<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-A-r>", "<plug>SnipReset<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-A-c>", "<plug>SnipClose<CR>", { noremap = true, silent = true })
+
+-- 调试代码
+vim.api.nvim_set_keymap("n", "<F5>", "<cmd>lua require'dap'.continue() 		<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<F9>", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<F10>", "<cmd>lua require'dap'.step_over() 		<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<F12>", "<cmd>lua require'dap'.step_into() 		<CR>", { noremap = true, silent = true })
 
 -- 基础按键
 vim.api.nvim_set_keymap("n", "<C-u>", "9k", { noremap = true, silent = true })
@@ -55,14 +54,6 @@ vim.api.nvim_set_keymap("n", "<A-7>", "<cmd>LualineBuffersJump! 7<CR>", { norema
 vim.api.nvim_set_keymap("n", "<A-8>", "<cmd>LualineBuffersJump! 8<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<A-9>", "<cmd>LualineBuffersJump! 9<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<A-$>", "<cmd>LualineBuffersJump! $<CR>", { noremap = true, silent = true })
-
--- 调试代码
-vim.api.nvim_set_keymap("n", "<F9>", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<F5>", "<cmd>lua require'dap'.continue() 		<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<F10>", "<cmd>lua require'dap'.step_over() 		<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<F12>", "<cmd>lua require'dap'.step_into() 		<CR>", { noremap = true, silent = true })
-
-
 
 -- find key
 vim.api.nvim_set_keymap("n", "<leader>fk", "<cmd>Telescope  keymaps theme=dropdown<CR>",

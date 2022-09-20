@@ -1,11 +1,15 @@
 -- https://github.com/nvim-treesitter/nvim-treesitter
 -- https://github.com/p00f/nvim-ts-rainbow
+-- https://github.com/windwp/nvim-ts-autotag
 -- https://github.com/Badhi/nvim-treesitter-cpp-tools
 
 require("nvim-treesitter.configs").setup(
 	{
 		-- 安装的高亮支持来源
-		ensure_installed = { "c", "cpp", "lua", "python", "java" },
+		ensure_installed = {
+			"c", "cpp", "lua", "python", "java",
+			"html", "javascript"
+		},
 		-- 同步下载高亮支持
 		sync_install = false,
 		-- 高亮相关
@@ -35,6 +39,9 @@ require("nvim-treesitter.configs").setup(
 		},
 		yati = {
 			enable = true
+		},
+		autotag = {
+			enable = true,
 		},
 		-- nvim-ts-rainbow
 		rainbow = {

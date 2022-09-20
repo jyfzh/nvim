@@ -46,7 +46,7 @@ require('lualine').setup {
         lualine_a = {},
         lualine_b = {},
         lualine_c = { require("nvim-navic").get_location, cond = require("nvim-navic").is_availabl },
-        lualine_x = { "require('lsp-status').status():sub(1,40)" },
+        lualine_x = { "require('lsp-status').status():sub(1,45)" },
         lualine_y = {},
         lualine_z = {}
     },

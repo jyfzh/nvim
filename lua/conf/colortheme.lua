@@ -1,7 +1,7 @@
 -- https://github.com/navarasu/onedark.nvim
 require("onedark").setup {
 	transparent = true,
-	term_colors = false, -- Change terminal color as per the selected theme style
+	term_colors = true, -- Change terminal color as per the selected theme style
 	toggle_style_key = "<C-s>",
 	style = 'darker',
 	code_style = {
@@ -17,17 +17,18 @@ require("onedark").setup {
 		-- TSKeyword = {fg = '$green'},
 		-- TSString = {fmt = 'bold'},
 		-- TSFunction     = { sp = '$cyan', fmt = 'bold' },
-		Normal                 = { bg = 'NONE' },
+		-- Normal                 = { bg = 'NONE' },
 		NormalFloat            = { sp = 'NONE', guibg = 'NONE' },
 		Floaterm               = { bg = 'NONE' },
 		FloatermBorder         = { bg = 'NONE' },
 		TelescopePromptBorder  = { fg = '#a7b8d6' },
 		TelescopePreviewBorder = { fg = '#a7b8d6' },
 		TelescopeResultsBorder = { fg = '#a7b8d6' },
+		NeoTreeGitUntracked    = { fg = '#4a69bd' }
 	}, -- Override highlight groups
 	diagnostics = {
 		darker = false, -- darker colors for diagnostic
-		undercurl = false, -- use undercurl instead of underline for diagnostics
+		undercurl = true, -- use undercurl instead of underline for diagnostics
 		background = false, -- use background color for virtual text
 	},
 }

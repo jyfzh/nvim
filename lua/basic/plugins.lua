@@ -42,6 +42,7 @@ packer.startup(
 			--  draw
 			use {
 				"jbyuki/venn.nvim",
+				keys = "<leader>v",
 				config = function()
 					require("conf.venn")
 				end
@@ -67,13 +68,14 @@ packer.startup(
 			}
 			-- async
 			use {
-				{ 'skywind3000/asynctasks.vim' },
-				{
-					'skywind3000/asyncrun.vim', config = function()
-						vim.cmd [[  
-					    let g:asyncrun_open = 6
-					]]
-					end
+				'skywind3000/asynctasks.vim',
+				requires = {
+					{
+						'skywind3000/asyncrun.vim',
+						config = function()
+							vim.cmd [[  let g:asyncrun_open = 6 ]]
+						end
+					}
 				},
 			}
 			-- sniprun
@@ -84,23 +86,27 @@ packer.startup(
 					require("conf.sniprun")
 				end
 			}
+			-- markdown-preview https://github.com/iamcco/markdown-preview.nvim
+			use { "iamcco/markdown-preview.nvim",
+				run = "cd app && npm install",
+				setup = function()
+					vim.g.mkdp_filetypes = { "markdown" }
+				end,
+				ft = { "markdown" },
+			}
 			-- test
 			use {
 				{
-					"vim-test/vim-test",
-					config = function()
-						require("conf.vim-test")
-					end
-				},
-				{
 					"nvim-neotest/neotest",
 					requires = {
+						"vim-test/vim-test",
 						'nvim-lua/plenary.nvim',
 						"nvim-neotest/neotest-plenary",
 						"nvim-treesitter/nvim-treesitter",
 						"antoinemadec/FixCursorHold.nvim",
 					},
 					config = function()
+						require("conf.vim-test")
 						require("conf.neotest")
 					end
 				},
@@ -146,11 +152,7 @@ packer.startup(
 			use {
 				{
 					"nvim-telescope/telescope.nvim",
-					-- event = "VimEnter",
-					requires = {
-						-- Lua 开发模块
-						{ "nvim-lua/plenary.nvim" },
-					},
+					requires = { "nvim-lua/plenary.nvim" },
 					config = function()
 						require("conf.telescope")
 					end
@@ -172,7 +174,8 @@ packer.startup(
 					'nvim-treesitter/nvim-treesitter',
 					run = ':TSUpdate',
 					requires = {
-						"p00f/nvim-ts-rainbow"
+						"p00f/nvim-ts-rainbow",
+						"windwp/nvim-ts-autotag",
 					},
 					config = function()
 						require("conf.nvim-treesitter")
@@ -187,14 +190,14 @@ packer.startup(
 					requires = "nvim-treesitter/nvim-treesitter"
 				}
 			}
-			-- 自动匹配括号
+			-- autopairs
 			use {
 				"windwp/nvim-autopairs",
 				config = function()
 					require("conf.nvim-autopairs")
 				end
 			}
-			-- indent_vlankline
+			-- indent_blankline
 			use {
 				"lukas-reineke/indent-blankline.nvim",
 				config = function()
@@ -232,7 +235,9 @@ packer.startup(
 					end
 				},
 				{ "williamboman/mason-lspconfig.nvim" },
-				{ "folke/lua-dev.nvim" },
+				{
+					"folke/lua-dev.nvim",
+				},
 			}
 			-- LSP UI 美化
 			use {
