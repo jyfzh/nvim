@@ -6,16 +6,15 @@ require('lualine').setup {
 		component_separators = { left = '', right = '' },
 		section_separators = { left = '', right = '' },
 		disabled_filetypes = {
-			statusline = { '' },
-			winbar = { 'neo-tree', 'Outline' },
+			statusline = {},
+			winbar = {},
 		},
 		ignore_focus = {},
 		always_divide_middle = true,
 		globalstatus = true,
 		refresh = {
 			statusline = 1000,
-			tabline = 1000,
-			winbar = 1000,
+			tabline = 4000,
 		}
 	},
 	sections = {
