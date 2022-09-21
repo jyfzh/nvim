@@ -13,7 +13,8 @@ vim.api.nvim_set_keymap("n", "<leader>n", "<cmd>FloatermNew --autoclose=0 --heig
 	{ noremap = true, silent = true })
 
 -- 运行代码
-vim.api.nvim_set_keymap("n", "<F6>", "<cmd>AsyncTask run<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<F6>", "<cmd>AsyncTask build<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<F7>", "<cmd>AsyncTask run<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-A-n>", "<plug>SnipRun<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-A-r>", "<plug>SnipReset<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-A-c>", "<plug>SnipClose<CR>", { noremap = true, silent = true })

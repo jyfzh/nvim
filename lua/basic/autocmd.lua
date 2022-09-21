@@ -20,7 +20,9 @@ local ft = {
 	"neo-tree",
 	"neo-tree-pop",
 	"floaterm",
-	"plugin"
+	"plugin",
+	"Outline",
+	"qf"
 }
 local function exclude()
 	local flag = true
@@ -31,6 +33,7 @@ local function exclude()
 	end
 	return flag
 end
+
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	callback = function()
 		if exclude() then
@@ -48,9 +51,9 @@ vim.api.nvim_create_autocmd({ "InsertEnter" }, {
 })
 vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 	callback = function()
-			if exclude() then
-				vim.opt_local.relativenumber = true
-			end
+		if exclude() then
+			vim.opt_local.relativenumber = true
+		end
 	end
 })
 
