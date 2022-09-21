@@ -28,7 +28,7 @@ vim.o.undofile = true
 -- 消息设定
 vim.o.shortmess = "tI"
 -- 报错信息和行号一体
-vim.g.signcolumn = "yes"
+vim.o.signcolumn = "yes"
 -- 不显示mode
 vim.o.showmode = false
 

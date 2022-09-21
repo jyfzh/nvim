@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
 --行号切换
 local ft = {
 	"neo-tree",
-	"neo-tree-pop",
+	"neo-tree-popup",
 	"floaterm",
 	"plugin",
 	"Outline",
