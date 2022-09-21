@@ -181,20 +181,21 @@ packer.startup(
 						require("conf.nvim-treesitter")
 					end
 				},
-				{
-					"Badhi/nvim-treesitter-cpp-tools",
-					requires = "nvim-treesitter/nvim-treesitter",
-				},
-				{
-					"yioneko/nvim-yati",
-					requires = "nvim-treesitter/nvim-treesitter"
-				}
+				{ "Badhi/nvim-treesitter-cpp-tools" },
+				{ "yioneko/nvim-yati" },
+				{ 'nvim-treesitter/nvim-treesitter-context' }
 			}
 			-- autopairs
 			use {
 				"windwp/nvim-autopairs",
 				config = function()
 					require("conf.nvim-autopairs")
+				end
+			}
+			use {
+				"ur4ltz/surround.nvim",
+				config = function()
+					require "surround".setup { mappings_style = "sandwich" }
 				end
 			}
 			-- indent_blankline

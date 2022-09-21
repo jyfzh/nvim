@@ -18,13 +18,14 @@ require("onedark").setup {
 		-- TSString = {fmt = 'bold'},
 		-- TSFunction     = { sp = '$cyan', fmt = 'bold' },
 		-- Normal                 = { bg = 'NONE' },
-		NormalFloat            = { sp = 'NONE', guibg = 'NONE' },
-		Floaterm               = { bg = 'NONE' },
-		FloatermBorder         = { bg = 'NONE' },
-		TelescopePromptBorder  = { fg = '#a7b8d6' },
-		TelescopePreviewBorder = { fg = '#a7b8d6' },
-		TelescopeResultsBorder = { fg = '#a7b8d6' },
-		NeoTreeGitUntracked    = { fg = '#4a69bd' }
+		NormalFloat                 = { sp = 'NONE', guibg = 'NONE' },
+		Floaterm                    = { bg = 'NONE' },
+		FloatermBorder              = { bg = 'NONE' },
+		TelescopePromptBorder       = { fg = '#a7b8d6' },
+		TelescopePreviewBorder      = { fg = '#a7b8d6' },
+		TelescopeResultsBorder      = { fg = '#a7b8d6' },
+		NeoTreeGitUntracked         = { fg = '#4a69bd' },
+		TreesitterContextLineNumber = { fg = '#a0a8b7' },
 	}, -- Override highlight groups
 	diagnostics = {
 		darker = false, -- darker colors for diagnostic

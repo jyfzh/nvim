@@ -6,9 +6,9 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	end,
 })
 -- neotree
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
-	command = "NeoTreeShow"
-})
+-- vim.api.nvim_create_autocmd({ "VimEnter" }, {
+-- 	command = "NeoTreeShow"
+-- })
 
 -- 退出光标复原
 vim.api.nvim_create_autocmd({ "VimLeave" }, {
