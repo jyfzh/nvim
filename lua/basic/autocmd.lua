@@ -22,7 +22,8 @@ local ft = {
 	"floaterm",
 	"plugin",
 	"Outline",
-	"qf"
+	"qf",
+	"notify",
 }
 local function exclude()
 	local flag = true

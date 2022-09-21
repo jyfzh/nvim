@@ -2,11 +2,10 @@
 
 -- @diagnostic disable: undefined-global
 local ensure_packer = function()
-	local fn = vim.fn
-	local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-	if fn.empty(fn.glob(install_path)) > 0 then
+	local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+	if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 		vim.notify("Installing Pakcer.nvim ... ")
-		fn.system({
+		vim.fn.system({
 			'git', 'clone', '--depth', '1',
 			'https://github.com/wbthomason/packer.nvim',
 			install_path
@@ -218,10 +217,11 @@ packer.startup(
 				config = function() require("conf.nvim-cmp") end
 			}
 			-- debug
-			use { {
-				"mfussenegger/nvim-dap",
-				config = function() require('conf.nvim-dap') end
-			},
+			use {
+				{
+					"mfussenegger/nvim-dap",
+					config = function() require('conf.nvim-dap') end
+				},
 				{
 					"rcarriga/nvim-dap-ui",
 					config = function() require('conf.nvim-dap-ui') end
@@ -229,7 +229,7 @@ packer.startup(
 				{
 					"theHamsta/nvim-dap-virtual-text",
 					requires = { "mfussenegger/nvim-dap", },
-					config = function() require("conf.nvim-dap-virtuatext") end
+					config = function() require("conf.nvim-dap-virtual-text") end
 				}
 			}
 			if packer_bootstrap then require('packer').sync() end
