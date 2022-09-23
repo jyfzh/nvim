@@ -45,10 +45,6 @@ packer.startup(
 				'lewis6991/gitsigns.nvim',
 				config = function() require("conf.gitsigns") end
 			}
-			use {
-				'karb94/neoscroll.nvim',
-				config = function () require("conf.neoscroll") end
-			}
 			-- neo-tree
 			use {
 				"nvim-neo-tree/neo-tree.nvim",
