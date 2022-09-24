@@ -13,7 +13,6 @@ local has_words_before = function()
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 local cmp = require("cmp")
 
@@ -32,7 +31,8 @@ cmp.setup(
 			-- disable completion in comments
 			local context = require 'cmp.config.context'
 			-- keep command mode completion enabled when cursor is in a comment
-			if not vim.api.nvim_get_mode().mode == 'c' and (context.in_treesitter_capture("comment") or context.in_syntax_group("Comment")) then
+			if not vim.api.nvim_get_mode().mode == 'c' and
+				(context.in_treesitter_capture("comment") or context.in_syntax_group("Comment")) then
 				return false
 			end
 			if vim.bo.filetype == "TelescopePrompt" or vim.bo.filetype == "neo-tree-popup" then
@@ -41,6 +41,9 @@ cmp.setup(
 				return true
 			end
 		end,
+		view = {
+			entries = { name = 'custom', selection_order = 'near_cursor' }
+		},
 		completion = {
 			completeopt = 'menu,menuone,noselect,noinsert',
 		},
@@ -99,7 +102,7 @@ cmp.setup(
 			}
 		),
 		formatting = {
-			format = lspkind.cmp_format(
+			format = require"lspkind".cmp_format(
 				{
 					mode = "symbol_text",
 					with_text = true,

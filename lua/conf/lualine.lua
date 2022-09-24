@@ -28,7 +28,7 @@ require('lualine').setup {
 	tabline = {
 		lualine_a = {},
 		lualine_b = {},
-		lualine_c = { { 'buffers', mode = 2, buffers_color = { active = 'lualine_a_normal' } } },
+		lualine_c = { { 'buffers', mode = 2, icons_enabled = false } },
 		lualine_x = {},
 		lualine_y = {},
 		lualine_z = {}
