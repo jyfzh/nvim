@@ -21,9 +21,7 @@ local packer = require("packer")
 packer.startup(
 	{
 		function(use)
-			use {
-				"wbthomason/packer.nvim"
-			}
+			use "wbthomason/packer.nvim"
 			-- theme
 			use {
 				'folke/tokyonight.nvim',
@@ -31,7 +29,7 @@ packer.startup(
 				'navarasu/onedark.nvim'
 			}
 			-- vim-floaterm
-			use { 'voldikss/vim-floaterm' }
+			use 'voldikss/vim-floaterm'
 			--  draw
 			use {
 				"jbyuki/venn.nvim",
@@ -55,13 +53,9 @@ packer.startup(
 			}
 			-- async
 			use {
-				'skywind3000/asynctasks.vim',
-				requires = {
-					{
-						'skywind3000/asyncrun.vim',
-						config = function() vim.cmd [[  let g:asyncrun_open = 6 ]] end
-					}
-				},
+				'skywind3000/asyncrun.vim',
+				requires = 'skywind3000/asynctasks.vim',
+				config = function() vim.cmd [[  let g:asyncrun_open = 6 ]] end
 			}
 			-- sniprun
 			use {
@@ -96,9 +90,9 @@ packer.startup(
 			use {
 				'sudormrfbin/cheatsheet.nvim',
 				requires = {
-					{ 'nvim-telescope/telescope.nvim' },
-					{ 'nvim-lua/popup.nvim' },
-					{ 'nvim-lua/plenary.nvim' },
+					'nvim-telescope/telescope.nvim',
+					'nvim-lua/popup.nvim',
+					'nvim-lua/plenary.nvim',
 				},
 				config = function() require("conf.cheatsheet") end
 			}
@@ -106,10 +100,13 @@ packer.startup(
 			use {
 				{
 					'nvim-lualine/lualine.nvim',
-					requires = { 'kyazdani42/nvim-web-devicons' },
+					requires = {
+						'kyazdani42/nvim-web-devicons',
+
+						'nvim-lua/lsp-status.nvim',
+					},
 					config = function() require("conf.lualine") end
 				},
-				{ 'nvim-lua/lsp-status.nvim', }
 			}
 			use {
 				'simrat39/symbols-outline.nvim',
@@ -117,36 +114,34 @@ packer.startup(
 			}
 			-- telescope
 			use {
-				{
-					"nvim-telescope/telescope.nvim",
-					requires = { "nvim-lua/plenary.nvim" },
-					config = function() require("conf.telescope") end
+				"nvim-telescope/telescope.nvim",
+				requires = {
+					{ "nvim-lua/plenary.nvim" },
+					{ "nvim-telescope/telescope-smart-history.nvim", requires = { "kkharji/sqlite.lua" } },
+					{ "nvim-telescope/telescope-dap.nvim", requires = { "mfussenegger/nvim-dap" } },
+					{ "nvim-telescope/telescope-ui-select.nvim" },
+					{ "nvim-telescope/telescope-packer.nvim" },
+					{ "nvim-telescope/telescope-project.nvim" },
+					{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+					{ "nvim-telescope/telescope-symbols.nvim" },
+					{ 'nvim-telescope/telescope-z.nvim' },
+					{ 'GustavoKatel/telescope-asynctasks.nvim' },
+					{ 'dawsers/telescope-floaterm.nvim' },
 				},
-				{ "nvim-telescope/telescope-smart-history.nvim", requires = { "kkharji/sqlite.lua" } },
-				{ "nvim-telescope/telescope-dap.nvim", requires = { "mfussenegger/nvim-dap" } },
-				{ "nvim-telescope/telescope-ui-select.nvim" },
-				{ "nvim-telescope/telescope-packer.nvim" },
-				{ "nvim-telescope/telescope-project.nvim" },
-				{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-				{ "nvim-telescope/telescope-symbols.nvim" },
-				{ 'nvim-telescope/telescope-z.nvim' },
-				{ 'GustavoKatel/telescope-asynctasks.nvim' },
-				{ 'dawsers/telescope-floaterm.nvim' },
+				config = function() require("conf.telescope") end
 			}
 			-- treesitter
 			use {
-				{
-					'nvim-treesitter/nvim-treesitter',
-					run = ':TSUpdate',
-					requires = {
-						"p00f/nvim-ts-rainbow",
-						"windwp/nvim-ts-autotag",
-					},
-					config = function() require("conf.nvim-treesitter") end
+				'nvim-treesitter/nvim-treesitter',
+				run = ':TSUpdate',
+				requires = {
+					"p00f/nvim-ts-rainbow",
+					"windwp/nvim-ts-autotag",
+					"Badhi/nvim-treesitter-cpp-tools",
+					"yioneko/nvim-yati",
+					'nvim-treesitter/nvim-treesitter-context'
 				},
-				{ "Badhi/nvim-treesitter-cpp-tools" },
-				{ "yioneko/nvim-yati" },
-				{ 'nvim-treesitter/nvim-treesitter-context' }
+				config = function() require("conf.nvim-treesitter") end
 			}
 			-- autopairs
 			use {
@@ -177,16 +172,16 @@ packer.startup(
 			}
 			-- LSP
 			use {
-				{
-					"neovim/nvim-lspconfig",
-					config = function() require("conf.nvim-lspconfig") end
-				},
-				{
+				"neovim/nvim-lspconfig",
+				requires = {
 					"williamboman/mason.nvim",
-					config = function() require("conf.mason") end
+					"williamboman/mason-lspconfig.nvim",
+					"folke/lua-dev.nvim",
 				},
-				{ "williamboman/mason-lspconfig.nvim" },
-				{ "folke/lua-dev.nvim" },
+				config = function()
+					require("conf.mason")
+					require("conf.nvim-lspconfig")
+				end
 			}
 			use {
 				"ray-x/lsp_signature.nvim",
@@ -198,37 +193,29 @@ packer.startup(
 			use {
 				"hrsh7th/nvim-cmp",
 				requires = {
-					{ "onsails/lspkind-nvim" },
-					{ "hrsh7th/cmp-nvim-lsp" },
-					{ "hrsh7th/cmp-buffer" },
-					{ "hrsh7th/cmp-path" },
-					{ "hrsh7th/cmp-cmdline" },
-					{ "f3fora/cmp-spell" },
-					{
-						"L3MON4D3/LuaSnip",
-						config = function() require("luasnip.loaders.from_vscode").lazy_load() end
-					},
-					{ "saadparwaiz1/cmp_luasnip" },
-					{ "rafamadriz/friendly-snippets" },
-					{ "lukas-reineke/cmp-under-comparator" },
+					"onsails/lspkind-nvim",
+					"hrsh7th/cmp-nvim-lsp",
+					"hrsh7th/cmp-buffer",
+					"hrsh7th/cmp-path",
+					"hrsh7th/cmp-cmdline",
+					"f3fora/cmp-spell",
+					"L3MON4D3/LuaSnip",
+					"saadparwaiz1/cmp_luasnip",
+					"rafamadriz/friendly-snippets",
+					"lukas-reineke/cmp-under-comparator",
 				},
 				config = function() require("conf.nvim-cmp") end
 			}
 			-- debug
 			use {
-				{
-					"mfussenegger/nvim-dap",
-					config = function() require('conf.nvim-dap') end
-				},
-				{
-					"rcarriga/nvim-dap-ui",
-					config = function() require('conf.nvim-dap-ui') end
-				},
-				{
-					"theHamsta/nvim-dap-virtual-text",
-					requires = { "mfussenegger/nvim-dap", },
-					config = function() require("conf.nvim-dap-virtual-text") end
-				}
+				"mfussenegger/nvim-dap",
+				"rcarriga/nvim-dap-ui",
+				"theHamsta/nvim-dap-virtual-text",
+				config = function()
+					require('conf.nvim-dap')
+					require('conf.nvim-dap-ui')
+					require("conf.nvim-dap-virtual-text")
+				end
 			}
 			if packer_bootstrap then require('packer').sync() end
 		end,
