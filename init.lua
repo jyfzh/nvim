@@ -3,5 +3,5 @@ require("basic.keybinds")
 require("basic.plugins")
 require("basic.autocmd")
 
-require("conf.colortheme")
+require("conf.onedark")
 -- vim.cmd [[ colorscheme gruvbox-baby ]]

@@ -2,7 +2,7 @@
 require("onedark").setup {
 	transparent = true,
 	term_colors = true, -- Change terminal color as per the selected theme style
-	toggle_style_key = "<C-s>",
+	-- toggle_style_key = "<C-s>",
 	style = 'darker',
 	code_style = {
 		comments = 'none',
@@ -11,13 +11,13 @@ require("onedark").setup {
 		strings = 'none',
 		variables = 'none'
 	},
+	lualine = {
+		transparent = true, -- lualine center bar transparency
+	},
 	-- Custom Highlights --
 	colors = {}, -- Override default colors
 	highlights = {
-		-- TSKeyword = {fg = '$green'},
-		-- TSString = {fmt = 'bold'},
-		-- TSFunction     = { sp = '$cyan', fmt = 'bold' },
-		-- Normal                 = { bg = 'NONE' },
+		Normal                      = { bg = 'NONE' },
 		NormalFloat                 = { sp = 'NONE', guibg = 'NONE' },
 		Floaterm                    = { bg = 'NONE' },
 		FloatermBorder              = { bg = 'NONE' },

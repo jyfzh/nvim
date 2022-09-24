@@ -32,8 +32,6 @@ packer.startup(
 			}
 			-- vim-floaterm
 			use { 'voldikss/vim-floaterm' }
-			-- notify
-			use { 'rcarriga/nvim-notify' }
 			--  draw
 			use {
 				"jbyuki/venn.nvim",

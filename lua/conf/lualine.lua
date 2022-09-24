@@ -18,37 +18,20 @@ require('lualine').setup {
 	},
 	sections = {
 		lualine_a = { 'mode' },
-		lualine_b = { 'branch' },
-		lualine_c = { 'diff' },
-		lualine_x = { "require('lsp-status').status():sub(1,45)" },
-		lualine_y = {
-			'encoding',
-			{
-				'fileformat',
-				symbols = {
-					unix = 'LF', -- e712
-					dos = 'CRLF', -- e70f
-					mac = 'CR', -- e711
-				}
-			}
-		},
-		lualine_z = { 'filetype' },
+		lualine_b = {},
+		lualine_c = { 'branch', 'diff' },
+		lualine_x = { "require('lsp-status').status():sub(1,45)", 'encoding',
+			{ 'fileformat', symbols = { unix = 'LF', dos = 'CRLF', mac = 'CR' } }, 'filetype' },
+		lualine_y = {},
+		lualine_z = { 'progress' },
 	},
 	tabline = {
-		lualine_a = { 'progress' },
+		lualine_a = {},
 		lualine_b = {},
-		lualine_c = {
-			{
-				'buffers',
-				show_filename_only = true, -- Shows shortened relative path when set to false.
-				hide_filename_extension = true, -- Hide filename extension when set to true.
-				show_modified_status = true, -- Shows indicator when the buffer is modified.
-				mode = 2
-			}
-		},
+		lualine_c = { { 'buffers', mode = 2, buffers_color = { active = 'lualine_a_normal' } } },
 		lualine_x = {},
 		lualine_y = {},
-		lualine_z = { 'tabs' }
+		lualine_z = {}
 	},
 	extensions = { 'quickfix', 'nvim-dap-ui', 'symbols-outline', 'neo-tree' }
 }

@@ -16,35 +16,27 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
 })
 
 --行号切换
-local ft = {
-	"neo-tree",
-	"neo-tree-popup",
-	"floaterm",
-	"plugin",
-	"Outline",
-	"qf",
-	"notify",
-}
-local function exclude()
-	local flag = true
+local ft = { "c", "cpp", "java", "python", "lua", "vim", "html", "css", "javascript" }
+
+local function include()
 	for _, value in pairs(ft) do
 		if (vim.bo.filetype == value) then
-			flag = false
+			return true
 		end
 	end
-	return flag
+	return false
 end
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	callback = function()
-		if exclude() then
+		if include() then
 			vim.opt_local.relativenumber = true
 		end
 	end
 })
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
 	callback = function()
-		if exclude() then
+		if include() then
 			vim.opt_local.relativenumber = false
 			vim.opt_local.number = true
 		end
@@ -52,7 +44,7 @@ vim.api.nvim_create_autocmd({ "InsertEnter" }, {
 })
 vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 	callback = function()
-		if exclude() then
+		if include() then
 			vim.opt_local.relativenumber = true
 		end
 	end
