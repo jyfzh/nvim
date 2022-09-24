@@ -18,7 +18,8 @@ require("onedark").setup {
 	colors = {}, -- Override default colors
 	highlights = {
 		Normal                      = { bg = 'NONE' },
-		NormalFloat                 = { sp = 'NONE', guibg = 'NONE' },
+		NormalFloat                 = { bg = 'NONE' },
+		FloatBorder              = { bg = 'NONE' },
 		Floaterm                    = { bg = 'NONE' },
 		FloatermBorder              = { bg = 'NONE' },
 		TelescopePromptBorder       = { fg = '#a7b8d6' },
