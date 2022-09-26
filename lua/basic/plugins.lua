@@ -98,19 +98,47 @@ packer.startup(
 			}
 			-- lua-line
 			use {
-				{
-					'nvim-lualine/lualine.nvim',
-					requires = {
-						'kyazdani42/nvim-web-devicons',
-
-						'nvim-lua/lsp-status.nvim',
-					},
-					config = function() require("conf.lualine") end
+				'nvim-lualine/lualine.nvim',
+				requires = {
+					'kyazdani42/nvim-web-devicons',
+					'nvim-lua/lsp-status.nvim',
 				},
+				config = function() require("conf.lualine") end
 			}
+			-- symbols-outline
 			use {
 				'simrat39/symbols-outline.nvim',
 				config = function() require("conf.symbols-outline") end
+			}
+			-- hop.nvim
+			use {
+				'phaazon/hop.nvim',
+				config = function()
+					require "conf.hop"
+				end
+			}
+			-- autopairs
+			use {
+				"windwp/nvim-autopairs",
+				config = function() require("conf.nvim-autopairs") end
+			}
+			-- surround
+			use {
+				"ur4ltz/surround.nvim",
+				config = function()
+					require "surround".setup { mappings_style = "sandwich" }
+				end
+			}
+			-- indent_blankline
+			use {
+				"lukas-reineke/indent-blankline.nvim",
+				config = function() require("conf.indent_blankline") end
+			}
+			-- comment
+			use {
+				'numToStr/Comment.nvim',
+				requires = { "JoosepAlviste/nvim-ts-context-commentstring" },
+				config = function() require('conf.comment') end
 			}
 			-- telescope
 			use {
@@ -143,33 +171,6 @@ packer.startup(
 				},
 				config = function() require("conf.nvim-treesitter") end
 			}
-			-- autopairs
-			use {
-				"windwp/nvim-autopairs",
-				config = function() require("conf.nvim-autopairs") end
-			}
-			use {
-				"ur4ltz/surround.nvim",
-				config = function()
-					require "surround".setup { mappings_style = "sandwich" }
-				end
-			}
-			-- indent_blankline
-			use {
-				"lukas-reineke/indent-blankline.nvim",
-				config = function() require("conf.indent_blankline") end
-			}
-			-- comment
-			use {
-				'numToStr/Comment.nvim',
-				requires = { "JoosepAlviste/nvim-ts-context-commentstring" },
-				config = function() require('conf.comment') end
-			}
-			-- lint
-			use {
-				'mfussenegger/nvim-lint',
-				config = function() require("conf.nvim-lint") end
-			}
 			-- LSP
 			use {
 				"neovim/nvim-lspconfig",
@@ -183,6 +184,7 @@ packer.startup(
 					require("conf.nvim-lspconfig")
 				end
 			}
+			-- lsp_signature
 			use {
 				"ray-x/lsp_signature.nvim",
 				config = function()
@@ -216,6 +218,11 @@ packer.startup(
 					require('conf.nvim-dap-ui')
 					require("conf.nvim-dap-virtual-text")
 				end
+			}
+			-- lint
+			use {
+				'mfussenegger/nvim-lint',
+				config = function() require("conf.nvim-lint") end
 			}
 			if packer_bootstrap then require('packer').sync() end
 		end,

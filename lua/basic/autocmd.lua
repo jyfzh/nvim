@@ -5,10 +5,6 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 		vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
 	end,
 })
--- neotree
--- vim.api.nvim_create_autocmd({ "VimEnter" }, {
--- 	command = "NeoTreeShow"
--- })
 
 -- 退出光标复原
 vim.api.nvim_create_autocmd({ "VimLeave" }, {

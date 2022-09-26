@@ -1,14 +1,5 @@
 -- venn.nvim: enable or disable keymappings
 function _G.Toggle_venn()
-	-- require("notify").setup({
-	-- 	max_width = 10,
-	-- 	stages = "fade"
-	-- })
-	-- require("notify")("venn draw", 10, {
-	-- 	render = "minimal",
-	-- 	icon = "",
-	-- 	timeout = 100,
-	-- })
 	local venn_enabled = vim.inspect(vim.b.venn_enabled)
 	if venn_enabled == "nil" then
 		vim.b.venn_enabled = true

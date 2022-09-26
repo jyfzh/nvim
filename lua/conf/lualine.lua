@@ -20,7 +20,7 @@ require('lualine').setup {
 		lualine_a = { 'mode' },
 		lualine_b = {},
 		lualine_c = { 'branch', 'diff' },
-		lualine_x = { "require('lsp-status').status():sub(1,45)", 'encoding',
+		lualine_x = { { "require('lsp-status').status()", max_length = vim.o.columns * 2 / 3 }, 'encoding',
 			{ 'fileformat', symbols = { unix = 'LF', dos = 'CRLF', mac = 'CR' } }, 'filetype' },
 		lualine_y = {},
 		lualine_z = { 'progress' },
@@ -35,3 +35,4 @@ require('lualine').setup {
 	},
 	extensions = { 'quickfix', 'nvim-dap-ui', 'symbols-outline', 'neo-tree' }
 }
+vim.api.nvim_set_hl(0, "lualine_c_buffers_active", { fg = '#8ebd6b' })

@@ -30,7 +30,6 @@ require("onedark").setup {
 		TreesitterContextLineNumber = { fg = '#a0a8b7' },
 		PmenuSel                    = { fg = "NONE", bg = "#5f668a" },
 		Pmenu                       = { fg = "#C5CDD9", bg = "NONE" },
-		lualine_c_buffers_active    = { fg = '#8ebd6b' },
 	}, -- Override highlight groups
 	diagnostics = {
 		darker = false, -- darker colors for diagnostic
@@ -40,4 +39,3 @@ require("onedark").setup {
 }
 
 require "onedark".load()
--- vim.api.nvim_set_hl(0, "lualine_c_buffers_active", { fg = '#8ebd6b' })

@@ -1,7 +1,4 @@
 -- https://github.com/michaelb/sniprun
- require("notify").setup({
-  background_colour = "#000000"
-})
 require 'sniprun'.setup({
     selected_interpreters = { 'Cpp_original', 'C_original' },
     repl_enable = { },

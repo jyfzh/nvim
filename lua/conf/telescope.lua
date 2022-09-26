@@ -1,4 +1,6 @@
 -- https://github.com/nvim-telescope/telescope.nvim
+-- https://github.com/GustavoKatel/telescope-asynctasks.nvim
+
 -- WARN: telescope 手动安装依赖 fd 和 repgrep
 -- sudo apt install sqlite3 libsqlite3-dev  -y
 
@@ -25,6 +27,7 @@ require('telescope').setup {
 		set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 		mappings = {
 			n = { ["q"] = require("telescope.actions").close },
+			i = { },
 		},
 	},
 	pickers = {
@@ -54,7 +57,7 @@ require('telescope').setup {
 			hidden_files = true, -- default: false
 			-- order_by = "asc",
 			base_dirs = {
-				'/home/jyf/.config/nvim',
+				-- '/home/jyf/.config/nvim',
 				-- {'~/dev/src3', max_depth = 4},
 				-- {path = '~/dev/src5'},
 				-- {path = '~/dev/src5', max_depth = 2},
@@ -73,13 +76,12 @@ require('telescope').setup {
 	},
 }
 -- you need to call load_extension, somewhere after setup function:
-require("telescope").load_extension 'packer'
+require('telescope').load_extension 'packer'
 require('telescope').load_extension 'project'
 require('telescope').load_extension 'fzf'
 require('telescope').load_extension 'smart_history'
 require('telescope').load_extension 'dap'
-require('telescope').load_extension 'notify'
-require("telescope").load_extension("ui-select")
+require('telescope').load_extension 'ui-select'
 require('telescope').load_extension 'z'
--- require('telescope').extensions.asynctasks.all()
-require('telescope').load_extension('floaterm')
+require('telescope').load_extension 'asynctasks'
+require('telescope').load_extension 'floaterm'
