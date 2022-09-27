@@ -6,8 +6,9 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	end,
 })
 
--- 退出光标复原
+
 vim.api.nvim_create_autocmd({ "VimLeave" }, {
+	-- 退出光标复原
 	command = "set guicursor=a:ver25-blinkon0"
 })
 

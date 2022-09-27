@@ -7,9 +7,7 @@ vim.api.nvim_set_keymap("n", "<leader>2", "<cmd>SymbolsOutline<CR>", { noremap =
 vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>Neotree git_status<CR>", { noremap = true, silent = true })
 
 -- vim-floaterm
-vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9<CR>",
-	{ noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>n", "<cmd>FloatermNew --autoclose=0 --height=0.9 --width=0.9 glow -p % <CR>",
+vim.api.nvim_set_keymap("n", "\\", "<cmd>FloatermToggle<CR>",
 	{ noremap = true, silent = true })
 
 -- 运行代码
@@ -43,7 +41,7 @@ vim.api.nvim_set_keymap("n", "<A-K>", "<C-w>K", { noremap = true, silent = true 
 vim.api.nvim_set_keymap("n", "<A-L>", "<C-w>L", { noremap = true, silent = true })
 
 -- hop
-vim.api.nvim_set_keymap("n", "/", "<cmd>HopWord<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", ";", "<cmd>HopWord<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('', 'f',
 	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
 	, {})

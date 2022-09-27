@@ -29,7 +29,16 @@ packer.startup(
 				'navarasu/onedark.nvim'
 			}
 			-- vim-floaterm
-			use 'voldikss/vim-floaterm'
+			use {
+				'voldikss/vim-floaterm',
+				config = function()
+					vim.cmd [[
+						let g:floaterm_width = 0.8
+						let g:floaterm_height = 0.8
+						let g:floaterm_autoclose = 0
+					]]
+				end
+			}
 			--  draw
 			use {
 				"jbyuki/venn.nvim",
@@ -113,9 +122,9 @@ packer.startup(
 			-- hop.nvim
 			use {
 				'phaazon/hop.nvim',
-				config = function()
-					require "conf.hop"
-				end
+				config = require 'hop'.setup {
+					keys = 'etovxqpdygfblzhckisuran',
+				}
 			}
 			-- autopairs
 			use {
