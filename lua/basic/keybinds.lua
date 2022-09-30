@@ -4,7 +4,7 @@ vim.api.nvim_set_keymap("n", "<leader>1", "<cmd>NeoTreeRevealToggle<CR>", { nore
 vim.api.nvim_set_keymap("n", "<leader>2", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true })
 
 -- git
-vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>Neotree git_status<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "gg", "<cmd>Neotree git_status<CR>", { noremap = true, silent = true })
 
 -- vim-floaterm
 vim.api.nvim_set_keymap("n", "\\", "<cmd>FloatermToggle<CR>",
@@ -41,7 +41,6 @@ vim.api.nvim_set_keymap("n", "<A-K>", "<C-w>K", { noremap = true, silent = true 
 vim.api.nvim_set_keymap("n", "<A-L>", "<C-w>L", { noremap = true, silent = true })
 
 -- hop
-vim.api.nvim_set_keymap("n", "<leader><leader>a", "<cmd>HopAnywhere<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader><leader>w", "<cmd>HopWord<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader><leader>p", "<cmd>HopPattern<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader><leader>c1", "<cmd>HopChar1<CR>", { noremap = true, silent = true })

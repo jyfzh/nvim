@@ -28,6 +28,7 @@ packer.startup(
 				'luisiacc/gruvbox-baby',
 				'navarasu/onedark.nvim'
 			}
+			use 'rcarriga/nvim-notify'
 			-- vim-floaterm
 			use {
 				'voldikss/vim-floaterm',
@@ -70,7 +71,6 @@ packer.startup(
 			}
 			use {
 				"Shatur/neovim-session-manager",
-				requires = 'nvim-lua/plenary.nvim',
 				config = function() require("conf.neovim-session-manager") end
 			}
 			-- sniprun
@@ -82,8 +82,11 @@ packer.startup(
 			-- markdown-preview https://github.com/iamcco/markdown-preview.nvim
 			use { "iamcco/markdown-preview.nvim",
 				run = "cd app && npm install",
-				setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
-				ft = { "markdown" },
+				setup = function()
+					vim.g.mkdp_filetypes = { "markdown" }
+					vim.g.mkdp_command_for_global = 1
+				end,
+				ft = { "markdown", "html" },
 			}
 			-- test
 			use {
@@ -225,6 +228,7 @@ packer.startup(
 					"L3MON4D3/LuaSnip",
 					"saadparwaiz1/cmp_luasnip",
 					"rafamadriz/friendly-snippets",
+					{ 'tzachar/cmp-tabnine', run = './install.sh' }
 				},
 				config = function() require("conf.nvim-cmp") end
 			}

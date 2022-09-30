@@ -6,6 +6,7 @@
 -- https://github.com/f3fora/cmp-spell
 -- https://github.com/L3MON4D3/LuaSnip
 -- https://github.com/saadparwaiz1/cmp_luasnip
+-- https://github.com/tzachar/cmp-tabnine
 
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -51,6 +52,7 @@ cmp.setup(
 			entries = { name = 'custom', selection_order = 'near_cursor' }
 		},
 		completion = {
+			-- https://zhuanlan.zhihu.com/p/106070272?utm_id=0
 			completeopt = 'menu,menuone,noselect,noinsert',
 		},
 		experimental = {
@@ -98,8 +100,9 @@ cmp.setup(
 		}),
 		sources = cmp.config.sources(
 			{
-				{ name = 'nvim_lsp', max_item_count = 8, priority = 5 },
-				{ name = 'luasnip', max_item_count = 3, priority = 5 },
+				{ name = 'nvim_lsp', max_item_count = 8 },
+				{ name = 'luasnip', max_item_count = 3 },
+				{ name = 'cmp_tabnine' },
 			},
 			{
 				{ name = 'buffer', max_item_count = 3, priority = 1 },
@@ -118,7 +121,9 @@ cmp.setup(
 			})
 		},
 		sorting = {
+			priority_weight = 2,
 			comparators = {
+				require('cmp_tabnine.compare'),
 				cmp.config.compare.offset,
 				cmp.config.compare.exact,
 				cmp.config.compare.scopes,
@@ -136,7 +141,7 @@ cmp.setup(
 
 cmp.setup.filetype({ 'text' }, {
 	sources = cmp.config.sources({
-		{ name = 'spell', max_item_count = 10, }
+		{ name = 'spell' }
 	})
 })
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
@@ -155,4 +160,18 @@ cmp.setup.cmdline(':', {
 		{ { name = 'path' } },
 		{ { name = 'cmdline' } }
 	)
+})
+
+require('cmp_tabnine.config').setup({
+	max_lines = 1000,
+	max_num_results = 20,
+	sort = true,
+	run_on_every_keystroke = true,
+	snippet_placeholder = '..',
+	ignored_file_types = {
+		-- default is not to ignore
+		-- uncomment to ignore in lua:
+		-- lua = true
+	},
+	show_prediction_strength = false
 })

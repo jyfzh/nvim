@@ -1,3 +1,10 @@
+vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
+	pattern = { "*" },
+	callback = function()
+		vim.cmd [[ mks! ~/.local/share/nvim/workspace.vim ]]
+	end,
+})
+
 vim.api.nvim_create_autocmd({ "VimLeave" }, {
 	command = "set guicursor=a:ver25-blinkon0"
 })
@@ -62,9 +69,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		end
 	end,
 })
-
--- 切换工作目录bd
+-- 工作区改变删除buffer
 vim.api.nvim_create_autocmd("DirChangedPre", {
-	pattern = { "*" },
 	command = "bufdo bd!"
 })
