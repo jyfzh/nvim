@@ -1,4 +1,5 @@
 -- https://github.com/neovim/nvim-lspconfig
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- ui https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
 
 local border = {
@@ -13,9 +14,7 @@ local border = {
 }
 vim.diagnostic.config(
 	{
-		-- 显示的前缀，可选项：'●', '▎', 'x'
-		-- 是否总是显示前缀？是的
-		virtual_text = { prefix = "", source = "always" },
+		virtual_text = { prefix = "", source = "always" }, -- prefix：'●', '▎', 'x'
 		severity_sort = true,
 		float = { source = "always" },
 		update_in_insert = false,
@@ -46,12 +45,9 @@ require("lua-dev").setup({
 	-- add any options here, or leave empty to use the default settings
 	library = {
 		enabled = true, -- when not enabled, lua-dev will not change any settings to the LSP server
-		-- these settings will be used for your Neovim config directory
 		runtime = true, -- runtime path
 		types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
 		plugins = true, -- installed opt or start plugins in packpath
-		-- you can also specify the list of plugins to make available as a workspace library
-		-- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim", "neotest" },
 	},
 	setup_jsonls = true, -- configures jsonls to provide completion for project specific .luarc.json files
 	-- for your Neovim config directory, the config.library settings will be used as is
@@ -68,7 +64,7 @@ local lsp_signature = require("lsp_signature")
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 
 local opts = { noremap = true, silent = true }
@@ -132,9 +128,9 @@ require 'lspconfig'.sumneko_lua.setup {
 			diagnostics = {
 				globals = { "vim" }
 			},
-			-- workspace = {
-			--     library = vim.api.nvim_get_runtime_file("", true)
-			-- },
+			workspace = {
+			    library = vim.api.nvim_get_runtime_file("", true)
+			},
 			telemetry = {
 				enable = false
 			}
@@ -155,10 +151,17 @@ require 'lspconfig'.clangd.setup({
 	},
 })
 
+
+-- create jdtls cache file
+vim.api.nvim_exec([[
+	!mkdir -p ~/.cache/jdtls/config
+	!mkdir -p ~/.cache/jdtls/workspace
+]], true)
+
 require 'lspconfig'.jdtls.setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
-	cmd = { "jdtls", "-configuration", "/home/jyf/.cache/jdtls/config", "-data", "/home/jyf/.cache/jdtls/workspace" },
+	cmd = { "jdtls", "-configuration", "~/.cache/jdtls/config", "-data", "~/.cache/jdtls/workspace" },
 	filetypes = { "java" },
 	init_options = {
 		jvm_args = {},
@@ -175,26 +178,16 @@ require 'lspconfig'.jdtls.setup {
 	)
 }
 
-require('lspconfig')['pylsp'].setup({
-	handlers = lsp_status.extensions.pyls_ms.setup(),
+require 'lspconfig'.pyright.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
-	root_dir = require "lspconfig".util.root_pattern(
-		'.git',
-		'.env'
-	),
+	cmd = { "pyright-langserver", "--stdio" },
 	settings = {
 		python = {
-			workspaceSymbols = {
-				enabled = true
-			}
-		},
-		pylsp = {
-			plugins = {
-				pycodestyle = {
-					ignore = { 'W391' },
-					maxLineLength = 100
-				}
+			analysis = {
+				autoSearchPaths = true,
+				diagnosticMode = "workspace",
+				useLibraryCodeForTypes = true
 			}
 		}
 	}

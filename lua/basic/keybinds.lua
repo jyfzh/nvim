@@ -11,8 +11,8 @@ vim.api.nvim_set_keymap("n", "\\", "<cmd>FloatermToggle<CR>",
 	{ noremap = true, silent = true })
 
 -- 运行代码
-vim.api.nvim_set_keymap("n", "<F6>", "<cmd>AsyncTask build<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<F7>", "<cmd>AsyncTask run<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<F7>", "<cmd>AsyncTask build<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<F8>", "<cmd>AsyncTask run<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-A-n>", "<plug>SnipRun<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-A-r>", "<plug>SnipReset<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-A-c>", "<plug>SnipClose<CR>", { noremap = true, silent = true })
@@ -41,17 +41,23 @@ vim.api.nvim_set_keymap("n", "<A-K>", "<C-w>K", { noremap = true, silent = true 
 vim.api.nvim_set_keymap("n", "<A-L>", "<C-w>L", { noremap = true, silent = true })
 
 -- hop
-vim.api.nvim_set_keymap("n", ";", "<cmd>HopWord<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('', 'f',
+vim.api.nvim_set_keymap("n", "<leader><leader>a", "<cmd>HopAnywhere<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader><leader>w", "<cmd>HopWord<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader><leader>p", "<cmd>HopPattern<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader><leader>c1", "<cmd>HopChar1<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader><leader>c2", "<cmd>HopChar2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader><leader>l", "<cmd>HopLine<CR>", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', 'f',
 	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
 	, {})
-vim.api.nvim_set_keymap('', 'F',
+vim.api.nvim_set_keymap('n', 'F',
 	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
 	, {})
-vim.api.nvim_set_keymap('', 't',
+vim.api.nvim_set_keymap('n', 't',
 	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>"
 	, {})
-vim.api.nvim_set_keymap('', 'T',
+vim.api.nvim_set_keymap('n', 'T',
 	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>"
 	, {})
 

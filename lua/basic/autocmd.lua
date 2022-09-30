@@ -1,14 +1,4 @@
--- 取消换行注释
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-	pattern = "*",
-	callback = function()
-		vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
-	end,
-})
-
-
 vim.api.nvim_create_autocmd({ "VimLeave" }, {
-	-- 退出光标复原
 	command = "set guicursor=a:ver25-blinkon0"
 })
 
@@ -23,6 +13,14 @@ local function include()
 	end
 	return false
 end
+
+-- 取消换行注释
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	pattern = { "*" },
+	callback = function()
+		vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
+	end,
+})
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	callback = function()
@@ -63,4 +61,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			vim.cmd("silent! foldopen")
 		end
 	end,
+})
+
+-- 切换工作目录bd
+vim.api.nvim_create_autocmd("DirChangedPre", {
+	pattern = { "*" },
+	command = "bufdo bd!"
 })

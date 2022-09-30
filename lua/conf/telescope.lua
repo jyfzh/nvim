@@ -1,11 +1,11 @@
 -- https://github.com/nvim-telescope/telescope.nvim
+-- https://github.com/nvim-telescope/telescope-project.nvim
 -- https://github.com/GustavoKatel/telescope-asynctasks.nvim
 
--- WARN: telescope 手动安装依赖 fd 和 repgrep
--- sudo apt install sqlite3 libsqlite3-dev  -y
 
--- telescope-z empty
--- https://github.com/nvim-telescope/telescope-z.nvim/issues/14#issuecomment-1221745266
+-- [telescope-z empty](https://github.com/nvim-telescope/telescope-z.nvim/issues/14#issuecomment-1221745266)
+-- WARN: telescope 手动安装依赖 fd 和 repgrep :sudo apt install sqlite3 libsqlite3-dev  -y
+
 require('telescope').setup {
 	defaults = {
 		history = {
@@ -27,7 +27,7 @@ require('telescope').setup {
 		set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 		mappings = {
 			n = { ["q"] = require("telescope.actions").close },
-			i = { },
+			i = {},
 		},
 	},
 	pickers = {
@@ -67,8 +67,7 @@ require('telescope').setup {
 			fuzzy = true, -- false will only do exact matching
 			override_generic_sorter = true, -- override the generic sorter
 			override_file_sorter = true, -- override the file sorter
-			case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-			-- the default case_mode is "smart_case"
+			case_mode = "smart_case", -- or "ignore_case" or "respect_case",the default case_mode is "smart_case"
 		},
 		["ui-select"] = {
 			require("telescope.themes").get_dropdown {}

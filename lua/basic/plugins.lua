@@ -1,4 +1,4 @@
--- https://github.com/wbthomason/packer.nvim
+-- https://github.com/bthomason/packer.nvim
 
 -- @diagnostic disable: undefined-global
 local ensure_packer = function()
@@ -31,6 +31,7 @@ packer.startup(
 			-- vim-floaterm
 			use {
 				'voldikss/vim-floaterm',
+				events = "VimEnter",
 				config = function()
 					vim.cmd [[
 						let g:floaterm_width = 0.8
@@ -42,7 +43,7 @@ packer.startup(
 			--  draw
 			use {
 				"jbyuki/venn.nvim",
-				keys = "<leader>v",
+				events = "VimEnter",
 				config = function() require("conf.venn") end
 			}
 			-- git
@@ -53,6 +54,7 @@ packer.startup(
 			-- neo-tree
 			use {
 				"nvim-neo-tree/neo-tree.nvim",
+				events = "VimEnter",
 				requires = {
 					{ "nvim-lua/plenary.nvim" },
 					{ "kyazdani42/nvim-web-devicons" }, -- not strictly required, but recommended
@@ -65,6 +67,11 @@ packer.startup(
 				'skywind3000/asyncrun.vim',
 				requires = 'skywind3000/asynctasks.vim',
 				config = function() vim.cmd [[  let g:asyncrun_open = 6 ]] end
+			}
+			use {
+				"Shatur/neovim-session-manager",
+				requires = 'nvim-lua/plenary.nvim',
+				config = function() require("conf.neovim-session-manager") end
 			}
 			-- sniprun
 			use {
@@ -119,11 +126,13 @@ packer.startup(
 				'simrat39/symbols-outline.nvim',
 				config = function() require("conf.symbols-outline") end
 			}
-			-- hop.nvim
+			-- [hop.nvim](https://github.com/phaazon/hop.nvim)
 			use {
 				'phaazon/hop.nvim',
+				events = "VimEnter",
 				config = require 'hop'.setup {
 					keys = 'etovxqpdygfblzhckisuran',
+					multi_windows = true,
 				}
 			}
 			-- autopairs
@@ -131,21 +140,24 @@ packer.startup(
 				"windwp/nvim-autopairs",
 				config = function() require("conf.nvim-autopairs") end
 			}
-			-- surround
+			-- [surround](https://github.com/ur4ltz/surround.nvim)
 			use {
 				"ur4ltz/surround.nvim",
+				events = "BufEnter",
 				config = function()
-					require "surround".setup { mappings_style = "sandwich" }
+					require "surround".setup { mappings_style = "surround" }
 				end
 			}
 			-- indent_blankline
 			use {
 				"lukas-reineke/indent-blankline.nvim",
+				events = "BufEnter",
 				config = function() require("conf.indent_blankline") end
 			}
 			-- comment
 			use {
 				'numToStr/Comment.nvim',
+				events = "BufEnter",
 				requires = { "JoosepAlviste/nvim-ts-context-commentstring" },
 				config = function() require('conf.comment') end
 			}
@@ -213,20 +225,14 @@ packer.startup(
 					"L3MON4D3/LuaSnip",
 					"saadparwaiz1/cmp_luasnip",
 					"rafamadriz/friendly-snippets",
-					"lukas-reineke/cmp-under-comparator",
 				},
 				config = function() require("conf.nvim-cmp") end
 			}
 			-- debug
 			use {
-				"mfussenegger/nvim-dap",
-				"rcarriga/nvim-dap-ui",
-				"theHamsta/nvim-dap-virtual-text",
-				config = function()
-					require('conf.nvim-dap')
-					require('conf.nvim-dap-ui')
-					require("conf.nvim-dap-virtual-text")
-				end
+				{ "mfussenegger/nvim-dap", config = function() require('conf.nvim-dap') end },
+				{ "rcarriga/nvim-dap-ui", config = function() require('conf.nvim-dap-ui') end },
+				{ "theHamsta/nvim-dap-virtual-text", config = function() require("conf.nvim-dap-virtual-text") end },
 			}
 			-- lint
 			use {

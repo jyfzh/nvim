@@ -20,7 +20,7 @@ require('lualine').setup {
 		lualine_a = { 'mode' },
 		lualine_b = {},
 		lualine_c = { 'branch', 'diff' },
-		lualine_x = { { "require('lsp-status').status()", max_length = vim.o.columns * 2 / 3 }, 'encoding',
+		lualine_x = { { "require('lsp-status').status():sub(1,60)"}, 'encoding',
 			{ 'fileformat', symbols = { unix = 'LF', dos = 'CRLF', mac = 'CR' } }, 'filetype' },
 		lualine_y = {},
 		lualine_z = { 'progress' },

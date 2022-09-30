@@ -1,4 +1,4 @@
--- venn.nvim: enable or disable keymappings
+-- venn.nvim: enable or di
 function _G.Toggle_venn()
 	local venn_enabled = vim.inspect(vim.b.venn_enabled)
 	if venn_enabled == "nil" then
@@ -14,9 +14,8 @@ function _G.Toggle_venn()
 		vim.api.nvim_buf_set_keymap(0, "v", "f", ":VBox<CR>", { noremap = true })
 	else
 		vim.notify("venn disenabled")
-		vim.cmd [[setlocal ve=]]
-		vim.cmd [[mapclear <buffer>]]
+		vim.cmd [[ setlocal ve= ]]
+		vim.cmd [[ mapclear <buffer> ]]
 		vim.b.venn_enabled = nil
 	end
 end
-
