@@ -1,6 +1,7 @@
 -- https://github.com/neovim/nvim-lspconfig
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- ui https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
+-- https://github.com/folke/lua-dev.nvim
 
 local border = {
 	{ "┌", "FloatBorder" },
@@ -15,12 +16,20 @@ local border = {
 vim.diagnostic.config(
 	{
 		virtual_text = { prefix = "", source = "always" }, -- prefix：'●', '▎', 'x'
-		severity_sort = true,
 		float = { source = "always" },
+		signs = true,
+		underline = true,
 		update_in_insert = false,
-		underline = true
+		severity_sort = true,
 	}
 )
+
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 -- LSP settings (for overriding per client)
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
 	vim.lsp.handlers.hover,
@@ -59,13 +68,10 @@ require("lua-dev").setup({
 -- Register the progress handler
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
-
 local lsp_signature = require("lsp_signature")
-
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
-
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
@@ -106,36 +112,6 @@ end
 require 'lspconfig'.sumneko_lua.setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
-	cmd = { "lua-language-server" },
-	filetypes = { "lua" },
-	log_level = 2,
-	root_dir = require "lspconfig".util.root_pattern(
-		'.git',
-		'.luarc.json',
-		'.luacheckrc',
-		'.stylua.toml',
-		'selene.toml'
-	),
-	settings = {
-		Lua = {
-			completion = {
-				callSnippet = "Replace"
-			},
-			runtime = {
-				version = "LuaJIT",
-				-- path = runtime_path
-			},
-			diagnostics = {
-				globals = { "vim" }
-			},
-			workspace = {
-			    library = vim.api.nvim_get_runtime_file("", true)
-			},
-			telemetry = {
-				enable = false
-			}
-		}
-	}
 }
 
 -- https://clangd.llvm.org/features.html
@@ -143,8 +119,6 @@ require 'lspconfig'.clangd.setup({
 	handlers = lsp_status.extensions.clangd.setup(),
 	capabilities = capabilities,
 	on_attach = on_attach,
-	cmd = { "clangd" },
-	filetypes = { "c", "cpp", "objc", "objcpp" },
 	single_file_support = true,
 	init_options = {
 		clangdFileStatus = true
@@ -178,19 +152,9 @@ require 'lspconfig'.jdtls.setup {
 	)
 }
 
-require 'lspconfig'.pyright.setup({
+require 'lspconfig'.pylsp.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
-	cmd = { "pyright-langserver", "--stdio" },
-	settings = {
-		python = {
-			analysis = {
-				autoSearchPaths = true,
-				diagnosticMode = "workspace",
-				useLibraryCodeForTypes = true
-			}
-		}
-	}
 })
 
 require 'lspconfig'.marksman.setup {
@@ -200,5 +164,23 @@ require 'lspconfig'.marksman.setup {
 
 require 'lspconfig'.jsonls.setup {
 	on_attach = on_attach,
+	capabilities = capabilities,
+}
+
+require 'lspconfig'.html.setup {
+	on_attach    = on_attach,
+	capabilities = capabilities
+}
+
+require 'lspconfig'.cssls.setup {
+	on_attach    = on_attach,
+	capabilities = capabilities,
+}
+require 'lspconfig'.eslint.setup {
+	on_attach    = on_attach,
+	capabilities = capabilities,
+}
+require 'lspconfig'.tsserver.setup {
+	on_attach    = on_attach,
 	capabilities = capabilities,
 }

@@ -3,9 +3,6 @@ vim.g.mapleader = " "
 vim.api.nvim_set_keymap("n", "<leader>1", "<cmd>NeoTreeRevealToggle<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>2", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true })
 
--- git
-vim.api.nvim_set_keymap("n", "gg", "<cmd>Neotree git_status<CR>", { noremap = true, silent = true })
-
 -- vim-floaterm
 vim.api.nvim_set_keymap("n", "\\", "<cmd>FloatermToggle<CR>",
 	{ noremap = true, silent = true })

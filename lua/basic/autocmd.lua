@@ -70,6 +70,20 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	end,
 })
 -- 工作区改变删除buffer
-vim.api.nvim_create_autocmd("DirChangedPre", {
-	command = "bufdo bd!"
+vim.api.nvim_create_autocmd("DirChanged", {
+	command = "NeoTreeClose | bufdo bd!"
+})
+
+-- bulb
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+
+-- colorizer
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = { "*.html", "*.css" },
+	command = "ColorizerAttachToBuffer"
+})
+
+vim.api.nvim_create_autocmd("BufLeave", {
+	pattern = { "*.html", "*.css" },
+	command = "ColorizerDetachFromBuffer"
 })

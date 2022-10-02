@@ -29,6 +29,10 @@ packer.startup(
 				'navarasu/onedark.nvim'
 			}
 			use 'rcarriga/nvim-notify'
+			use {
+				'norcalli/nvim-colorizer.lua',
+				require("conf.nvim-colorizer")
+			}
 			-- vim-floaterm
 			use {
 				'voldikss/vim-floaterm',
@@ -79,14 +83,18 @@ packer.startup(
 				run = './install.sh',
 				config = function() require("conf.sniprun") end
 			}
+			-- [web-tools](https://github.com/ray-x/web-tools.nvim)
+			use {
+				"ray-x/web-tools.nvim",
+				run = "npm install -g browser-sync",
+				config = function() require 'web-tools'.setup() end
+			}
 			-- markdown-preview https://github.com/iamcco/markdown-preview.nvim
-			use { "iamcco/markdown-preview.nvim",
+			use {
+				"iamcco/markdown-preview.nvim",
 				run = "cd app && npm install",
-				setup = function()
-					vim.g.mkdp_filetypes = { "markdown" }
-					vim.g.mkdp_command_for_global = 1
-				end,
-				ft = { "markdown", "html" },
+				setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+				ft = { "markdown" },
 			}
 			-- test
 			use {
@@ -96,7 +104,6 @@ packer.startup(
 					'nvim-lua/plenary.nvim',
 					"nvim-neotest/neotest-plenary",
 					"nvim-treesitter/nvim-treesitter",
-					"antoinemadec/FixCursorHold.nvim",
 					"nvim-neotest/neotest-python",
 					"nvim-neotest/neotest-vim-test",
 				},
@@ -132,11 +139,9 @@ packer.startup(
 			-- [hop.nvim](https://github.com/phaazon/hop.nvim)
 			use {
 				'phaazon/hop.nvim',
+				branch = 'v2',
 				events = "VimEnter",
-				config = require 'hop'.setup {
-					keys = 'etovxqpdygfblzhckisuran',
-					multi_windows = true,
-				}
+				config = require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
 			}
 			-- autopairs
 			use {
@@ -167,6 +172,7 @@ packer.startup(
 			-- telescope
 			use {
 				"nvim-telescope/telescope.nvim",
+				run = "sudo pacman -S fd repgrep sqlite3",
 				requires = {
 					{ "nvim-lua/plenary.nvim" },
 					{ "nvim-telescope/telescope-smart-history.nvim", requires = { "kkharji/sqlite.lua" } },
@@ -208,6 +214,12 @@ packer.startup(
 					require("conf.nvim-lspconfig")
 				end
 			}
+			use {
+				'kosayoda/nvim-lightbulb',
+				config = function()
+					require("conf.nvim-lightbulb")
+				end
+			}
 			-- lsp_signature
 			use {
 				"ray-x/lsp_signature.nvim",
@@ -228,7 +240,6 @@ packer.startup(
 					"L3MON4D3/LuaSnip",
 					"saadparwaiz1/cmp_luasnip",
 					"rafamadriz/friendly-snippets",
-					{ 'tzachar/cmp-tabnine', run = './install.sh' }
 				},
 				config = function() require("conf.nvim-cmp") end
 			}

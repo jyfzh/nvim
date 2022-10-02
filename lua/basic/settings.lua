@@ -22,9 +22,10 @@ else
 	vim.o.clipboard = "unnamedplus"
 end
 
-vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
+vim.o.updatetime = 300
+vim.o.sessionoptions="buffers,curdir,folds,winsize,winpos"
 vim.o.undofile = true
-vim.o.shortmess = "tI"
+vim.o.shortmess = "filnxtToOFI"
 vim.o.signcolumn = "yes"
 vim.o.showmode = false
 vim.o.compatible = false

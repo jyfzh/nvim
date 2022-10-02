@@ -2,10 +2,7 @@
 -- https://github.com/nvim-telescope/telescope-project.nvim
 -- https://github.com/GustavoKatel/telescope-asynctasks.nvim
 
-
 -- [telescope-z empty](https://github.com/nvim-telescope/telescope-z.nvim/issues/14#issuecomment-1221745266)
--- WARN: telescope 手动安装依赖 fd 和 repgrep :sudo apt install sqlite3 libsqlite3-dev  -y
-
 require('telescope').setup {
 	defaults = {
 		history = {

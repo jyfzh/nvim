@@ -4,6 +4,9 @@
 -- https://github.com/Badhi/nvim-treesitter-cpp-tools
 -- https://github.com/nvim-treesitter/nvim-treesitter-context
 
+-- https://github.com/p00f/nvim-ts-rainbow/issues/81#issuecomment-1058124957
+local rainbow = { "#CC8888", "#CCCC88", "#88CC88", "#88CCCC", "#8888CC", "#CC88CC" }
+
 require("nvim-treesitter.configs").setup(
 	{
 		-- 安装的高亮支持来源
@@ -12,12 +15,17 @@ require("nvim-treesitter.configs").setup(
 			"html", "javascript", "query"
 		},
 		-- 同步下载高亮支持
-		sync_install = false,
+		sync_install = true,
 		-- 高亮相关
 		highlight = {
-			-- 启用高亮支持
 			enable = true,
-			-- 使用 treesitter 高亮而不是 neovim 内置的高亮
+			disable = function(lang, buf)
+				local max_filesize = 100 * 1024 -- 100 KB
+				local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+				if ok and stats and stats.size > max_filesize then
+					return true
+				end
+			end,
 			additional_vim_regex_highlighting = false
 		},
 		-- 范围选择
@@ -48,8 +56,8 @@ require("nvim-treesitter.configs").setup(
 			enable = true,
 			extended_mode = true,
 			max_file_lines = nil, -- Do not enable for files with more than n lines, int
-			-- colors = {}, -- table of hex strings
-			-- termcolors = {} -- table of colour name strings
+			colors = rainbow, -- table of hex strings
+			termcolors = rainbow, --table of colour name strings
 		},
 		context_commentstring = {
 			enable = true
@@ -162,3 +170,7 @@ require 'treesitter-context'.setup {
 	-- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
 	separator = nil,
 }
+
+for i, c in ipairs(rainbow) do -- p00f/rainbow#81
+	vim.cmd(("hi rainbowcol%d guifg=%s"):format(i, c))
+end
