@@ -69,10 +69,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		end
 	end,
 })
--- 工作区改变删除buffer
-vim.api.nvim_create_autocmd("DirChanged", {
-	command = "NeoTreeClose | bufdo bd!"
-})
 
 -- bulb
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
@@ -87,3 +83,16 @@ vim.api.nvim_create_autocmd("BufLeave", {
 	pattern = { "*.html", "*.css" },
 	command = "ColorizerDetachFromBuffer"
 })
+
+-- 工作区改变删除buffer
+function Bufdelete()
+vim.cmd [[LspStop vim.bo.filetype ]]
+vim.cmd [[bufdo! bd!]]
+end
+vim.api.nvim_create_user_command("Bd", "lua Bufdelete()",{})
+-- vim.api.nvim_create_autocmd("DirChanged", {
+-- 	callback = function()
+-- 		vim.cmd [[ NeoTreeClose ]]
+-- 		vim.cmd "bufdo bd!"
+-- 	end
+-- })

@@ -22,10 +22,7 @@ require('telescope').setup {
 		path_display = { "smart" },
 		winblend = 0,
 		set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
-		mappings = {
-			n = { ["q"] = require("telescope.actions").close },
-			i = {},
-		},
+		mappings = {},
 	},
 	pickers = {
 		find_files = {
@@ -58,7 +55,9 @@ require('telescope').setup {
 				-- {'~/dev/src3', max_depth = 4},
 				-- {path = '~/dev/src5'},
 				-- {path = '~/dev/src5', max_depth = 2},
-			}
+			},
+			mappings = {
+			},
 		},
 		fzf = {
 			fuzzy = true, -- false will only do exact matching
