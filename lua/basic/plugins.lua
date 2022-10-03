@@ -31,7 +31,7 @@ packer.startup(
 			use 'rcarriga/nvim-notify'
 			use {
 				'norcalli/nvim-colorizer.lua',
-				require("conf.nvim-colorizer")
+				config = function () require("conf.nvim-colorizer") end
 			}
 			-- vim-floaterm
 			use {
