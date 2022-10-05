@@ -118,6 +118,12 @@ require 'lspconfig'.sumneko_lua.setup {
 require 'lspconfig'.clangd.setup({
 	handlers = lsp_status.extensions.clangd.setup(),
 	capabilities = capabilities,
+	cmd = {
+		"clangd",
+		"--clang-tidy",
+		"--fallback-style=LLVM",
+		"--function-arg-placeholders=false"
+	},
 	on_attach = on_attach,
 	single_file_support = true,
 	init_options = {

@@ -22,10 +22,14 @@ local function include()
 end
 
 -- 取消换行注释
+-- 用o换行不要延续注释
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	pattern = { "*" },
 	callback = function()
-		vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
+		-- vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
+		vim.opt.formatoptions = vim.opt.formatoptions
+			- "o" -- O and o, don't continue comments
+			+ "r" -- But do continue when pressing enter.
 	end,
 })
 
@@ -84,15 +88,27 @@ vim.api.nvim_create_autocmd("BufLeave", {
 	command = "ColorizerDetachFromBuffer"
 })
 
+
+-- 保存时自动格式化
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = { "*.lua", "*.py", "*.sh" },
+	callback = vim.lsp.buf.formatting_sync,
+})
+
+
+-- Highlight on yank
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	pattern = "*",
+})
+
+
 -- 工作区改变删除buffer
 function Bufdelete()
-vim.cmd [[LspStop vim.bo.filetype ]]
-vim.cmd [[bufdo! bd!]]
+	vim.cmd [[LspStop vim.bo.filetype ]]
+	vim.cmd [[bufdo! bd!]]
 end
-vim.api.nvim_create_user_command("Bd", "lua Bufdelete()",{})
--- vim.api.nvim_create_autocmd("DirChanged", {
--- 	callback = function()
--- 		vim.cmd [[ NeoTreeClose ]]
--- 		vim.cmd "bufdo bd!"
--- 	end
--- })
+
+vim.api.nvim_create_user_command("Bd", "lua Bufdelete()", {})

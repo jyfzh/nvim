@@ -28,10 +28,14 @@ packer.startup(
 				'luisiacc/gruvbox-baby',
 				'navarasu/onedark.nvim'
 			}
-			use 'rcarriga/nvim-notify'
+			use {
+				'rcarriga/nvim-notify',
+				events = "VimEnter"
+			}
 			use {
 				'norcalli/nvim-colorizer.lua',
-				config = function () require("conf.nvim-colorizer") end
+				config = function() require("conf.nvim-colorizer") end,
+				ft = { 'css', 'javascript', 'html' }
 			}
 			-- vim-floaterm
 			use {
