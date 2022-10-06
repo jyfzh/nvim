@@ -32,6 +32,11 @@ packer.startup(
 				'rcarriga/nvim-notify',
 				events = "VimEnter"
 			}
+			--  [key-menu](https://github.com/linty-org/key-menu.nvim)
+			use {
+				'linty-org/key-menu.nvim',
+				events = "VimEnter"
+			}
 			use {
 				'norcalli/nvim-colorizer.lua',
 				config = function() require("conf.nvim-colorizer") end,
@@ -211,7 +216,7 @@ packer.startup(
 				requires = {
 					"williamboman/mason.nvim",
 					"williamboman/mason-lspconfig.nvim",
-					"folke/lua-dev.nvim",
+					"folke/lua-dev.nvim"
 				},
 				config = function()
 					require("conf.mason")

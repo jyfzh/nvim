@@ -1,5 +1,18 @@
 vim.g.mapleader = " "
 
+require 'key-menu'.set('n', '<leader>g', { desc = 'Git' })
+require 'key-menu'.set('n', '<leader>gt', { desc = 'toggle' })
+require 'key-menu'.set('n', '<leader>f', { desc = 'telescope' })
+require 'key-menu'.set('n', '<leader>')
+require 'key-menu'.set('n', '<leader>w', { desc = "lsp_workspace" })
+require 'key-menu'.set('n', '<leader>r', { desc = "lsp_rename" })
+require 'key-menu'.set('n', '<leader>c', { desc = "lsp_action" })
+require 'key-menu'.set('n', '<leader>D', { desc = "lsp_type_definitions" })
+require 'key-menu'.set('n', '<leader><leader>', { desc = "hop" })
+require 'key-menu'.set('n', 'g', { desc = "lsp_jump" })
+
+
+vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>Neotree git_status<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>1", "<cmd>NeoTreeRevealToggle<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>2", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true })
 
@@ -43,7 +56,18 @@ vim.api.nvim_set_keymap("n", "<leader><leader>p", "<cmd>HopPattern<CR>", { norem
 vim.api.nvim_set_keymap("n", "<leader><leader>c1", "<cmd>HopChar1<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader><leader>c2", "<cmd>HopChar2<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader><leader>l", "<cmd>HopLine<CR>", { noremap = true, silent = true })
-
+vim.api.nvim_set_keymap('', 'f',
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
+	, {})
+vim.api.nvim_set_keymap('', 'F',
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
+	, {})
+vim.api.nvim_set_keymap('', 't',
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>"
+	, {})
+vim.api.nvim_set_keymap('', 'T',
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>"
+	, {})
 
 -- 取消find
 vim.api.nvim_set_keymap("n", "<CR><CR>", "<cmd>noh<CR>", { noremap = true, silent = true })
@@ -86,7 +110,7 @@ vim.api.nvim_set_keymap("n", "<leader>fm", "<cmd>Telescope marks theme=dropdown<
 vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>Telescope buffers theme=dropdown <CR>",
 	{ noremap = true, silent = true })
 -- packer
-vim.api.nvim_set_keymap("n", "<leader>p", "<cmd>Telescope packer<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>fP", "<cmd>Telescope packer<CR>", { noremap = true, silent = true })
 -- 工作区
 vim.api.nvim_set_keymap("n", "<leader>fp",
 	"<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>",
@@ -104,7 +128,7 @@ vim.api.nvim_set_keymap("n", "<leader>ft", "<Cmd>Telescope floaterm theme=dropdo
 vim.api.nvim_set_keymap("n", "<leader>fa", "<Cmd>Telescope asynctasks all theme=dropdown <CR>",
 	{ noremap = true, silent = true })
 -- cheatsheet
-vim.api.nvim_set_keymap("n", "<leader>?", "<cmd>Cheatsheet<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>f?", "<cmd>Cheatsheet<CR>", { noremap = true })
 
 -- venn
 vim.api.nvim_set_keymap('n', '<leader>v', ":lua Toggle_venn()<CR> <cmd>IndentBlanklineDisable<CR>", { noremap = true })

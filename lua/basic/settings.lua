@@ -23,6 +23,7 @@ else
 end
 
 vim.o.updatetime = 300
+vim.o.timeoutlen = 300
 vim.o.sessionoptions="buffers,curdir,folds,winsize,winpos"
 vim.o.undofile = true
 vim.o.shortmess = "filnxtToOFI"

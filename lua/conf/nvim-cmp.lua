@@ -52,6 +52,14 @@ cmp.setup(
 		view = {
 			entries = { name = 'custom', selection_order = 'near_cursor' }
 		},
+		window = {
+			documentation = cmp.config.window.bordered(),
+			complete = cmp.config.window.bordered(),
+			completion = {
+				scrolloff = 5,
+				border = 'rounded',
+			}
+		},
 		completion = {
 			-- https://zhuanlan.zhihu.com/p/106070272?utm_id=0
 			completeopt = 'menu,menuone,noselect,noinsert',
@@ -63,10 +71,6 @@ cmp.setup(
 			expand = function(args)
 				require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
 			end
-		},
-		window = {
-			documentation = cmp.config.window.bordered(),
-			complete = cmp.config.window.bordered(),
 		},
 		mapping = cmp.mapping.preset.insert({
 			["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
@@ -101,7 +105,7 @@ cmp.setup(
 		}),
 		sources = cmp.config.sources(
 			{
-				{ name = 'nvim_lsp', max_item_count = 10 },
+				{ name = 'nvim_lsp' },
 				{ name = 'luasnip', max_item_count = 3 },
 			},
 			{
