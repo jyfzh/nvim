@@ -30,12 +30,13 @@ packer.startup(
 			}
 			use {
 				'rcarriga/nvim-notify',
-				events = "VimEnter"
+	 			events = "VimEnter"
 			}
-			--  [key-menu](https://github.com/linty-org/key-menu.nvim)
+			--  key-menu
 			use {
 				'linty-org/key-menu.nvim',
-				events = "VimEnter"
+				events = "VimEnter",
+				config = function() require("conf.key-menu") end
 			}
 			use {
 				'norcalli/nvim-colorizer.lua',
@@ -145,12 +146,12 @@ packer.startup(
 				'simrat39/symbols-outline.nvim',
 				config = function() require("conf.symbols-outline") end
 			}
-			-- [hop.nvim](https://github.com/phaazon/hop.nvim)
+			-- hop.nvim
 			use {
 				'phaazon/hop.nvim',
 				branch = 'v2',
 				events = "VimEnter",
-				config = require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+				config = function() require("conf.hop") end
 			}
 			-- autopairs
 			use {
@@ -214,9 +215,10 @@ packer.startup(
 			use {
 				"neovim/nvim-lspconfig",
 				requires = {
+					'nvim-lua/lsp-status.nvim',
 					"williamboman/mason.nvim",
 					"williamboman/mason-lspconfig.nvim",
-					"folke/lua-dev.nvim"
+					"folke/lua-dev.nvim",
 				},
 				config = function()
 					require("conf.mason")
