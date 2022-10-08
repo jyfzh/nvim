@@ -1,3 +1,6 @@
+gcc make cmake fzf 
+sqlite3 (libsqlite3-dev)  
+
 [nodejs,npm](https://nodejs.org/en/)
 [python](https://www.python.org/downloads/)
 [fd](https://github.com/sharkdp/fd)
