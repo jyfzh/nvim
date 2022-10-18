@@ -30,7 +30,7 @@ packer.startup(
 			}
 			use {
 				'rcarriga/nvim-notify',
-	 			events = "VimEnter"
+				events = "VimEnter"
 			}
 			--  key-menu
 			use {
@@ -182,7 +182,6 @@ packer.startup(
 			-- telescope
 			use {
 				"nvim-telescope/telescope.nvim",
-				run = "sudo pacman -S fd repgrep sqlite3",
 				requires = {
 					{ "nvim-lua/plenary.nvim" },
 					{ "nvim-telescope/telescope-smart-history.nvim", requires = { "kkharji/sqlite.lua" } },
@@ -190,7 +189,9 @@ packer.startup(
 					{ "nvim-telescope/telescope-ui-select.nvim" },
 					{ "nvim-telescope/telescope-packer.nvim" },
 					{ "nvim-telescope/telescope-project.nvim" },
-					{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+					{ 'nvim-telescope/telescope-fzf-native.nvim',
+						run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+					},
 					{ "nvim-telescope/telescope-symbols.nvim" },
 					{ 'nvim-telescope/telescope-z.nvim' },
 					{ 'GustavoKatel/telescope-asynctasks.nvim' },
@@ -218,7 +219,7 @@ packer.startup(
 					'nvim-lua/lsp-status.nvim',
 					"williamboman/mason.nvim",
 					"williamboman/mason-lspconfig.nvim",
-					"folke/lua-dev.nvim",
+					"folke/neodev.nvim"
 				},
 				config = function()
 					require("conf.mason")

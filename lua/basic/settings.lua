@@ -3,25 +3,7 @@ vim.o.fencs = "utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936"
 vim.o.encoding = "utf-8"
 vim.o.fileencodings = "utf-8,chinese,latin-1,gbk,gb18030,gk2312"
 
-if vim.fn.has('wsl') then
-	vim.cmd [[
-	let g:clipboard = {
-          \   'name': 'myClipboard',
-          \   'copy': {
-          \      '+': ['/mnt/c/windows/system32/clip.exe'],
-          \      '*': ['/mnt/c/windows/system32/clip.exe'],
-          \    },
-          \   'paste': {
-          \      '+': ['/mnt/c/windows/system32/clip.exe'],
-          \      '*': ['/mnt/c/windows/system32/clip.exe'],
-          \   },
-          \   'cache_enabled': 1,
-          \ }
-]]
-else
-	vim.o.clipboard = "unnamedplus"
-end
-
+vim.o.clipboard = "unnamedplus"
 vim.o.updatetime = 300
 vim.o.timeoutlen = 300
 vim.o.sessionoptions="buffers,curdir,folds,winsize,winpos"

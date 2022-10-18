@@ -3,6 +3,7 @@
 -- https://github.com/GustavoKatel/telescope-asynctasks.nvim
 
 -- [telescope-z empty](https://github.com/nvim-telescope/telescope-z.nvim/issues/14#issuecomment-1221745266)
+vim.g.sqlite_clib_path = "C:/Windows/System32/sqlite3.dll"
 require('telescope').setup {
 	defaults = {
 		history = {

@@ -50,7 +50,7 @@ end
 
 -- lua-dev
 -- IMPORTANT: make sure to setup lua-dev BEFORE lspconfig
-require("lua-dev").setup({
+require("neodev").setup({
 	-- add any options here, or leave empty to use the default settings
 	library = {
 		enabled = true, -- when not enabled, lua-dev will not change any settings to the LSP server
@@ -69,7 +69,7 @@ require("lua-dev").setup({
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
 local lsp_signature = require("lsp_signature")
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -112,6 +112,13 @@ end
 require 'lspconfig'.sumneko_lua.setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
+	settings = {
+		Lua = {
+			completion = {
+				callSnippet = "Replace"
+			}
+		}
+	}
 }
 
 -- https://clangd.llvm.org/features.html
@@ -131,12 +138,6 @@ require 'lspconfig'.clangd.setup({
 	},
 })
 
-
--- create jdtls cache file
-vim.api.nvim_exec([[
-	!mkdir -p ~/.cache/jdtls/config
-	!mkdir -p ~/.cache/jdtls/workspace
-]], true)
 
 require 'lspconfig'.jdtls.setup {
 	capabilities = capabilities,
