@@ -22,16 +22,9 @@ packer.startup(
 	{
 		function(use)
 			use "wbthomason/packer.nvim"
+			use 'lewis6991/impatient.nvim'
 			-- theme
-			use {
-				'folke/tokyonight.nvim',
-				'luisiacc/gruvbox-baby',
-				'navarasu/onedark.nvim'
-			}
-			use {
-				'rcarriga/nvim-notify',
-				events = "VimEnter"
-			}
+			use 'navarasu/onedark.nvim'
 			--  key-menu
 			use {
 				'linty-org/key-menu.nvim',
@@ -121,16 +114,6 @@ packer.startup(
 					require("conf.vim-test")
 					require("conf.neotest")
 				end
-			}
-			-- cheatsheet
-			use {
-				'sudormrfbin/cheatsheet.nvim',
-				requires = {
-					'nvim-telescope/telescope.nvim',
-					'nvim-lua/popup.nvim',
-					'nvim-lua/plenary.nvim',
-				},
-				config = function() require("conf.cheatsheet") end
 			}
 			-- lua-line
 			use {
@@ -248,7 +231,6 @@ packer.startup(
 					"hrsh7th/cmp-buffer",
 					"hrsh7th/cmp-path",
 					"hrsh7th/cmp-cmdline",
-					"f3fora/cmp-spell",
 					"L3MON4D3/LuaSnip",
 					"saadparwaiz1/cmp_luasnip",
 					"rafamadriz/friendly-snippets",
