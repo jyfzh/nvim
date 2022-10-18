@@ -3,6 +3,12 @@ vim.o.fencs = "utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936"
 vim.o.encoding = "utf-8"
 vim.o.fileencodings = "utf-8,chinese,latin-1,gbk,gb18030,gk2312"
 
+
+vim.g.floaterm_shell='powershell.exe -NoLogo'
+vim.g.floaterm_width = 0.8
+vim.g.floaterm_height = 0.8
+vim.g.floaterm_autoclose = 0
+
 vim.o.clipboard = "unnamedplus"
 vim.o.updatetime = 300
 vim.o.timeoutlen = 300

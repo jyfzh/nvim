@@ -28,7 +28,6 @@ packer.startup(
 			--  key-menu
 			use {
 				'linty-org/key-menu.nvim',
-				events = "VimEnter",
 				config = function() require("conf.key-menu") end
 			}
 			use {
@@ -37,21 +36,10 @@ packer.startup(
 				ft = { 'css', 'javascript', 'html' }
 			}
 			-- vim-floaterm
-			use {
-				'voldikss/vim-floaterm',
-				events = "VimEnter",
-				config = function()
-					vim.cmd [[
-						let g:floaterm_width = 0.8
-						let g:floaterm_height = 0.8
-						let g:floaterm_autoclose = 0
-					]]
-				end
-			}
+			use 'voldikss/vim-floaterm'
 			--  draw
 			use {
 				"jbyuki/venn.nvim",
-				events = "VimEnter",
 				config = function() require("conf.venn") end
 			}
 			-- git
@@ -62,7 +50,6 @@ packer.startup(
 			-- neo-tree
 			use {
 				"nvim-neo-tree/neo-tree.nvim",
-				events = "VimEnter",
 				requires = {
 					{ "nvim-lua/plenary.nvim" },
 					{ "kyazdani42/nvim-web-devicons" }, -- not strictly required, but recommended
@@ -133,7 +120,6 @@ packer.startup(
 			use {
 				'phaazon/hop.nvim',
 				branch = 'v2',
-				events = "VimEnter",
 				config = function() require("conf.hop") end
 			}
 			-- autopairs
@@ -144,7 +130,6 @@ packer.startup(
 			-- [surround](https://github.com/ur4ltz/surround.nvim)
 			use {
 				"ur4ltz/surround.nvim",
-				events = "BufEnter",
 				config = function()
 					require "surround".setup { mappings_style = "surround" }
 				end
@@ -152,13 +137,11 @@ packer.startup(
 			-- indent_blankline
 			use {
 				"lukas-reineke/indent-blankline.nvim",
-				events = "BufEnter",
 				config = function() require("conf.indent_blankline") end
 			}
 			-- comment
 			use {
 				'numToStr/Comment.nvim',
-				events = "BufEnter",
 				requires = { "JoosepAlviste/nvim-ts-context-commentstring" },
 				config = function() require('conf.comment') end
 			}
