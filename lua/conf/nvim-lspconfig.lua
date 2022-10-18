@@ -69,8 +69,9 @@ require("neodev").setup({
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
 local lsp_signature = require("lsp_signature")
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
+
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local opts = { noremap = true, silent = true }
