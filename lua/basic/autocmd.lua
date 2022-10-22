@@ -1,10 +1,4 @@
 -- cursor
-vim.api.nvim_create_autocmd({ "VimLeave" }, {
-	command = "set guicursor=a:ver25-blinkon0"
-})
-
-
-
 -- 取消换行注释
 -- 用o换行不要延续注释
 vim.api.nvim_create_autocmd({ "BufEnter" }, {

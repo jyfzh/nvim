@@ -9,7 +9,7 @@ vim.g.floaterm_width = 0.8
 vim.g.floaterm_height = 0.8
 vim.g.floaterm_autoclose = 0
 
-if vim.fn.has('wsl') then
+if vim.fn.has('wsl')==1 then
 	vim.cmd [[
 	let g:clipboard = {
           \   'name': 'myClipboard',
@@ -25,7 +25,7 @@ if vim.fn.has('wsl') then
           \ }
 ]]
 else
-	vim.o.clipboard = "unnamedplus"
+	vim.o.clipboard = "" --unnamed unnamedplus
 end
 
 vim.o.updatetime = 300
