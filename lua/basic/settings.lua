@@ -28,6 +28,9 @@ else
 	vim.o.clipboard = "" --unnamed unnamedplus
 end
 
+-- 补全高度
+vim.o.pumheight=10
+
 vim.o.updatetime = 300
 vim.o.timeoutlen = 300
 vim.o.sessionoptions="buffers,curdir,folds,winsize,winpos"
