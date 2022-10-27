@@ -57,7 +57,7 @@ cmp.setup(
 			complete = cmp.config.window.bordered(),
 			completion = {
 				scrolloff = 5,
-				border = 'rounded',
+				-- border = 'rounded',
 			}
 		},
 		completion = {
