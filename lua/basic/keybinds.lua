@@ -86,8 +86,6 @@ vim.api.nvim_set_keymap("n", "<leader>fP", "<cmd>Telescope packer<CR>", { norema
 vim.api.nvim_set_keymap("n", "<leader>fp",
 	"<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>",
 	{ noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>z', [[<cmd>lua require'telescope'.extensions.z.list{}<CR>]],
-	{ noremap = true, silent = true })
 -- symbols
 vim.api.nvim_set_keymap("n", "<leader>fe",
 	"<cmd>lua require'telescope.builtin'.symbols{'nerd','emoji','gitemoji','julia'} <CR>",

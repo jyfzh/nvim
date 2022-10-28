@@ -21,7 +21,9 @@ require('telescope').setup {
 		selection_caret = "  ",
 		entry_prefix = "  ",
 		sorting_strategy = "descending",
-		file_ignore_patterns = { "^node_modules/", "^.git/" },
+		file_ignore_patterns = {
+			"^node_modules", "^.git", "build", ".cache"
+		},
 		path_display = { "smart" },
 		winblend = 0,
 		set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
@@ -74,12 +76,10 @@ require('telescope').setup {
 	},
 }
 -- you need to call load_extension, somewhere after setup function:
-require('telescope').load_extension 'packer'
 require('telescope').load_extension 'project'
 require('telescope').load_extension 'fzf'
 require('telescope').load_extension 'smart_history'
 require('telescope').load_extension 'dap'
 require('telescope').load_extension 'ui-select'
-require('telescope').load_extension 'z'
 require('telescope').load_extension 'asynctasks'
 require('telescope').load_extension 'floaterm'

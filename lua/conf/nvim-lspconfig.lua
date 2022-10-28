@@ -139,15 +139,16 @@ require 'lspconfig'.clangd.setup({
 	},
 })
 
+require'lspconfig'.cmake.setup{}
 
 require 'lspconfig'.jdtls.setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
-	cmd = { "jdtls", "-configuration", "~/.cache/jdtls/config", "-data", "~/.cache/jdtls/workspace" },
+	cmd = { "jdtls.cmd", "-configuration", "C:/User/jyf/.cache/jdtls/config", "-data", "C:/User/jyf/.cache/jdtls/workspace" },
 	filetypes = { "java" },
 	init_options = {
 		jvm_args = {},
-		workspace = "/home/jyf/.cache/jdtls/workspace"
+		workspace = "C:/User/jyf/.cache/jdtls/workspace"
 	},
 	root_dir = require "lspconfig".util.root_pattern(
 		'.git',
@@ -159,6 +160,7 @@ require 'lspconfig'.jdtls.setup {
 		'build.gradle.kts'
 	)
 }
+
 
 require 'lspconfig'.pylsp.setup({
 	capabilities = capabilities,
