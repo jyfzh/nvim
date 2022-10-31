@@ -177,7 +177,8 @@ packer.startup(
 					'nvim-lua/lsp-status.nvim',
 					"williamboman/mason.nvim",
 					"williamboman/mason-lspconfig.nvim",
-					"folke/neodev.nvim"
+					"folke/neodev.nvim",
+					"mfussenegger/nvim-jdtls"
 				},
 				config = function()
 					require("conf.mason")

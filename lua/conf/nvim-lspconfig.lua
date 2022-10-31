@@ -144,27 +144,36 @@ require'lspconfig'.cmake.setup{}
 require 'lspconfig'.jdtls.setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
-	cmd = { "jdtls.cmd", "-configuration", "C:/User/jyf/.cache/jdtls/config", "-data", "C:/User/jyf/.cache/jdtls/workspace" },
+	cmd = { "jdtls",
+		"-configuration", "~/.cache/jdtls/config", "-data", "~/.cache/jdtls/workspace" },
 	filetypes = { "java" },
-	init_options = {
-		jvm_args = {},
-		workspace = "C:/User/jyf/.cache/jdtls/workspace"
-	},
-	root_dir = require "lspconfig".util.root_pattern(
-		'.git',
-		'build.xml', -- Ant
-		'pom.xml', -- Maven
-		'settings.gradle', -- Gradle
-		'settings.gradle.kts', -- Gradle
-		'build.gradle',
-		'build.gradle.kts'
-	)
+	root_dir  =  function ()
+		return require "lspconfig".util.root_pattern(
+			'.git',
+			'build.xml',
+			'pom.xml',
+			'settings.gradle',
+			'settings.gradle.kts',
+			'build.gradle',
+			'build.gradle.kts'
+		)(fname) or vim.fn.getcwd()
+	end
 }
 
 
 require 'lspconfig'.pylsp.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
+	settings = {
+		pylsp = {
+			plugins = {
+				pycodestyle = {
+					ignore = {'W391'},
+					maxLineLength = 100
+				}
+			}
+		}
+	},
 })
 
 require 'lspconfig'.marksman.setup {
