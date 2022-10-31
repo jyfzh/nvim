@@ -4,7 +4,6 @@ vim.o.encoding = "utf-8"
 vim.o.fileencodings = "utf-8,chinese,latin-1,gbk,gb18030,gk2312"
 
 
-vim.g.floaterm_shell='powershell.exe -NoLogo'
 vim.g.floaterm_width = 0.8
 vim.g.floaterm_height = 0.8
 vim.g.floaterm_autoclose = 0
