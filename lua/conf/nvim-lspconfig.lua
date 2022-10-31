@@ -145,7 +145,7 @@ require 'lspconfig'.jdtls.setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
 	cmd = { "jdtls",
-		"-configuration", "~/.cache/jdtls/config", "-data", "~/.cache/jdtls/workspace" },
+		"-configuration", "~/.config/jdtls/config", "-data", "~/.cache/jdtls/workspace" },
 	filetypes = { "java" },
 	root_dir  =  function ()
 		return require "lspconfig".util.root_pattern(

@@ -22,14 +22,14 @@
 -- 		'--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 
 -- 		-- 💀
--- 		'-jar', 'C:/Users/jyf/Desktop/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
+-- 		'-jar', 'C:/Users/jyf/AppData/Local/nvim-data/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
 -- 		-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
 -- 		-- Must point to the                                                     Change this to
 -- 		-- eclipse.jdt.ls installation                                           the actual version
 
 
 -- 		-- 💀
--- 		'-configuration', 'C:/Users/jyf/Desktop/jdtls/plugins/config_win',
+-- 		'-configuration', 'C:/Users/jyf/.config/jdtls/plugins/config_win',
 -- 		-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
 -- 		-- Must point to the                      Change to one of `linux`, `win` or `mac`
 -- 		-- eclipse.jdt.ls installation            Depending on your system.
@@ -37,7 +37,7 @@
 
 -- 		-- 💀
 -- 		-- See `data directory configuration` section in the README
--- 		'-data', 'C:/Users/jyf/Desktop/jdtls/workspace'
+-- 		'-data', 'C:/Users/jyf/.cache/jdtls/workspace'
 -- 	},
 
 -- 	-- 💀
