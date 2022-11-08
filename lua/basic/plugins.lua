@@ -67,6 +67,7 @@ packer.startup(
 				"Shatur/neovim-session-manager",
 				config = function() require("conf.neovim-session-manager") end
 			}
+			use 'lervag/vimtex'
 			-- [web-tools](https://github.com/ray-x/web-tools.nvim)
 			use {
 				"ray-x/web-tools.nvim",

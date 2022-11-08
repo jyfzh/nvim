@@ -125,6 +125,7 @@ require 'lspconfig'.sumneko_lua.setup {
 -- https://clangd.llvm.org/features.html
 require 'lspconfig'.clangd.setup({
 	handlers = lsp_status.extensions.clangd.setup(),
+	on_attach = on_attach,
 	capabilities = capabilities,
 	cmd = {
 		"clangd",
@@ -132,34 +133,16 @@ require 'lspconfig'.clangd.setup({
 		"--fallback-style=LLVM",
 		"--function-arg-placeholders=false"
 	},
-	on_attach = on_attach,
 	single_file_support = true,
 	init_options = {
 		clangdFileStatus = true
 	},
 })
 
-require'lspconfig'.cmake.setup{}
-
-require 'lspconfig'.jdtls.setup {
+require'lspconfig'.cmake.setup{
 	capabilities = capabilities,
 	on_attach = on_attach,
-	cmd = { "jdtls",
-		"-configuration", "~/.config/jdtls/config", "-data", "~/.cache/jdtls/workspace" },
-	filetypes = { "java" },
-	root_dir  =  function ()
-		return require "lspconfig".util.root_pattern(
-			'.git',
-			'build.xml',
-			'pom.xml',
-			'settings.gradle',
-			'settings.gradle.kts',
-			'build.gradle',
-			'build.gradle.kts'
-		)(fname) or vim.fn.getcwd()
-	end
 }
-
 
 require 'lspconfig'.pylsp.setup({
 	capabilities = capabilities,
@@ -175,11 +158,6 @@ require 'lspconfig'.pylsp.setup({
 		}
 	},
 })
-
-require 'lspconfig'.marksman.setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
-}
 
 require 'lspconfig'.jsonls.setup {
 	on_attach = on_attach,
@@ -203,3 +181,5 @@ require 'lspconfig'.tsserver.setup {
 	on_attach    = on_attach,
 	capabilities = capabilities,
 }
+
+require'lspconfig'.texlab.setup{}

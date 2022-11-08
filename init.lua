@@ -17,3 +17,5 @@ require("basic.plugins")
 require("basic.autocmd")
 
 require("conf.onedark")
+
+vim.opt.runtimepath:append "~/scoop/apps/miktex/current/texmfs/install/miktex/bin/x64"

@@ -5,7 +5,7 @@ vim.api.nvim_set_keymap("n", "<leader>1", "<cmd>NeoTreeRevealToggle<CR>", { nore
 vim.api.nvim_set_keymap("n", "<leader>2", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true })
 
 -- vim-floaterm
-vim.api.nvim_set_keymap("n", "\\", "<cmd>FloatermToggle<CR>",
+vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>FloatermToggle<CR>",
 	{ noremap = true, silent = true })
 
 -- 运行代码
