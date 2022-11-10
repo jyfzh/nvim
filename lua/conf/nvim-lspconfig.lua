@@ -117,7 +117,23 @@ require 'lspconfig'.sumneko_lua.setup {
 		Lua = {
 			completion = {
 				callSnippet = "Replace"
-			}
+			},
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+				version = 'LuaJIT',
+			},
+			diagnostics = {
+				-- Get the language server to recognize the `vim` global
+				globals = { 'vim' },
+			},
+			workspace = {
+				-- Make the server aware of Neovim runtime files
+				library = vim.api.nvim_get_runtime_file("", true),
+			},
+			-- Do not send telemetry data containing a randomized but unique identifier
+			telemetry = {
+				enable = false,
+			},
 		}
 	}
 }
@@ -139,7 +155,7 @@ require 'lspconfig'.clangd.setup({
 	},
 })
 
-require'lspconfig'.cmake.setup{
+require 'lspconfig'.cmake.setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
 }
@@ -151,7 +167,7 @@ require 'lspconfig'.pylsp.setup({
 		pylsp = {
 			plugins = {
 				pycodestyle = {
-					ignore = {'W391'},
+					ignore = { 'W391' },
 					maxLineLength = 100
 				}
 			}
@@ -182,4 +198,4 @@ require 'lspconfig'.tsserver.setup {
 	capabilities = capabilities,
 }
 
-require'lspconfig'.texlab.setup{}
+require 'lspconfig'.texlab.setup {}

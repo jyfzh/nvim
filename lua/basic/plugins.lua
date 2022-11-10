@@ -23,9 +23,7 @@ packer.startup(
 		function(use)
 			use "wbthomason/packer.nvim"
 			use 'lewis6991/impatient.nvim'
-			-- theme
 			use 'navarasu/onedark.nvim'
-			--  key-menu
 			use {
 				'linty-org/key-menu.nvim',
 				config = function() require("conf.key-menu") end
@@ -35,19 +33,15 @@ packer.startup(
 				config = function() require("conf.nvim-colorizer") end,
 				ft = { 'css', 'javascript', 'html' }
 			}
-			-- vim-floaterm
 			use 'voldikss/vim-floaterm'
-			--  draw
 			use {
 				"jbyuki/venn.nvim",
 				config = function() require("conf.venn") end
 			}
-			-- git
 			use {
 				'lewis6991/gitsigns.nvim',
 				config = function() require("conf.gitsigns") end
 			}
-			-- neo-tree
 			use {
 				"nvim-neo-tree/neo-tree.nvim",
 				requires = {
@@ -57,7 +51,6 @@ packer.startup(
 				},
 				config = function() require("conf.neo-tree") end
 			}
-			-- async
 			use {
 				'skywind3000/asyncrun.vim',
 				requires = 'skywind3000/asynctasks.vim',
@@ -68,20 +61,17 @@ packer.startup(
 				config = function() require("conf.neovim-session-manager") end
 			}
 			use 'lervag/vimtex'
-			-- [web-tools](https://github.com/ray-x/web-tools.nvim)
 			use {
 				"ray-x/web-tools.nvim",
 				run = "npm install -g browser-sync",
 				config = function() require 'web-tools'.setup() end
 			}
-			-- markdown-preview https://github.com/iamcco/markdown-preview.nvim
 			use {
 				"iamcco/markdown-preview.nvim",
 				run = "cd app && npm install",
 				setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
 				ft = { "markdown" },
 			}
-			-- test
 			use {
 				"nvim-neotest/neotest",
 				requires = {
@@ -97,7 +87,6 @@ packer.startup(
 					require("conf.neotest")
 				end
 			}
-			-- lua-line
 			use {
 				'nvim-lualine/lualine.nvim',
 				requires = {
@@ -106,41 +95,34 @@ packer.startup(
 				},
 				config = function() require("conf.lualine") end
 			}
-			-- symbols-outline
 			use {
 				'simrat39/symbols-outline.nvim',
 				config = function() require("conf.symbols-outline") end
 			}
-			-- hop.nvim
 			use {
 				'phaazon/hop.nvim',
 				branch = 'v2',
 				config = function() require("conf.hop") end
 			}
-			-- autopairs
 			use {
 				"windwp/nvim-autopairs",
 				config = function() require("conf.nvim-autopairs") end
 			}
-			-- [surround](https://github.com/ur4ltz/surround.nvim)
 			use {
 				"ur4ltz/surround.nvim",
 				config = function()
 					require "surround".setup { mappings_style = "surround" }
 				end
 			}
-			-- indent_blankline
 			use {
 				"lukas-reineke/indent-blankline.nvim",
 				config = function() require("conf.indent_blankline") end
 			}
-			-- comment
 			use {
 				'numToStr/Comment.nvim',
 				requires = { "JoosepAlviste/nvim-ts-context-commentstring" },
 				config = function() require('conf.comment') end
 			}
-			-- telescope
 			use {
 				"nvim-telescope/telescope.nvim",
 				requires = {
@@ -158,7 +140,6 @@ packer.startup(
 				},
 				config = function() require("conf.telescope") end
 			}
-			-- treesitter
 			use {
 				'nvim-treesitter/nvim-treesitter',
 				run = ':TSUpdate',
@@ -171,7 +152,6 @@ packer.startup(
 				},
 				config = function() require("conf.nvim-treesitter") end
 			}
-			-- LSP
 			use {
 				"neovim/nvim-lspconfig",
 				requires = {
@@ -192,14 +172,12 @@ packer.startup(
 					require("conf.nvim-lightbulb")
 				end
 			}
-			-- lsp_signature
 			use {
 				"ray-x/lsp_signature.nvim",
 				config = function()
 					require("conf.lsp_signature")
 				end
 			}
-			-- nvim-cmp
 			use {
 				"hrsh7th/nvim-cmp",
 				requires = {
@@ -214,13 +192,11 @@ packer.startup(
 				},
 				config = function() require("conf.nvim-cmp") end
 			}
-			-- debug
 			use {
 				{ "mfussenegger/nvim-dap", config = function() require('conf.nvim-dap') end },
 				{ "rcarriga/nvim-dap-ui", config = function() require('conf.nvim-dap-ui') end },
 				{ "theHamsta/nvim-dap-virtual-text", config = function() require("conf.nvim-dap-virtual-text") end },
 			}
-			-- lint
 			use {
 				'mfussenegger/nvim-lint',
 				config = function() require("conf.nvim-lint") end

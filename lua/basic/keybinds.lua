@@ -38,8 +38,6 @@ vim.api.nvim_set_keymap("n", "<A-J>", "<C-w>J", { noremap = true, silent = true 
 vim.api.nvim_set_keymap("n", "<A-K>", "<C-w>K", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<A-L>", "<C-w>L", { noremap = true, silent = true })
 
-
-
 -- 取消find
 vim.api.nvim_set_keymap("n", "<CR><CR>", "<cmd>noh<CR>", { noremap = true, silent = true })
 -- buffer
