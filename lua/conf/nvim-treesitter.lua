@@ -3,6 +3,7 @@
 -- https://github.com/windwp/nvim-ts-autotag
 -- https://github.com/Badhi/nvim-treesitter-cpp-tools
 -- https://github.com/nvim-treesitter/nvim-treesitter-context
+-- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
 
 -- https://github.com/p00f/nvim-ts-rainbow/issues/81#issuecomment-1058124957
 local rainbow = { "#CC8888", "#CCCC88", "#88CC88", "#88CCCC", "#8888CC", "#CC88CC" }

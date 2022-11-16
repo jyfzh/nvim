@@ -1,4 +1,6 @@
--- [dotfile](https://github.com/mfussenegger/dotfiles/blob/833d634251ebf3bf7e9899ed06ac710735d392da/vim/.config/nvim/ftplugin/java.lua)
+-- https://github.com/mfussenegger/nvim-jdtls
+-- [dotfile]
+-- https://github.com/mfussenegger/dotfiles/blob/833d634251ebf3bf7e9899ed06ac710735d392da/vim/.config/nvim/ftplugin/java.lua
 local jdtls = require('jdtls')
 local opts = { noremap = true, silent = true }
 
@@ -59,6 +61,21 @@ jdtls.start_or_attach({
 	-- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
 	settings = {
 		java = {
+			configuration = {
+				-- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
+				-- And search for `interface RuntimeOption`
+				-- The `name` is NOT arbitrary, but must match one of the elements from `enum ExecutionEnvironment` in the link above
+				runtimes = {
+					{
+						name = "JavaSE-11",
+						path = "C:/Users/jyf/scoop/apps/openjdk11/current",
+					},
+					{
+						name = "JavaSE-19",
+						path = "C:/Users/jyf/scoop/apps/openjdk/current",
+					},
+				}
+			},
 			signatureHelp = { enabled = true };
 			contentProvider = { preferred = 'fernflower' };
 			completion = {

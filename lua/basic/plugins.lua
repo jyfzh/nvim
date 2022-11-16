@@ -25,6 +25,14 @@ packer.startup(
 			use 'lewis6991/impatient.nvim'
 			use 'navarasu/onedark.nvim'
 			use {
+				'github/copilot.vim',
+				config = function() vim.g.copilot_no_tab_map = 1 end
+			}
+			use {
+				"akinsho/toggleterm.nvim",
+				config = function() require("conf.toggleterm") end
+			}
+			use {
 				'linty-org/key-menu.nvim',
 				config = function() require("conf.key-menu") end
 			}
@@ -33,7 +41,15 @@ packer.startup(
 				config = function() require("conf.nvim-colorizer") end,
 				ft = { 'css', 'javascript', 'html' }
 			}
-			use 'voldikss/vim-floaterm'
+			use {
+				"LintaoAmons/scratch.nvim",
+				config = function()
+					require("scratch").setup {
+						scratch_file_dir = vim.fn.stdpath("cache") .. "/scratch.nvim", -- Where the scratch files will be saved
+						filetypes = { "c", "cpp", "java", "py", "json", "xml", "go", "lua", "js", "sh" }, -- filetypes to select from
+					}
+				end
+			}
 			use {
 				"jbyuki/venn.nvim",
 				config = function() require("conf.venn") end
@@ -120,7 +136,6 @@ packer.startup(
 			}
 			use {
 				'numToStr/Comment.nvim',
-				requires = { "JoosepAlviste/nvim-ts-context-commentstring" },
 				config = function() require('conf.comment') end
 			}
 			use {
@@ -136,7 +151,6 @@ packer.startup(
 					},
 					{ "nvim-telescope/telescope-symbols.nvim" },
 					{ 'GustavoKatel/telescope-asynctasks.nvim' },
-					{ 'dawsers/telescope-floaterm.nvim' },
 				},
 				config = function() require("conf.telescope") end
 			}
@@ -144,6 +158,7 @@ packer.startup(
 				'nvim-treesitter/nvim-treesitter',
 				run = ':TSUpdate',
 				requires = {
+					"JoosepAlviste/nvim-ts-context-commentstring",
 					"p00f/nvim-ts-rainbow",
 					"windwp/nvim-ts-autotag",
 					"Badhi/nvim-treesitter-cpp-tools",

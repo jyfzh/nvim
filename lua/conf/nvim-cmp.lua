@@ -65,7 +65,7 @@ cmp.setup(
 			completeopt = 'menu,menuone,noselect,noinsert',
 		},
 		experimental = {
-			ghost_text = true -- this feature conflict with copilot.vim's preview.
+			ghost_text = false -- this feature conflict with copilot.vim's preview.
 		},
 		snippet = {
 			expand = function(args)
@@ -106,10 +106,10 @@ cmp.setup(
 		sources = cmp.config.sources(
 			{
 				{ name = 'nvim_lsp' },
-				{ name = 'luasnip'},
+				{ name = 'luasnip' },
 			},
 			{
-				{ name = 'buffer'},
+				{ name = 'buffer' },
 				{ name = 'path' },
 			}
 		),

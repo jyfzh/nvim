@@ -4,9 +4,15 @@ vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>Neotree git_status<CR>", { nore
 vim.api.nvim_set_keymap("n", "<leader>1", "<cmd>NeoTreeRevealToggle<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>2", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true })
 
--- vim-floaterm
-vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>FloatermToggle<CR>",
-	{ noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "<C-J>", "copilot#Accept('<CR>')",
+	{ noremap = true, silent = true, expr = true, script = true })
+
+-- venn
+vim.api.nvim_set_keymap('n', '<leader>v', ":lua Toggle_venn()<CR> <cmd>IndentBlanklineDisable<CR>", { noremap = true })
+
+-- scratch
+vim.keymap.set("n", "<leader>so", function() require("scratch").openScratch() end)
+vim.keymap.set("n", "<leader>sn", function() require("scratch").scratchWithName() end)
 
 -- 运行代码
 vim.api.nvim_set_keymap("n", "<F7>", "<cmd>AsyncTask build<CR>", { noremap = true, silent = true })
@@ -94,8 +100,3 @@ vim.api.nvim_set_keymap("n", "<leader>ft", "<Cmd>Telescope floaterm theme=dropdo
 -- asynctasks
 vim.api.nvim_set_keymap("n", "<leader>fa", "<Cmd>Telescope asynctasks all theme=dropdown <CR>",
 	{ noremap = true, silent = true })
--- cheatsheet
-vim.api.nvim_set_keymap("n", "<leader>f?", "<cmd>Cheatsheet<CR>", { noremap = true })
-
--- venn
-vim.api.nvim_set_keymap('n', '<leader>v', ":lua Toggle_venn()<CR> <cmd>IndentBlanklineDisable<CR>", { noremap = true })

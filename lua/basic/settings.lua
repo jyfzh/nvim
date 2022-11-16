@@ -8,7 +8,7 @@ vim.g.floaterm_width = 0.8
 vim.g.floaterm_height = 0.8
 vim.g.floaterm_autoclose = 0
 
-if vim.fn.has('wsl')==1 then
+if vim.fn.has('wsl') == 1 then
 	vim.cmd [[
 	let g:clipboard = {
           \   'name': 'myClipboard',
@@ -27,12 +27,27 @@ else
 	vim.o.clipboard = "" --unnamed unnamedplus
 end
 
+local powershell_options = {
+	shell = vim.fn.executable "pwsh" and "pwsh" or "powershell",
+	shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
+	shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
+	shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
+	shellquote = "",
+	shellxquote = "",
+}
+
+if vim.fn.has('win32')==1 and vim.fn.has("linux")==0 then
+	for option, value in pairs(powershell_options) do
+		vim.opt[option] = value
+	end
+end
+
 -- 补全高度
-vim.o.pumheight=10
+vim.o.pumheight = 10
 
 vim.o.updatetime = 300
 vim.o.timeoutlen = 300
-vim.o.sessionoptions="buffers,curdir,folds,winsize,winpos"
+vim.o.sessionoptions = "buffers,curdir,folds,winsize,winpos"
 vim.o.undofile = true
 vim.o.shortmess = "filnxtToOFI"
 vim.o.signcolumn = "yes"
