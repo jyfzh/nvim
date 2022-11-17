@@ -1,6 +1,7 @@
 -- https://github.com/linty-org/key-menu.nvim
-require 'key-menu'.set('n', 'h', { desc = 'Git' })
 require 'key-menu'.set('n', '<leader>f', { desc = 'telescope' })
+require 'key-menu'.set('n', '<leader>h', { desc = 'git' })
+require 'key-menu'.set('n', '<leader>t', { desc = 'git_toggle' })
 require 'key-menu'.set('n', '<leader>')
 require 'key-menu'.set('n', '<leader>w', { desc = "lsp_workspace" })
 require 'key-menu'.set('n', '<leader>r', { desc = "lsp_rename" })

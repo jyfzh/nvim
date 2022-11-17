@@ -66,14 +66,14 @@ jdtls.start_or_attach({
 				-- And search for `interface RuntimeOption`
 				-- The `name` is NOT arbitrary, but must match one of the elements from `enum ExecutionEnvironment` in the link above
 				runtimes = {
-					{
-						name = "JavaSE-11",
-						path = "C:/Users/jyf/scoop/apps/openjdk11/current",
-					},
-					{
-						name = "JavaSE-19",
-						path = "C:/Users/jyf/scoop/apps/openjdk/current",
-					},
+					-- {
+					-- 	name = "JavaSE-11",
+					-- 	path = "C:/Users/jyf/scoop/apps/openjdk11/current",
+					-- },
+					-- {
+					-- 	name = "JavaSE-19",
+					-- 	path = "C:/Users/jyf/scoop/apps/openjdk/current",
+					-- },
 				}
 			},
 			signatureHelp = { enabled = true };

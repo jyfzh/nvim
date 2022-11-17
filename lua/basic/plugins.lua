@@ -78,11 +78,6 @@ packer.startup(
 			}
 			use 'lervag/vimtex'
 			use {
-				"ray-x/web-tools.nvim",
-				run = "npm install -g browser-sync",
-				config = function() require 'web-tools'.setup() end
-			}
-			use {
 				"iamcco/markdown-preview.nvim",
 				run = "cd app && npm install",
 				setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
