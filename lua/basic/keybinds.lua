@@ -4,9 +4,6 @@ vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>Neotree git_status<CR>", { nore
 vim.api.nvim_set_keymap("n", "<leader>1", "<cmd>NeoTreeRevealToggle<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>2", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap("i", "<C-J>", "copilot#Accept('<CR>')",
-	{ noremap = true, silent = true, expr = true, script = true })
-
 -- venn
 vim.api.nvim_set_keymap('n', '<leader>v', ":lua Toggle_venn()<CR> <cmd>IndentBlanklineDisable<CR>", { noremap = true })
 

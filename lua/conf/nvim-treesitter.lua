@@ -40,7 +40,7 @@ require("nvim-treesitter.configs").setup(
 				-- 递减
 				node_decremental = "<BS>",
 				-- 选择一个范围
-				scope_incremental = "<TAB>"
+				scope_incremental = nil
 			}
 		},
 		indent = {

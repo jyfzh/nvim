@@ -24,10 +24,7 @@ packer.startup(
 			use "wbthomason/packer.nvim"
 			use 'lewis6991/impatient.nvim'
 			use 'navarasu/onedark.nvim'
-			use {
-				'github/copilot.vim',
-				config = function() vim.g.copilot_no_tab_map = 1 end
-			}
+			use 'github/copilot.vim'
 			use {
 				"akinsho/toggleterm.nvim",
 				config = function() require("conf.toggleterm") end
