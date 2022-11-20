@@ -56,33 +56,28 @@ vim.api.nvim_set_keymap("n", "<A-9>", "<cmd>LualineBuffersJump! 9<CR>", { norema
 vim.api.nvim_set_keymap("n", "<A-$>", "<cmd>LualineBuffersJump! $<CR>", { noremap = true, silent = true })
 
 -- find key
-vim.api.nvim_set_keymap("n", "<leader>fk", "<cmd>Telescope  keymaps theme=dropdown<CR>",
+vim.api.nvim_set_keymap("n", "<leader>fk", "<cmd>Telescope keymaps <CR>",
 	{ noremap = true, silent = true })
 -- current_buf_fuzzy_find
-vim.api.nvim_set_keymap("n", "<leader>f/", "<cmd>Telescope  current_buffer_fuzzy_find theme=ivy<CR>",
-	{ noremap = true, silent = true })
--- diagnostic
-vim.api.nvim_set_keymap("n", "<leader>fd", "<cmd>Telescope  diagnostics<CR>",
+vim.api.nvim_set_keymap("n", "<leader>f/", "<cmd>Telescope current_buffer_fuzzy_find<CR>",
 	{ noremap = true, silent = true })
 -- 查找文件
-vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>Telescope find_files theme=dropdown<CR>",
+vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>",
 	{ noremap = true, silent = true })
 -- 查找文字
-vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>Telescope live_grep theme=dropdown<CR>",
+vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>",
 	{ noremap = true, silent = true })
 -- 查找帮助文档
-vim.api.nvim_set_keymap("n", "<leader>fh", "<cmd>Telescope help_tags theme=dropdown<CR>",
+vim.api.nvim_set_keymap("n", "<leader>fh", "<cmd>Telescope help_tags<CR>",
 	{ noremap = true, silent = true })
 -- 查找最近打开的文件
-vim.api.nvim_set_keymap("n", "<leader>fo", "<cmd>Telescope oldfiles theme=dropdown <CR>",
+vim.api.nvim_set_keymap("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>",
 	{ noremap = true, silent = true })
 -- 查找 marks 标记
-vim.api.nvim_set_keymap("n", "<leader>fm", "<cmd>Telescope marks theme=dropdown<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>fm", "<cmd>Telescope marks<CR>", { noremap = true, silent = true })
 -- buffer
-vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>Telescope buffers theme=dropdown <CR>",
+vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>",
 	{ noremap = true, silent = true })
--- packer
-vim.api.nvim_set_keymap("n", "<leader>fP", "<cmd>Telescope packer<CR>", { noremap = true, silent = true })
 -- 工作区
 vim.api.nvim_set_keymap("n", "<leader>fp",
 	"<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>",
@@ -90,9 +85,6 @@ vim.api.nvim_set_keymap("n", "<leader>fp",
 -- symbols
 vim.api.nvim_set_keymap("n", "<leader>fe",
 	"<cmd>lua require'telescope.builtin'.symbols{'nerd','emoji','gitemoji','julia'} <CR>",
-	{ noremap = true, silent = true })
--- floaterm
-vim.api.nvim_set_keymap("n", "<leader>ft", "<Cmd>Telescope floaterm theme=dropdown <CR>",
 	{ noremap = true, silent = true })
 -- asynctasks
 vim.api.nvim_set_keymap("n", "<leader>fa", "<Cmd>Telescope asynctasks all theme=dropdown <CR>",

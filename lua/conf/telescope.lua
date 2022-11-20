@@ -2,10 +2,6 @@
 -- https://github.com/nvim-telescope/telescope-project.nvim
 -- https://github.com/GustavoKatel/telescope-asynctasks.nvim
 
--- [telescope-z empty](https://github.com/nvim-telescope/telescope-z.nvim/issues/14#issuecomment-1221745266)
-if vim.fn.has("wsl") == 0 and vim.fn.has("linux")==0 then
-	vim.g.sqlite_clib_path = "C:/Windows/System32/sqlite3.dll"
-end
 require('telescope').setup {
 	defaults = {
 		history = {
@@ -22,17 +18,66 @@ require('telescope').setup {
 		entry_prefix = "  ",
 		sorting_strategy = "descending",
 		file_ignore_patterns = {
-			"^node_modules", "^.git", "build", ".cache"
+			"^node_modules", "^.git", "build", ".cache", ".class"
 		},
 		path_display = { "smart" },
 		winblend = 0,
 		set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
-		mappings = {},
+		mappings = {
+			i = {
+				["<C-f>"] = require("telescope.actions").preview_scrolling_down,
+				["<C-b>"] = require("telescope.actions").preview_scrolling_up,
+				["<C-u>"] = false,
+				["<C-d>"] = false,
+				["<C-q>"] = require("telescope.actions").smart_send_to_qflist + require("telescope.actions").open_qflist,
+				["<esc>"] = require("telescope.actions").close,
+			},
+		},
 	},
 	pickers = {
 		find_files = {
+			layout_strategy = "horizontal",
+			prompt_title = "   Find File",
+			layout_config = {
+				height = 0.95,
+				width = 0.95,
+				preview_cutoff = 80
+			},
+		},
+		keymaps = {
+			prompt_title = "   Keymaps",
 			theme = "dropdown",
-			previewer = false
+		},
+		current_buffer_fuzzy_find = {
+			prompt_title = "   Current Buffer",
+			theme = "ivy",
+		},
+		live_grep = {
+			prompt_title = "   Live Grep",
+			theme = "ivy",
+			previewer = false,
+		},
+		help_tags = {
+			prompt_title = "   Help Tags",
+			theme = "ivy",
+			layout_config = {
+				preview_cutoff = 0
+			},
+		},
+		oldfiles = {
+			prompt_title = "   Old Files",
+			theme = "ivy",
+		},
+		marks = {
+			prompt_title = "   Marks",
+			theme = "ivy",
+		},
+		buffers = {
+			prompt_title = "   Buffers",
+			theme = "ivy",
+			layout_config = {
+				preview_cutoff = 0;
+			}
 		},
 		diagnostics = {
 			theme = "ivy",
@@ -43,26 +88,12 @@ require('telescope').setup {
 		},
 	},
 	extensions = {
-		packer = {
-			theme = "ivy",
-			previewer = false,
-			border = true,
-			layout_config = {
-				height = .9
-			}
-		},
 		project = {
 			theme = "dropdown",
-			hidden_files = true, -- default: false
+			hidden_files = true,
 			-- order_by = "asc",
-			base_dirs = {
-				-- '/home/jyf/.config/nvim',
-				-- {'~/dev/src3', max_depth = 4},
-				-- {path = '~/dev/src5'},
-				-- {path = '~/dev/src5', max_depth = 2},
-			},
-			mappings = {
-			},
+			base_dirs = {},
+			mappings = {},
 		},
 		fzf = {
 			fuzzy = true, -- false will only do exact matching
