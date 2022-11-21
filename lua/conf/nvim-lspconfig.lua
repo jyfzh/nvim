@@ -68,13 +68,29 @@ require("neodev").setup({
 -- Register the progress handler
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
+lsp_status.config({
+	indicator_errors = '',
+	indicator_warnings = '',
+	indicator_info = '',
+	indicator_hint = '',
+	indicator_ok = '',
+	indicator_messages = '',
+	indicator_warnings_count = '',
+	indicator_errors_count = '',
+	indicator_messages_count = '',
+	indicator_hint_count = '',
+	indicator_info_count = '',
+	indicator_ok_count = '',
+	current_function = true,
+	show_filename = false,
+})
+
 local lsp_signature = require("lsp_signature")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.preselectSupport = true
 capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
 capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
@@ -128,6 +144,7 @@ end
 require 'lspconfig'.sumneko_lua.setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
+	cmd = { "lua-language-server", "--locale=zh-cn" },
 	settings = {
 		Lua = {
 			completion = {
@@ -154,6 +171,8 @@ require 'lspconfig'.sumneko_lua.setup {
 }
 
 -- https://clangd.llvm.org/features.html
+capabilities.offsetEncoding = { "utf-16" } -- https://github.com/neovim/neovim/pull/16694
+
 require 'lspconfig'.clangd.setup({
 	handlers = lsp_status.extensions.clangd.setup(),
 	on_attach = on_attach,
@@ -175,20 +194,10 @@ require 'lspconfig'.cmake.setup {
 	on_attach = on_attach,
 }
 
-require 'lspconfig'.pylsp.setup({
+require 'lspconfig'.pylsp.setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
-	settings = {
-		pylsp = {
-			plugins = {
-				pycodestyle = {
-					ignore = { 'W391' },
-					maxLineLength = 100
-				}
-			}
-		}
-	},
-})
+}
 
 require 'lspconfig'.jsonls.setup {
 	on_attach = on_attach,

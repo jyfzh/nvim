@@ -39,15 +39,6 @@ packer.startup(
 				ft = { 'css', 'javascript', 'html' }
 			}
 			use {
-				"LintaoAmons/scratch.nvim",
-				config = function()
-					require("scratch").setup {
-						scratch_file_dir = vim.fn.stdpath("cache") .. "/scratch.nvim", -- Where the scratch files will be saved
-						filetypes = { "c", "cpp", "java", "py", "json", "xml", "go", "lua", "js", "sh" }, -- filetypes to select from
-					}
-				end
-			}
-			use {
 				"jbyuki/venn.nvim",
 				config = function() require("conf.venn") end
 			}

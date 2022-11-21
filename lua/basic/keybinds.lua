@@ -7,9 +7,6 @@ vim.api.nvim_set_keymap("n", "<leader>2", "<cmd>SymbolsOutline<CR>", { noremap =
 -- venn
 vim.api.nvim_set_keymap('n', '<leader>v', ":lua Toggle_venn()<CR> <cmd>IndentBlanklineDisable<CR>", { noremap = true })
 
--- scratch
-vim.keymap.set("n", "<leader>so", function() require("scratch").openScratch() end)
-vim.keymap.set("n", "<leader>sn", function() require("scratch").scratchWithName() end)
 
 -- 运行代码
 vim.api.nvim_set_keymap("n", "<F7>", "<cmd>AsyncTask build<CR>", { noremap = true, silent = true })
