@@ -7,6 +7,8 @@ vim.api.nvim_set_keymap("n", "<leader>2", "<cmd>SymbolsOutline<CR>", { noremap =
 -- venn
 vim.api.nvim_set_keymap('n', '<leader>v', ":lua Toggle_venn()<CR> <cmd>IndentBlanklineDisable<CR>", { noremap = true })
 
+-- todo-comments
+vim.api.nvim_set_keymap('n', '<leader>ft', "<cmd>TodoTelescope<CR>", { noremap = true })
 
 -- 运行代码
 vim.api.nvim_set_keymap("n", "<F7>", "<cmd>AsyncTask build<CR>", { noremap = true, silent = true })

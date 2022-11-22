@@ -4,6 +4,37 @@
 
 require('telescope').setup {
 	defaults = {
+		border = false,
+		winblend = 0,
+		dynamic_preview_title = true,
+		path_display = { "smart" },
+		layout_strategy = 'bottom_pane',
+		layout_config = {
+			bottom_pane = {
+				height = 0.5,
+				preview_cutoff = 120,
+				prompt_position = "bottom"
+			},
+			center = {
+				height = 0.4,
+				preview_cutoff = 40,
+				prompt_position = "top",
+				width = 0.9
+			},
+			cursor = {
+				height = 0.9,
+				preview_cutoff = 40,
+				width = 0.8
+			},
+			vertical = {
+				width = 0.9,
+				height = 0.9,
+			},
+			horizontal = {
+				width = 0.9,
+				height = 0.9,
+			},
+		},
 		history = {
 			path = vim.fn.stdpath "data" .. '/telescope_history.sqlite3',
 			limit = 100,
@@ -18,10 +49,8 @@ require('telescope').setup {
 		entry_prefix = "  ",
 		sorting_strategy = "descending",
 		file_ignore_patterns = {
-			"^node_modules", "^.git", "build", ".cache", ".class"
+			"^node_modules", "^.git", "build", ".cache", "%.class"
 		},
-		path_display = { "smart" },
-		winblend = 0,
 		set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 		mappings = {
 			i = {
@@ -49,16 +78,16 @@ require('telescope').setup {
 			theme = "dropdown",
 		},
 		current_buffer_fuzzy_find = {
-			prompt_title = "   Current Buffer",
+			prompt_title = " ﬘  Current Buffer",
 			theme = "ivy",
 		},
 		live_grep = {
-			prompt_title = "   Live Grep",
+			prompt_title = "   Live Grep",
 			theme = "ivy",
 			previewer = false,
 		},
 		help_tags = {
-			prompt_title = "   Help Tags",
+			prompt_title = "  Help Tags",
 			theme = "ivy",
 			layout_config = {
 				preview_cutoff = 0
@@ -69,11 +98,11 @@ require('telescope').setup {
 			theme = "ivy",
 		},
 		marks = {
-			prompt_title = "   Marks",
+			prompt_title = "  Marks",
 			theme = "ivy",
 		},
 		buffers = {
-			prompt_title = "   Buffers",
+			prompt_title = " ﬘ Buffers",
 			theme = "ivy",
 			layout_config = {
 				preview_cutoff = 0;

@@ -26,6 +26,11 @@ packer.startup(
 			use 'navarasu/onedark.nvim'
 			use 'github/copilot.vim'
 			use {
+				"folke/todo-comments.nvim",
+				requires = "nvim-lua/plenary.nvim",
+				config = function() require("conf.todo-comments") end
+			}
+			use {
 				"akinsho/toggleterm.nvim",
 				config = function() require("conf.toggleterm") end
 			}
