@@ -1,4 +1,4 @@
--- https://github.com/bthomason/packer.nvim
+-- https://github.com/wbthomason/packer.nvim
 
 -- @diagnostic disable: undefined-global
 local ensure_packer = function()

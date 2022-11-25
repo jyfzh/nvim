@@ -222,4 +222,7 @@ require 'lspconfig'.tsserver.setup {
 	capabilities = capabilities,
 }
 
-require 'lspconfig'.texlab.setup {}
+require 'lspconfig'.texlab.setup {
+	on_attach    = on_attach,
+	capabilities = capabilities,
+}

@@ -62,7 +62,7 @@ cmp.setup(
 		},
 		completion = {
 			-- https://zhuanlan.zhihu.com/p/106070272?utm_id=0
-			completeopt = 'menu,menuone,noselect,noinsert',
+			completeopt = 'menu,menuone,noselect',
 		},
 		experimental = {
 			ghost_text = false -- this feature conflict with copilot.vim's preview.
