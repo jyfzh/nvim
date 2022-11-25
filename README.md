@@ -1,4 +1,4 @@
-gcc make cmake fzf 
+build-essential cmake fzf 
 
 [nodejs,npm](https://nodejs.org/en/)
 [python](https://www.python.org/downloads/)
