@@ -24,33 +24,13 @@ packer.startup(
 			use "wbthomason/packer.nvim"
 			use 'lewis6991/impatient.nvim'
 			use 'navarasu/onedark.nvim'
-			use 'github/copilot.vim'
-			use {
-				"folke/todo-comments.nvim",
-				requires = "nvim-lua/plenary.nvim",
-				config = function() require("conf.todo-comments") end
-			}
-			use {
-				"akinsho/toggleterm.nvim",
-				config = function() require("conf.toggleterm") end
-			}
-			use {
-				'linty-org/key-menu.nvim',
-				config = function() require("conf.key-menu") end
-			}
-			use {
-				'norcalli/nvim-colorizer.lua',
-				config = function() require("conf.nvim-colorizer") end,
-				ft = { 'css', 'javascript', 'html' }
-			}
-			use {
-				"jbyuki/venn.nvim",
-				config = function() require("conf.venn") end
-			}
-			use {
-				'lewis6991/gitsigns.nvim',
-				config = function() require("conf.gitsigns") end
-			}
+			use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim",
+				config = function() require("conf.todo-comments") end }
+			use { "akinsho/toggleterm.nvim", config = function() require("conf.toggleterm") end }
+			use { 'linty-org/key-menu.nvim', config = function() require("conf.key-menu") end }
+			use { 'norcalli/nvim-colorizer.lua', config = function() require("conf.nvim-colorizer") end, }
+			use { "jbyuki/venn.nvim", config = function() require("conf.venn") end }
+			use { 'lewis6991/gitsigns.nvim', config = function() require("conf.gitsigns") end }
 			use {
 				"nvim-neo-tree/neo-tree.nvim",
 				requires = {
@@ -65,32 +45,12 @@ packer.startup(
 				requires = 'skywind3000/asynctasks.vim',
 				config = function() vim.cmd [[  let g:asyncrun_open = 6 ]] end
 			}
-			use {
-				"Shatur/neovim-session-manager",
-				config = function() require("conf.neovim-session-manager") end
-			}
-			use 'lervag/vimtex'
-			use {
-				"iamcco/markdown-preview.nvim",
-				run = "cd app && npm install",
-				setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
-				ft = { "markdown" },
-			}
-			use {
-				"nvim-neotest/neotest",
-				requires = {
-					"vim-test/vim-test",
-					'nvim-lua/plenary.nvim',
-					"nvim-neotest/neotest-plenary",
-					"nvim-treesitter/nvim-treesitter",
-					"nvim-neotest/neotest-python",
-					"nvim-neotest/neotest-vim-test",
-				},
-				config = function()
-					require("conf.vim-test")
-					require("conf.neotest")
-				end
-			}
+			use { "Shatur/neovim-session-manager", config = function() require("conf.neovim-session-manager") end }
+			use { "iamcco/markdown-preview.nvim", run = "cd app && npm install",
+				setup = function() vim.g.mkdp_filetypes = { "markdown" } end, }
+
+			use { 'kosayoda/nvim-lightbulb', config = function() require("conf.nvim-lightbulb") end }
+			use { "ray-x/lsp_signature.nvim", config = function() require("conf.lsp_signature") end }
 			use {
 				'nvim-lualine/lualine.nvim',
 				requires = {
@@ -99,33 +59,16 @@ packer.startup(
 				},
 				config = function() require("conf.lualine") end
 			}
-			use {
-				'simrat39/symbols-outline.nvim',
-				config = function() require("conf.symbols-outline") end
-			}
+			use { 'simrat39/symbols-outline.nvim', config = function() require("conf.symbols-outline") end }
 			use {
 				'phaazon/hop.nvim',
 				branch = 'v2',
 				config = function() require("conf.hop") end
 			}
-			use {
-				"windwp/nvim-autopairs",
-				config = function() require("conf.nvim-autopairs") end
-			}
-			use {
-				"ur4ltz/surround.nvim",
-				config = function()
-					require "surround".setup { mappings_style = "surround" }
-				end
-			}
-			use {
-				"lukas-reineke/indent-blankline.nvim",
-				config = function() require("conf.indent_blankline") end
-			}
-			use {
-				'numToStr/Comment.nvim',
-				config = function() require('conf.comment') end
-			}
+			use { "windwp/nvim-autopairs", config = function() require("conf.nvim-autopairs") end }
+			use { "ur4ltz/surround.nvim", config = function() require "surround".setup { mappings_style = "surround" } end }
+			use { "lukas-reineke/indent-blankline.nvim", config = function() require("conf.indent_blankline") end }
+			use { 'numToStr/Comment.nvim', config = function() require('conf.comment') end }
 			use {
 				"nvim-telescope/telescope.nvim",
 				requires = {
@@ -155,6 +98,8 @@ packer.startup(
 				},
 				config = function() require("conf.nvim-treesitter") end
 			}
+			use 'github/copilot.vim'
+			use 'lervag/vimtex'
 			use {
 				"neovim/nvim-lspconfig",
 				requires = {
@@ -167,18 +112,6 @@ packer.startup(
 				config = function()
 					require("conf.mason")
 					require("conf.nvim-lspconfig")
-				end
-			}
-			use {
-				'kosayoda/nvim-lightbulb',
-				config = function()
-					require("conf.nvim-lightbulb")
-				end
-			}
-			use {
-				"ray-x/lsp_signature.nvim",
-				config = function()
-					require("conf.lsp_signature")
 				end
 			}
 			use {
@@ -200,9 +133,21 @@ packer.startup(
 				{ "rcarriga/nvim-dap-ui", config = function() require('conf.nvim-dap-ui') end },
 				{ "theHamsta/nvim-dap-virtual-text", config = function() require("conf.nvim-dap-virtual-text") end },
 			}
+			use { 'mfussenegger/nvim-lint', config = function() require("conf.nvim-lint") end }
 			use {
-				'mfussenegger/nvim-lint',
-				config = function() require("conf.nvim-lint") end
+				"nvim-neotest/neotest",
+				requires = {
+					"vim-test/vim-test",
+					'nvim-lua/plenary.nvim',
+					"nvim-neotest/neotest-plenary",
+					"nvim-treesitter/nvim-treesitter",
+					"nvim-neotest/neotest-python",
+					"nvim-neotest/neotest-vim-test",
+				},
+				config = function()
+					require("conf.vim-test")
+					require("conf.neotest")
+				end
 			}
 			if packer_bootstrap then require('packer').sync() end
 		end,
