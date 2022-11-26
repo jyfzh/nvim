@@ -1,8 +1,8 @@
 vim.g.mapleader = " "
 
 vim.keymap.set("n", "<leader>gg", "<cmd>Neotree git_status<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>1", "<cmd>NeoTreeRevealToggle<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>2", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>t", "<cmd>NeoTreeRevealToggle<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>s", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true })
 
 -- venn
 vim.keymap.set('n', '<leader>v', ":lua Toggle_venn()<CR> <cmd>IndentBlanklineDisable<CR>", { noremap = true })
