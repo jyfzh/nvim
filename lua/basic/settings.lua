@@ -3,7 +3,6 @@ vim.o.fencs = "utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936"
 vim.o.encoding = "utf-8"
 vim.o.fileencodings = "utf-8,chinese,latin-1,gbk,gb18030,gk2312"
 
--- [telescope-z empty](https://github.com/nvim-telescope/telescope-z.nvim/issues/14#issuecomment-1221745266)
 if vim.fn.has("wsl") == 0 and vim.fn.has("win32") == 1 then
 	vim.g.sqlite_clib_path = "C:/Windows/System32/sqlite3.dll"
 end
