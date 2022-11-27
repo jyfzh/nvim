@@ -44,8 +44,8 @@ end
 -- 补全高度
 vim.o.pumheight = 10
 
-vim.o.updatetime = 300
-vim.o.timeoutlen = 300
+vim.o.updatetime = 100 -- update interval for gitsigns
+vim.o.timeoutlen = 300 -- keymap timeout
 vim.o.sessionoptions = "buffers,curdir,folds,winsize,winpos"
 vim.o.undofile = true
 vim.o.shortmess = "filnxtToOFI"

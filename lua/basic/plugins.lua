@@ -31,6 +31,7 @@ packer.startup(
 			use { 'norcalli/nvim-colorizer.lua', config = function() require("conf.nvim-colorizer") end, }
 			use { "jbyuki/venn.nvim", config = function() require("conf.venn") end }
 			use { 'lewis6991/gitsigns.nvim', config = function() require("conf.gitsigns") end }
+			use { 'tpope/vim-fugitive' }
 			use {
 				"nvim-neo-tree/neo-tree.nvim",
 				requires = {
