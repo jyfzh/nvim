@@ -62,19 +62,19 @@ require('gitsigns').setup {
 		end, { expr = true })
 
 		-- Actions
-		map({ 'n', 'v' }, '<leader>gs', ':Gitsigns stage_hunk<CR>', { desc = "stage_hunk" })
-		map({ 'n', 'v' }, '<leader>gr', ':Gitsigns reset_hunk<CR>', { desc = "reset_hunk" })
-		map('n', '<leader>gS', gs.stage_buffer, { desc = "stage_buffer" })
-		map('n', '<leader>gu', gs.undo_stage_hunk, { desc = "undo stage hunk" })
-		map('n', '<leader>gR', gs.reset_buffer, { desc = "reset buffer" })
-		map('n', '<leader>gp', gs.preview_hunk, { desc = "preview_hunk" })
-		map('n', '<leader>gb', function() gs.blame_line { full = true } end, { desc = "blame_line" })
-		map('n', '<leader>gtb', gs.toggle_current_line_blame, { desc = "toggle_current_line_blame" })
-		map('n', '<leader>gtd', gs.diffthis, { desc = "diffthis" })
-		map('n', '<leader>gD', function() gs.diffthis('~') end, { desc = "diffthis~" })
-		map('n', '<leader>gtd', gs.toggle_deleted, { desc = "toggle_deleted" })
+		map({ 'n', 'v' }, 'ghs', ':Gitsigns stage_hunk<CR>', { desc = "stage_hunk" })
+		map({ 'n', 'v' }, 'ghr', ':Gitsigns reset_hunk<CR>', { desc = "reset_hunk" })
+		map('n', 'gS', gs.stage_buffer, { desc = "stage_buffer" })
+		map('n', 'ghu', gs.undo_stage_hunk, { desc = "undo stage hunk" })
+		map('n', 'gR', gs.reset_buffer, { desc = "reset buffer" })
+		map('n', 'gp', gs.preview_hunk, { desc = "preview_hunk" })
+		map('n', 'gb', function() gs.blame_line { full = true } end, { desc = "blame_line" })
+		map('n', 'gtb', gs.toggle_current_line_blame, { desc = "toggle_current_line_blame" })
+		map('n', 'gdf', gs.diffthis, { desc = "diffthis" })
+		map('n', 'gDF', function() gs.diffthis('~') end, { desc = "diffthis~" })
+		map('n', 'gtd', gs.toggle_deleted, { desc = "toggle_deleted" })
 
 		-- Text object
-		map({ 'o', 'x' }, '<leader>sh', ':<C-U>Gitsigns select_hunk<CR>', { desc = "select_hunk" })
+		map({ 'o', 'x' }, 'ghs', ':<C-U>Gitsigns select_hunk<CR>', { desc = "select_hunk" })
 	end
 }
