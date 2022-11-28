@@ -24,6 +24,7 @@ packer.startup(
 			use "wbthomason/packer.nvim"
 			use 'lewis6991/impatient.nvim'
 			use 'navarasu/onedark.nvim'
+			use { 'phaazon/hop.nvim', config = function() require("hop").setup() end }
 			use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim",
 				config = function() require("conf.todo-comments") end }
 			use { "akinsho/toggleterm.nvim", config = function() require("conf.toggleterm") end }
@@ -61,11 +62,6 @@ packer.startup(
 				config = function() require("conf.lualine") end
 			}
 			use { 'simrat39/symbols-outline.nvim', config = function() require("conf.symbols-outline") end }
-			use {
-				'phaazon/hop.nvim',
-				branch = 'v2',
-				config = function() require("conf.hop") end
-			}
 			use { "windwp/nvim-autopairs", config = function() require("conf.nvim-autopairs") end }
 			use { "ur4ltz/surround.nvim", config = function() require "surround".setup { mappings_style = "surround" } end }
 			use { "lukas-reineke/indent-blankline.nvim", config = function() require("conf.indent_blankline") end }

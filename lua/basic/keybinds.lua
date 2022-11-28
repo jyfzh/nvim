@@ -10,6 +10,14 @@ vim.keymap.set('n', '<leader>v', ":lua Toggle_venn()<CR> <cmd>IndentBlanklineDis
 -- todo-comments
 vim.keymap.set('n', '<leader>ft', "<cmd>TodoTelescope<CR>", { noremap = true })
 
+-- hop
+vim.api.nvim_set_keymap("n", ";", "<cmd>HopWord<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader><leader>w", "<cmd>HopWord<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader><leader>p", "<cmd>HopPattern<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader><leader>c1", "<cmd>HopChar1<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader><leader>c2", "<cmd>HopChar2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader><leader>l", "<cmd>HopLine<CR>", { noremap = true, silent = true })
+
 -- 运行代码
 vim.keymap.set("n", "<F7>", "<cmd>AsyncTask build<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<F8>", "<cmd>AsyncTask run<CR>", { noremap = true, silent = true })
