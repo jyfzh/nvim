@@ -4,11 +4,18 @@ vim.keymap.set("n", "<leader>gg", "<cmd>Neotree git_status<CR>", { noremap = tru
 vim.keymap.set("n", "<leader>t", "<cmd>NeoTreeRevealToggle<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>s", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true })
 
+-- todo-comments
+vim.keymap.set("n", "]t", function()
+  require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+
+vim.keymap.set("n", "[t", function()
+  require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
+vim.keymap.set('n', '<leader>ft', "<cmd>TodoTelescope<CR>", { noremap = true })
+
 -- venn
 vim.keymap.set('n', '<leader>v', ":lua Toggle_venn()<CR> <cmd>IndentBlanklineDisable<CR>", { noremap = true })
-
--- todo-comments
-vim.keymap.set('n', '<leader>ft', "<cmd>TodoTelescope<CR>", { noremap = true })
 
 -- hop
 vim.api.nvim_set_keymap("n", ";", "<cmd>HopWord<CR>", { noremap = true, silent = true })
@@ -18,20 +25,20 @@ vim.api.nvim_set_keymap("n", "<leader><leader>c1", "<cmd>HopChar1<CR>", { norema
 vim.api.nvim_set_keymap("n", "<leader><leader>c2", "<cmd>HopChar2<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader><leader>l", "<cmd>HopLine<CR>", { noremap = true, silent = true })
 
--- 运行代码
+-- run code
 vim.keymap.set("n", "<F7>", "<cmd>AsyncTask build<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<F8>", "<cmd>AsyncTask run<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-A-n>", "<plug>SnipRun<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-A-r>", "<plug>SnipReset<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-A-c>", "<plug>SnipClose<CR>", { noremap = true, silent = true })
 
--- 调试代码
+-- debug
 vim.keymap.set("n", "<F5>", "<cmd>lua require'dap'.continue() 		<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<F9>", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<F10>", "<cmd>lua require'dap'.step_over() 		<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<F12>", "<cmd>lua require'dap'.step_into() 		<CR>", { noremap = true, silent = true })
 
--- 基础按键
+-- basic
 vim.keymap.set("n", "<C-u>", "9k", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-d>", "9j", { noremap = true, silent = true })
 
@@ -48,8 +55,9 @@ vim.keymap.set("n", "<A-J>", "<C-w>J", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-K>", "<C-w>K", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-L>", "<C-w>L", { noremap = true, silent = true })
 
--- 取消find
+-- no highlight
 vim.keymap.set("n", "<CR><CR>", "<cmd>noh<CR>", { noremap = true, silent = true })
+
 -- buffer
 vim.keymap.set("n", "<A-1>", "<cmd>LualineBuffersJump! 1<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-2>", "<cmd>LualineBuffersJump! 2<CR>", { noremap = true, silent = true })

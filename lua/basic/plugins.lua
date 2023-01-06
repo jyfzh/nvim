@@ -47,7 +47,6 @@ packer.startup(
 				requires = 'skywind3000/asynctasks.vim',
 				config = function() vim.cmd [[  let g:asyncrun_open = 6 ]] end
 			}
-			use { "Shatur/neovim-session-manager", config = function() require("conf.neovim-session-manager") end }
 			use { "iamcco/markdown-preview.nvim", run = "cd app && npm install",
 				setup = function() vim.g.mkdp_filetypes = { "markdown" } end, }
 
