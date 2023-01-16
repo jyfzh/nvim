@@ -17,20 +17,9 @@ vim.keymap.set('n', '<leader>ft', "<cmd>TodoTelescope<CR>", { noremap = true })
 -- venn
 vim.keymap.set('n', '<leader>v', ":lua Toggle_venn()<CR> <cmd>IndentBlanklineDisable<CR>", { noremap = true })
 
--- hop
-vim.api.nvim_set_keymap("n", ";", "<cmd>HopWord<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader><leader>w", "<cmd>HopWord<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader><leader>p", "<cmd>HopPattern<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader><leader>c1", "<cmd>HopChar1<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader><leader>c2", "<cmd>HopChar2<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader><leader>l", "<cmd>HopLine<CR>", { noremap = true, silent = true })
-
 -- run code
 vim.keymap.set("n", "<F7>", "<cmd>AsyncTask build<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<F8>", "<cmd>AsyncTask run<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-A-n>", "<plug>SnipRun<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-A-r>", "<plug>SnipReset<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-A-c>", "<plug>SnipClose<CR>", { noremap = true, silent = true })
 
 -- debug
 vim.keymap.set("n", "<F5>", "<cmd>lua require'dap'.continue() 		<CR>", { noremap = true, silent = true })
@@ -46,14 +35,6 @@ vim.keymap.set("n", "<A-up>", "<cmd> res+5				<CR>", { noremap = true, silent = 
 vim.keymap.set("n", "<A-down>", "<cmd> res-5				<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-left>", "<cmd> vertical resize-5	<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-right>", "<cmd> vertical resize+5	<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<A-h>", "<C-w>h", { noremap = true, silent = true })
-vim.keymap.set("n", "<A-j>", "<C-w>j", { noremap = true, silent = true })
-vim.keymap.set("n", "<A-k>", "<C-w>k", { noremap = true, silent = true })
-vim.keymap.set("n", "<A-l>", "<C-w>l", { noremap = true, silent = true })
-vim.keymap.set("n", "<A-H>", "<C-w>H", { noremap = true, silent = true })
-vim.keymap.set("n", "<A-J>", "<C-w>J", { noremap = true, silent = true })
-vim.keymap.set("n", "<A-K>", "<C-w>K", { noremap = true, silent = true })
-vim.keymap.set("n", "<A-L>", "<C-w>L", { noremap = true, silent = true })
 
 -- no highlight
 vim.keymap.set("n", "<CR><CR>", "<cmd>noh<CR>", { noremap = true, silent = true })
