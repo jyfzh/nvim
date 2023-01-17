@@ -1,5 +1,7 @@
 vim.g.mapleader = " "
 
+vim.keymap.set("n", "<leader>lz", "<cmd>Lazy<CR>", { noremap = true, silent = true })
+
 vim.keymap.set("n", "<leader>gg", "<cmd>Neotree git_status<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>t", "<cmd>NeoTreeRevealToggle<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>s", "<cmd>SymbolsOutline<CR>", { noremap = true, silent = true })

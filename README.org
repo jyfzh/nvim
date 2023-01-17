@@ -1,17 +1,22 @@
-** TODO Dependence
+** Dependence
 
 *** basic
 - build-essential 
 - cmake 
 - fzf 
 - unzip
-- [nodejs,npm](https://nodejs.org/en/)
-- [python](https://www.python.org/downloads/)
-- [fd](https://github.com/sharkdp/fd)
-- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- nodejs,npm
+- python
 
 ***  telescope
+- fd
 - repgrep  
 - sqlite3 
   - on windows it needs [[sqlite.dll][https://www.sqlite.org/download.html]]
   - on ubuntu  it needs sqlite3 and libsqlite3-dev 
+
+** attention
+	 1. 如果telescope的history有问题,需要手动创建telescope_history.json
+	 #+BEGIN_SRC sh
+	 touch vim.fn.stdpath "data" .. '/telescope_history.sqlite3
+	 #+END_SRC

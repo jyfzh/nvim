@@ -2,11 +2,17 @@ vim.o.fenc = "utf-8"
 vim.o.fencs = "utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936"
 vim.o.encoding = "utf-8"
 vim.o.fileencodings = "utf-8,chinese,latin-1,gbk,gb18030,gk2312"
-vim.g.language = "en_US.utf8"
 
 if vim.fn.has("wsl") == 0 and vim.fn.has("win32") == 1 then
 	vim.g.sqlite_clib_path = "C:/Windows/System32/sqlite3.dll"
 end
+
+-- 开启 Folding
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+-- 默认不要折叠
+-- https://stackoverflow.com/questions/8316139/how-to-set-the-default-to-unfolded-when-you-open-a-file
+vim.wo.foldlevel = 99
 
 -- 补全高度
 vim.o.pumheight = 15
