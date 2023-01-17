@@ -8,12 +8,17 @@
 -- https://github.com/p00f/nvim-ts-rainbow/issues/81#issuecomment-1058124957
 local rainbow = { "#CC8888", "#CCCC88", "#88CC88", "#88CCCC", "#8888CC", "#CC88CC" }
 
+-- proxy
+for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) do
+  config.install_info.url = config.install_info.url:gsub("https://github.com/", "https://ghproxy.com/https://github.com/")
+end
+
 require("nvim-treesitter.configs").setup(
 	{
 		-- 安装的高亮支持来源
 		ensure_installed = {
-			"c", "cpp", "lua", "python", "java",
-			"html", "javascript"
+			-- "c", "cpp", "lua", "python", "java",
+			-- "html", "javascript", "org",
 		},
 		-- 同步下载高亮支持
 		sync_install = true,
@@ -27,7 +32,7 @@ require("nvim-treesitter.configs").setup(
 					return true
 				end
 			end,
-			additional_vim_regex_highlighting = false
+			additional_vim_regex_highlighting = { 'org' },
 		},
 		-- 范围选择
 		incremental_selection = {

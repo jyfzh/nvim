@@ -8,23 +8,8 @@ if vim.fn.has("wsl") == 0 and vim.fn.has("win32") == 1 then
 	vim.g.sqlite_clib_path = "C:/Windows/System32/sqlite3.dll"
 end
 
-local powershell_options = {
-	shell = vim.fn.executable "pwsh" and "pwsh" or "powershell",
-	shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
-	shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
-	shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
-	shellquote = "",
-	shellxquote = "",
-}
-
-if vim.fn.has('win32')==1 and vim.fn.has("linux")==0 then
-	for option, value in pairs(powershell_options) do
-		vim.opt[option] = value
-	end
-end
-
 -- 补全高度
-vim.o.pumheight = 10
+vim.o.pumheight = 15
 
 vim.o.updatetime = 100 -- update interval for gitsigns
 vim.o.timeoutlen = 300 -- keymap timeout

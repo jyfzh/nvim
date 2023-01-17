@@ -5,8 +5,8 @@
         "redefined-local"
     ],
     "Lua.diagnostics.globals": [
-        "vim",
-        "lfs"
+        "vim"
     ],
-    "Lua.workspace.checkThirdParty": false
+    "Lua.workspace.checkThirdParty": false,
+    "workspace.library": []
 }

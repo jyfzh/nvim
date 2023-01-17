@@ -104,6 +104,7 @@ cmp.setup(
 			{
 				{ name = 'nvim_lsp' },
 				{ name = 'luasnip' },
+				{ name = 'orgmode' }
 			},
 			{
 				{ name = 'buffer' },
@@ -149,10 +150,10 @@ cmp.setup.cmdline({ '/', '?' }, {
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 -- [wsl neovim cmp-cmdline 不能 :! command](https://github.com/hrsh7th/cmp-cmdline/issues/24#issuecomment-1094896592)
-cmp.setup.cmdline(':', {
-	mapping = cmp.mapping.preset.cmdline(),
-	sources = cmp.config.sources(
-		{ { name = 'path' } },
-		{ { name = 'cmdline' } }
-	)
-})
+-- cmp.setup.cmdline(':', {
+-- 	mapping = cmp.mapping.preset.cmdline(),
+-- 	sources = cmp.config.sources(
+-- 		{ { name = 'path' } },
+-- 		{ { name = 'cmdline' } }
+-- 	)
+-- })

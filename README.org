@@ -1,0 +1,17 @@
+** TODO Dependence
+
+*** basic
+- build-essential 
+- cmake 
+- fzf 
+- unzip
+- [nodejs,npm](https://nodejs.org/en/)
+- [python](https://www.python.org/downloads/)
+- [fd](https://github.com/sharkdp/fd)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+
+***  telescope
+- repgrep  
+- sqlite3 
+  - on windows it needs [[sqlite.dll][https://www.sqlite.org/download.html]]
+  - on ubuntu  it needs sqlite3 and libsqlite3-dev 
