@@ -1,5 +1,11 @@
+-- https://github.com/nvim-orgmode/orgmode
+-- https://github.com/dhruvasagar/vim-table-mode
+
 return {
 	"nvim-orgmode/orgmode",
+	dependencies = {
+		"dhruvasagar/vim-table-mode",
+	},
 	config = function()
 		-- Load custom treesitter grammar for org filetype
 		require("orgmode").setup_ts_grammar()

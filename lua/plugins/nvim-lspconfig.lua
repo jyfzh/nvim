@@ -3,7 +3,7 @@
 -- ui https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
 -- https://github.com/folke/lua-dev.nvim
 -- https://github.com/nvim-lua/lsp-status.nvim
---
+
 local border = {
 	{ "┌", "FloatBorder" },
 	{ "─", "FloatBorder" },
@@ -31,14 +31,8 @@ for type, icon in pairs(signs) do
 end
 
 -- LSP settings (for overriding per client)
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-	vim.lsp.handlers.hover,
-	{ border = 'single' }
-)
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-	vim.lsp.handlers.signature_help,
-	{ border = 'single' }
-)
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
 
 -- To instead override globally
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
@@ -47,7 +41,6 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 	opts.border = opts.border or border
 	return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
-
 
 return {
 	"neovim/nvim-lspconfig",
@@ -60,7 +53,6 @@ return {
 		"mfussenegger/nvim-jdtls",
 	},
 	config = function()
-
 		-- lua-dev
 		-- IMPORTANT: make sure to setup lua-dev BEFORE lspconfig
 		require("neodev").setup({
@@ -79,28 +71,28 @@ return {
 		})
 
 		-- Register the progress handler
-		local lsp_status = require('lsp-status')
+		local lsp_status = require("lsp-status")
 		lsp_status.register_progress()
 		lsp_status.config({
-			indicator_errors = '',
-			indicator_warnings = '',
-			indicator_info = '',
-			indicator_hint = '',
-			indicator_ok = '',
-			indicator_messages = '',
-			indicator_warnings_count = '',
-			indicator_errors_count = '',
-			indicator_messages_count = '',
-			indicator_hint_count = '',
-			indicator_info_count = '',
-			indicator_ok_count = '',
+			indicator_errors = "",
+			indicator_warnings = "",
+			indicator_info = "",
+			indicator_hint = "",
+			indicator_ok = "",
+			indicator_messages = "",
+			indicator_warnings_count = "",
+			indicator_errors_count = "",
+			indicator_messages_count = "",
+			indicator_hint_count = "",
+			indicator_info_count = "",
+			indicator_ok_count = "",
 			current_function = true,
 			show_filename = false,
 		})
 
 		local lsp_signature = require("lsp_signature")
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
+		capabilities = vim.tbl_extend("keep", capabilities or {}, lsp_status.capabilities)
 
 		capabilities.textDocument.completion.completionItem.snippetSupport = true
 		capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
@@ -114,80 +106,78 @@ return {
 			properties = {
 				"documentation",
 				"detail",
-				"additionalTextEdits"
-			}
+				"additionalTextEdits",
+			},
 		}
 
 		local opts = { noremap = true, silent = true }
-		vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
-		vim.keymap.set('n', 'g[', vim.diagnostic.goto_prev, opts)
-		vim.keymap.set('n', 'g]', vim.diagnostic.goto_next, opts)
-		vim.keymap.set('n', 'go', "<cmd>Telescope diagnostics<CR>", opts)
+		vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
+		vim.keymap.set("n", "g[", vim.diagnostic.goto_prev, opts)
+		vim.keymap.set("n", "g]", vim.diagnostic.goto_next, opts)
+		vim.keymap.set("n", "go", "<cmd>Telescope diagnostics<CR>", opts)
 
 		local on_attach = function(client, bufnr)
-			vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
+			vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
 			lsp_status.on_attach(client)
 			lsp_signature.on_attach(client, bufnr)
 
 			-- Mappings.
 			-- See `:help vim.lsp.*` for documentation on any of the below functions
 			local bufopts = { noremap = true, silent = true, buffer = bufnr }
-			vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-			vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-			vim.keymap.set('n', 'gr', "<cmd>Telescope lsp_references theme=dropdown<CR>", bufopts)
-			vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-			vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-			vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-			vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-			vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-			vim.keymap.set('n', '<leader>wl', function()
+			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+			vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+			vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references theme=dropdown<CR>", bufopts)
+			vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+			vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+			vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+			vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+			vim.keymap.set("n", "<leader>wl", function()
 				print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 			end, bufopts)
-			vim.keymap.set('n', '<leader>d', vim.lsp.buf.type_definition, bufopts)
-			vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
-			vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-			vim.keymap.set('n', '<A-S-F>', "<cmd>lua vim.lsp.buf.format{async=true}<CR>", bufopts)
+			vim.keymap.set("n", "<leader>d", vim.lsp.buf.type_definition, bufopts)
+			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+			vim.keymap.set("n", "<A-S-F>", "<cmd>lua vim.lsp.buf.format{async=true}<CR>", bufopts)
 		end
 
 		-- local runtime_path = vim.split(package.path, ";")
 		-- table.insert(runtime_path, "lua/?.lua")
 		-- table.insert(runtime_path, "lua/?/init.lua")
 
-
-		require 'lspconfig'.sumneko_lua.setup {
+		require("lspconfig").sumneko_lua.setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
 			cmd = { "lua-language-server", "--locale=zh-cn" },
 			settings = {
 				Lua = {
 					completion = {
-						callSnippet = "Replace"
+						callSnippet = "Replace",
 					},
 					runtime = {
 						-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-						version = 'LuaJIT',
+						version = "LuaJIT",
 					},
 					diagnostics = {
 						-- Get the language server to recognize the `vim` global
-						globals = { 'vim' },
+						globals = { "vim" },
 					},
 					workspace = {
 						-- Make the server aware of Neovim runtime files
-						-- library = vim.api.nvim_get_runtime_file("", true),
-						library = vim.fn.stdpath('config'),
+						library = vim.api.nvim_get_runtime_file("", true),
 					},
 					-- Do not send telemetry data containing a randomized but unique identifier
 					telemetry = {
 						enable = false,
 					},
-				}
-			}
-		}
+				},
+			},
+		})
 
 		-- https://clangd.llvm.org/features.html
 		capabilities.offsetEncoding = { "utf-16" } -- https://github.com/neovim/neovim/pull/16694
 
-		require 'lspconfig'.clangd.setup({
+		require("lspconfig").clangd.setup({
 			handlers = lsp_status.extensions.clangd.setup(),
 			on_attach = on_attach,
 			capabilities = capabilities,
@@ -195,50 +185,50 @@ return {
 				"clangd",
 				"--clang-tidy",
 				"--fallback-style=LLVM",
-				"--function-arg-placeholders=false"
+				"--function-arg-placeholders=false",
 			},
 			single_file_support = true,
 			init_options = {
-				clangdFileStatus = true
+				clangdFileStatus = true,
 			},
 		})
 
-		require 'lspconfig'.cmake.setup {
+		require("lspconfig").cmake.setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
-		}
+		})
 
-		require 'lspconfig'.pylsp.setup {
+		require("lspconfig").pylsp.setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
-		}
+		})
 
-		require 'lspconfig'.jsonls.setup {
+		require("lspconfig").jsonls.setup({
 			on_attach = on_attach,
 			capabilities = capabilities,
-		}
+		})
 
-		require 'lspconfig'.html.setup {
-			on_attach    = on_attach,
-			capabilities = capabilities
-		}
+		require("lspconfig").html.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
 
-		require 'lspconfig'.cssls.setup {
-			on_attach    = on_attach,
+		require("lspconfig").cssls.setup({
+			on_attach = on_attach,
 			capabilities = capabilities,
-		}
-		require 'lspconfig'.eslint.setup {
-			on_attach    = on_attach,
+		})
+		require("lspconfig").eslint.setup({
+			on_attach = on_attach,
 			capabilities = capabilities,
-		}
-		require 'lspconfig'.tsserver.setup {
-			on_attach    = on_attach,
+		})
+		require("lspconfig").tsserver.setup({
+			on_attach = on_attach,
 			capabilities = capabilities,
-		}
+		})
 
-		require 'lspconfig'.texlab.setup {
-			on_attach    = on_attach,
+		require("lspconfig").texlab.setup({
+			on_attach = on_attach,
 			capabilities = capabilities,
-		}
+		})
 	end,
 }
