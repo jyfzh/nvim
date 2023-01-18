@@ -16,7 +16,6 @@ return {
 		{ "nvim-telescope/telescope-symbols.nvim" },
 		{ "GustavoKatel/telescope-asynctasks.nvim" },
 	},
-	event = "BufRead",
 	keys = {
 		{ "<leader>fk", "<cmd>Telescope keymaps <CR>", "n", { noremap = true, silent = true } },
 		{ "<leader>f/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", "n", { noremap = true, silent = true } },
@@ -110,7 +109,12 @@ return {
 						["<C-d>"] = false,
 						["<C-q>"] = require("telescope.actions").smart_send_to_qflist
 							+ require("telescope.actions").open_qflist,
-						["<esc>"] = require("telescope.actions").close,
+						-- https://github.com/nvim-orgmode/orgmode/issues/131#issuecomment-1386582317
+						-- ["<CR>"] = function()
+						-- 	vim.cmd.stopinsert()
+						-- 	local key_code = vim.api.nvim_replace_termcodes("<CR>", true, false, true)
+						-- 	vim.api.nvim_feedkeys(key_code, "m", false)
+						-- end,
 					},
 				},
 			},
