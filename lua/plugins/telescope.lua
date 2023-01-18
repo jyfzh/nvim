@@ -93,12 +93,14 @@ return {
 				selection_caret = "  ",
 				entry_prefix = "  ",
 				sorting_strategy = "descending",
+                -- TODO: fitter
 				file_ignore_patterns = {
 					"^node_modules",
 					"^.git",
-					"build",
 					".cache",
 					"%.class",
+					"^build",
+                    "doc"
 				},
 				set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 				mappings = {
