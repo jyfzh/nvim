@@ -8,7 +8,8 @@
 - nodejs,npm
 - python
 
-***  telescope
+
+*** telescope
 - fd
 - repgrep  
 - sqlite3 

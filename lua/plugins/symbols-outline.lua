@@ -2,6 +2,10 @@
 
 return {
 	"simrat39/symbols-outline.nvim",
+	dependencies = {
+		"neovim/nvim-lspconfig",
+	},
+	keys = { {"<leader>s", "<cmd>SymbolsOutline<CR>", "n", { noremap = true, silent = true } }},
 	config = function()
 		require("symbols-outline").setup({
 			highlight_hovered_item = true,

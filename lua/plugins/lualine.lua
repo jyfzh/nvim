@@ -2,12 +2,24 @@
 
 vim.api.nvim_set_hl(0, "lualine_c_buffers_active", { fg = "#8ebd6b" })
 
+vim.keymap.set("n", "<A-1>", "<cmd>LualineBuffersJump! 1<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-2>", "<cmd>LualineBuffersJump! 2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-3>", "<cmd>LualineBuffersJump! 3<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-4>", "<cmd>LualineBuffersJump! 4<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-5>", "<cmd>LualineBuffersJump! 5<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-6>", "<cmd>LualineBuffersJump! 6<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-7>", "<cmd>LualineBuffersJump! 7<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-8>", "<cmd>LualineBuffersJump! 8<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-9>", "<cmd>LualineBuffersJump! 9<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-$>", "<cmd>LualineBuffersJump! $<CR>", { noremap = true, silent = true })
+
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
 		"kyazdani42/nvim-web-devicons",
 		"nvim-lua/lsp-status.nvim",
 	},
+	event = "BufRead",
 	config = function()
 		require("lualine").setup({
 			options = {
@@ -20,9 +32,9 @@ return {
 				always_divide_middle = true,
 				globalstatus = true,
 				refresh = {
-					statusline = 1000,
-					tabline = 1000,
-					winbar = 1000,
+					statusline = 4000,
+					tabline = 4000,
+					winbar = 4000,
 				},
 			},
 			sections = {
@@ -48,5 +60,5 @@ return {
 			},
 			extensions = { "quickfix", "nvim-dap-ui", "symbols-outline", "neo-tree", "man", "toggleterm", "fugitive" },
 		})
-	end
+	end,
 }

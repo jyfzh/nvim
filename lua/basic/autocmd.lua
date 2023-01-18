@@ -1,4 +1,3 @@
--- cursor
 -- 取消换行注释
 -- 用o换行不要延续注释
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
@@ -16,7 +15,7 @@ local ft = { "c", "cpp", "java", "python", "lua", "vim", "html", "css", "javascr
 
 local function include()
 	for _, value in pairs(ft) do
-		if (vim.bo.filetype == value) then
+		if vim.bo.filetype == value then
 			return true
 		end
 	end
@@ -28,7 +27,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 		if include() then
 			vim.opt_local.relativenumber = true
 		end
-	end
+	end,
 })
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
 	callback = function()
@@ -36,14 +35,14 @@ vim.api.nvim_create_autocmd({ "InsertEnter" }, {
 			vim.opt_local.relativenumber = false
 			vim.opt_local.number = true
 		end
-	end
+	end,
 })
 vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 	callback = function()
 		if include() then
 			vim.opt_local.relativenumber = true
 		end
-	end
+	end,
 })
 
 -- 重新打开缓冲区恢复光标位置
@@ -52,25 +51,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	callback = function()
 		if vim.fn.line("'\"") > 0 and vim.fn.line("'\"") <= vim.fn.line("$") then
 			vim.fn.setpos(".", vim.fn.getpos("'\""))
-			vim.cmd("silent! foldopen")
+			vim.cmd([[silent! foldopen]])
 		end
 	end,
 })
-
--- bulb
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
-
--- colorizer
-vim.api.nvim_create_autocmd("BufEnter", {
-	pattern = { "*.html", "*.css" },
-	command = "ColorizerAttachToBuffer"
-})
-
-vim.api.nvim_create_autocmd("BufLeave", {
-	pattern = { "*.html", "*.css" },
-	command = "ColorizerDetachFromBuffer"
-})
-
 
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {

@@ -2,6 +2,7 @@
 
 return {
 	"lewis6991/gitsigns.nvim",
+	evens = { "BufRead", "BufNewFile" },
 	config = function()
 		require('gitsigns').setup {
 			signs                        = {

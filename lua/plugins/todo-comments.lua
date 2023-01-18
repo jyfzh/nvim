@@ -1,10 +1,21 @@
 -- https://github.com/folke/todo-comments.nvim
 
+vim.keymap.set("n", "]t", function()
+  require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+
+vim.keymap.set("n", "[t", function()
+  require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
+
+vim.keymap.set('n', '<leader>ft', "<cmd>TodoTelescope<CR>", { noremap = true })
+
 return {
 	"folke/todo-comments.nvim",
-	requires = "nvim-lua/plenary.nvim",
+	dependencies = "nvim-lua/plenary.nvim",
+	event = "BufRead",
 	config = function()
-		require("todo-comments").setup {
+		require("todo-comments").setup({
 			signs = true, -- show icons in the signs column
 			sign_priority = 20, -- sign priority
 			-- keywords recognized as todo comments
@@ -51,7 +62,7 @@ return {
 				info = { "DiagnosticInfo", "#2563EB" },
 				hint = { "DiagnosticHint", "#10B981" },
 				default = { "Identifier", "#7C3AED" },
-				test = { "Identifier", "#FF00FF" }
+				test = { "Identifier", "#FF00FF" },
 			},
 			search = {
 				command = "rg",
@@ -67,6 +78,6 @@ return {
 				pattern = [[\b(KEYWORDS):]], -- ripgrep regex
 				-- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
 			},
-		}
-	end
+		})
+	end,
 }

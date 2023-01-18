@@ -1,9 +1,6 @@
 -- https://github.com/folke/lazy.nvim
 
 -- @diagnostic disable: undefined-global
-require("basic.settings")
-require("basic.keybinds")
-require("basic.autocmd")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -162,4 +159,7 @@ local settings = {
 	},
 }
 
+require("basic.keybinds")
+require("basic.autocmd")
+require("basic.settings")
 require("lazy").setup("plugins", settings)

@@ -2,6 +2,7 @@
 
 return {
 	"kosayoda/nvim-lightbulb",
+	event = "BufRead",
 	config = function()
 		-- Showing defaults
 		require("nvim-lightbulb").setup({
@@ -55,5 +56,7 @@ return {
 				events = { "CursorHold", "CursorHoldI" },
 			},
 		})
+
+		vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
 	end,
 }

@@ -3,14 +3,15 @@
 
 return {
 	"williamboman/mason.nvim",
-	config = function() 
+	event = "BufRead",
+	config = function()
 		require("mason").setup({
 			ui = {
 				icons = {
 					package_installed = "✓",
 					package_pending = "➜",
-					package_uninstalled = "✗"
-				}
+					package_uninstalled = "✗",
+				},
 			},
 			github = {
 				-- The template URL to use when downloading assets from GitHub.
@@ -24,11 +25,11 @@ return {
 
 		require("mason-lspconfig").setup({
 			ensure_installed = {},
-			automatic_installation = true
+			automatic_installation = true,
 		})
 
 		require("mason-null-ls").setup({
-			ensure_installed = { "stylua", "jq" }
+			ensure_installed = { "stylua", "jq" },
 		})
-	end
+	end,
 }

@@ -16,6 +16,30 @@ return {
 		{ "nvim-telescope/telescope-symbols.nvim" },
 		{ "GustavoKatel/telescope-asynctasks.nvim" },
 	},
+	event = "BufRead",
+	keys = {
+		{ "<leader>fk", "<cmd>Telescope keymaps <CR>", "n", { noremap = true, silent = true } },
+		{ "<leader>f/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", "n", { noremap = true, silent = true } },
+		{ "<leader>ff", "<cmd>Telescope find_files<CR>", "n", { noremap = true, silent = true } },
+		{ "<leader>fg", "<cmd>Telescope live_grep<CR>", "n", { noremap = true, silent = true } },
+		{ "<leader>fh", "<cmd>Telescope help_tags<CR>", "n", { noremap = true, silent = true } },
+		{ "<leader>fo", "<cmd>Telescope oldfiles<CR>", "n", { noremap = true, silent = true } },
+		{ "<leader>fm", "<cmd>Telescope marks<CR>", "n", { noremap = true, silent = true } },
+		{ "<leader>fb", "<cmd>Telescope buffers<CR>", "n", { noremap = true, silent = true } },
+		{
+			"<leader>fp",
+			"<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>",
+			"n",
+			{ noremap = true, silent = true },
+		},
+		{
+			"<leader>fe",
+			"<cmd>lua require'telescope.builtin'.symbols{'nerd','emoji','gitemoji','julia'} <CR>",
+			"n",
+			{ noremap = true, silent = true },
+		},
+		{ "<leader>fa", "<Cmd>Telescope asynctasks all theme=dropdown <CR>", "n", { noremap = true, silent = true } },
+	},
 	config = function()
 		require("telescope").setup({
 			defaults = {

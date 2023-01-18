@@ -52,6 +52,7 @@ return {
 		"folke/neodev.nvim",
 		"mfussenegger/nvim-jdtls",
 	},
+	event = "BufReadPre",
 	config = function()
 		-- lua-dev
 		-- IMPORTANT: make sure to setup lua-dev BEFORE lspconfig

@@ -2,6 +2,9 @@
 --
 return {
 	"jbyuki/venn.nvim",
+	keys = {
+		{ "<leader>v", ":lua Toggle_venn()<CR>", "n", { noremap = true } },
+	},
 	config = function()
 		function _G.Toggle_venn()
 			local venn_enabled = vim.inspect(vim.b.venn_enabled)

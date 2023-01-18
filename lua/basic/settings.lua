@@ -14,14 +14,14 @@ vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 -- https://stackoverflow.com/questions/8316139/how-to-set-the-default-to-unfolded-when-you-open-a-file
 vim.wo.foldlevel = 99
 
--- 补全高度
+vim.g.mapleader = " "
 vim.o.pumheight = 15
 
 vim.o.updatetime = 100 -- update interval for gitsigns
 vim.o.timeoutlen = 300 -- keymap timeout
 vim.o.sessionoptions = "buffers,curdir,folds,winsize,winpos"
 vim.o.undofile = true
-vim.o.shortmess = "filnxtToOFI"
+-- vim.o.shortmess = "filnxtToOFI"
 vim.o.signcolumn = "yes"
 vim.o.showmode = false
 vim.o.compatible = false

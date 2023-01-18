@@ -23,6 +23,7 @@ return {
 		"saadparwaiz1/cmp_luasnip",
 		"rafamadriz/friendly-snippets",
 	},
+	evnet = "InsertEnter",
 	config = function()
 		local luasnip = require("luasnip")
 		local cmp = require("cmp")
