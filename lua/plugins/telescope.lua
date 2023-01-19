@@ -93,14 +93,14 @@ return {
 				selection_caret = "  ",
 				entry_prefix = "  ",
 				sorting_strategy = "descending",
-                -- TODO: fitter
+				-- TODO: fitter
 				file_ignore_patterns = {
 					"^node_modules",
 					"^.git",
 					".cache",
 					"%.class",
 					"^build",
-                    "doc"
+					"doc",
 				},
 				set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 				mappings = {
@@ -112,11 +112,11 @@ return {
 						["<C-q>"] = require("telescope.actions").smart_send_to_qflist
 							+ require("telescope.actions").open_qflist,
 						-- https://github.com/nvim-orgmode/orgmode/issues/131#issuecomment-1386582317
-						-- ["<CR>"] = function()
-						-- 	vim.cmd.stopinsert()
-						-- 	local key_code = vim.api.nvim_replace_termcodes("<CR>", true, false, true)
-						-- 	vim.api.nvim_feedkeys(key_code, "m", false)
-						-- end,
+						["<CR>"] = function()
+							vim.cmd.stopinsert()
+							local key_code = vim.api.nvim_replace_termcodes("<CR>", true, false, true)
+							vim.api.nvim_feedkeys(key_code, "m", false)
+						end,
 					},
 				},
 			},

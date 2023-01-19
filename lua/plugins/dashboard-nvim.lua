@@ -35,7 +35,7 @@ return {
 				action = require("telescope.builtin").colorscheme,
 			},
 			{
-				icon = "	        ﬌    ",
+				icon = "	                ",
 				desc = "Current Folder                   ",
 				action = require("telescope.builtin").find_files,
 			},

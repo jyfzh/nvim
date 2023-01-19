@@ -14,6 +14,7 @@ return {
 		"windwp/nvim-ts-autotag",
 		"yioneko/nvim-yati",
 		"nvim-treesitter/nvim-treesitter-context",
+		"nvim-treesitter/playground",
 	},
 	event = "BufRead",
 	config = function()
@@ -22,6 +23,12 @@ return {
 		-- 	config.install_info.url =
 		-- 		config.install_info.url:gsub("https://github.com/", "https://ghproxy.com/https://github.com/")
 		-- end
+
+		-- https://github.com/p00f/nvim-ts-rainbow/issues/81#issuecomment-1058124957
+		local rainbow = { "#CC8888", "#CCCC88", "#88CC88", "#88CCCC", "#8888CC", "#CC88CC" }
+		for i, c in ipairs(rainbow) do -- p00f/rainbow#81
+			vim.cmd(("hi rainbowcol%d guifg=%s"):format(i, c))
+		end
 
 		require("nvim-treesitter.configs").setup({
 			-- HACK:
@@ -97,6 +104,24 @@ return {
                 end
             }
             ]]
+				},
+			},
+			playground = {
+				enable = true,
+				disable = {},
+				updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+				persist_queries = false, -- Whether the query persists across vim sessions
+				keybindings = {
+					toggle_query_editor = "o",
+					toggle_hl_groups = "i",
+					toggle_injected_languages = "t",
+					toggle_anonymous_nodes = "a",
+					toggle_language_display = "I",
+					focus_language = "f",
+					unfocus_language = "F",
+					update = "R",
+					goto_node = "<cr>",
+					show_help = "?",
 				},
 			},
 		})
@@ -178,11 +203,5 @@ return {
 			-- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
 			separator = nil,
 		})
-		-- https://github.com/p00f/nvim-ts-rainbow/issues/81#issuecomment-1058124957
-		local rainbow = { "#CC8888", "#CCCC88", "#88CC88", "#88CCCC", "#8888CC", "#CC88CC" }
-
-		for i, c in ipairs(rainbow) do -- p00f/rainbow#81
-			vim.cmd(("hi rainbowcol%d guifg=%s"):format(i, c))
-		end
 	end,
 }
