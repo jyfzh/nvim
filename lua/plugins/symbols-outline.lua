@@ -5,7 +5,7 @@ return {
 	dependencies = {
 		"neovim/nvim-lspconfig",
 	},
-	keys = { {"<leader>s", "<cmd>SymbolsOutline<CR>", "n", { noremap = true, silent = true } }},
+	keys = { {"<leader>s", "<cmd>SymbolsOutline<CR>", "n", { noremap = true, silent = true,desc="SymbolsOutline" } }},
 	config = function()
 		require("symbols-outline").setup({
 			highlight_hovered_item = true,

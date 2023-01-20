@@ -89,7 +89,7 @@ return {
 			},
 			mapping = cmp.mapping.preset.insert({
 				["<C-p>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
+					if cmp.visible() and has_words_before() then
 						cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
 					else
 						fallback()

@@ -1,2 +1,2 @@
 vim.o.expandtab = true
-vim.cmd("set cc=80")
+vim.wo.colorcolumn = "80"

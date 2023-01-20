@@ -3,9 +3,6 @@
 
 return {
 	"nvim-orgmode/orgmode",
-	dependencies = {
-		"dhruvasagar/vim-table-mode",
-	},
 	config = function()
 		-- Load custom treesitter grammar for org filetype
 		require("orgmode").setup_ts_grammar()
@@ -13,7 +10,7 @@ return {
 		require("orgmode").setup({
 			org_agenda_files = { "~/code/org/*" },
 			org_default_notes_file = "~/code/org/note.org",
-			org_todo_keywords = { "TODO", "WAITING", "|", "DONE", "DELEGATED" },
+			org_todo_keywords = { "TODO", "DONE" },
 			org_todo_keyword_faces = {
 				WAITING = ":foreground green :weight bold",
 				DELEGATED = ":background #FFFFFF :slant italic :underline on",

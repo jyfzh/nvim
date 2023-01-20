@@ -20,7 +20,7 @@ return {
 		}
 		db.custom_center = {
 			{
-				icon = "        ",
+				icon = "         ",
 				desc = "Recent Projects						  ",
 				action = require("telescope").extensions.project.project,
 			},

@@ -31,6 +31,7 @@ return {
 			colors = {}, -- Ove"rride default colors
 			highlights = {
 				["@comment"] = { fg = "gray" },
+                Comment = { fg = "gray" },
 				TreesitterContextLineNumber = { fg = "gray" },
 				Normal = { bg = "NONE" },
 				NormalFloat = { bg = "NONE" },
@@ -42,6 +43,7 @@ return {
 				PmenuSel = { fg = "NONE", bg = "#5f668a" },
 				Pmenu = { fg = "#C5CDD9", bg = "NONE" },
 				DashboardFooter = { fg = "#e2b86b" },
+                NotifyBackground = { bg = "#5f668a" },
 			}, -- Override highlight groups
 			diagnostics = {
 				darker = false, -- darker colors for diagnostic

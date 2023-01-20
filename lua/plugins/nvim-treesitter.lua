@@ -32,7 +32,7 @@ return {
 
 		require("nvim-treesitter.configs").setup({
 			-- HACK:
-			parser_install_dir = "~/AppData/Local/nvim-data/lazy/nvim-treesitter",
+			parser_install_dir = vim.fn.stdpath("data") .. "/lazy/nvim-treesitter",
 			ensure_installed = {
 				"c",
 				"cpp",

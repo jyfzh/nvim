@@ -159,8 +159,9 @@ local settings = {
     },
 }
 
+
+require("basic.settings")
 require("basic.keybinds")
 require("basic.autocmd")
-require("basic.settings")
 
 require("lazy").setup("plugins", settings)
