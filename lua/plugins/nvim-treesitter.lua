@@ -42,6 +42,7 @@ return {
 				"html",
 				"javascript",
 				"org",
+                "vim",
 			},
 			sync_install = true,
 			highlight = {

@@ -45,7 +45,6 @@ end
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
-        "nvim-lua/lsp-status.nvim",
         "williamboman/mason.nvim",
         "jay-babu/mason-null-ls.nvim",
         "williamboman/mason-lspconfig.nvim",
@@ -71,29 +70,8 @@ return {
             override = function(root_dir, options) end,
         })
 
-        -- Register the progress handler
-        local lsp_status = require("lsp-status")
-        lsp_status.register_progress()
-        lsp_status.config({
-            indicator_errors = "",
-            indicator_warnings = "",
-            indicator_info = "",
-            indicator_hint = "",
-            indicator_ok = "",
-            indicator_messages = "",
-            indicator_warnings_count = "",
-            indicator_errors_count = "",
-            indicator_messages_count = "",
-            indicator_hint_count = "",
-            indicator_info_count = "",
-            indicator_ok_count = "",
-            current_function = true,
-            show_filename = false,
-        })
-
         local lsp_signature = require("lsp_signature")
         local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = vim.tbl_extend("keep", capabilities or {}, lsp_status.capabilities)
 
         capabilities.textDocument.completion.completionItem.snippetSupport = true
         capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
@@ -132,33 +110,57 @@ return {
 
         local on_attach = function(client, bufnr)
             vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
-            lsp_status.on_attach(client)
             lsp_signature.on_attach(client, bufnr)
             -- Mappings.
             -- See `:help vim.lsp.*` for documentation on any of the below functions
 
+            if client.name == "clangd" then
+                vim.keymap.set(
+                    "n",
+                    "<A-o>",
+                    "<cmd>ClangdSwitchSourceHeader<CR>",
+                    { noremap = true, silent = true, buffer = true, desc = "switch source header" }
+                )
+            end
+
             vim.keymap.set(
                 "n",
                 "gd",
-                vim.lsp.buf.definition,
-                { noremap = true, silent = true, buffer = bufnr, desc = "definition" }
+                "<cmd>Telescope lsp_definitions<CR>",
+                { noremap = true, silent = true, buffer = true, desc = "goto definition" }
             )
             vim.keymap.set(
                 "n",
                 "gD",
-                vim.lsp.buf.declaration,
-                { noremap = true, silent = true, buffer = bufnr, desc = "declaration" }
+                "<cmd>Telescope lsp_implementations<CR>",
+                { noremap = true, silent = true, buffer = true, desc = "goto implementation" }
             )
             vim.keymap.set(
                 "n",
-                "<leader>gtf",
+                "go",
+                "<cmd>Telescope diagnostics<CR>",
+                { noremap = true, silent = true, buffer = true, desc = "diagnostics" }
+            )
+            vim.keymap.set("n", "gp", function()
+                local params = vim.lsp.util.make_position_params()
+                return vim.lsp.buf_request(0, "textDocument/definition", params, function(_, result)
+                    if result == nil or vim.tbl_isempty(result) then
+                        return nil
+                    end
+                    vim.lsp.util.preview_location(result[1])
+                end)
+            end, { noremap = true, silent = true, buffer = bufnr, desc = "preview definition" })
+
+            vim.keymap.set(
+                "n",
+                "gtd",
                 vim.lsp.buf.type_definition,
                 { noremap = true, silent = true, buffer = bufnr, desc = "type definition" }
             )
             vim.keymap.set(
                 "n",
                 "gr",
-                "<cmd>Telescope lsp_references theme=ivy<CR>",
+                "<cmd>Telescope lsp_references <CR>",
                 { noremap = true, silent = true, buffer = bufnr, desc = "lsp_references" }
             )
             vim.keymap.set(
@@ -253,22 +255,72 @@ return {
             },
         })
 
+        local function switch_source_header_splitcmd(bufnr, splitcmd)
+            bufnr = require("lspconfig").util.validate_bufnr(bufnr)
+            local clangd_client = require("lspconfig").util.get_active_client_by_name(bufnr, "clangd")
+            local params = { uri = vim.uri_from_bufnr(bufnr) }
+            if clangd_client then
+                clangd_client.request("textDocument/switchSourceHeader", params, function(err, result)
+                    if err then
+                        error(tostring(err))
+                    end
+                    if not result then
+                        print("Corresponding file can’t be determined")
+                        return
+                    end
+                    vim.api.nvim_command(splitcmd .. " " .. vim.uri_to_fname(result))
+                end, bufnr)
+            else
+                print(
+                    "textDocument/switchSourceHeader is not supported by the clangd server active on the current buffer"
+                )
+            end
+        end
+
         -- https://clangd.llvm.org/features.html
         capabilities.offsetEncoding = { "utf-16" } -- https://github.com/neovim/neovim/pull/16694
-
         require("lspconfig").clangd.setup({
-            handlers = lsp_status.extensions.clangd.setup(),
             on_attach = on_attach,
             capabilities = capabilities,
             cmd = {
                 "clangd",
+                -- SEE: clangd --help-hidden for possible options
+                -- by default, clang-tidy use -checks=clang-diagnostic-*,clang-analyzer-*
+                -- to add more `checks`, create  a `.clang-tidy` file in the root directory
+                -- SEE: https://clang.llvm.org/extra/clang-tidy
                 "--clang-tidy",
+                "--completion-style=bundled",
+                "--cross-file-rename",
                 "--fallback-style=LLVM",
                 "--function-arg-placeholders=false",
+                "--header-insertion=iwyu",
             },
             single_file_support = true,
             init_options = {
                 clangdFileStatus = true,
+                usePlaceholders = false,
+                completeUnimported = true,
+                semanticHighlighting = true,
+            },
+            commands = {
+                ClangdSwitchSourceHeader = {
+                    function()
+                        switch_source_header_splitcmd(0, "edit")
+                    end,
+                    description = "Open source/header in current buffer",
+                },
+                ClangdSwitchSourceHeaderVSplit = {
+                    function()
+                        switch_source_header_splitcmd(0, "vsplit")
+                    end,
+                    description = "Open source/header in a new vsplit",
+                },
+                ClangdSwitchSourceHeaderSplit = {
+                    function()
+                        switch_source_header_splitcmd(0, "split")
+                    end,
+                    description = "Open source/header in a new split",
+                },
             },
         })
 

@@ -80,7 +80,7 @@ return {
 			h = { name = "git" },
 			o = { name = "org mode" },
 			r = { name = "rename" },
-			t = { name = "trouble" },
+			t = { name = "neotree" },
 			w = { name = "workspace" },
 		}, { prefix = "<leader>" })
 	end,

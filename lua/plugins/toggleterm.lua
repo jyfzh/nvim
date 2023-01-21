@@ -29,7 +29,7 @@ return {
 					guibg = "None",
 				},
 				NormalFloat = {
-					link = "Normal",
+					link = "None",
 				},
 				FloatBorder = {
 					guifg = "None",

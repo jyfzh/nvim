@@ -38,6 +38,7 @@ return {
         { "<leader>fo", "<cmd>Telescope oldfiles<CR>", "n", { noremap = true, silent = true } },
         { "<leader>fm", "<cmd>Telescope marks<CR>", "n", { noremap = true, silent = true } },
         { "<leader>fb", "<cmd>Telescope buffers<CR>", "n", { noremap = true, silent = true } },
+        { "<leader>FB", "<cmd>Telescope file_browser<CR>", "n", { noremap = true, silent = true } },
         {
             "<leader>fp",
             "<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>",
@@ -63,7 +64,8 @@ return {
                 border = false,
                 winblend = 0,
                 dynamic_preview_title = true,
-                path_display = { "smart" },
+                path_display = { "truncate" },
+                theme = "ivy",
                 layout_strategy = "bottom_pane",
                 layout_config = {
                     bottom_pane = {
@@ -142,8 +144,31 @@ return {
                         preview_cutoff = 80,
                     },
                 },
+                lsp_definitions = {
+                    layout_strategy = "horizontal",
+                    prompt_title = "   Find Definition",
+                    layout_config = {
+                        height = 0.95,
+                        width = 0.95,
+                        preview_cutoff = 80,
+                    },
+                    include_declaration = false,
+                    include_current_line = false,
+                    show_line = false,
+                },
+                lsp_references = {
+                    layout_strategy = "horizontal",
+                    prompt_title = "   LSP References",
+                    layout_config = {
+                        height = 0.95,
+                        width = 0.95,
+                        preview_cutoff = 80,
+                    },
+                    include_declaration = false,
+                    include_current_line = false,
+                    show_line = false,
+                },
                 file_browser = {
-                    theme = "ivy",
                     -- disables netrw and use telescope-file-browser in its place
                     hijack_netrw = true,
                     mappings = {
@@ -157,41 +182,33 @@ return {
                 },
                 keymaps = {
                     prompt_title = "   Keymaps",
-                    theme = "dropdown",
                 },
                 current_buffer_fuzzy_find = {
                     prompt_title = " ﬘  Current Buffer",
-                    theme = "ivy",
                 },
                 live_grep = {
                     prompt_title = "   Live Grep",
-                    theme = "ivy",
-                    previewer = false,
+                    -- previewer = false,
                 },
                 help_tags = {
                     prompt_title = "  Help Tags",
-                    theme = "ivy",
                     layout_config = {
                         preview_cutoff = 0,
                     },
                 },
                 oldfiles = {
                     prompt_title = "   Old Files",
-                    theme = "ivy",
                 },
                 marks = {
                     prompt_title = "  Marks",
-                    theme = "ivy",
                 },
                 buffers = {
                     prompt_title = " ﬘ Buffers",
-                    theme = "ivy",
                     layout_config = {
                         preview_cutoff = 0,
                     },
                 },
                 diagnostics = {
-                    theme = "ivy",
                     previewer = false,
                     layout_config = {
                         height = 0.3,
