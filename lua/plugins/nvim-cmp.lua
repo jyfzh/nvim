@@ -3,8 +3,7 @@
 -- https://github.com/hrsh7th/cmp-path
 -- https://github.com/hrsh7th/cmp-buffer
 -- https://github.com/hrsh7th/cmp-cmdline
--- https://github.com/L3MON4D3/LuaSnip
--- https://github.com/saadparwaiz1/cmp_luasnip
+-- https://github.com/hrsh7th/nvim-cmp
 
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -13,28 +12,42 @@ end
 
 return {
 	"hrsh7th/nvim-cmp",
+	event = "InsertEnter",
 	dependencies = {
 		"onsails/lspkind-nvim",
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-cmdline",
-		"L3MON4D3/LuaSnip",
+		{ "L3MON4D3/LuaSnip", build = "git submodule update" },
 		"saadparwaiz1/cmp_luasnip",
 		"rafamadriz/friendly-snippets",
 	},
-	evnet = "InsertEnter",
 	config = function()
-		local luasnip = require("luasnip")
-		local cmp = require("cmp")
-
-		luasnip.setup({
+		require("luasnip").setup({
 			region_check_events = "CursorHold,InsertLeave",
 			-- those are for removing deleted snippets, also a common problem
 			delete_check_events = "TextChanged,InsertEnter",
 		})
-		require("luasnip.loaders.from_vscode").lazy_load()
 
+		local luasnip = require("luasnip")
+		require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
+		-- require("luasnip.loaders.from_vscode").lazy_load()
+		local i = luasnip.insert_node
+		local s = luasnip.snippet
+		local t = luasnip.text_node
+		require("luasnip").add_snippets("all", {
+			s("ternary", {
+				-- equivalent to "${1:cond} ? ${2:then} : ${3:else}"
+				i(1, "cond"),
+				t(" ? "),
+				i(2, "then"),
+				t(" : "),
+				i(3, "else"),
+			}),
+		})
+
+		local cmp = require("cmp")
 		cmp.setup({
 			enabled = function()
 				-- https://github.com/hrsh7th/nvim-cmp/issues/519#issuecomment-1091109258
@@ -89,8 +102,12 @@ return {
 			},
 			mapping = cmp.mapping.preset.insert({
 				["<C-p>"] = cmp.mapping(function(fallback)
-					if cmp.visible() and has_words_before() then
+					if cmp.visible() then
 						cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+					elseif luasnip.expand_or_jumpable() then
+						luasnip.expand_or_jump()
+					elseif has_words_before() then
+						cmp.complete()
 					else
 						fallback()
 					end
@@ -103,10 +120,10 @@ return {
 					end
 				end),
 				["<C-j>"] = cmp.mapping(function(fallback)
-					if luasnip.expand_or_jumpable() then
-						luasnip.expand_or_jump()
+					if require("luasnip").expand_or_jumpable() then
+						require("luasnip").expand_or_jump()
 					else
-						fallback()
+						fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
 					end
 				end, { "i", "s" }),
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -119,8 +136,8 @@ return {
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 				{ name = "orgmode" },
-			}, {
 				{ name = "buffer" },
+			}, {
 				{ name = "path" },
 			}),
 			formatting = {

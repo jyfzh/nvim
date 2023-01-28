@@ -2,18 +2,6 @@
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- ui https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
 -- https://github.com/folke/lua-dev.nvim
--- https://github.com/nvim-lua/lsp-status.nvim
-
-local border = {
-    { "┌", "FloatBorder" },
-    { "─", "FloatBorder" },
-    { "┐", "FloatBorder" },
-    { "│", "FloatBorder" },
-    { "┘", "FloatBorder" },
-    { "─", "FloatBorder" },
-    { "└", "FloatBorder" },
-    { "│", "FloatBorder" },
-}
 
 vim.diagnostic.config({
     virtual_text = { prefix = "", source = "always" }, -- prefix：'●', '▎', 'x'
@@ -30,20 +18,12 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
--- LSP settings (for overriding per client)
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
 
--- To instead override globally
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-    opts = opts or {}
-    opts.border = opts.border or border
-    return orig_util_open_floating_preview(contents, syntax, opts, ...)
-end
-
 return {
     "neovim/nvim-lspconfig",
+    event = "BufReadPre",
     dependencies = {
         "williamboman/mason.nvim",
         "jay-babu/mason-null-ls.nvim",
@@ -51,7 +31,6 @@ return {
         "folke/neodev.nvim",
         "mfussenegger/nvim-jdtls",
     },
-    event = "BufReadPre",
     config = function()
         -- lua-dev
         -- IMPORTANT: make sure to setup lua-dev BEFORE lspconfig
@@ -295,6 +274,7 @@ return {
                 "--function-arg-placeholders=false",
                 "--header-insertion=iwyu",
             },
+            filetype = { "c", "cpp", "objc", "objcpp", "cuda", "proto","mpp" },
             single_file_support = true,
             init_options = {
                 clangdFileStatus = true,

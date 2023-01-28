@@ -31,21 +31,21 @@ return {
 			colors = {}, -- Ove"rride default colors
 			highlights = {
 				["@comment"] = { fg = "gray" },
-                Comment = { fg = "gray" },
+				Comment = { fg = "gray" },
 				TreesitterContextLineNumber = { fg = "gray" },
 				Normal = { bg = "NONE" },
 				NormalFloat = { bg = "NONE" },
-                FloatBorder = { bg = "NONE" },
+				FloatBorder = { bg = "NONE" },
 				TelescopePromptBorder = { fg = "#a7b8d6" },
 				TelescopePreviewBorder = { fg = "#a7b8d6" },
 				TelescopeResultsBorder = { fg = "#a7b8d6" },
 				TelescopeSelection = { bg = "#5f668a" },
-                TelescopePreviewLine = { fg = "white" },
+				TelescopePreviewLine = { fg = "white" },
 				NeoTreeGitUntracked = { fg = "#4a69bd" },
 				PmenuSel = { fg = "NONE", bg = "#5f668a" },
 				Pmenu = { fg = "#C5CDD9", bg = "NONE" },
 				DashboardFooter = { fg = "#e2b86b" },
-                NotifyBackground = { bg = "#5f668a" },
+				NotifyBackground = { bg = "#5f668a" },
 			}, -- Override highlight groups
 			diagnostics = {
 				darker = false, -- darker colors for diagnostic

@@ -1,7 +1,7 @@
 -- https://github.com/akinsho/toggleterm.nvim
 return {
 	"akinsho/toggleterm.nvim",
-	evens = "BufRead",
+    keys = { "<c-\\>" },
 	config = function()
 		require("toggleterm").setup({
 			-- size can be a number or function which is passed the current terminal

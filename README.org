@@ -2,7 +2,6 @@
 
 *** basic
 - build-essential 
-- cmake 
 - fzf 
 - unzip
 - nodejs,npm
@@ -10,6 +9,7 @@
 
 
 *** telescope
+- make 
 - fd
 - repgrep  
 - sqlite3 
@@ -21,3 +21,6 @@
 	 #+BEGIN_SRC sh
 	 touch vim.fn.stdpath "data" .. '/telescope_history.sqlite3
 	 #+END_SRC
+     2. 代理 https://ghproxy.com/不能 =git submodule=
+        =luasnip= 的 =build= 里会自动 =git submodule pull= 如果有问题,需要手动 =git submodule update=
+

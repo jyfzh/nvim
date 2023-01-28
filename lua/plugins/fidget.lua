@@ -2,6 +2,10 @@
 
 return {
 	"j-hui/fidget.nvim",
+    event = "BufRead",
+    dependencies = {
+        "neovim/nvim-lspconfig"
+    },
 	config = function()
 		require("fidget").setup({
 			text = {

@@ -8,6 +8,7 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
+	event = "VimEnter",
 	dependencies = {
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		"p00f/nvim-ts-rainbow",
@@ -16,7 +17,6 @@ return {
 		"nvim-treesitter/nvim-treesitter-context",
 		"nvim-treesitter/playground",
 	},
-	event = "BufRead",
 	config = function()
 		-- proxy
 		-- for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) do

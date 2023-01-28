@@ -1,12 +1,17 @@
 -- https://github.com/akinsho/org-bullets.nvim
 return {
     "akinsho/org-bullets.nvim",
+    ft = "org",
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+        "nvim-orgmode/orgmode",
+    },
     config = function()
         require("org-bullets").setup({
-            concealcursor = false, -- If false then when the cursor is on a line underlying characters are visible
+            -- If false then when the cursor is on a line underlying characters are visible
+            concealcursor = true,
             symbols = {
-                headlines = { "", "", "◉", "⊗", "⨴", "○" },
-
+                headlines = { "◉", "○", "✸", "✿", "✤" },
                 checkboxes = {
                     half = { "", "OrgTSCheckboxHalfChecked" },
                     done = { "✓", "OrgDone" },
