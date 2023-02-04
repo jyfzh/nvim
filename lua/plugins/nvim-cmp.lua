@@ -14,7 +14,7 @@ return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
 	dependencies = {
-		"onsails/lspkind-nvim",
+		"onsails/lspkind.nvim",
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
@@ -26,26 +26,12 @@ return {
 	config = function()
 		require("luasnip").setup({
 			region_check_events = "CursorHold,InsertLeave",
-			-- those are for removing deleted snippets, also a common problem
 			delete_check_events = "TextChanged,InsertEnter",
 		})
 
 		local luasnip = require("luasnip")
+		require("luasnip.loaders.from_vscode").lazy_load()
 		require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
-		-- require("luasnip.loaders.from_vscode").lazy_load()
-		local i = luasnip.insert_node
-		local s = luasnip.snippet
-		local t = luasnip.text_node
-		require("luasnip").add_snippets("all", {
-			s("ternary", {
-				-- equivalent to "${1:cond} ? ${2:then} : ${3:else}"
-				i(1, "cond"),
-				t(" ? "),
-				i(2, "then"),
-				t(" : "),
-				i(3, "else"),
-			}),
-		})
 
 		local cmp = require("cmp")
 		cmp.setup({
@@ -93,7 +79,7 @@ return {
 				completeopt = "menu,menuone,noselect",
 			},
 			experimental = {
-				ghost_text = false, -- this feature conflict with copilot.vim's preview.
+				ghost_text = true, -- this feature conflict with copilot.vim's preview.
 			},
 			snippet = {
 				expand = function(args)
@@ -128,11 +114,12 @@ return {
 				end, { "i", "s" }),
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
-				["<C-Space>"] = cmp.mapping.complete(),
 				["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 				["<C-e>"] = cmp.mapping.abort(),
+				["<C-q>"] = cmp.mapping.complete(),
 			}),
 			sources = cmp.config.sources({
+				{ name = "copilot" },
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 				{ name = "orgmode" },
@@ -147,6 +134,9 @@ return {
 					maxwidth = 50,
 					before = function(entry, vim_item)
 						vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
+						if string.upper(entry.source.name) == "COPILOT" then
+							vim_item.kind = " Copilot"
+						end
 						return vim_item
 					end,
 				}),
@@ -154,6 +144,8 @@ return {
 			sorting = {
 				priority_weight = 2,
 				comparators = {
+					require("copilot_cmp.comparators").prioritize,
+					require("copilot_cmp.comparators").score,
 					cmp.config.compare.offset,
 					cmp.config.compare.exact,
 					cmp.config.compare.scopes,

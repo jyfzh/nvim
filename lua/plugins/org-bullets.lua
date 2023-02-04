@@ -1,7 +1,6 @@
 -- https://github.com/akinsho/org-bullets.nvim
 return {
     "akinsho/org-bullets.nvim",
-    ft = "org",
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
         "nvim-orgmode/orgmode",

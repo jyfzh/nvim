@@ -3,6 +3,24 @@
 -- ui https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
 -- https://github.com/folke/lua-dev.nvim
 
+-- To instead override float border setting globally
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+    local border = {
+        { "┌", "FloatBorder" },
+        { "─", "FloatBorder" },
+        { "┐", "FloatBorder" },
+        { "│", "FloatBorder" },
+        { "┘", "FloatBorder" },
+        { "─", "FloatBorder" },
+        { "└", "FloatBorder" },
+        { "│", "FloatBorder" },
+    }
+    opts = opts or {}
+    opts.border = opts.border or border
+    return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+
 vim.diagnostic.config({
     virtual_text = { prefix = "", source = "always" }, -- prefix：'●', '▎', 'x'
     float = { source = "always" },
@@ -30,6 +48,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         "folke/neodev.nvim",
         "mfussenegger/nvim-jdtls",
+        "nvim-telescope/telescope.nvim",
     },
     config = function()
         -- lua-dev
@@ -274,7 +293,7 @@ return {
                 "--function-arg-placeholders=false",
                 "--header-insertion=iwyu",
             },
-            filetype = { "c", "cpp", "objc", "objcpp", "cuda", "proto","mpp" },
+            filetype = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
             single_file_support = true,
             init_options = {
                 clangdFileStatus = true,
