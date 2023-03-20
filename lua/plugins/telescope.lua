@@ -54,8 +54,26 @@ return {
 			"n",
 			{ noremap = true, silent = true, desc = "Telescope asynctasks" },
 		},
+		{
+			"<leader><leader>",
+            "<cmd>Telescope toggletasks spawn theme=dropdown<CR>",
+			{ desc = "toggletasks: spawn" },
+		},
+		{
+			"<leader>ts",
+            "<cmd>Telescope toggletasks select theme=dropdown<CR>",
+			{ desc = "toggletasks: select" },
+		},
+		{
+			"<leader>te",
+            "<cmd>Telescope toggletasks edit theme=dropdown<CR>",
+			{ desc = "toggletasks: edit" },
+		},
 	},
 	config = function()
+		if vim.fn.has("wsl") == 0 and vim.fn.has("win32") == 1 then
+			vim.g.sqlite_clib_path = "C:/Windows/System32/sqlite3.dll"
+		end
 		require("telescope").setup({
 			defaults = {
 				border = false,
@@ -197,7 +215,7 @@ return {
 					prompt_title = " ﬘ Buffers",
 					layout_config = {
 						preview_cutoff = 0,
-					}
+					},
 				},
 				diagnostics = {
 					previewer = false,
@@ -230,6 +248,6 @@ return {
 		require("telescope").load_extension("fzf")
 		require("telescope").load_extension("smart_history")
 		require("telescope").load_extension("ui-select")
-		require("telescope").load_extension("asynctasks")
+		require("telescope").load_extension("toggletasks")
 	end,
 }

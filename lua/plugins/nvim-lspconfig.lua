@@ -218,7 +218,7 @@ return {
         -- table.insert(runtime_path, "lua/?.lua")
         -- table.insert(runtime_path, "lua/?/init.lua")
 
-        require("lspconfig").sumneko_lua.setup({
+        require("lspconfig").lua_ls.setup({
             capabilities = capabilities,
             on_attach = on_attach,
             cmd = { "lua-language-server", "--locale=zh-cn" },
@@ -286,12 +286,12 @@ return {
                 -- by default, clang-tidy use -checks=clang-diagnostic-*,clang-analyzer-*
                 -- to add more `checks`, create  a `.clang-tidy` file in the root directory
                 -- SEE: https://clang.llvm.org/extra/clang-tidy
-                "--clang-tidy",
+                "--clang-tidy=true",
                 "--completion-style=bundled",
                 "--cross-file-rename",
                 "--fallback-style=LLVM",
                 "--function-arg-placeholders=false",
-                "--header-insertion=iwyu",
+                "--header-insertion=never",
             },
             filetype = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
             single_file_support = true,

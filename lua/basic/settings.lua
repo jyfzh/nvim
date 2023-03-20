@@ -1,13 +1,8 @@
 if vim.g.neovide then
-  -- neovide specific settings
-  vim.g.neovide_cursor_vfx_mode = "sonicboom"
-  vim.g.neovide_transparency = 0.75
-  vim.opt.guifont = [[JetBrainsMono NF:h14]]
-end
-
-if vim.fn.has("wsl") == 0 and vim.fn.has("win32") == 1 then
-    vim.g.sqlite_clib_path = "C:/Windows/System32/sqlite3.dll"
-    vim.opt.runtimepath:append("~/scoop/apps/miktex/current/texmfs/install/miktex/bin/x64")
+	-- neovide specific settings
+	vim.g.neovide_cursor_vfx_mode = "sonicboom"
+	vim.g.neovide_transparency = 0.75
+	vim.opt.guifont = [[JetBrainsMono NF:h14]]
 end
 
 vim.o.encoding = "utf-8"
@@ -16,9 +11,11 @@ vim.o.fileencodings = "utf-8,gb18030,gbk,gb2312,utf-16,cp936,usc-bom,euc-jp"
 vim.o.langmenu = "en_US.UTF-8"
 vim.o.lazyredraw = true
 vim.o.spellcheck = true
-vim.o.statusline = " "
-vim.g.netrw_sort_by = 'time'
-vim.g.netrw_sort_direction = 'reverse'
+vim.o.laststatus = 3
+vim.o.statusline =
+	"%t  %{get(b:,'gitsigns_head','')} %{get(b:,'gitsigns_status','')} %M %R %= %{strftime('%T')} %{&encoding} %{&fileformat} %p%%"
+vim.g.netrw_sort_by = "time"
+vim.g.netrw_sort_direction = "reverse"
 vim.g.netrw_liststyle = 3
 vim.g.netrw_banner = 0
 vim.g.netrw_browse_split = 4
@@ -43,7 +40,6 @@ vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.showcmd = false
 vim.o.cmdheight = 0
-vim.go.laststatus = 0
 vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.pumheight = 15

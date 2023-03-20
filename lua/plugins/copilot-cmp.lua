@@ -1,7 +1,7 @@
 -- https://github.com/zbirenbaum/copilot-cmp
 return {
 	"zbirenbaum/copilot-cmp",
-	dependencies = { "copilot.lua" },
+	dependencies = { "copilot.lua", "nvim-cmp" },
 	config = function()
 		require("copilot_cmp").setup({
 			method = "getCompletionsCycling",
