@@ -1,10 +1,3 @@
--- https://github.com/hrsh7th/nvim-cmp
--- https://github.com/hrsh7th/cmp-nvim-lsp
--- https://github.com/hrsh7th/cmp-path
--- https://github.com/hrsh7th/cmp-buffer
--- https://github.com/hrsh7th/cmp-cmdline
--- https://github.com/hrsh7th/nvim-cmp
-
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -19,21 +12,22 @@ return {
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-cmdline",
-		"L3MON4D3/LuaSnip",
-		-- { "L3MON4D3/LuaSnip", build = "git submodule update" },
 		"saadparwaiz1/cmp_luasnip",
 		"rafamadriz/friendly-snippets",
+		{
+			"L3MON4D3/LuaSnip",
+			config = function()
+				require("luasnip").setup({
+					region_check_events = "CursorHold,InsertLeave",
+					delete_check_events = "TextChanged,InsertEnter",
+				})
+
+				require("luasnip.loaders.from_vscode").lazy_load()
+				require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
+			end,
+		},
 	},
 	config = function()
-		require("luasnip").setup({
-			region_check_events = "CursorHold,InsertLeave",
-			delete_check_events = "TextChanged,InsertEnter",
-		})
-
-		local luasnip = require("luasnip")
-		require("luasnip.loaders.from_vscode").lazy_load()
-		require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
-
 		local cmp = require("cmp")
 		cmp.setup({
 			enabled = function()
@@ -76,7 +70,7 @@ return {
 				},
 			},
 			completion = {
-				-- https://zhuanlan.zhihu.com/p/106070272?utm_id=0
+				-- https://zhuanlan.zhihu.com/p/106070272
 				completeopt = "menu,menuone,noselect",
 			},
 			experimental = {
@@ -91,26 +85,21 @@ return {
 				["<C-p>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-					elseif luasnip.expand_or_jumpable() then
-						luasnip.expand_or_jump()
+					elseif require("luasnip").jumpable() then
+						require("luasnip").jump(-1)
 					elseif has_words_before() then
 						cmp.complete()
 					else
 						fallback()
 					end
-				end),
+				end, { "i", "s" }),
 				["<C-n>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+					elseif require("luasnip").jumpable() then
+						require("luasnip").jump(1)
 					else
 						fallback()
-					end
-				end),
-				["<C-j>"] = cmp.mapping(function(fallback)
-					if require("luasnip").expand_or_jumpable() then
-						require("luasnip").expand_or_jump()
-					else
-						fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
 					end
 				end, { "i", "s" }),
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -123,10 +112,9 @@ return {
 				{ name = "copilot" },
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
-				{ name = "orgmode" },
-				{ name = "buffer" },
 			}, {
 				{ name = "path" },
+				{ name = "buffer" },
 			}),
 			formatting = {
 				format = require("lspkind").cmp_format({
@@ -168,7 +156,7 @@ return {
 			},
 		})
 		-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-		-- [wsl neovim cmp-cmdline 不能 :! command](https://github.com/hrsh7th/cmp-cmdline/issues/24#issuecomment-1094896592)
+		-- [`wsl``:! command` make neovim no response](https://github.com/hrsh7th/cmp-cmdline/issues/24#issuecomment-1094896592)
 		cmp.setup.cmdline(":", {
 			mapping = cmp.mapping.preset.cmdline(),
 			sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),

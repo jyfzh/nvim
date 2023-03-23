@@ -14,7 +14,7 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 
-vim.opt.rtp:prepend(lazypath)
+vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("basic.settings")
 require("basic.keybinds")
@@ -48,7 +48,7 @@ require("lazy").setup("plugins", {
 		-- install missing plugins on startup. This doesn't increase startup time.
 		missing = true,
 		-- try to load one of these colorschemes when starting an installation during startup
-		colorscheme = { "habamax" },
+		colorscheme = { "onedark" },
 	},
 	ui = {
 		-- a number <1 is a percentage., >1 is a fixed size
@@ -80,7 +80,7 @@ require("lazy").setup("plugins", {
 		},
 		-- leave nil, to automatically select a browser depending on your OS.
 		-- If you want to use a specific browser, you can define it here
-		browser = nil, ---@type string?
+		browser = nil,
 		throttle = 20, -- how frequently should the ui process render events
 		-- you can define custom key maps here.
 		-- To disable one of the defaults, set it to false

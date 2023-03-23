@@ -1,12 +1,10 @@
--- https://github.com/lukas-reineke/indent-blankline.nvim
-
 return {
 	"lukas-reineke/indent-blankline.nvim",
-	event = "BufRead",
+    -- do not lazy load due to https://github.com/lukas-reineke/indent-blankline.nvim/issues/542
 	config = function()
 		require("indent_blankline").setup({
-			-- for example, context is off by default, use this to turn it on
-			char = "¦", -- ['|', '¦', '┆', '┊']
+			char = "",
+            context_char = "¦", -- ['|', '¦', '┆', '┊']
 			use_treesitter = true,
 			space_char_blankline = " ",
 			show_current_context = true,
@@ -23,10 +21,10 @@ return {
 				"packer",
 				"log",
 				"markdown",
-				"org",
 				"lspinfo",
 				"plugin",
 				"text",
+                "lazy"
 			},
 		})
 	end,

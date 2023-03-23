@@ -1,30 +1,15 @@
 -- https://github.com/nvim-telescope/telescope.nvim
 -- https://github.com/nvim-telescope/telescope-project.nvim
--- https://github.com/GustavoKatel/telescope-asynctasks.nvim
 
 return {
 	"nvim-telescope/telescope.nvim",
 	dependencies = {
 		{ "nvim-lua/plenary.nvim" },
 		{ "nvim-telescope/telescope-smart-history.nvim", dependencies = "kkharji/sqlite.lua" },
-		{ "nvim-telescope/telescope-file-browser.nvim" },
-		{ "nvim-telescope/telescope-ui-select.nvim" },
 		{ "nvim-telescope/telescope-project.nvim" },
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		{ "nvim-telescope/telescope-symbols.nvim" },
-		{ "GustavoKatel/telescope-asynctasks.nvim" },
 	},
-	init = function()
-		-- https://github.com/nvim-telescope/telescope.nvim/issues/559#issuecomment-1074076011
-		vim.api.nvim_create_autocmd("BufRead", {
-			callback = function()
-				vim.api.nvim_create_autocmd("BufWinEnter", {
-					once = true,
-					command = "normal! zx",
-				})
-			end,
-		})
-	end,
 	keys = {
 		{ "<leader>f<leader>", "<cmd>Telescope <CR>", "n", { noremap = true, silent = true } },
 		{ "<leader>fk", "<cmd>Telescope keymaps <CR>", "n", { noremap = true, silent = true } },
@@ -35,7 +20,6 @@ return {
 		{ "<leader>fo", "<cmd>Telescope oldfiles<CR>", "n", { noremap = true, silent = true } },
 		{ "<leader>fm", "<cmd>Telescope marks<CR>", "n", { noremap = true, silent = true } },
 		{ "<leader>fb", "<cmd>Telescope buffers<CR>", "n", { noremap = true, silent = true } },
-		{ "<leader>FB", "<cmd>Telescope file_browser<CR>", "n", { noremap = true, silent = true } },
 		{
 			"<leader>fp",
 			"<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>",
@@ -49,24 +33,18 @@ return {
 			{ noremap = true, silent = true, desc = "Telescope symbols" },
 		},
 		{
-			"<leader>fa",
-			"<Cmd>Telescope asynctasks all theme=dropdown <CR>",
-			"n",
-			{ noremap = true, silent = true, desc = "Telescope asynctasks" },
-		},
-		{
 			"<leader><leader>",
-            "<cmd>Telescope toggletasks spawn theme=dropdown<CR>",
+			"<cmd>Telescope toggletasks spawn<CR>",
 			{ desc = "toggletasks: spawn" },
 		},
 		{
 			"<leader>ts",
-            "<cmd>Telescope toggletasks select theme=dropdown<CR>",
+			"<cmd>Telescope toggletasks select<CR>",
 			{ desc = "toggletasks: select" },
 		},
 		{
 			"<leader>te",
-            "<cmd>Telescope toggletasks edit theme=dropdown<CR>",
+			"<cmd>Telescope toggletasks edit<CR>",
 			{ desc = "toggletasks: edit" },
 		},
 	},
@@ -83,21 +61,18 @@ return {
 				theme = "ivy",
 				layout_strategy = "bottom_pane",
 				layout_config = {
+					preview_cutoff = 1,
 					bottom_pane = {
 						height = 0.9,
-						preview_cutoff = 120,
 						prompt_position = "bottom",
 					},
 					center = {
-						height = 0.4,
-						preview_cutoff = 40,
-						prompt_position = "top",
 						width = 0.9,
+						height = 0.4,
 					},
 					cursor = {
-						height = 0.9,
-						preview_cutoff = 40,
 						width = 0.8,
+						height = 0.9,
 					},
 					vertical = {
 						width = 0.9,
@@ -128,7 +103,6 @@ return {
 				selection_caret = "  ",
 				entry_prefix = "  ",
 				sorting_strategy = "descending",
-				-- TODO: fitter
 				file_ignore_patterns = {
 					"^node_modules",
 					"^.git",
@@ -146,48 +120,28 @@ return {
 						["<C-d>"] = false,
 						["<C-q>"] = require("telescope.actions").smart_send_to_qflist
 							+ require("telescope.actions").open_qflist,
+						["<M-p>"] = require("telescope.actions.layout").toggle_preview,
+					},
+					n = {
+						["p"] = require("telescope.actions.layout").toggle_preview,
 					},
 				},
 			},
 			pickers = {
 				find_files = {
-					layout_strategy = "horizontal",
 					prompt_title = "   Find File",
-					layout_config = {
-						preview_cutoff = 80,
-					},
 				},
 				lsp_definitions = {
-					layout_strategy = "horizontal",
 					prompt_title = "   Find Definition",
-					layout_config = {
-						preview_cutoff = 80,
-					},
 					include_declaration = false,
 					include_current_line = false,
 					show_line = false,
 				},
 				lsp_references = {
-					layout_strategy = "horizontal",
-					prompt_title = "   LSP References",
-					layout_config = {
-						preview_cutoff = 80,
-					},
+                    prompt_title = "   LSP References",
 					include_declaration = false,
 					include_current_line = false,
 					show_line = false,
-				},
-				file_browser = {
-					-- disables netrw and use telescope-file-browser in its place
-					hijack_netrw = true,
-					mappings = {
-						["i"] = {
-							-- your custom insert mode mappings
-						},
-						["n"] = {
-							-- your custom normal mode mappings
-						},
-					},
 				},
 				keymaps = {
 					prompt_title = "   Keymaps",
@@ -197,13 +151,9 @@ return {
 				},
 				live_grep = {
 					prompt_title = "   Live Grep",
-					-- previewer = false,
 				},
 				help_tags = {
 					prompt_title = "  Help Tags",
-					layout_config = {
-						preview_cutoff = 0,
-					},
 				},
 				oldfiles = {
 					prompt_title = "   Old Files",
@@ -213,16 +163,10 @@ return {
 				},
 				buffers = {
 					prompt_title = " ﬘ Buffers",
-					layout_config = {
-						preview_cutoff = 0,
-					},
 				},
 				diagnostics = {
-					previewer = false,
-					layout_config = {
-						height = 0.3,
-					},
-				},
+                    prompt_title = "  diagnostics",
+                },
 			},
 			extensions = {
 				project = {
@@ -243,11 +187,9 @@ return {
 				},
 			},
 		})
-		require("telescope").load_extension("file_browser")
 		require("telescope").load_extension("project")
 		require("telescope").load_extension("fzf")
 		require("telescope").load_extension("smart_history")
-		require("telescope").load_extension("ui-select")
 		require("telescope").load_extension("toggletasks")
 	end,
 }
