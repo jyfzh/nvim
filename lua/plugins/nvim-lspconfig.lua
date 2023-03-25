@@ -42,7 +42,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 
 return {
 	"neovim/nvim-lspconfig",
-	event = "BufReadPre",
+	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"williamboman/mason.nvim",
 		"jay-babu/mason-null-ls.nvim",
@@ -50,6 +50,8 @@ return {
 		"folke/neodev.nvim",
 		"mfussenegger/nvim-jdtls",
 		"nvim-telescope/telescope.nvim",
+		"stevearc/dressing.nvim",
+		"j-hui/fidget.nvim",
 	},
 	config = function()
 		local lsp_signature = require("lsp_signature")
@@ -198,7 +200,7 @@ return {
 			end, { noremap = true, silent = true, buffer = bufnr, desc = "list workspace fold" })
 		end
 
-        require("neodev").setup()
+		require("neodev").setup()
 
 		require("lspconfig").lua_ls.setup({
 			capabilities = capabilities,

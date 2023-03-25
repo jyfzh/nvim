@@ -1,7 +1,24 @@
 -- https://github.com/akinsho/toggleterm.nvim
 return {
 	"akinsho/toggleterm.nvim",
-    keys = { "<c-\\>" },
+	event = "VeryLazy",
+	keys = {
+		{ "<c-\\>" },
+		{
+			"<leader>gg",
+			function()
+				require("toggleterm.terminal").Terminal
+					:new({
+						cmd = "lazygit",
+						hidden = true,
+						dir = "git_dir",
+						direction = "float",
+					})
+					:toggle()
+			end,
+			{ noremap = true, silent = true },
+		},
+	},
 	config = function()
 		require("toggleterm").setup({
 			-- size can be a number or function which is passed the current terminal
@@ -55,8 +72,12 @@ return {
 				-- not natively supported but implemented in this plugin.
 				border = "curved", --'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
 				-- like `size`, width and height can be a number or function which is passed the current terminal
-				width = 80,
-				height = 60,
+				width = function(term)
+					return math.floor(vim.o.columns * 0.9)
+				end,
+				height = function(term)
+					return math.floor(vim.o.lines * 0.9)
+				end,
 				winblend = 0,
 			},
 			winbar = {

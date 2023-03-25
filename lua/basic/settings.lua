@@ -5,6 +5,16 @@ if vim.g.neovide then
 	vim.opt.guifont = [[JetBrainsMono NF:h14]]
 end
 
+-- if vim.fn.has("win32")  and vim.fn.executable("bash.exe") then
+-- 	vim.o.shell = "bash.exe"
+-- 	vim.o.shellcmdflag = "-c"
+-- 	vim.o.shellredir = ">%s 2>&1"
+-- 	vim.o.shellpipe = "2>&1 | tee"
+-- 	vim.o.shellquote = ""
+-- 	vim.o.shellxescape = ""
+-- 	vim.o.shellxquote = ""
+-- end
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -15,15 +25,13 @@ vim.o.fileencodings = "utf-8,gb18030,gbk,gb2312,utf-16,cp936,usc-bom,euc-jp"
 vim.o.autowrite = true
 vim.o.clipboard = ""
 vim.o.confirm = true
-vim.o.cursorline = true
+vim.o.cursorline = false
 vim.o.formatoptions = "jcroqlnt"
 vim.o.grepprg = "rg --vimgrep"
 
 vim.o.lazyredraw = true
 vim.o.spellcheck = true
 vim.o.laststatus = 3
-vim.o.statusline =
-	"%t  %{get(b:,'gitsigns_head','')} %{get(b:,'gitsigns_status','')} %M %R %= %{strftime('%T')} %{&encoding} %{&fileformat} %p%%"
 vim.g.netrw_sort_by = "time"
 vim.g.netrw_sort_direction = "reverse"
 vim.g.netrw_liststyle = 3
@@ -38,7 +46,7 @@ vim.o.updatetime = 100 -- update interval for gitsigns
 vim.o.timeoutlen = 500 -- keymap timeout
 vim.o.sessionoptions = "buffers,curdir,folds,winsize,winpos"
 vim.o.undofile = true
-vim.o.shortmess = "filnxtToOF"
+vim.o.shortmess = "filnxtToOFI"
 vim.o.signcolumn = "yes"
 vim.o.showmode = false
 vim.o.ruler = false

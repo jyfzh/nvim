@@ -32,21 +32,6 @@ return {
 			"n",
 			{ noremap = true, silent = true, desc = "Telescope symbols" },
 		},
-		{
-			"<leader><leader>",
-			"<cmd>Telescope toggletasks spawn<CR>",
-			{ desc = "toggletasks: spawn" },
-		},
-		{
-			"<leader>ts",
-			"<cmd>Telescope toggletasks select<CR>",
-			{ desc = "toggletasks: select" },
-		},
-		{
-			"<leader>te",
-			"<cmd>Telescope toggletasks edit<CR>",
-			{ desc = "toggletasks: edit" },
-		},
 	},
 	config = function()
 		if vim.fn.has("wsl") == 0 and vim.fn.has("win32") == 1 then
@@ -58,7 +43,6 @@ return {
 				winblend = 0,
 				dynamic_preview_title = true,
 				path_display = { "truncate" },
-				theme = "ivy",
 				layout_strategy = "bottom_pane",
 				layout_config = {
 					preview_cutoff = 1,
@@ -138,7 +122,7 @@ return {
 					show_line = false,
 				},
 				lsp_references = {
-                    prompt_title = "   LSP References",
+					prompt_title = "   LSP References",
 					include_declaration = false,
 					include_current_line = false,
 					show_line = false,
@@ -165,8 +149,8 @@ return {
 					prompt_title = " ﬘ Buffers",
 				},
 				diagnostics = {
-                    prompt_title = "  diagnostics",
-                },
+					prompt_title = "  diagnostics",
+				},
 			},
 			extensions = {
 				project = {
@@ -182,14 +166,10 @@ return {
 					override_file_sorter = true, -- override the file sorter
 					case_mode = "smart_case", -- or "ignore_case" or "respect_case",the default case_mode is "smart_case"
 				},
-				["ui-select"] = {
-					require("telescope.themes").get_dropdown({}),
-				},
 			},
 		})
 		require("telescope").load_extension("project")
 		require("telescope").load_extension("fzf")
 		require("telescope").load_extension("smart_history")
-		require("telescope").load_extension("toggletasks")
 	end,
 }

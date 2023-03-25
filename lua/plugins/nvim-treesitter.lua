@@ -8,7 +8,7 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
-	event = "VimEnter",
+    event = { "BufReadPost", "BufNewFile" },
 	dependencies = {
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		"p00f/nvim-ts-rainbow",
@@ -18,17 +18,13 @@ return {
 		"nvim-treesitter/playground",
 	},
 	config = function()
-		-- proxy
-		-- for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) do
-		-- 	config.install_info.url =
-		-- 		config.install_info.url:gsub("https://github.com/", "https://ghproxy.com/https://github.com/")
-		-- end
-
 		-- https://github.com/p00f/nvim-ts-rainbow/issues/81#issuecomment-1058124957
 		local rainbow = { "#CC8888", "#CCCC88", "#88CC88", "#88CCCC", "#8888CC", "#CC88CC" }
 		for i, c in ipairs(rainbow) do -- p00f/rainbow#81
 			vim.cmd(("hi rainbowcol%d guifg=%s"):format(i, c))
 		end
+
+        require("nvim-treesitter.install").prefer_git = true
 
 		require("nvim-treesitter.configs").setup({
 			-- HACK:
@@ -84,28 +80,6 @@ return {
 			},
 			context_commentstring = {
 				enable = true,
-			},
-			nt_cpp_tools = {
-				enable = true,
-				preview = {
-					quit = "q", -- optional keymapping for quit preview
-					accept = "<tab>", -- optional keymapping for accept preview
-				},
-				header_extension = "h", -- optional
-				source_extension = "cxx", -- optional
-				custom_define_class_function_commands = { -- optional
-					TSCppImplWrite = {
-						output_handle = require("nvim-treesitter.nt-cpp-tools.output_handlers").get_add_to_cpp(),
-					},
-					--[[
-            <your impl function custom command name> = {
-                output_handle = function (str, context) 
-                    -- string contains the class implementation
-                    -- do whatever you want to do with it
-                end
-            }
-            ]]
-				},
 			},
 			playground = {
 				enable = true,

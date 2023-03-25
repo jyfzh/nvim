@@ -1,4 +1,4 @@
 return {
 	"wakatime/vim-wakatime",
-	event = "BufRead",
+	event = "BufReadPost",
 }

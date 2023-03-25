@@ -1,0 +1,29 @@
+{
+    "tasks": {
+        "prefix": "tasks",
+        "body": [
+            "{",
+            "   \"version\": \"2.0.0\",",
+            "   \"tasks\": [",
+            "       {",
+            "           \"label\": \"\",",
+            "           \"type\": \"shell\",",
+            "           \"command\": \"\",",
+            "       }",
+            "   ]",
+            "}"
+        ],
+        "description": "vscode task.json"
+    },
+    "task": {
+        "prefix": "task",
+        "body": [
+            "{",
+            "   \"label\": \"\",",
+            "   \"type\": \"shell\",",
+            "   \"command\": \"\",",
+            "}"
+        ],
+        "description": "vscode task.json"
+    }
+}

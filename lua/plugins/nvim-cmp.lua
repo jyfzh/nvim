@@ -74,7 +74,7 @@ return {
 				completeopt = "menu,menuone,noselect",
 			},
 			experimental = {
-				ghost_text = true, -- this feature conflict with copilot.vim's preview.
+				ghost_text = false, -- this feature conflict with copilot.vim's preview.
 			},
 			snippet = {
 				expand = function(args)
@@ -109,7 +109,6 @@ return {
 				["<C-q>"] = cmp.mapping.complete(),
 			}),
 			sources = cmp.config.sources({
-				{ name = "copilot" },
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 			}, {
@@ -123,9 +122,6 @@ return {
 					maxwidth = 50,
 					before = function(entry, vim_item)
 						vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
-						if string.upper(entry.source.name) == "COPILOT" then
-							vim_item.kind = " Copilot"
-						end
 						return vim_item
 					end,
 				}),
@@ -133,8 +129,6 @@ return {
 			sorting = {
 				priority_weight = 2,
 				comparators = {
-					require("copilot_cmp.comparators").prioritize,
-					require("copilot_cmp.comparators").score,
 					cmp.config.compare.offset,
 					cmp.config.compare.exact,
 					cmp.config.compare.scopes,

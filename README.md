@@ -8,7 +8,7 @@
 - nodejs,npm
 - python
 
-## telescope
+## telescope.nvim
 
 - make
 - fd
@@ -16,3 +16,7 @@
 - sqlite3
   - on windows it needs [sqlite.dll](https://www.sqlite.org/download.html)
   - on ubuntu  it needs sqlite3 and libsqlite3-dev
+
+## web-tools.nvim
+
+- browser-sync(npm)

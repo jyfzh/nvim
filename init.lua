@@ -1,5 +1,3 @@
--- https://github.com/folke/lazy.nvim
-
 -- @diagnostic disable: undefined-global
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -9,7 +7,7 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
 		lazypath,
 	})
 end
@@ -28,7 +26,7 @@ require("lazy").setup("plugins", {
 		-- version = "*", -- enable this to try installing the latest stable versions of plugins
 	},
 	-- leave nil when passing the spec as the first argument to setup()
-	spec = nil, ---@type LazySpec
+	spec = nil,
 	lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json", -- lockfile generated after running update.
 	concurrency = nil, ---@type number limit the maximum amount of concurrent tasks
 	git = {

@@ -1,6 +1,7 @@
 -- https://github.com/folke/which-key.nvim
 return {
 	"folke/which-key.nvim",
+    event = "VeryLazy",
 	config = function()
 		require("which-key").setup({
 			plugins = {
@@ -78,7 +79,6 @@ return {
 			f = { name = "Telescope" },
 			c = { name = "code action" },
 			h = { name = "git" },
-			o = { name = "org mode" },
 			r = { name = "rename" },
 			t = { name = "neotree" },
 			w = { name = "workspace" },

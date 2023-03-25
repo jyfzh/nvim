@@ -2,7 +2,8 @@
 
 return {
 	"kosayoda/nvim-lightbulb",
-	event = "BufRead",
+	dependenies = "nvim-lspconfig",
+    event = { "BufReadPost", "BufNewFile" },
 	config = function()
 		-- Showing defaults
 		require("nvim-lightbulb").setup({

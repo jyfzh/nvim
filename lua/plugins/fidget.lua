@@ -2,7 +2,7 @@
 
 return {
 	"j-hui/fidget.nvim",
-    event = "BufRead",
+    lazy = true,
     dependencies = {
         "neovim/nvim-lspconfig"
     },

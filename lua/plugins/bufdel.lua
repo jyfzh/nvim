@@ -1,6 +1,6 @@
 return {
 	"ojroques/nvim-bufdel",
-	event = "BufRead",
+    lazy = true,
 	keys = {
 		{ "<leader>bdc", "<cmd>BufDel<CR>", "n", { noremap = true } },
 		{ "<leader>bda", "<cmd>BufDelAll<CR>", "n", { noremap = true } },

@@ -16,17 +16,11 @@ return {
 			{ nowait = true, noremap = true, silent = true, desc = "git status" },
 		},
 		{
-			"<leader>tt",
+			"<leader>1",
 			"<cmd>NeoTreeFocusToggle<CR>",
 			"n",
 			{ noremap = true, silent = true, desc = "neo-tree toggle" },
-		},
-		{
-			"<leader>tf",
-			"<cmd>NeoTreeFloatToggle<CR>",
-			"n",
-			{ noremap = true, silent = true, desc = "neo-tree toggle" },
-		},
+		}
 	},
 	config = function()
 		require("neo-tree").setup({
