@@ -74,7 +74,7 @@ return {
 				completeopt = "menu,menuone,noselect",
 			},
 			experimental = {
-				ghost_text = false, -- this feature conflict with copilot.vim's preview.
+				ghost_text = true, -- this feature conflict with copilot.vim's preview.
 			},
 			snippet = {
 				expand = function(args)
@@ -88,9 +88,8 @@ return {
 					elseif require("luasnip").jumpable() then
 						require("luasnip").jump(-1)
 					elseif has_words_before() then
-						cmp.complete()
 					else
-						fallback()
+						cmp.complete()
 					end
 				end, { "i", "s" }),
 				["<C-n>"] = cmp.mapping(function(fallback)
@@ -98,17 +97,19 @@ return {
 						cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
 					elseif require("luasnip").jumpable() then
 						require("luasnip").jump(1)
-					else
-						fallback()
 					end
 				end, { "i", "s" }),
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
-				["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+				["<CR>"] = cmp.mapping.confirm({
+					behavior = cmp.ConfirmBehavior.Replace,
+					select = false,
+				}), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 				["<C-e>"] = cmp.mapping.abort(),
 				["<C-q>"] = cmp.mapping.complete(),
 			}),
 			sources = cmp.config.sources({
+				{ name = "copilot" },
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 			}, {
@@ -122,6 +123,9 @@ return {
 					maxwidth = 50,
 					before = function(entry, vim_item)
 						vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
+						if string.upper(entry.source.name) == "COPILOT" then
+							vim_item.kind = " Copilot"
+						end
 						return vim_item
 					end,
 				}),
@@ -129,9 +133,10 @@ return {
 			sorting = {
 				priority_weight = 2,
 				comparators = {
+					require("copilot_cmp.comparators").prioritize,
 					cmp.config.compare.offset,
 					cmp.config.compare.exact,
-					cmp.config.compare.scopes,
+					-- cmp.config.compare.scopes,
 					cmp.config.compare.score,
 					cmp.config.compare.recently_used,
 					cmp.config.compare.locality,

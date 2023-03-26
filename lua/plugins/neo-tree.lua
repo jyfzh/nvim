@@ -16,8 +16,8 @@ return {
 			{ nowait = true, noremap = true, silent = true, desc = "git status" },
 		},
 		{
-			"<leader>1",
-			"<cmd>NeoTreeFocusToggle<CR>",
+			"<leader>tt",
+			"<cmd>NeoTreeRevealToggle<CR>",
 			"n",
 			{ noremap = true, silent = true, desc = "neo-tree toggle" },
 		}

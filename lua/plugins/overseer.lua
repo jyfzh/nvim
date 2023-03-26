@@ -7,7 +7,7 @@ return {
 	config = function()
 		require("overseer").setup({
 			-- Default task strategy
-			strategy = { "toggleterm", use_shell = false },
+			strategy = { "toggleterm", use_shell = false},
 			-- Template modules to load
 			templates = { "builtin" },
 			-- When true, tries to detect a green color from your colorscheme to use for success highlight

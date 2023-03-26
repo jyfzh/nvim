@@ -43,7 +43,7 @@ return {
 					print(opts.kind)
 					if opts.kind == "codeaction" then
 						return {
-							telescope = require("telescope.themes").get_cursor({}),
+							telescope = require("telescope.themes").get_cursor(),
 						}
 					elseif opts.kind == "overseer_template" then
 						return {

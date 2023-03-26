@@ -3,7 +3,7 @@
 
 return {
 	"williamboman/mason.nvim",
-    cmd = "Mason",
+	cmd = "Mason",
 	config = function()
 		require("mason").setup({
 			ui = {
@@ -29,7 +29,7 @@ return {
 		})
 
 		require("mason-null-ls").setup({
-			ensure_installed = { "stylua", "jq" },
+			ensure_installed = {},
 		})
 	end,
 }

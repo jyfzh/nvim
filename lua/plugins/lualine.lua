@@ -30,7 +30,7 @@ return {
 			inactive_sections = {
 				lualine_a = {},
 				lualine_b = {},
-				lualine_c = { "filename" },
+				lualine_c = { "filename"},
 				lualine_x = {},
 				lualine_y = {},
 				lualine_z = {},
@@ -43,14 +43,22 @@ return {
 				lualine_y = {},
 				lualine_z = {},
 			},
+            winbar = {
+                lualine_a = {},
+                lualine_b = {},
+                lualine_c = { "aerial" },
+                lualine_x = {},
+                lualine_y = {},
+                lualine_z = {},
+            },
 			extensions = {
+                "aerial",
 				"fugitive",
 				"fzf",
 				"man",
 				"neo-tree",
 				"nvim-dap-ui",
 				"quickfix",
-				"symbols-outline",
 				"toggleterm",
 			},
 		})

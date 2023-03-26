@@ -2,18 +2,8 @@ if vim.g.neovide then
 	-- neovide specific settings
 	vim.g.neovide_cursor_vfx_mode = "sonicboom"
 	vim.g.neovide_transparency = 0.75
-	vim.opt.guifont = [[JetBrainsMono NF:h14]]
+	vim.opt.guifont = "JetBrainsMono NF:h14"
 end
-
--- if vim.fn.has("win32")  and vim.fn.executable("bash.exe") then
--- 	vim.o.shell = "bash.exe"
--- 	vim.o.shellcmdflag = "-c"
--- 	vim.o.shellredir = ">%s 2>&1"
--- 	vim.o.shellpipe = "2>&1 | tee"
--- 	vim.o.shellquote = ""
--- 	vim.o.shellxescape = ""
--- 	vim.o.shellxquote = ""
--- end
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "

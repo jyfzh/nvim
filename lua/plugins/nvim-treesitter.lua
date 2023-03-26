@@ -20,7 +20,7 @@ return {
 	config = function()
 		-- https://github.com/p00f/nvim-ts-rainbow/issues/81#issuecomment-1058124957
 		local rainbow = { "#CC8888", "#CCCC88", "#88CC88", "#88CCCC", "#8888CC", "#CC88CC" }
-		for i, c in ipairs(rainbow) do -- p00f/rainbow#81
+		for i, c in ipairs(rainbow) do
 			vim.cmd(("hi rainbowcol%d guifg=%s"):format(i, c))
 		end
 
@@ -39,6 +39,7 @@ return {
 				"javascript",
 				"org",
                 "vim",
+                "markdown",
 			},
 			sync_install = true,
 			highlight = {
