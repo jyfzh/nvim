@@ -7,6 +7,7 @@ return {
 		"williamboman/mason.nvim",
 		"nvim-lua/plenary.nvim",
 	},
+    enabled = _G.IsNotLargeFile(),
 	config = function()
 		local null_ls = require("null-ls")
 		null_ls.setup({

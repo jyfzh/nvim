@@ -8,7 +8,7 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile" },
+	event = { "BufReadPost", "BufNewFile" },
 	dependencies = {
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		"p00f/nvim-ts-rainbow",
@@ -24,7 +24,7 @@ return {
 			vim.cmd(("hi rainbowcol%d guifg=%s"):format(i, c))
 		end
 
-        require("nvim-treesitter.install").prefer_git = true
+		require("nvim-treesitter.install").prefer_git = true
 
 		require("nvim-treesitter.configs").setup({
 			-- HACK:
@@ -38,23 +38,17 @@ return {
 				"html",
 				"javascript",
 				"org",
-                "vim",
-                "markdown",
+				"vim",
+				"markdown",
 			},
 			sync_install = true,
 			highlight = {
-				enable = true,
-				disable = function(lang, buf)
-					local max_filesize = 100 * 1024 -- 100 KB
-					local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-					if ok and stats and stats.size > max_filesize then
-						return true
-					end
-				end,
+				enable = _G.IsNotLargeFile(),
+				disable = {},
 				additional_vim_regex_highlighting = { "org" },
 			},
 			incremental_selection = {
-				enable = true,
+				enable = _G.IsNotLargeFile(),
 				keymaps = {
 					init_selection = "<CR>",
 					node_incremental = "<CR>",
@@ -67,23 +61,23 @@ return {
 				disable = {},
 			},
 			yati = {
-				enable = true,
+				enable = _G.IsNotLargeFile(),
 			},
 			autotag = {
-				enable = true,
+				enable = _G.IsNotLargeFile(),
 			},
 			rainbow = {
-				enable = true,
+				enable = _G.IsNotLargeFile(),
 				extended_mode = true,
 				max_file_lines = nil, -- Do not enable for files with more than n lines, int
 				colors = rainbow, -- table of hex strings
 				termcolors = rainbow, --table of colour name strings
 			},
 			context_commentstring = {
-				enable = true,
+				enable = _G.IsNotLargeFile(),
 			},
 			playground = {
-				enable = true,
+				enable = _G.IsNotLargeFile(),
 				disable = {},
 				updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
 				persist_queries = false, -- Whether the query persists across vim sessions
@@ -103,11 +97,12 @@ return {
 		})
 
 		require("treesitter-context").setup({
-			enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+			enable = _G.IsNotLargeFile(), -- Enable this plugin (Can be enabled/disabled later via commands)
 			max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
 			trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
 			min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
-			patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+			patterns = {
+				-- Match patterns for TS nodes. These get wrapped to match at word boundaries.
 				-- For all filetypes
 				-- Note that setting an entry here replaces all other patterns for this entry.
 				-- By setting the 'default' entry below, you can control which nodes you want to
@@ -169,7 +164,6 @@ return {
 				-- exactly match "impl_item" only)
 				-- rust = true,
 			},
-
 			-- [!] The options below are exposed but shouldn't require your attention,
 			--     you can safely ignore them.
 

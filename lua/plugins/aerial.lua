@@ -4,6 +4,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		"neovim/nvim-lspconfig",
 	},
+    enabled = _G.IsNotLargeFile(),
 	keys = {
 		{ "<leader>a", "<cmd>AerialToggle!<CR>", mode = "n" },
 		{ "<leader>fa", "<cmd>Telescope aerial<CR>", mode = "n" },

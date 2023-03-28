@@ -1,5 +1,4 @@
 if vim.g.neovide then
-	-- neovide specific settings
 	vim.g.neovide_cursor_vfx_mode = "sonicboom"
 	vim.g.neovide_transparency = 0.75
 	vim.opt.guifont = "JetBrainsMono NF:h14"
@@ -12,9 +11,9 @@ vim.o.encoding = "utf-8"
 vim.o.fileencoding = "utf-8"
 vim.o.fileencodings = "utf-8,gb18030,gbk,gb2312,utf-16,cp936,usc-bom,euc-jp"
 
-vim.o.autowrite = true
+vim.o.autowrite = false
 vim.o.clipboard = ""
-vim.o.confirm = true
+vim.o.confirm = false
 vim.o.cursorline = false
 vim.o.formatoptions = "jcroqlnt"
 vim.o.grepprg = "rg --vimgrep"
@@ -75,5 +74,5 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 vim.wo.foldmethod = "expr"
-vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 vim.wo.foldlevel = 99
+-- vim.wo.foldexpr = "indent"

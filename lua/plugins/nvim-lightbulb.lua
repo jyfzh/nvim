@@ -4,6 +4,7 @@ return {
 	"kosayoda/nvim-lightbulb",
 	dependenies = "nvim-lspconfig",
     event = { "BufReadPost", "BufNewFile" },
+    enabled = _G.IsNotLargeFile(),
 	config = function()
 		-- Showing defaults
 		require("nvim-lightbulb").setup({

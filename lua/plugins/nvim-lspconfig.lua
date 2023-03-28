@@ -42,7 +42,6 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 
 return {
 	"neovim/nvim-lspconfig",
-	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"williamboman/mason.nvim",
 		"jay-babu/mason-null-ls.nvim",
@@ -53,6 +52,8 @@ return {
 		"stevearc/dressing.nvim",
 		"j-hui/fidget.nvim",
 	},
+	event = { "BufReadPre", "BufNewFile" },
+    enabled = _G.IsNotLargeFile(),
 	config = function()
 		local lsp_signature = require("lsp_signature")
 		local capabilities = vim.lsp.protocol.make_client_capabilities()

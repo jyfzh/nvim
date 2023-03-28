@@ -1,7 +1,7 @@
 return {
 	"nvim-lualine/lualine.nvim",
 	dependenies = "kyazdani42/nvim-web-devicons",
-    event = "VeryLazy",
+	event = "VeryLazy",
 	keys = {
 		{ "<A-1>", "<cmd>LualineBuffersJump! 1<cr>" },
 		{ "<A-2>", "<cmd>LualineBuffersJump! 2<cr>" },
@@ -18,19 +18,39 @@ return {
 		require("lualine").setup({
 			options = {
 				theme = "auto",
+                section_separators = { left = "", right = "" },
+                component_separators = { left = "", right = "" },
 			},
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "branch", "diff", "diagnostics" },
-				lualine_c = { "filename" },
+				lualine_c = {
+					"filename",
+					{
+						"overseer",
+						label = "", -- Prefix for task counts
+						colored = true, -- Color the task icons and counts
+						symbols = {
+							[require("overseer").STATUS.FAILURE] = "F:",
+							[require("overseer").STATUS.CANCELED] = "C:",
+							[require("overseer").STATUS.SUCCESS] = "S:",
+							[require("overseer").STATUS.RUNNING] = "R:",
+						},
+						unique = false, -- Unique-ify non-running task count by name
+						name = nil, -- List of task names to search for
+						name_not = false, -- When true, invert the name search
+						status = nil, -- List of task statuses to display
+						status_not = false, -- When true, invert the status search
+					},
+				},
 				lualine_x = { "encoding", "fileformat", "filetype" },
-				lualine_y = { "overseer" },
+				lualine_y = {},
 				lualine_z = { "progress" },
 			},
 			inactive_sections = {
 				lualine_a = {},
 				lualine_b = {},
-				lualine_c = { "filename"},
+				lualine_c = { "filename" },
 				lualine_x = {},
 				lualine_y = {},
 				lualine_z = {},
@@ -43,16 +63,28 @@ return {
 				lualine_y = {},
 				lualine_z = {},
 			},
-            winbar = {
-                lualine_a = {},
-                lualine_b = {},
-                lualine_c = { "aerial" },
-                lualine_x = {},
-                lualine_y = {},
-                lualine_z = {},
-            },
+			winbar = {
+				lualine_a = {},
+				lualine_b = {},
+				lualine_c = {
+					function()
+						return " "
+					end,
+					"aerial",
+				},
+				lualine_x = {},
+				lualine_y = {},
+				lualine_z = {},
+			},
+			inactive_winbar = {
+				lualine_c = {
+					function()
+						return " "
+					end,
+				},
+			},
 			extensions = {
-                "aerial",
+				"aerial",
 				"fugitive",
 				"fzf",
 				"man",
