@@ -2,8 +2,7 @@
 --
 return {
 	"ray-x/lsp_signature.nvim",
-	event = "InsertEnter",
-    dependenies = "hrsh7th/nvim-cmp",
+	event = "LspAttach",
 	config = function()
 		require("lsp_signature").setup(
 			{

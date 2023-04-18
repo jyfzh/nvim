@@ -5,16 +5,10 @@ return {
 	"nvim-neo-tree/neo-tree.nvim",
 	dependencies = {
 		{ "nvim-lua/plenary.nvim" },
-		{ "kyazdani42/nvim-web-devicons" },
+		{ "nvim-tree/nvim-web-devicons" },
 		{ "MunifTanjim/nui.nvim" },
 	},
 	keys = {
-		{
-			"<leader>hg",
-			"<cmd>Neotree git_status<CR>",
-			"n",
-			{ nowait = true, noremap = true, silent = true, desc = "git status" },
-		},
 		{
 			"<leader>tt",
 			"<cmd>NeoTreeRevealToggle<CR>",

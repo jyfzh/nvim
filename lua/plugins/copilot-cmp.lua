@@ -1,6 +1,7 @@
 -- https://github.com/zbirenbaum/copilot-cmp
 return {
 	"zbirenbaum/copilot-cmp",
+	event = "LspAttach",
 	dependencies = { "copilot.lua", "nvim-cmp" },
 	config = function()
 		require("copilot_cmp").setup({
@@ -13,4 +14,3 @@ return {
 		})
 	end,
 }
-

@@ -29,7 +29,7 @@ require("lazy").setup("plugins", {
 	-- leave nil when passing the spec as the first argument to setup()
 	spec = nil,
 	lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json", -- lockfile generated after running update.
-	concurrency = nil, ---@type number limit the maximum amount of concurrent tasks
+	concurrency = 20, ---@type number limit the maximum amount of concurrent tasks
 	git = {
 		-- defaults for the `Lazy log` command
 		-- log = { "-10" }, -- show the last 10 commits

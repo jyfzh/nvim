@@ -3,9 +3,7 @@
 return {
 	"j-hui/fidget.nvim",
     lazy = true,
-    dependencies = {
-        "neovim/nvim-lspconfig"
-    },
+    event = { "BufReadPost", "BufNewFile" },
 	config = function()
 		require("fidget").setup({
 			text = {

@@ -32,28 +32,7 @@ return {
 		local cmp = require("cmp")
 		cmp.setup({
 			enabled = function()
-				-- https://github.com/hrsh7th/nvim-cmp/issues/519#issuecomment-1091109258
-				local line = vim.api.nvim_get_current_line()
-				local cursor = vim.api.nvim_win_get_cursor(0)[2]
-
-				local current = string.sub(line, cursor, cursor + 1)
-				local list = { "{", "}", "[", "(", ",", " " }
-				for i = 0, #list do
-					if list[i] == current then
-						return false
-					end
-				end
-
 				-- https://github.com/nvim-telescope/telescope.nvim/issues/94
-				-- disable completion in comments
-				local context = require("cmp.config.context")
-				-- keep command mode completion enabled when cursor is in a comment
-				if
-					not vim.api.nvim_get_mode().mode == "c"
-					and (context.in_treesitter_capture("comment") or context.in_syntax_group("Comment"))
-				then
-					return false
-				end
 				if vim.bo.filetype == "TelescopePrompt" or vim.bo.filetype == "neo-tree-popup" then
 					return false
 				end
@@ -107,7 +86,7 @@ return {
 					select = false,
 				}), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 				["<C-e>"] = cmp.mapping.abort(),
-				["<C-q>"] = cmp.mapping.complete(),
+				["<C-Space>"] = cmp.mapping.complete(),
 			}),
 			sources = cmp.config.sources({
 				{ name = "copilot" },

@@ -1,6 +1,6 @@
 return {
 	"lukas-reineke/indent-blankline.nvim",
-    -- do not lazy load due to https://github.com/lukas-reineke/indent-blankline.nvim/issues/542
+    event = { "BufReadPost", "BufNewFile" },
     enabled = _G.IsNotLargeFile(),
 	config = function()
 		require("indent_blankline").setup({
