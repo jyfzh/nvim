@@ -9,6 +9,7 @@
             "           \"label\": \"\",",
             "           \"type\": \"shell\",",
             "           \"command\": \"\",",
+            "           \"args\": []",
             "       }",
             "   ]",
             "}"
@@ -22,8 +23,9 @@
             "   \"label\": \"\",",
             "   \"type\": \"shell\",",
             "   \"command\": \"\",",
+            "   \"args\": []",
             "}"
         ],
-        "description": "vscode task.json"
+        "description": "vscode task item"
     }
 }

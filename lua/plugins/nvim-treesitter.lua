@@ -39,7 +39,9 @@ return {
                 "org",
                 "vim",
                 "markdown",
-                "markdown_inline"
+                "markdown_inline",
+                "http",
+                "json"
             },
             sync_install = true,
             highlight = {
