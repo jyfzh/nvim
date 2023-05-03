@@ -81,20 +81,13 @@ return {
                     "--column",
                     "--smart-case",
                     "--trim",
-                    "--no-ignore",
-                    "--hidden",
                 },
                 prompt_prefix = "   ",
                 selection_caret = "  ",
                 entry_prefix = "  ",
                 sorting_strategy = "descending",
                 file_ignore_patterns = {
-                    "^node_modules",
-                    "^.git$",
-                    ".cache",
-                    "%.class",
-                    "^build",
-                    "^docs$",
+                    -- "^.git",
                 },
                 set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
                 mappings = {
@@ -116,7 +109,7 @@ return {
                 find_files = {
                     prompt_title = "   Find File",
                     hidden = true,
-                    find_command = { "fd", "--type", "f", "--color", "never" },
+                    find_command = { "fd", "--type", "f", "--color", "never", "-E", ".git" },
                 },
                 lsp_definitions = {
                     prompt_title = "   Find Definition",
@@ -170,7 +163,7 @@ return {
                     case_mode = "smart_case",       -- or "ignore_case" or "respect_case",the default case_mode is "smart_case"
                 },
                 ["ui-select"] = {
-                    require("telescope.themes").get_ivy{
+                    require("telescope.themes").get_ivy {
                         layout_config = {
                             prompt_position = "bottom",
                             height = 0.5,
