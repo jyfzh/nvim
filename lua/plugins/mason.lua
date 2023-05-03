@@ -25,7 +25,7 @@ return {
 
 		require("mason-lspconfig").setup({
 			ensure_installed = {},
-			automatic_installation = true,
+			automatic_installation = false,
 		})
 
 		require("mason-null-ls").setup({
