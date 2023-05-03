@@ -62,9 +62,8 @@ return {
             },
         })
 
-        vim.keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>")
+        vim.keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
         vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
-        vim.keymap.set("n", "gr", "<cmd>Lspsaga rename ++project<CR>")
         vim.keymap.set("n", "gp", "<cmd>Lspsaga peek_definition<CR>")
         -- Use <C-t> to jump back
         vim.keymap.set("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
@@ -82,13 +81,6 @@ return {
         end)
         vim.keymap.set("n", "]E", function()
             require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
-        end)
-
-        vim.keymap.set("n", "[W", function()
-            require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.WARNING })
-        end)
-        vim.keymap.set("n", "]W", function()
-            require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.WARNING })
         end)
 
         vim.keymap.set("n", "<leader>o", "<cmd>Lspsaga outline<CR>")

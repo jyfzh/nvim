@@ -27,22 +27,7 @@ return {
         require("nvim-treesitter.configs").setup({
             -- HACK:
             parser_install_dir = vim.fn.stdpath("data") .. "/lazy/nvim-treesitter",
-            ensure_installed = {
-                "c",
-                "cpp",
-                "rust",
-                "lua",
-                "python",
-                "java",
-                "html",
-                "javascript",
-                "org",
-                "vim",
-                "markdown",
-                "markdown_inline",
-                "http",
-                "json"
-            },
+            ensure_installed = {},
             sync_install = true,
             highlight = {
                 enable = _G.IsNotLargeFile(),

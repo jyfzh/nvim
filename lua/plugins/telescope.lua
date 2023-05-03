@@ -90,7 +90,7 @@ return {
                 sorting_strategy = "descending",
                 file_ignore_patterns = {
                     "^node_modules",
-                    "^.git",
+                    "^.git$",
                     ".cache",
                     "%.class",
                     "^build",
@@ -115,6 +115,8 @@ return {
             pickers = {
                 find_files = {
                     prompt_title = "   Find File",
+                    hidden = true,
+                    find_command = { "fd", "--type", "f", "--color", "never" },
                 },
                 lsp_definitions = {
                     prompt_title = "   Find Definition",

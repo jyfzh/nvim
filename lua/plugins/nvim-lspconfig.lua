@@ -90,6 +90,13 @@ return {
                 "<cmd>lua vim.lsp.buf.format { async = true }<CR>",
                 { noremap = true, silent = true, buffer = bufnr, desc = "format" }
             )
+
+            vim.keymap.set(
+                "n",
+                "gr",
+                "<cmd>lua vim.lsp.buf.rename() <CR>",
+                { noremap = true, silent = true, buffer = bufnr, desc = "rename" }
+            )
         end
 
         require("neodev").setup()
@@ -171,7 +178,7 @@ return {
             },
         })
 
-        local servers = { 'cmake', 'rust_analyzer', 'pylsp', 'jsonls', 'html', 'cssls', 'tsserver', 'eslint' }
+        local servers = { 'cmake', 'rust_analyzer', 'pylsp', 'jsonls', 'html', 'cssls', 'tsserver', 'eslint', "asm_lsp" }
         for _, lsp in ipairs(servers) do
             require 'lspconfig'[lsp].setup {
                 capabilities = capabilities,
