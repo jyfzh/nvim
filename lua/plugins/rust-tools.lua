@@ -1,3 +1,4 @@
+
 return {
     'simrat39/rust-tools.nvim',
     ft = 'rust',
@@ -100,12 +101,23 @@ return {
             },
             server = {
                 standalone = true,
-                onattach = function(client, path)
+                on_attach = function(client, path)
+                    vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
                     require("lsp_signature").on_attach(client, path);
-                    -- Hover actions
-                    vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-                    -- Code action groups
-                    vim.keymap.set("n", "<Leader>ca", rt.code_action_group.code_action_group, { buffer = bufnr })
+
+                    vim.keymap.set(
+                        "n",
+                        "<A-S-F>",
+                        "<cmd>lua vim.lsp.buf.format { async = true }<CR>",
+                        { noremap = true, silent = true, buffer = bufnr, desc = "format" }
+                    )
+
+                    vim.keymap.set(
+                        "n",
+                        "gr",
+                        "<cmd>lua vim.lsp.buf.rename() <CR>",
+                        { noremap = true, silent = true, buffer = bufnr, desc = "rename" }
+                    )
                 end,
             },
             dap = {
