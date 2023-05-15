@@ -1,6 +1,9 @@
 return {
     "stevearc/overseer.nvim",
-    dependenies = "akinsho/toggleterm.nvim",
+    dependenies = {
+        "akinsho/toggleterm.nvim",
+        "nvim-telescope/telescope.nvim",
+    },
     keys = {
         { "<leader>ot",       "<cmd>OverseerToggle<cr>" },
         { "<leader><leader>", "<cmd>OverseerRun<cr>" },

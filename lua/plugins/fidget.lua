@@ -2,8 +2,7 @@
 
 return {
 	"j-hui/fidget.nvim",
-    lazy = true,
-    event = { "BufReadPost", "BufNewFile" },
+    event = "LspAttach",
 	config = function()
 		require("fidget").setup({
 			text = {

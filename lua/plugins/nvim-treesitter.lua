@@ -11,6 +11,7 @@ return {
         "yioneko/nvim-yati",
         "nvim-treesitter/nvim-treesitter-context",
         "nvim-treesitter/playground",
+        "Badhi/nvim-treesitter-cpp-tools",
     },
     config = function()
         -- https://github.com/p00f/nvim-ts-rainbow/issues/81#issuecomment-1058124957
@@ -160,6 +161,28 @@ return {
             -- Separator between context and content. Should be a single character string, like '-'.
             -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
             separator = nil,
+        })
+        require 'nt-cpp-tools'.setup({
+            preview = {
+                quit = 'q',           -- optional keymapping for quit preview
+                accept = '<tab>'      -- optional keymapping for accept preview
+            },
+            header_extension = 'h',   -- optional
+            source_extension = 'cxx', -- optional
+            custom_define_class_function_commands = {
+                -- optional
+                TSCppImplWrite = {
+                    output_handle = require 'nt-cpp-tools.output_handlers'.get_add_to_cpp()
+                }
+                --[[
+        <your impl function custom command name> = {
+            output_handle = function (str, context)
+                -- string contains the class implementation
+                -- do whatever you want to do with it
+            end
+        }
+        ]]
+            }
         })
     end,
 }

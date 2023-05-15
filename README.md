@@ -1,22 +1,18 @@
-# Dependence
+# My neovim config
 
-## basic
+## Dependence
 
 - build-essential
 - fzf
 - unzip
 - nodejs,npm
 - python
-
-## telescope.nvim
-
-- make
 - fd
 - repgrep  
 - sqlite3
   - on windows it needs [sqlite.dll](https://www.sqlite.org/download.html)
   - on ubuntu  it needs sqlite3 and libsqlite3-dev
 
-## web-tools.nvim
+## Option
 
-- browser-sync(npm)
+- browser-sync(npm) (for web-tools.nvim)
