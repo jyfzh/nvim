@@ -1,6 +1,6 @@
 return {
     "stevearc/overseer.nvim",
-    dependenies = {
+    dependencies = {
         "akinsho/toggleterm.nvim",
         "nvim-telescope/telescope.nvim",
     },
