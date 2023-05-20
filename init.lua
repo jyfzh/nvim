@@ -36,7 +36,7 @@ require("lazy").setup("plugins", {
 		-- log = { "-10" }, -- show the last 10 commits
 		log = { "--since=3 days ago" }, -- show commits from the last 3 days
 		timeout = 120, -- kill processes that take more than 2 minutes
-		-- url_format = "https://ghproxy.com/https://github.com/%s.git",
+		url_format = "https://ghproxy.com/https://github.com/%s.git",
 	},
 	dev = {
 		-- directory where you store your local plugin projects
