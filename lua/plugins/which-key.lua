@@ -1,7 +1,7 @@
 -- https://github.com/folke/which-key.nvim
 return {
 	"folke/which-key.nvim",
-    event = "VeryLazy",
+    event = "UIEnter",
 	config = function()
 		require("which-key").setup({
 			plugins = {
@@ -32,6 +32,8 @@ return {
 				["<space>"] = "SPC",
 				["<cr>"] = "RET",
 				["<tab>"] = "TAB",
+				["<esc>"] = "ESC",
+				["<bs>"] = "BACKSPACE",
 			},
 			icons = {
 				BRADCRUMB = "»", -- SYMBOL USED IN THE COMMAND LINE AREA THAT SHOWS YOUR ACTIVE KEY COMBO

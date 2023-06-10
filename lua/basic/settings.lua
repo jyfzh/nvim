@@ -20,7 +20,8 @@ vim.o.grepprg = "rg --vimgrep"
 
 vim.o.lazyredraw = true
 vim.o.spellcheck = true
-vim.o.laststatus = 3
+vim.o.laststatus = 0
+vim.o.statusline = "%f %M %R %=  %y [%{&fileformat}] %l:%c %p%%"
 vim.g.netrw_sort_by = "time"
 vim.g.netrw_sort_direction = "reverse"
 vim.g.netrw_liststyle = 3
@@ -36,7 +37,7 @@ vim.o.updatetime = 100 -- update interval for gitsigns
 vim.o.timeoutlen = 500 -- keymap timeout
 vim.o.sessionoptions = "buffers,curdir,folds,winsize,winpos"
 vim.o.undofile = true
-vim.o.shortmess = "filnxtToOFI"
+-- vim.o.shortmess = "filnxtToOFI"
 vim.o.signcolumn = "yes"
 vim.o.showmode = false
 vim.o.ruler = false

@@ -178,7 +178,7 @@ return {
             },
         })
 
-        local servers = { 'cmake', 'pylsp', 'jsonls', 'html', 'cssls', 'tsserver', 'eslint', "asm_lsp" }
+        local servers = { 'cmake', 'pylsp', 'ruff_lsp', 'jsonls', 'html', 'cssls', 'tsserver', 'eslint', "powershell_es" }
         for _, lsp in ipairs(servers) do
             require 'lspconfig'[lsp].setup {
                 capabilities = capabilities,

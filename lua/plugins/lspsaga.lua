@@ -15,7 +15,7 @@ return {
                 scroll_down = "<C-f>",
                 scroll_up = "<C-b>",
             },
-            request_timeout = 2000,
+            request_timeout = 3000,
             ui = {
                 title = true,
                 border = "single", -- Border type can be single, double, rounded, solid, shadow.
@@ -30,7 +30,7 @@ return {
             },
             finder = {
                 max_height = 0.5,
-                min_width = 30,
+                min_width = 50,
                 force_max_height = false,
                 keys = {
                     jump_to = 'p',
@@ -51,12 +51,12 @@ return {
                 virtual_text = false,
             },
             symbol_in_winbar = {
-                enable = true,
+                enable = false,
                 separator = " > ",
                 ignore_patterns = {},
                 hide_keyword = true,
                 show_file = true,
-                folder_level = 2,
+                folder_level = 1,
                 respect_root = false,
                 color_mode = true,
             },

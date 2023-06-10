@@ -10,7 +10,7 @@ return {
 	},
 	keys = {
 		{
-			"<leader>tt",
+			"<leader>t",
 			"<cmd>NeoTreeRevealToggle<CR>",
 			"n",
 			{ noremap = true, silent = true, desc = "neo-tree toggle" },
