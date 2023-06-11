@@ -1,7 +1,6 @@
 return {
 	"lukas-reineke/indent-blankline.nvim",
     event = { "BufReadPost", "BufNewFile" },
-    enabled = _G.IsNotLargeFile(),
 	config = function()
 		require("indent_blankline").setup({
 			char = "",

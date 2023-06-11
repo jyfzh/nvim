@@ -6,7 +6,6 @@ end
 return {
     "hrsh7th/nvim-cmp",
     event = "LspAttach",
-    enabled = _G.IsNotLargeFile(),
     dependencies = {
         "onsails/lspkind.nvim",
         "hrsh7th/cmp-nvim-lsp",

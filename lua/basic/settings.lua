@@ -77,4 +77,5 @@ vim.o.smartcase = true
 
 vim.wo.foldmethod = "expr"
 vim.wo.foldlevel = 99
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 -- vim.wo.foldexpr = "indent"

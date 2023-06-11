@@ -18,7 +18,6 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 require("basic.settings")
 require("basic.keybinds")
 require("basic.autocmd")
-require("basic.utils")
 
 require("lazy").setup("plugins", {
 	root = vim.fn.stdpath("data") .. "/lazy", -- directory where plugins will be installed

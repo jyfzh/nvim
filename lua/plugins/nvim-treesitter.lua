@@ -23,7 +23,7 @@ return {
         -- proxy
         for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) do
             config.install_info.url = config.install_info.url:gsub("https://github.com/",
-            "https://ghproxy.com/https://github.com/")
+                "https://ghproxy.com/https://github.com/")
         end
 
         require("nvim-treesitter.configs").setup({
@@ -32,12 +32,12 @@ return {
             ensure_installed = {},
             sync_install = true,
             highlight = {
-                enable = _G.IsNotLargeFile(),
+                enable = true,
                 disable = {},
                 additional_vim_regex_highlighting = { "org" },
             },
             incremental_selection = {
-                enable = _G.IsNotLargeFile(),
+                enable = true,
                 keymaps = {
                     init_selection = "<CR>",
                     node_incremental = "<CR>",
@@ -50,23 +50,23 @@ return {
                 disable = {},
             },
             yati = {
-                enable = _G.IsNotLargeFile(),
+                enable = true,
             },
             autotag = {
-                enable = _G.IsNotLargeFile(),
+                enable = true,
             },
             rainbow = {
-                enable = _G.IsNotLargeFile(),
+                enable = true,
                 extended_mode = true,
                 max_file_lines = nil, -- Do not enable for files with more than n lines, int
                 colors = rainbow,     -- table of hex strings
                 termcolors = rainbow, --table of colour name strings
             },
             context_commentstring = {
-                enable = _G.IsNotLargeFile(),
+                enable = true
             },
             playground = {
-                enable = _G.IsNotLargeFile(),
+                enable = true,
                 disable = {},
                 updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
                 persist_queries = false, -- Whether the query persists across vim sessions
@@ -86,10 +86,10 @@ return {
         })
 
         require("treesitter-context").setup({
-            enable = _G.IsNotLargeFile(), -- Enable this plugin (Can be enabled/disabled later via commands)
-            max_lines = 0,                -- How many lines the window should span. Values <= 0 mean no limit.
-            trim_scope = "outer",         -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-            min_window_height = 0,        -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+            enable = true,         -- Enable this plugin (Can be enabled/disabled later via commands)
+            max_lines = 0,         -- How many lines the window should span. Values <= 0 mean no limit.
+            trim_scope = "outer",  -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+            min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
             patterns = {
                 -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
                 -- For all filetypes
