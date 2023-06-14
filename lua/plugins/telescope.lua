@@ -143,6 +143,7 @@ return {
                 },
                 buffers = {
                     prompt_title = " ﬘ Buffers",
+                    theme = "dropdown",
                 },
                 diagnostics = {
                     prompt_title = "  diagnostics",

@@ -67,11 +67,9 @@ return {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "folke/neodev.nvim",
-        "j-hui/fidget.nvim",
     },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-        local lsp_signature = require("lsp_signature")
         local capabilities = vim.lsp.protocol.make_client_capabilities()
 
         capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -92,7 +90,6 @@ return {
 
         local on_attach = function(client, bufnr)
             vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
-            lsp_signature.on_attach(client, bufnr)
             -- Mappings.
             -- See `:help vim.lsp.*` for documentation on any of the below functions
 
@@ -107,7 +104,7 @@ return {
 
             vim.keymap.set(
                 "n",
-                "<A-S-F>",
+                "=G",
                 "<cmd>lua vim.lsp.buf.format { async = true }<CR>",
                 { noremap = true, silent = true, buffer = bufnr, desc = "format" }
             )
@@ -117,6 +114,12 @@ return {
                 "gr",
                 "<cmd>lua vim.lsp.buf.rename() <CR>",
                 { noremap = true, silent = true, buffer = bufnr, desc = "rename" }
+            )
+            vim.keymap.set(
+                "i",
+                "<C-k>",
+                vim.lsp.buf.signature_help,
+                { noremap = true, silent = true, buffer = bufnr, desc = "signature_help" }
             )
         end
 
