@@ -4,10 +4,7 @@ return {
         "akinsho/toggleterm.nvim",
         "nvim-telescope/telescope.nvim",
     },
-    keys = {
-        { "<leader>ot",       "<cmd>OverseerToggle<cr>" },
-        { "<leader><leader>", "<cmd>OverseerRun<cr>" },
-    },
+    keys = { "<leader>ot", "<leader><leader>" },
     config = function()
         require("overseer").setup({
             -- Default task strategy
@@ -194,5 +191,9 @@ return {
                 },
             },
         })
+        vim.keymap.set("n", "<leader>ot", require('overseer').toggle,
+            { noremap = true, silent = true, desc = "Toggle Overseer" })
+        vim.keymap.set("n", "<leader><leader>", "<cmd>OverseerRun<CR>",
+            { noremap = true, silent = true, desc = "Run Overseer" })
     end,
 }

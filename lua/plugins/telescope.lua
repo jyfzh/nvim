@@ -12,32 +12,25 @@ return {
         { "nvim-telescope/telescope-ui-select.nvim" }
     },
     keys = {
-        { "<leader>f<leader>", "<cmd>Telescope <CR>",                          "n", { noremap = true, silent = true } },
-        { "<leader>fk",        "<cmd>Telescope keymaps <CR>",                  "n", { noremap = true, silent = true } },
-        { "<leader>f/",        "<cmd>Telescope current_buffer_fuzzy_find<CR>", "n", { noremap = true, silent = true } },
-        { "<leader>ff",        "<cmd>Telescope find_files<CR>",                "n", { noremap = true, silent = true } },
-        { "<leader>fg",        "<cmd>Telescope live_grep<CR>",                 "n", { noremap = true, silent = true } },
-        { "<leader>fh",        "<cmd>Telescope help_tags<CR>",                 "n", { noremap = true, silent = true } },
-        { "<leader>fo",        "<cmd>Telescope oldfiles<CR>",                  "n", { noremap = true, silent = true } },
-        { "<leader>fm",        "<cmd>Telescope marks<CR>",                     "n", { noremap = true, silent = true } },
-        { "<leader>fb",        "<cmd>Telescope buffers<CR>",                   "n", { noremap = true, silent = true } },
-        {
-            "<leader>fp",
-            "<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>",
-            "n",
-            { noremap = true, silent = true, desc = "Telescope project" },
-        },
-        {
-            "<leader>fe",
-            "<cmd>lua require'telescope.builtin'.symbols{'nerd','emoji','gitemoji','julia'} <CR>",
-            "n",
-            { noremap = true, silent = true, desc = "Telescope symbols" },
-        },
+        "<leader>ff",
+        "<leader>f<leader>",
+        "<leader>fk",
+        "<leader>f/",
+        "<leader>ff",
+        "<leader>fg",
+        "<leader>fh",
+        "<leader>fo",
+        "<leader>fm",
+        "<leader>fb",
+        "<leader>fp",
+        "<leader>fe",
     },
-    config = function()
+    init = function()
         if vim.fn.has("wsl") == 0 and vim.fn.has("win32") == 1 then
             vim.g.sqlite_clib_path = "C:/Windows/System32/sqlite3.dll"
         end
+    end,
+    config = function()
         require("telescope").setup({
             defaults = {
                 border = false,
@@ -177,5 +170,26 @@ return {
         require("telescope").load_extension("fzf")
         require("telescope").load_extension("smart_history")
         require("telescope").load_extension("ui-select")
+
+        vim.keymap.set("n", "<leader>f<leader>", "<cmd>Telescope <CR>", { noremap = true, silent = true })
+        vim.keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps <CR>", { noremap = true, silent = true })
+        vim.keymap.set("n", "<leader>f/", "<cmd>Telescope current_buffer_fuzzy_find<CR>",
+            { noremap = true, silent = true })
+        vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { noremap = true, silent = true })
+        vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { noremap = true, silent = true })
+        vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { noremap = true, silent = true })
+        vim.keymap.set("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { noremap = true, silent = true })
+        vim.keymap.set("n", "<leader>fm", "<cmd>Telescope marks<CR>", { noremap = true, silent = true })
+        vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { noremap = true, silent = true })
+        vim.keymap.set("n",
+            "<leader>fp",
+            "<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>",
+            { noremap = true, silent = true, desc = "Telescope project" }
+        )
+        vim.keymap.set("n",
+            "<leader>fe",
+            "<cmd>lua require'telescope.builtin'.symbols{'nerd','emoji','gitemoji','julia'} <CR>",
+            { noremap = true, silent = true, desc = "Telescope symbols" }
+        )
     end,
 }

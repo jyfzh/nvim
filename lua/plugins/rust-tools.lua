@@ -1,11 +1,9 @@
-
 return {
     'simrat39/rust-tools.nvim',
     ft = 'rust',
-    depends = 'nvim-lspconfig',
+    dependencies = 'nvim-lspconfig',
     config = function()
-        local rt = require("rust-tools")
-        rt.setup({
+        require('rust-tools').setup({
             tools = {
                 executor = require("rust-tools.executors").termopen,
                 on_initialized = nil,
@@ -128,5 +126,5 @@ return {
                 },
             }
         })
-    end,
+    end
 }

@@ -1,75 +1,71 @@
--- https://github.com/neovim/nvim-lspconfig
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
--- https://github.com/folke/neodev.nvim
-
--- To instead override float border setting globally
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-    local border = {
-        { "┌", "FloatBorder" },
-        { "─", "FloatBorder" },
-        { "┐", "FloatBorder" },
-        { "│", "FloatBorder" },
-        { "┘", "FloatBorder" },
-        { "─", "FloatBorder" },
-        { "└", "FloatBorder" },
-        { "│", "FloatBorder" },
-    }
-    opts = opts or {}
-    opts.border = opts.border or border
-
-    return orig_util_open_floating_preview(contents, syntax, opts, ...)
-end
-
-vim.diagnostic.config({
-    virtual_text = { prefix = "", source = "always" }, -- prefix：'●', '▎', 'x'
-    float = { source = "always" },
-    signs = true,
-    underline = true,
-    update_in_insert = false,
-    severity_sort = true,
-})
-
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
-
-local function switch_source_header_splitcmd(bufnr, splitcmd)
-    bufnr = require("lspconfig").util.validate_bufnr(bufnr)
-    local clangd_client = require("lspconfig").util.get_active_client_by_name(bufnr, "clangd")
-    local params = { uri = vim.uri_from_bufnr(bufnr) }
-    if clangd_client then
-        clangd_client.request("textDocument/switchSourceHeader", params, function(err, result)
-            if err then
-                error(tostring(err))
-            end
-            if not result then
-                print("Corresponding file can’t be determined")
-                return
-            end
-            vim.api.nvim_command(splitcmd .. " " .. vim.uri_to_fname(result))
-        end, bufnr)
-    else
-        print(
-            "textDocument/switchSourceHeader is not supported by the clangd server active on the current buffer"
-        )
-    end
-end
-
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
         "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
         "folke/neodev.nvim",
     },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
+        -- To instead override float border setting globally
+        local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+        function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+            local border = {
+                { "┌", "FloatBorder" },
+                { "─", "FloatBorder" },
+                { "┐", "FloatBorder" },
+                { "│", "FloatBorder" },
+                { "┘", "FloatBorder" },
+                { "─", "FloatBorder" },
+                { "└", "FloatBorder" },
+                { "│", "FloatBorder" },
+            }
+            opts = opts or {}
+            opts.border = opts.border or border
+
+            return orig_util_open_floating_preview(contents, syntax, opts, ...)
+        end
+
+        vim.diagnostic.config({
+            virtual_text = { prefix = "", source = "always" }, -- prefix：'●', '▎', 'x'
+            float = { source = "always" },
+            signs = true,
+            underline = true,
+            update_in_insert = false,
+            severity_sort = true,
+        })
+
+        local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+        for type, icon in pairs(signs) do
+            local hl = "DiagnosticSign" .. type
+            vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+        end
+
+        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
+        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help,
+            { border = "single" })
+
+        local function switch_source_header_splitcmd(bufnr, splitcmd)
+            bufnr = require("lspconfig").util.validate_bufnr(bufnr)
+            local clangd_client = require("lspconfig").util.get_active_client_by_name(bufnr, "clangd")
+            local params = { uri = vim.uri_from_bufnr(bufnr) }
+            if clangd_client then
+                clangd_client.request("textDocument/switchSourceHeader", params, function(err, result)
+                    if err then
+                        error(tostring(err))
+                    end
+                    if not result then
+                        print("Corresponding file can’t be determined")
+                        return
+                    end
+                    vim.api.nvim_command(splitcmd .. " " .. vim.uri_to_fname(result))
+                end, bufnr)
+            else
+                print(
+                    "textDocument/switchSourceHeader is not supported by the clangd server active on the current buffer"
+                )
+            end
+        end
+
         local capabilities = vim.lsp.protocol.make_client_capabilities()
 
         capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -202,6 +198,7 @@ return {
             },
         })
 
+        -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
         local servers = { 'cmake', 'pylsp', 'ruff_lsp', 'jsonls', 'html', 'cssls', 'tsserver', 'eslint', "powershell_es" }
         for _, lsp in ipairs(servers) do
             require 'lspconfig'[lsp].setup {

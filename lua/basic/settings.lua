@@ -1,7 +1,7 @@
 if vim.g.neovide then
-	vim.g.neovide_cursor_vfx_mode = "sonicboom"
-	vim.g.neovide_transparency = 0.75
-	vim.opt.guifont = "JetBrainsMono NF:h14"
+    vim.g.neovide_cursor_vfx_mode = "sonicboom"
+    vim.g.neovide_transparency = 0.75
+    vim.opt.guifont = "JetBrainsMono NF:h14"
 end
 
 vim.g.mapleader = " "
@@ -17,7 +17,6 @@ vim.o.confirm = false
 vim.o.cursorline = false
 vim.o.formatoptions = "jcroqlnt"
 vim.o.grepprg = "rg --vimgrep"
-
 vim.o.lazyredraw = false
 vim.o.spellcheck = true
 vim.o.laststatus = 0
@@ -74,8 +73,3 @@ vim.o.showmatch = true
 vim.o.wildmenu = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
-
-vim.wo.foldmethod = "expr"
-vim.wo.foldlevel = 99
-vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
--- vim.wo.foldexpr = "indent"

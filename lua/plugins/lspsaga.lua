@@ -51,7 +51,7 @@ return {
                 virtual_text = false,
             },
             symbol_in_winbar = {
-                enable = false,
+                enable = true,
                 separator = " > ",
                 ignore_patterns = {},
                 hide_keyword = true,

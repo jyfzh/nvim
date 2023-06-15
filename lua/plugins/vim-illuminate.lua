@@ -52,9 +52,10 @@ return {
             -- min_count_to_highlight: minimum number of matches required to perform highlighting
             min_count_to_highlight = 2,
         })
-        vim.cmd[[hi! link illuminatedWordText Visual]]
-        vim.cmd[[hi! link illuminatedWordRead Visual]]
-        vim.cmd[[hi! link illuminatedWordWrite Visual]]
-        vim.cmd[[hi illuminatedWord cterm=underline gui=underline]]
+        local ns_id = vim.api.nvim_create_namespace("vim-illuminate")
+        vim.api.nvim_set_hl(ns_id, "illuminatedWordText", { link = "Visual" })
+        vim.api.nvim_set_hl(ns_id, "illuminatedWordRead", { link = "Visual" })
+        vim.api.nvim_set_hl(ns_id, "illuminatedWordWrite", { link = "Visual" })
+        vim.api.nvim_set_hl(ns_id, "illuminatedWord", { underline = true })
     end
 }
