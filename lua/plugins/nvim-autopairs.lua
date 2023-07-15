@@ -38,10 +38,10 @@ return {
                 highlight_grey = "Comment",
             },
         })
-        local ts_conds = require("nvim-autopairs.ts-conds")
-        npairs.add_rules({
-            Rule("$", "$", { "tex", "markdown" }),
-            Rule("$$", "$$$", { "tex", "markdown" }),
-        })
+        -- local ts_conds = require("nvim-autopairs.ts-conds")
+        -- npairs.add_rules({
+            -- Rule("$", "$", { "tex", "markdown" }),
+            -- Rule("$$", "$$", { "tex", "markdown" }),
+        -- })
     end,
 }

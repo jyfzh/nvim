@@ -1,6 +1,6 @@
 return {
     "zbirenbaum/copilot.lua",
-    event = { "BufReadPost", "BufNewFile" },
+    lazy = true,
     opts = {
         panel = {
             enabled = false,
@@ -31,8 +31,8 @@ return {
             },
         },
         filetypes = {
-            yaml = false,
-            markdown = false,
+            yaml = true,
+            markdown = true,
             help = false,
             gitcommit = false,
             gitrebase = false,
@@ -40,7 +40,7 @@ return {
             svn = false,
             cvs = false,
             log = false,
-            ["."] = false,
+            -- ["."] = false,
         },
         copilot_node_command = "node", -- Node.js version must be > 16.x
         server_opts_overrides = {},

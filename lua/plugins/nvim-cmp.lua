@@ -9,19 +9,7 @@ return {
         "hrsh7th/cmp-cmdline",
         "saadparwaiz1/cmp_luasnip",
         "rafamadriz/friendly-snippets",
-        {
-            "zbirenbaum/copilot-cmp",
-            config = function()
-                require("copilot_cmp").setup({
-                    method = "getCompletionsCycling",
-                    formatters = {
-                        label = require("copilot_cmp.format").format_label_text,
-                        insert_text = require("copilot_cmp.format").remove_existing,
-                        preview = require("copilot_cmp.format").deindent,
-                    },
-                })
-            end,
-        },
+        "zbirenbaum/copilot-cmp",
         {
             "L3MON4D3/LuaSnip",
             config = function()
@@ -29,6 +17,7 @@ return {
                     region_check_events = "CursorHold,InsertLeave",
                     delete_check_events = "TextChanged,InsertEnter",
                 })
+                require('luasnip').filetype_extend("markdown", { "tex" })
                 require("luasnip.loaders.from_vscode").lazy_load()
                 require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
             end,

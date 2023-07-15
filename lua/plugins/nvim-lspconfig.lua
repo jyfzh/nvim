@@ -199,7 +199,18 @@ return {
         })
 
         -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-        local servers = { 'cmake', 'pylsp', 'ruff_lsp', 'jsonls', 'html', 'cssls', 'tsserver', 'eslint', "powershell_es" }
+        local servers = {
+            'cmake',
+            'pylsp',
+            'ruff_lsp',
+            'jsonls',
+            'html',
+            'cssls',
+            'tsserver',
+            'eslint',
+            "powershell_es",
+            "marksman",
+        }
         for _, lsp in ipairs(servers) do
             require 'lspconfig'[lsp].setup {
                 capabilities = capabilities,
