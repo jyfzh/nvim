@@ -21,7 +21,7 @@ return {
         -- on_exit = fun(t: Terminal, job: number, exit_code: number, name: string) -- function to run when terminal process exits
         hide_numbers = true,     -- hide the number column in toggleterm buffers
         shade_filetypes = {},
-        autochdir = false,       -- when neovim changes it current directory the terminal will change it's own when next it's opened
+        autochdir = true,       -- when neovim changes it current directory the terminal will change it's own when next it's opened
         highlights = {
             -- highlights which map to a highlight group name and a table of it's values
             -- NOTE: this is only a subset of values, any group placed here will be set for the terminal window split
@@ -43,7 +43,7 @@ return {
         terminal_mappings = true,     -- whether or not the open mapping applies in the opened terminals
         persist_size = true,
         persist_mode = true,          -- if set to true (default) the previous terminal mode will be remembered
-        direction = "float",          --'vertical' | 'horizontal' | 'tab' | 'float',
+        direction = "horizontal",          --'vertical' | 'horizontal' | 'tab' | 'float',
         close_on_exit = true,         -- close the terminal window when the process exits
         shell = vim.o.shell,          -- change the default shell
         auto_scroll = true,           -- automatically scroll to the bottom on terminal output
@@ -64,7 +64,7 @@ return {
             winblend = 0,
         },
         winbar = {
-            enabled = true,
+            enabled = false,
             name_formatter = function(term)     --  term: Terminal
                 return term.name
             end,
