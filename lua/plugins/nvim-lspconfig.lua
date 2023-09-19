@@ -100,7 +100,7 @@ return {
 
             vim.keymap.set(
                 "n",
-                "=G",
+                "gf",
                 "<cmd>lua vim.lsp.buf.format { async = true }<CR>",
                 { noremap = true, silent = true, buffer = bufnr, desc = "format" }
             )
