@@ -44,6 +44,6 @@ return {
             "n",
             "<leader>rr",
             "<plug>RestNvim<cr>",
-            { noremap = true, silent = true, desc = "format" })
+            { noremap = true, silent = true, desc = "rest" })
     end
 }

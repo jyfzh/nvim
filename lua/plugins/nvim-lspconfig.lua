@@ -106,12 +106,6 @@ return {
             )
 
             vim.keymap.set(
-                "n",
-                "gr",
-                "<cmd>lua vim.lsp.buf.rename() <CR>",
-                { noremap = true, silent = true, buffer = bufnr, desc = "rename" }
-            )
-            vim.keymap.set(
                 "i",
                 "<C-k>",
                 vim.lsp.buf.signature_help,

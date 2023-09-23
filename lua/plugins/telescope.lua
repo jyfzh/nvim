@@ -87,8 +87,8 @@ return {
                     i = {
                         ["<C-f>"] = require("telescope.actions").preview_scrolling_down,
                         ["<C-b>"] = require("telescope.actions").preview_scrolling_up,
-                        ["<C-u>"] = false,
-                        ["<C-d>"] = false,
+                        ["<C-u>"] = require("telescope.actions").preview_scrolling_up,
+                        ["<C-d>"] = require("telescope.actions").preview_scrolling_down,
                         ["<C-q>"] = require("telescope.actions").smart_send_to_qflist
                             + require("telescope.actions").open_qflist,
                         ["<M-p>"] = require("telescope.actions.layout").toggle_preview,
@@ -181,6 +181,8 @@ return {
         vim.keymap.set("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>fm", "<cmd>Telescope marks<CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { noremap = true, silent = true })
+        vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { noremap = true, silent = true })
+        vim.keymap.set("n", "go", "<cmd>Telescope diagnostics<CR>", { noremap = true, silent = true })
         vim.keymap.set("n",
             "<leader>fp",
             "<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>",
