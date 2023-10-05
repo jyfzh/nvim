@@ -197,7 +197,6 @@ return {
             'cmake',
             'pylsp',
             'ruff_lsp',
-            'jsonls',
             'html',
             'cssls',
             'tsserver',
