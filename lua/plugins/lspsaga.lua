@@ -11,6 +11,7 @@ return {
         local opts = { silent = true, noremap = true };
 
         vim.keymap.set("n", "<C-k>", "<cmd>Lspsaga signature_help<CR>", opts)
+        vim.keymap.set("n", "gr", "<cmd>Lspsaga rename<CR>", opts)
         vim.keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", opts)
         vim.keymap.set("n", "gx", "<cmd>Lspsaga code_action<CR>", opts)
         vim.keymap.set("x", "gx", ":<c-u>Lspsaga range_code_action<CR>", opts)
