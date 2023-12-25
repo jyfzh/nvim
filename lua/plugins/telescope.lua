@@ -11,25 +11,11 @@ return {
         { "nvim-telescope/telescope-symbols.nvim" },
         { "nvim-telescope/telescope-ui-select.nvim" }
     },
-    keys = {
-        "<leader>ff",
-        "<leader>f<leader>",
-        "<leader>fk",
-        "<leader>f/",
-        "<leader>ff",
-        "<leader>fg",
-        "<leader>fh",
-        "<leader>fo",
-        "<leader>fm",
-        "<leader>fb",
-        "<leader>fp",
-        "<leader>fe",
-    },
-    init = function()
-        if vim.fn.has("wsl") == 0 and vim.fn.has("win32") == 1 then
-            vim.g.sqlite_clib_path = "C:/Windows/System32/sqlite3.dll"
-        end
-    end,
+    -- init = function()
+    --     if vim.fn.has("wsl") == 0 and vim.fn.has("win32") == 1 then
+    --         vim.g.sqlite_clib_path = "C:/Windows/System32/sqlite3.dll"
+    --     end
+    -- end,
     config = function()
         require("telescope").setup({
             defaults = {
@@ -166,10 +152,11 @@ return {
                 }
             },
         })
-        require("telescope").load_extension("project")
-        require("telescope").load_extension("fzf")
-        require("telescope").load_extension("smart_history")
-        require("telescope").load_extension("ui-select")
+
+        -- require("telescope").load_extension("project")
+        -- require("telescope").load_extension("fzf")
+        -- require("telescope").load_extension("smart_history")
+        -- require("telescope").load_extension("ui-select")
 
         vim.keymap.set("n", "<leader>f<leader>", "<cmd>Telescope <CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps <CR>", { noremap = true, silent = true })

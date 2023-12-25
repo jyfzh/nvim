@@ -14,9 +14,13 @@ return {
             },
             window = {
                 width = 20,
-                auto_expand_width = true
-            }
+                auto_expand_width = false
+            },
+            follow_current_file = {
+                enabled = true,
+                leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+            },
+            vim.keymap.set("n", "<leader>t", "<cmd>Neotree reveal toggle<CR>", { noremap = true, silent = true })
         })
-        vim.keymap.set("n", "<leader>t", "<cmd>Neotree reveal toggle<CR>", { noremap = true, silent = true })
     end
 }
