@@ -9,7 +9,7 @@ return {
         { "nvim-telescope/telescope-project.nvim" },
         { "nvim-telescope/telescope-fzf-native.nvim",    build = "make" },
         { "nvim-telescope/telescope-symbols.nvim" },
-        { "nvim-telescope/telescope-ui-select.nvim" }
+        { "nvim-telescope/telescope-ui-select.nvim" },
     },
     -- init = function()
     --     if vim.fn.has("wsl") == 0 and vim.fn.has("win32") == 1 then
@@ -76,7 +76,7 @@ return {
                         ["<C-u>"] = require("telescope.actions").preview_scrolling_up,
                         ["<C-d>"] = require("telescope.actions").preview_scrolling_down,
                         ["<C-q>"] = require("telescope.actions").smart_send_to_qflist
-                            + require("telescope.actions").open_qflist,
+                        + require("telescope.actions").open_qflist,
                         ["<M-p>"] = require("telescope.actions.layout").toggle_preview,
                     },
                     n = {
@@ -160,8 +160,7 @@ return {
 
         vim.keymap.set("n", "<leader>f<leader>", "<cmd>Telescope <CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps <CR>", { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>f/", "<cmd>Telescope current_buffer_fuzzy_find<CR>",
-            { noremap = true, silent = true })
+        vim.keymap.set("n", "<leader>f/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { noremap = true, silent = true })
@@ -170,15 +169,7 @@ return {
         vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "go", "<cmd>Telescope diagnostics<CR>", { noremap = true, silent = true })
-        vim.keymap.set("n",
-            "<leader>fp",
-            "<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>",
-            { noremap = true, silent = true, desc = "Telescope project" }
-        )
-        vim.keymap.set("n",
-            "<leader>fe",
-            "<cmd>lua require'telescope.builtin'.symbols{'nerd','emoji','gitemoji','julia'} <CR>",
-            { noremap = true, silent = true, desc = "Telescope symbols" }
-        )
+        vim.keymap.set("n", "<leader>fp", "<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>", { noremap = true, silent = true, desc = "Telescope project" })
+        vim.keymap.set("n", "<leader>fe", "<cmd>lua require'telescope.builtin'.symbols{'nerd','emoji','gitemoji','julia'} <CR>", { noremap = true, silent = true, desc = "Telescope symbols" })
     end,
 }
