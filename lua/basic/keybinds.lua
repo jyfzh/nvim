@@ -10,3 +10,5 @@ vim.keymap.set("n", "<C-g>", function ()
         vim.o.laststatus = 0
     end
 end, { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>", "<cmd>make<cr>", { noremap = true, silent = true })
