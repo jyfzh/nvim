@@ -8,7 +8,6 @@ return {
         { "nvim-telescope/telescope-smart-history.nvim", dependencies = "kkharji/sqlite.lua" },
         { "nvim-telescope/telescope-project.nvim" },
         { "nvim-telescope/telescope-fzf-native.nvim",    build = "make" },
-        { "nvim-telescope/telescope-symbols.nvim" },
         { "nvim-telescope/telescope-ui-select.nvim" },
     },
     -- init = function()
@@ -153,10 +152,7 @@ return {
             },
         })
 
-        -- require("telescope").load_extension("project")
-        -- require("telescope").load_extension("fzf")
-        -- require("telescope").load_extension("smart_history")
-        -- require("telescope").load_extension("ui-select")
+        require("telescope").load_extension("ui-select")
 
         vim.keymap.set("n", "<leader>f<leader>", "<cmd>Telescope <CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps <CR>", { noremap = true, silent = true })
@@ -167,9 +163,8 @@ return {
         vim.keymap.set("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>fm", "<cmd>Telescope marks<CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { noremap = true, silent = true })
+        vim.keymap.set("n", "<leader>fp", "<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>", { noremap = true, silent = true, desc = "Telescope project" })
         vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "go", "<cmd>Telescope diagnostics<CR>", { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>fp", "<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>", { noremap = true, silent = true, desc = "Telescope project" })
-        vim.keymap.set("n", "<leader>fe", "<cmd>lua require'telescope.builtin'.symbols{'nerd','emoji','gitemoji','julia'} <CR>", { noremap = true, silent = true, desc = "Telescope symbols" })
     end,
 }
