@@ -101,30 +101,8 @@ return {
                     include_current_line = false,
                     show_line = false,
                 },
-                keymaps = {
-                    prompt_title = "   Keymaps",
-                },
-                current_buffer_fuzzy_find = {
-                    prompt_title = " ﬘  Current Buffer",
-                },
-                live_grep = {
-                    prompt_title = "   Live Grep",
-                },
-                help_tags = {
-                    prompt_title = "  Help Tags",
-                },
-                oldfiles = {
-                    prompt_title = "   Old Files",
-                },
-                marks = {
-                    prompt_title = "  Marks",
-                },
                 buffers = {
-                    prompt_title = " ﬘ Buffers",
                     theme = "dropdown",
-                },
-                diagnostics = {
-                    prompt_title = "  diagnostics",
                 },
             },
             extensions = {

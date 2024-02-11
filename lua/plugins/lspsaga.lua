@@ -7,6 +7,11 @@ return {
     },
     config = function()
         require("lspsaga").setup({
+            error_sign = "",
+            warn_sign = "",
+            hint_sign = "",
+            infor_sign = "",
+            diagnostic_header_icon = "   ",
             code_action_icon = "",
             code_action_prompt = {
                 enable = true,
@@ -21,6 +26,7 @@ return {
         vim.keymap.set("n", "<C-k>", "<cmd>Lspsaga signature_help<CR>", opts)
         vim.keymap.set("n", "gr", "<cmd>Lspsaga rename<CR>", opts)
         vim.keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", opts)
+        vim.keymap.set("n", "gi", "<cmd>Lspsaga implement<CR>", opts)
         vim.keymap.set("n", "gx", "<cmd>Lspsaga code_action<CR>", opts)
         vim.keymap.set("x", "gx", ":<c-u>Lspsaga range_code_action<CR>", opts)
         vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
