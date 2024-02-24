@@ -7,7 +7,7 @@ if not vim.loop.fs_stat(lazypath) then
 		"git",
 		"clone",
 		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
+		"https://mirror.ghproxy.com/https://github.com/folke/lazy.nvim.git",
 		"--branch=stable",
 		lazypath,
 	})
@@ -35,7 +35,7 @@ require("lazy").setup("plugins", {
 		-- log = { "-10" }, -- show the last 10 commits
 		log = { "--since=3 days ago" }, -- show commits from the last 3 days
 		timeout = 120, -- kill processes that take more than 2 minutes
-		url_format = "https://github.com/%s.git",
+		url_format = "https://mirror.ghproxy.com/https://github.com/%s.git",
 	},
 	dev = {
 		-- directory where you store your local plugin projects
