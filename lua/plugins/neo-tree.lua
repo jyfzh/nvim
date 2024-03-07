@@ -7,13 +7,7 @@ return {
     },
     config = function()
         require("neo-tree").setup({
-            default_component_configs = {
-                indent = {
-                    indent_size = 1,
-                },
-            },
             window = {
-                width = 20,
                 auto_expand_width = false
             },
             follow_current_file = {

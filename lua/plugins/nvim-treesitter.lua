@@ -13,22 +13,19 @@ return {
         "nvim-treesitter/playground",
         "Badhi/nvim-treesitter-cpp-tools",
     },
-    init = function ()
+    config = function()
         vim.wo.foldmethod = "expr"
         vim.wo.foldlevel = 99
         vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
-    end,
-    config = function()
+
+        for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) do
+            config.install_info.url = config.install_info.url:gsub("https://github.com/", "https://mirror.ghproxy.com/https://github.com/")
+        end
+
         -- https://github.com/p00f/nvim-ts-rainbow/issues/81#issuecomment-1058124957
         local rainbow = { "#CC8888", "#CCCC88", "#88CC88", "#88CCCC", "#8888CC", "#CC88CC" }
         for i, c in ipairs(rainbow) do
             vim.cmd(("hi rainbowcol%d guifg=%s"):format(i, c))
-        end
-
-        -- proxy
-        for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) do
-            config.install_info.url = config.install_info.url:gsub("https://github.com/",
-                "https://ghproxy.com/https://github.com/")
         end
 
         require("nvim-treesitter.configs").setup({
@@ -66,9 +63,6 @@ return {
                 max_file_lines = nil, -- Do not enable for files with more than n lines, int
                 colors = rainbow,     -- table of hex strings
                 termcolors = rainbow, --table of colour name strings
-            },
-            context_commentstring = {
-                enable = true
             },
             playground = {
                 enable = true,
