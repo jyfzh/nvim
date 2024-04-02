@@ -18,7 +18,6 @@ vim.o.cursorline = false
 vim.o.formatoptions = "jcroqlnt"
 vim.o.grepprg = "rg --vimgrep"
 vim.o.lazyredraw = false
-vim.o.spellcheck = true
 vim.o.laststatus = 0
 vim.o.statusline = "%f %M %R %=  %y [%{&fileformat}] %l:%c %p%%"
 vim.g.netrw_sort_by = "time"

@@ -11,4 +11,6 @@ vim.keymap.set("n", "<C-g>", function ()
     end
 end, { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>", "<cmd>make<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<F7>", "<cmd>TermExec cmd='make build'<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<F8>", "<cmd>TermExec cmd='make run'<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<F9>", "<cmd>TermExec cmd='make clean'<cr>", { noremap = true, silent = true })
