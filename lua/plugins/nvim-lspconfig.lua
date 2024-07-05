@@ -151,8 +151,6 @@ return {
         })
 
 
-        -- https://clangd.llvm.org/features.html
-        capabilities.offsetEncoding = { "utf-16" } -- https://github.com/neovim/neovim/pull/16694
         require("lspconfig").clangd.setup({
             on_attach = on_attach,
             capabilities = capabilities,
@@ -168,6 +166,7 @@ return {
                 "--fallback-style=LLVM",
                 "--function-arg-placeholders=false",
                 "--header-insertion=never",
+                "--compile-commands-dir=build/"
             },
             filetype = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
             init_options = {
