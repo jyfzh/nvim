@@ -2,16 +2,10 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
         { "nvim-lua/plenary.nvim" },
-        { "nvim-telescope/telescope-smart-history.nvim", dependencies = "kkharji/sqlite.lua" },
         { "nvim-telescope/telescope-project.nvim" },
-        { "nvim-telescope/telescope-fzf-native.nvim",    build = "make" },
+        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         { "nvim-telescope/telescope-ui-select.nvim" },
     },
-    -- init = function()
-    --     if vim.fn.has("wsl") == 0 and vim.fn.has("win32") == 1 then
-    --         vim.g.sqlite_clib_path = "C:/Windows/System32/sqlite3.dll"
-    --     end
-    -- end,
     config = function()
         require("telescope").setup({
             defaults = {
@@ -43,10 +37,6 @@ return {
                         height = 0.9,
                     },
                 },
-                history = {
-                    path = vim.fn.stdpath("data") .. "/telescope_history.sqlite3",
-                    limit = 100,
-                },
                 vimgrep_arguments = {
                     "rg",
                     "--color=never",
@@ -57,7 +47,7 @@ return {
                     "--smart-case",
                     "--trim",
                 },
-                prompt_prefix = "   ",
+                prompt_prefix = "> ",
                 selection_caret = "  ",
                 entry_prefix = "  ",
                 sorting_strategy = "descending",
@@ -82,21 +72,9 @@ return {
             },
             pickers = {
                 find_files = {
-                    prompt_title = "   Find File",
+                    prompt_title = "Find File",
                     hidden = true,
                     find_command = { "fd", "--type", "f", "--color", "never", "-E", ".git" },
-                },
-                lsp_definitions = {
-                    prompt_title = "   Find Definition",
-                    include_declaration = false,
-                    include_current_line = false,
-                    show_line = false,
-                },
-                lsp_references = {
-                    prompt_title = "   LSP References",
-                    include_declaration = false,
-                    include_current_line = false,
-                    show_line = false,
                 },
                 buffers = {
                     theme = "dropdown",
@@ -120,7 +98,7 @@ return {
                     require("telescope.themes").get_ivy {
                         layout_config = {
                             prompt_position = "bottom",
-                            height = 0.5,
+                            height = 0.3,
                         },
                     }
                 }
@@ -139,7 +117,5 @@ return {
         vim.keymap.set("n", "<leader>fm", "<cmd>Telescope marks<CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>fp", "<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>", { noremap = true, silent = true, desc = "Telescope project" })
-        vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { noremap = true, silent = true })
-        vim.keymap.set("n", "go", "<cmd>Telescope diagnostics<CR>", { noremap = true, silent = true })
     end,
 }

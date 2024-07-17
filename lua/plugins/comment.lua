@@ -41,17 +41,8 @@ return {
 				---Extra mapping; `gco`, `gcO`, `gcA`
 				extra = true,
 			},
-			---Function to call before (un)comment
 			pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-			---Function to call after (un)comment
-			-- post_hook = function(ctx)
-			--     local U = require('Comment.utils')
-			--     local srow = ctx.range.erow
-			--     local erow = srow + 1
-			--     local line = U.get_lines({ srow = srow, erow = erow })
-			--     local _, col = U.grab_indent(line[1])
-			--     vim.api.nvim_win_set_cursor(0, { erow, col })
-			-- end,
+            post_hook = nil
 		})
 	end,
 }
