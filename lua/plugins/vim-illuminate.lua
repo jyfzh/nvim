@@ -1,6 +1,7 @@
 return {
     "RRethy/vim-illuminate",
     event = { "BufReadPost", "BufNewFile" },
+    enabled = false,
     config = function()
         require("illuminate").configure({
             -- providers: provider used to get references in the buffer, ordered by priority

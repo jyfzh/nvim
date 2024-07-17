@@ -34,7 +34,7 @@ return {
             severity_sort = true,
         })
 
-        local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+        local signs = { Error = "E", Warn = "W", Hint = "H", Info = "I" }
         for type, icon in pairs(signs) do
             local hl = "DiagnosticSign" .. type
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -66,24 +66,6 @@ return {
             end
         end
 
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-        capabilities.textDocument.completion.completionItem.snippetSupport = true
-        capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
-        capabilities.textDocument.completion.completionItem.preselectSupport = true
-        capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
-        capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
-        capabilities.textDocument.completion.completionItem.deprecatedSupport = true
-        capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
-        capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
-        capabilities.textDocument.completion.completionItem.resolveSupport = {
-            properties = {
-                "documentation",
-                "detail",
-                "additionalTextEdits",
-            },
-        }
-
         local on_attach = function(client, bufnr)
             vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
             -- Mappings.
@@ -111,12 +93,76 @@ return {
                 vim.lsp.buf.signature_help,
                 { noremap = true, silent = true, buffer = bufnr, desc = "signature_help" }
             )
+
+            vim.keymap.set(
+                "n",
+                "K",
+                vim.lsp.buf.hover,
+                { noremap = true, silent = true, buffer = bufnr, desc = "hover" }
+            )
+
+            vim.keymap.set(
+                "n",
+                "gx",
+                vim.lsp.buf.code_action,
+                { noremap = true, silent = true, buffer = bufnr, desc = "code_action" }
+            )
+
+            vim.keymap.set(
+                "n",
+                "gd",
+                vim.lsp.buf.definition,
+                { noremap = true, silent = true, buffer = bufnr, desc = "definition" }
+            )
+
+            vim.keymap.set(
+                "n",
+                "gD",
+                vim.lsp.buf.declaration,
+                { noremap = true, silent = true, buffer = bufnr, desc = "declaration" }
+            )
+
+            vim.keymap.set(
+                "n",
+                "gi",
+                vim.lsp.buf.implementation,
+                { noremap = true, silent = true, buffer = bufnr, desc = "implementation" }
+            )
+
+            vim.keymap.set(
+                "n",
+                "gr",
+                vim.lsp.buf.references,
+                { noremap = true, silent = true, buffer = bufnr, desc = "references" }
+            )
+
+            vim.keymap.set(
+                "n",
+                "gs",
+                vim.lsp.buf.document_symbol,
+                { noremap = true, silent = true, buffer = bufnr, desc = "document_symbol" }
+            )
+
+            vim.keymap.set(
+                "n",
+                "gS",
+                vim.lsp.buf.workspace_symbol,
+                { noremap = true, silent = true, buffer = bufnr, desc = "workspace_symbol" }
+            )
+
+            vim.keymap.set(
+                "n",
+                "gR",
+                vim.lsp.buf.rename,
+                { noremap = true, silent = true, buffer = bufnr, desc = "rename" }
+            )
         end
 
         require("neodev").setup()
 
+        local cap = vim.lsp.protocol.make_client_capabilities();
         require("lspconfig").lua_ls.setup({
-            capabilities = capabilities,
+            capabilities = cap,
             on_attach = on_attach,
             cmd = { "lua-language-server", "--locale=zh-cn" },
             settings = {
@@ -150,10 +196,11 @@ return {
             },
         })
 
+        cap.offsetEncoding = { "utf-16" } -- https://github.com/neovim/neovim/pull/16694
 
         require("lspconfig").clangd.setup({
             on_attach = on_attach,
-            capabilities = capabilities,
+            capabilities = cap,
             -- SEE: clangd --help-hidden for possible options
             -- by default, clang-tidy use -checks=clang-diagnostic-*,clang-analyzer-*
             -- to add more `checks`, create  a `.clang-tidy` file in the root directory
@@ -206,7 +253,7 @@ return {
         }
         for _, lsp in ipairs(servers) do
             require 'lspconfig'[lsp].setup {
-                capabilities = capabilities,
+                capabilities = cap,
                 on_attach = on_attach,
             }
         end
