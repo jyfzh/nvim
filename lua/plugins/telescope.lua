@@ -1,6 +1,3 @@
--- https://github.com/nvim-telescope/telescope.nvim
--- https://github.com/nvim-telescope/telescope-project.nvim
-
 return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
