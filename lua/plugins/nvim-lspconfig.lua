@@ -131,7 +131,7 @@ return {
 
             vim.keymap.set(
                 "n",
-                "gr",
+                "gR",
                 vim.lsp.buf.references,
                 { noremap = true, silent = true, buffer = bufnr, desc = "references" }
             )
@@ -152,7 +152,7 @@ return {
 
             vim.keymap.set(
                 "n",
-                "gR",
+                "gr",
                 vim.lsp.buf.rename,
                 { noremap = true, silent = true, buffer = bufnr, desc = "rename" }
             )
