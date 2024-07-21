@@ -135,7 +135,6 @@ return {
             },
         })
         -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-        -- [`wsl``:! command` make neovim no response](https://github.com/hrsh7th/cmp-cmdline/issues/24#issuecomment-1094896592)
         cmp.setup.cmdline(":", {
             mapping = cmp.mapping.preset.cmdline(),
             sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),

@@ -1,6 +1,5 @@
 return {
 	"numToStr/Comment.nvim",
-    dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
     event = { "BufReadPost", "BufNewFile" },
 	config = function()
 		require("Comment").setup({
@@ -41,7 +40,7 @@ return {
 				---Extra mapping; `gco`, `gcO`, `gcA`
 				extra = true,
 			},
-			pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+			pre_hook = nil,
             post_hook = nil
 		})
 	end,

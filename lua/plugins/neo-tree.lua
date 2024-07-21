@@ -9,7 +9,10 @@ return {
         require("neo-tree").setup({
             window = {
                 width = 30,
-                auto_expand_width = false
+                auto_expand_width = false,
+                mappings = {
+                    ["<LeftMouse>"] = "open",
+                }
             },
             filesystem = {
                 follow_current_file = {

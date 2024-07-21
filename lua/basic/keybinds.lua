@@ -13,6 +13,3 @@ end, { noremap = true, silent = true })
 
 vim.keymap.set("n", "g[", vim.diagnostic.goto_prev, { noremap = true })
 vim.keymap.set("n", "g]", vim.diagnostic.goto_next, { noremap = true })
-
-vim.keymap.set("n", "<F7>", "<cmd>!cmake . -B build && make -C build<cr>", { noremap = true })
-vim.keymap.set("n", "<F8>", "<cmd>!make -C build run<cr>", { noremap = true })
