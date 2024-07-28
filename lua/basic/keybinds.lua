@@ -10,6 +10,3 @@ vim.keymap.set("n", "<C-g>", function()
         vim.o.laststatus = 0
     end
 end, { noremap = true, silent = true })
-
-vim.keymap.set("n", "g[", vim.diagnostic.goto_prev, { noremap = true })
-vim.keymap.set("n", "g]", vim.diagnostic.goto_next, { noremap = true })

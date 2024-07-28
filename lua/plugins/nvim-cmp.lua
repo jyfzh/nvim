@@ -1,6 +1,6 @@
 return {
     "hrsh7th/nvim-cmp",
-    event = "LspAttach",
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
         "onsails/lspkind.nvim",
         "hrsh7th/cmp-nvim-lsp",
@@ -31,13 +31,6 @@ return {
 
         local cmp = require("cmp")
         cmp.setup({
-            enabled = function()
-                -- https://github.com/nvim-telescope/telescope.nvim/issues/94
-                if vim.bo.filetype == "TelescopePrompt" or vim.bo.filetype == "neo-tree-popup" then
-                    return false
-                end
-                return true
-            end,
             view = {
                 entries = { name = "custom", selection_order = "near_cursor" },
             },
@@ -51,7 +44,7 @@ return {
             },
             completion = {
                 -- https://zhuanlan.zhihu.com/p/106070272
-                completeopt = "menu,menuone,noselect",
+                completeopt = "menu,menuone",
             },
             experimental = {
                 ghost_text = true, -- this feature conflict with copilot.vim's preview.
