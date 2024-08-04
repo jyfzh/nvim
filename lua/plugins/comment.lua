@@ -40,7 +40,7 @@ return {
 				---Extra mapping; `gco`, `gcO`, `gcA`
 				extra = true,
 			},
-			pre_hook = nil,
+            pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
             post_hook = nil
 		})
 	end,

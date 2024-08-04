@@ -1,9 +1,3 @@
-if vim.g.neovide then
-    vim.g.neovide_cursor_vfx_mode = "sonicboom"
-    vim.g.neovide_transparency = 0.75
-    vim.opt.guifont = "JetBrainsMono NF:h14"
-end
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -72,3 +66,6 @@ vim.o.showmatch = true
 vim.o.wildmenu = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
+vim.o.foldmethod = "expr"
+vim.o.foldlevel = 99
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"

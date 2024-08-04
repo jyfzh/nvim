@@ -41,6 +41,7 @@ return {
             { border = "single" })
 
         local on_attach = function(client, bufnr)
+            client.server_capabilities.semanticTokensProvider = nil
             if vim.lsp.inlay_hint then
                 -- Wait for LSP server to start (just to be sure)
                 vim.defer_fn(function() vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end, 1000)
@@ -177,7 +178,6 @@ return {
                 "--fallback-style=LLVM",
                 "--function-arg-placeholders=false",
                 "--header-insertion=never",
-                "--compile-commands-dir=build/",
                 "--offset-encoding=utf-16", -- https://github.com/neovim/neovim/pull/16694
             },
             filetype = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
@@ -185,16 +185,8 @@ return {
 
         -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
         local servers = {
-            'typst_lsp',
             'cmake',
-            'gopls',
             'pylsp',
-            'ruff_lsp',
-            'html',
-            'cssls',
-            'tsserver',
-            'eslint',
-            "powershell_es",
         }
         for _, lsp in ipairs(servers) do
             require 'lspconfig'[lsp].setup {

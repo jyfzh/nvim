@@ -30,6 +30,7 @@ return {
         end
 
         local cmp = require("cmp")
+        local neogen = require('neogen')
         cmp.setup({
             view = {
                 entries = { name = "custom", selection_order = "near_cursor" },
@@ -44,7 +45,7 @@ return {
             },
             completion = {
                 -- https://zhuanlan.zhihu.com/p/106070272
-                completeopt = "menu,menuone",
+                completeopt = "menu,menuone,select",
             },
             experimental = {
                 ghost_text = true, -- this feature conflict with copilot.vim's preview.
@@ -56,7 +57,9 @@ return {
             },
             mapping = cmp.mapping.preset.insert({
                 ["<C-p>"] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
+                    if neogen.jumpable() then
+                        neogen.jump_next()
+                    elseif cmp.visible() then
                         cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
                     elseif require("luasnip").jumpable() then
                         require("luasnip").jump(-1)
@@ -66,7 +69,9 @@ return {
                     end
                 end, { "i", "s" }),
                 ["<C-n>"] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
+                    if neogen.jumpable(true) then
+                        neogen.jump_prev()
+                    elseif cmp.visible() then
                         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
                     elseif require("luasnip").jumpable() then
                         require("luasnip").jump(1)
