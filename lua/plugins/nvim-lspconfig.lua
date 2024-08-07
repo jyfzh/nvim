@@ -41,7 +41,6 @@ return {
             { border = "single" })
 
         local on_attach = function(client, bufnr)
-            client.server_capabilities.semanticTokensProvider = nil
             if vim.lsp.inlay_hint then
                 -- Wait for LSP server to start (just to be sure)
                 vim.defer_fn(function() vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end, 1000)
@@ -172,7 +171,7 @@ return {
             -- SEE: https://clang.llvm.org/extra/clang-tidy
             cmd = {
                 "clangd",
-                "--clang-tidy=true",
+                "--clang-tidy",
                 "--completion-style=bundled",
                 "--cross-file-rename",
                 "--fallback-style=LLVM",
