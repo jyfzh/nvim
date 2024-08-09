@@ -52,7 +52,10 @@ return {
                 entry_prefix = "  ",
                 sorting_strategy = "descending",
                 file_ignore_patterns = {
-                    -- "^.git",
+                    "^.git",
+                    "node_modules",
+                    "build",
+                    "3rdparty"
                 },
                 set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
                 mappings = {
@@ -62,7 +65,7 @@ return {
                         ["<C-u>"] = require("telescope.actions").preview_scrolling_up,
                         ["<C-d>"] = require("telescope.actions").preview_scrolling_down,
                         ["<C-q>"] = require("telescope.actions").smart_send_to_qflist
-                        + require("telescope.actions").open_qflist,
+                            + require("telescope.actions").open_qflist,
                         ["<M-p>"] = require("telescope.actions.layout").toggle_preview,
                     },
                     n = {
@@ -74,7 +77,7 @@ return {
                 find_files = {
                     prompt_title = "Find File",
                     hidden = true,
-                    find_command = { "fd", "--type", "f", "--color", "never", "-E", ".git" },
+                    find_command = { "fd", "--type", "f", "--color", "never" },
                 },
                 buffers = {
                     theme = "dropdown",
@@ -109,13 +112,16 @@ return {
 
         vim.keymap.set("n", "<leader>f<leader>", "<cmd>Telescope <CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps <CR>", { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>f/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { noremap = true, silent = true })
+        vim.keymap.set("n", "<leader>f/", "<cmd>Telescope current_buffer_fuzzy_find<CR>",
+            { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>fm", "<cmd>Telescope marks<CR>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>fp", "<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>", { noremap = true, silent = true, desc = "Telescope project" })
+        vim.keymap.set("n", "<leader>fp",
+            "<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>",
+            { noremap = true, silent = true, desc = "Telescope project" })
     end,
 }

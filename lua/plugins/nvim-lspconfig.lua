@@ -41,10 +41,10 @@ return {
             { border = "single" })
 
         local on_attach = function(client, bufnr)
-            if vim.lsp.inlay_hint then
-                -- Wait for LSP server to start (just to be sure)
-                vim.defer_fn(function() vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end, 1000)
-            end
+            -- if vim.lsp.inlay_hint then
+            --     -- Wait for LSP server to start (just to be sure)
+            --     vim.defer_fn(function() vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end, 1000)
+            -- end
 
             vim.api.nvim_create_autocmd("CursorHold", {
                 buffer = bufnr,
