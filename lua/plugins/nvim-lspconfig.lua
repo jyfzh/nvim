@@ -1,6 +1,9 @@
 return {
     "neovim/nvim-lspconfig",
-    dependencies = "williamboman/mason.nvim",
+    dependencies = {
+        "williamboman/mason.nvim",
+        "SmiteshP/nvim-navic",
+    },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
         -- To instead override float border setting globally
@@ -41,10 +44,16 @@ return {
             { border = "single" })
 
         local on_attach = function(client, bufnr)
-            client.server_capabilities.semanticTokensProvider = nil
+            -- hint
             if vim.lsp.inlay_hint then
-                -- Wait for LSP server to start (just to be sure)
                 vim.defer_fn(function() vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end, 1000)
+            end
+
+            -- navic
+            if client.server_capabilities.documentSymbolProvider then
+                local navic = require("nvim-navic")
+                navic.attach(client, bufnr)
+                vim.wo.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
             end
 
             vim.api.nvim_create_autocmd("CursorHold", {

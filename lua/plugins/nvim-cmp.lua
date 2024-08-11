@@ -30,7 +30,11 @@ return {
         end
 
         local cmp = require("cmp")
-        local neogen = require('neogen')
+        local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+        cmp.event:on(
+            'confirm_done',
+            cmp_autopairs.on_confirm_done()
+        )
         cmp.setup({
             view = {
                 entries = { name = "custom", selection_order = "near_cursor" },
@@ -57,9 +61,7 @@ return {
             },
             mapping = cmp.mapping.preset.insert({
                 ["<C-p>"] = cmp.mapping(function(fallback)
-                    if neogen.jumpable() then
-                        neogen.jump_next()
-                    elseif cmp.visible() then
+                    if cmp.visible() then
                         cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
                     elseif require("luasnip").jumpable() then
                         require("luasnip").jump(-1)
@@ -69,9 +71,7 @@ return {
                     end
                 end, { "i", "s" }),
                 ["<C-n>"] = cmp.mapping(function(fallback)
-                    if neogen.jumpable(true) then
-                        neogen.jump_prev()
-                    elseif cmp.visible() then
+                    if cmp.visible() then
                         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
                     elseif require("luasnip").jumpable() then
                         require("luasnip").jump(1)
