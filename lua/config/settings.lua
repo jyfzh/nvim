@@ -8,7 +8,7 @@ vim.o.fileencodings = "utf-8,gb18030,gbk,gb2312,utf-16,cp936,usc-bom,euc-jp"
 vim.o.confirm = false
 vim.o.cursorline = false
 vim.o.formatoptions = "jcroqlnt"
-vim.o.laststatus = 3
+vim.o.laststatus = 2
 vim.o.statusline = "%f %{get(b:,'gitsigns_status','')} %M %= %R %{&fileformat} %l:%c %p%%"
 
 vim.o.number = true

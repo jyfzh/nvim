@@ -52,7 +52,10 @@ return {
                 entry_prefix = "  ",
                 sorting_strategy = "descending",
                 file_ignore_patterns = {
-                    -- "^.git",
+                    "^.git",
+                    "3rdparty",
+                    "build",
+                    ".cache"
                 },
                 set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
                 mappings = {
