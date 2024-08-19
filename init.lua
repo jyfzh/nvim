@@ -18,6 +18,7 @@ vim.opt.rtp:prepend(lazypath)
 require("config.settings")
 require("config.keybinds")
 require("config.autocmd")
+require("config.statusline")
 
 require("lazy").setup({
     defaults = { lazy = false },

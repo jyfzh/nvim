@@ -14,50 +14,9 @@ return {
                 dynamic_preview_title = true,
                 path_display = { "truncate" },
                 layout_strategy = "bottom_pane",
-                layout_config = {
-                    preview_cutoff = 1,
-                    bottom_pane = {
-                        height = 0.9,
-                        prompt_position = "bottom",
-                    },
-                    center = {
-                        width = 0.9,
-                        height = 0.4,
-                    },
-                    cursor = {
-                        width = 0.8,
-                        height = 0.9,
-                    },
-                    vertical = {
-                        width = 0.9,
-                        height = 0.9,
-                    },
-                    horizontal = {
-                        width = 0.9,
-                        height = 0.9,
-                    },
-                },
-                vimgrep_arguments = {
-                    "rg",
-                    "--color=never",
-                    "--no-heading",
-                    "--with-filename",
-                    "--line-number",
-                    "--column",
-                    "--smart-case",
-                    "--trim",
-                },
-                prompt_prefix = "> ",
-                selection_caret = "  ",
-                entry_prefix = "  ",
-                sorting_strategy = "descending",
-                file_ignore_patterns = {
-                    "^.git",
-                    "3rdparty",
-                    "build",
-                    ".cache"
-                },
-                set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+                sorting_strategy = "ascending",
+                vimgrep_arguments = { "rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case", "--trim" },
+                file_ignore_patterns = { "^.git", ".cache", "3rdparty", "build" },
                 mappings = {
                     i = {
                         ["<C-f>"] = require("telescope.actions").preview_scrolling_down,
@@ -65,7 +24,7 @@ return {
                         ["<C-u>"] = require("telescope.actions").preview_scrolling_up,
                         ["<C-d>"] = require("telescope.actions").preview_scrolling_down,
                         ["<C-q>"] = require("telescope.actions").smart_send_to_qflist
-                        + require("telescope.actions").open_qflist,
+                            + require("telescope.actions").open_qflist,
                         ["<M-p>"] = require("telescope.actions.layout").toggle_preview,
                     },
                     n = {
@@ -79,15 +38,12 @@ return {
                     hidden = true,
                     find_command = { "fd", "--type", "f", "--color", "never", "-E", ".git" },
                 },
-                buffers = {
-                    theme = "dropdown",
-                },
             },
             extensions = {
                 project = {
                     theme = "dropdown",
                     hidden_files = true,
-                    -- order_by = "asc",
+                    order_by = "asc",
                     base_dirs = {},
                     mappings = {},
                 },
@@ -110,15 +66,18 @@ return {
 
         require("telescope").load_extension("ui-select")
 
-        vim.keymap.set("n", "<leader>f<leader>", "<cmd>Telescope <CR>", { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps <CR>", { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>f/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>fm", "<cmd>Telescope marks<CR>", { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>fp", "<cmd>lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>", { noremap = true, silent = true, desc = "Telescope project" })
+        local builtin = require('telescope.builtin')
+
+        vim.keymap.set("n", "<leader>f<leader>", builtin.builtin, {})
+        vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+        vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+        vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+        vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+        vim.keymap.set("n", "<leader>fk", builtin.keymaps, {})
+        vim.keymap.set("n", "<leader>f/", builtin.current_buffer_fuzzy_find, {})
+        vim.keymap.set("n", "<leader>fm", builtin.marks, {})
+        vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
+        vim.keymap.set("n", "<leader>fp",
+            "<cmd>lua require('telescope').extensions.project.project{ display_type = 'full' }<CR>", {})
     end,
 }
