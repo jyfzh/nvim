@@ -14,9 +14,9 @@ return {
         end
 
         require("nvim-treesitter.configs").setup({
-            ensure_installed = { "c", "cpp", "rust" },
+            ensure_installed = {},
             sync_install = false,
-            auto_install = true,
+            auto_install = false,
             parser_install_dir = vim.fn.stdpath("data") .. "/lazy/nvim-treesitter",
             highlight = {
                 enable = false,
