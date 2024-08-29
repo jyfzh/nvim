@@ -49,26 +49,34 @@ return {
                 ["<C-p>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-                    elseif require("luasnip").jumpable() then
+                    elseif require("luasnip").locally_jumpable(-1) then
                         require("luasnip").jump(-1)
                     elseif has_words_before() then
-                    else
                         cmp.complete()
                     end
                 end, { "i", "s" }),
                 ["<C-n>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-                    elseif require("luasnip").jumpable() then
+                    elseif require("luasnip").locally_jumpable(1) then
                         require("luasnip").jump(1)
                     end
                 end, { "i", "s" }),
                 ["<C-b>"] = cmp.mapping.scroll_docs(-4),
                 ["<C-f>"] = cmp.mapping.scroll_docs(4),
-                ["<CR>"] = cmp.mapping.confirm({
-                    behavior = cmp.ConfirmBehavior.Replace,
-                    select = false,
-                }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                ["<CR>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        if require("luasnip").expandable() then
+                            require("luasnip").expand()
+                        else
+                            cmp.confirm({
+                                select = true,
+                            })
+                        end
+                    else
+                        fallback()
+                    end
+                end),
                 ["<C-e>"] = cmp.mapping.abort(),
                 ["<C-Space>"] = cmp.mapping.complete(),
             }),
@@ -113,20 +121,9 @@ return {
         })
         -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
         cmp.setup.cmdline({ "/", "?" }, {
-            mapping = cmp.mapping.preset.cmdline(),
             sources = {
                 { name = "buffer" },
             },
-        })
-        -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-        cmp.setup.cmdline(':', {
-            mapping = cmp.mapping.preset.cmdline(),
-            sources = cmp.config.sources({
-                { name = 'path' }
-            }, {
-                { name = 'cmdline' }
-            }),
-            matching = { disallow_symbol_nonprefix_matching = false }
         })
     end,
 }
