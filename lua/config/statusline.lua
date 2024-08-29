@@ -239,75 +239,25 @@ local function lsp_status()
 end
 
 --- @return string
-local function git_diff_added()
-  local added = get_git_diff("added")
-  if added > 0 then
-    return string.format("%%#StatusLineGitDiffAdded#  %s%%*", added)
-  end
-
-  return ""
-end
-
---- @return string
-local function git_diff_changed()
-  local changed = get_git_diff("changed")
-  if changed > 0 then
-    return string.format("%%#StatusLineGitDiffChanged#  %s%%*", changed)
-  end
-
-  return ""
-end
-
---- @return string
-local function git_diff_removed()
-  local removed = get_git_diff("removed")
-  if removed > 0 then
-    return string.format("%%#StatusLineGitDiffRemoved#  %s%%*", removed)
-  end
-
-  return ""
-end
-
---- @return string
-local function git_branch_icon()
-  return "%#StatusLineGitBranchIcon#%*"
-end
-
---- @return string
 local function git_branch()
+  local space = "%#StatusLineMedium# %*"
   local branch = vim.b.gitsigns_head
 
   if branch == "" or branch == nil then
     return ""
   end
 
-  return string.format("%%#StatusLineMedium#%s%%*", branch)
+  return "%#StatusLineGitBranchIcon#%*" .. space .. string.format("%%#StatusLineMedium#%s%%*", branch)
 end
 
 --- @return string
-local function full_git()
+local function git()
   local full = ""
   local space = "%#StatusLineMedium# %*"
 
   local branch = git_branch()
   if branch ~= "" then
-    local icon = git_branch_icon()
-    full = full .. space .. icon .. space .. branch .. space
-  end
-
-  local added = git_diff_added()
-  if added ~= "" then
-    full = full .. added .. space
-  end
-
-  local changed = git_diff_changed()
-  if changed ~= "" then
-    full = full .. changed .. space
-  end
-
-  local removed = git_diff_removed()
-  if removed ~= "" then
-    full = full .. removed .. space
+    full = full .. space .. branch .. space .. vim.b.gitsigns_status
   end
 
   return full
@@ -321,19 +271,10 @@ local function file_percentage()
   return string.format("%%#StatusLineMedium#  %d%%%% %%*", math.ceil(current_line / lines * 100))
 end
 
---- @return string
-local function total_lines()
-  return string.format("%%#StatusLineMedium#%%*")
-end
-
 --- @param hlgroup string
 local function formatted_filetype(hlgroup)
   local filetype = vim.bo.filetype or vim.fn.expand("%:e", false)
   return string.format("%%#%s# %s %%*", hlgroup, filetype)
-end
-
-local function filetype()
-  return string.format(" {ft:%s}", vim.bo.filetype):lower()
 end
 
 StatusLine = {}
@@ -358,7 +299,6 @@ StatusLine.active = function()
       "%=",
       "%=",
       file_percentage(),
-      total_lines(),
     })
   end
 
@@ -368,15 +308,13 @@ StatusLine.active = function()
       "%=",
       "%=",
       file_percentage(),
-      total_lines(),
     })
   end
 
   local statusline = {
-    "▊",
     mode(),
     filename(),
-    full_git(),
+    git(),
     "%=",
     "%=",
     "%S ",
@@ -385,13 +323,10 @@ StatusLine.active = function()
     diagnostics_warns(),
     diagnostics_hint(),
     diagnostics_info(),
-    lsp_active(),
+    -- lsp_active(),
     python_env(),
     lsp_clients(),
-    -- filetype(),
     file_percentage(),
-    total_lines(),
-    " ▊",
   }
 
   return table.concat(statusline)

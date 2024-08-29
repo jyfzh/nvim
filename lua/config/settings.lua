@@ -50,3 +50,6 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.foldmethod = "indent"
 vim.o.foldlevel = 99
+
+LSP_enabled = true
+TREE_SITTER_enabled = false

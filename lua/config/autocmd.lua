@@ -28,13 +28,3 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
     end,
     pattern = "*",
 })
-
--- https://github.com/nvim-telescope/telescope.nvim/issues/559#issuecomment-1074076011
-vim.api.nvim_create_autocmd({ "BufRead" }, {
-    callback = function()
-        vim.api.nvim_create_autocmd("BufWinEnter", {
-            once = true,
-            command = "normal! zx",
-        })
-    end,
-})

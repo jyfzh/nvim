@@ -3,25 +3,13 @@ return {
     event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
         "onsails/lspkind.nvim",
+        "L3MON4D3/LuaSnip",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
         "saadparwaiz1/cmp_luasnip",
-        "rafamadriz/friendly-snippets",
         "zbirenbaum/copilot-cmp",
-        {
-            "L3MON4D3/LuaSnip",
-            config = function()
-                require("luasnip").setup({
-                    region_check_events = "CursorHold,InsertLeave",
-                    delete_check_events = "TextChanged,InsertEnter",
-                })
-                require('luasnip').filetype_extend("markdown", { "tex" })
-                require("luasnip.loaders.from_vscode").lazy_load()
-                require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
-            end,
-        },
     },
     config = function()
         local has_words_before = function()
@@ -41,14 +29,12 @@ return {
             },
             window = {
                 documentation = cmp.config.window.bordered(),
-                complete = cmp.config.window.bordered(),
                 completion = {
-                    scrolloff = 5,
+                    scrolloff = 10,
                     -- border = 'rounded',
                 },
             },
             completion = {
-                -- https://zhuanlan.zhihu.com/p/106070272
                 completeopt = "menu,menuone,select",
             },
             experimental = {
@@ -133,9 +119,14 @@ return {
             },
         })
         -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-        cmp.setup.cmdline(":", {
+        cmp.setup.cmdline(':', {
             mapping = cmp.mapping.preset.cmdline(),
-            sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
+            sources = cmp.config.sources({
+                { name = 'path' }
+            }, {
+                { name = 'cmdline' }
+            }),
+            matching = { disallow_symbol_nonprefix_matching = false }
         })
     end,
 }

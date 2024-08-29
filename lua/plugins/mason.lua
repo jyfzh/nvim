@@ -1,7 +1,6 @@
 return {
     "williamboman/mason.nvim",
     dependencies = "williamboman/mason-lspconfig.nvim",
-    lazy = true,
     cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUpdate", "MasonUninstallAll", "MasonLog" },
     opts = {
         ui = {

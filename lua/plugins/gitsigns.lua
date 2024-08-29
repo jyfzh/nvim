@@ -1,6 +1,6 @@
 return {
     "lewis6991/gitsigns.nvim",
-    event = { "BufReadPost", "BufNewFile" },
+    event = "VeryLazy",
     opts = {
         signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
         numhl = false,     -- Toggle with `:Gitsigns toggle_numhl`
