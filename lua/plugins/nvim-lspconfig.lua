@@ -186,6 +186,7 @@ return {
         local servers = {
             'cmake',
             'pylsp',
+            'rust_analyzer'
         }
         for _, lsp in ipairs(servers) do
             require 'lspconfig'[lsp].setup {

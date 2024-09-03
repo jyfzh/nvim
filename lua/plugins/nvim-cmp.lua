@@ -35,7 +35,7 @@ return {
                 },
             },
             completion = {
-                completeopt = "menu,menuone,select",
+                completeopt = "menu,menuone,noselect",
             },
             experimental = {
                 ghost_text = true, -- this feature conflict with copilot.vim's preview.
@@ -124,6 +124,17 @@ return {
             sources = {
                 { name = "buffer" },
             },
+        })
+
+        -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+        cmp.setup.cmdline(':', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({
+                { name = 'path' }
+            }, {
+                { name = 'cmdline' }
+            }),
+            matching = { disallow_symbol_nonprefix_matching = false }
         })
     end,
 }
