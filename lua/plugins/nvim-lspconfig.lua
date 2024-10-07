@@ -151,12 +151,12 @@ return {
                     hint = {
                         enable = true, -- necessary
                     },
-                    runningtime = {
+                    runtime = {
                         version = "LuaJIT"
                     },
                     diagnostics = {
                         -- Get the language server to recognize the `vim` global
-                        globals = { "vim" },
+                        globals = { "vim", "jit" },
                         disable = { "redefined-local" }
                     },
                 },

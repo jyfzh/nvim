@@ -1,8 +1,10 @@
 return {
     "nvim-treesitter/nvim-treesitter",
+    enabled = false,
     dependencies = {
         "nvim-treesitter/nvim-treesitter-context",
-        "drybalka/tree-climber.nvim"
+        "drybalka/tree-climber.nvim",
+        { "danymat/neogen", config = true },
     },
     event = "VeryLazy",
     build = ":TSUpdate",

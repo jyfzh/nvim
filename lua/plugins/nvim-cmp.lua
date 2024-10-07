@@ -9,7 +9,6 @@ return {
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
         "saadparwaiz1/cmp_luasnip",
-        "zbirenbaum/copilot-cmp",
     },
     config = function()
         local has_words_before = function()
@@ -81,7 +80,7 @@ return {
                 ["<C-Space>"] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
-                { name = "copilot" },
+                { name = "codeium" },
                 { name = "nvim_lsp" },
                 { name = "luasnip" },
             }, {
@@ -91,21 +90,14 @@ return {
             formatting = {
                 format = require("lspkind").cmp_format({
                     mode = "symbol_text",
-                    with_text = true,
                     maxwidth = 50,
-                    before = function(entry, vim_item)
-                        vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
-                        if string.upper(entry.source.name) == "COPILOT" then
-                            vim_item.kind = " Copilot"
-                        end
-                        return vim_item
-                    end,
+                    ellipsis_char = '...',
+                    symbol_map = { Codeium = "", }
                 }),
             },
             sorting = {
                 priority_weight = 2,
                 comparators = {
-                    require("copilot_cmp.comparators").prioritize,
                     cmp.config.compare.offset,
                     cmp.config.compare.exact,
                     -- cmp.config.compare.scopes,
