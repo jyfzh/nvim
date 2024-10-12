@@ -178,6 +178,7 @@ return {
                 "--function-arg-placeholders=false",
                 "--header-insertion=never",
                 "--offset-encoding=utf-16", -- https://github.com/neovim/neovim/pull/16694
+                "--compile-commands-dir=build"
             },
             filetype = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
         })
