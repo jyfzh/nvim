@@ -5,6 +5,9 @@ return {
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
     },
+    keys = {
+        { "<leader>t", "<cmd>Neotree toggle<CR>", desc = "Toggle NeoTree" },
+    },
     config = function()
         require("neo-tree").setup({
             window = {
@@ -22,6 +25,5 @@ return {
                 }
             },
         })
-        vim.keymap.set("n", "<leader>t", "<cmd>Neotree reveal toggle<CR>", { noremap = true, silent = true })
     end
 }

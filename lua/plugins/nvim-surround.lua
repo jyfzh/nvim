@@ -1,6 +1,6 @@
 return {
     "kylechui/nvim-surround",
     dependencies = "tpope/vim-repeat",
-    event = "VeryLazy",
+    event = { "BufReadPost", "BufNewFile" },
     config = true,
 }

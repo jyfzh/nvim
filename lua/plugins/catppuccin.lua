@@ -29,7 +29,7 @@ return {
                 variables = {},
                 numbers = { "italic" },
                 booleans = { "italic" },
-                properties = { },
+                properties = {},
                 types = { "bold" },
                 operators = { "bold" },
             },
@@ -63,7 +63,11 @@ return {
                     enabled = true,
                     custom_bg = "NONE",
                 },
-                nvim_surround = true
+                nvim_surround = true,
+                illuminate = {
+                    enabled = true,
+                    lsp = true
+                }
             },
         })
         vim.cmd.colorscheme("catppuccin")

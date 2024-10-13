@@ -1,6 +1,5 @@
 return {
     "hedyhli/outline.nvim",
-    lazy = true,
     cmd = { "Outline", "OutlineOpen" },
     keys = {
         {
@@ -10,5 +9,11 @@ return {
             desc = "Toggle outline"
         },
     },
-    config = true
+    config = function()
+        require("outline").setup({
+            symbols = {
+                filter = { 'Function' }
+            },
+        })
+    end
 }
