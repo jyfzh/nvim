@@ -193,11 +193,12 @@ return {
             filetype = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
         })
 
-        -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+        -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
         local servers = {
             'cmake',
             'pylsp',
-            'rust_analyzer'
+            'rust_analyzer',
+            "ts_ls",
         }
         for _, lsp in ipairs(servers) do
             require 'lspconfig'[lsp].setup {
