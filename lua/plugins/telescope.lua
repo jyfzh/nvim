@@ -17,7 +17,13 @@ return {
                 layout_strategy = "bottom_pane",
                 sorting_strategy = "ascending",
                 vimgrep_arguments = { "rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case", "--trim" },
-                file_ignore_patterns = { "^.git", ".cache", "3rdparty", "build" },
+                file_ignore_patterns = {
+                    "^.git",
+                    ".cache",
+                    "3rdparty",
+                    "build",
+                    "node_modules"
+                },
                 mappings = {
                     i = {
                         ["<C-f>"] = require("telescope.actions").preview_scrolling_down,

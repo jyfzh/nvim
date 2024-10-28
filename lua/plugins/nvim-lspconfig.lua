@@ -198,6 +198,7 @@ return {
             'cmake',
             'pylsp',
             'rust_analyzer',
+            'cssls',
             "ts_ls",
         }
         for _, lsp in ipairs(servers) do
