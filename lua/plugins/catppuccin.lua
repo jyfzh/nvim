@@ -72,5 +72,6 @@ return {
         })
         vim.cmd.colorscheme("catppuccin")
         vim.o.background = "light"
+        vim.cmd [[hi LspInlayHint gui=italic]]
     end
 }
