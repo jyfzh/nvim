@@ -37,7 +37,7 @@ return {
                 completeopt = "menu,menuone,noselect",
             },
             experimental = {
-                ghost_text = true, -- this feature conflict with copilot.vim's preview.
+                ghost_text = false, -- this feature conflict with copilot.vim's preview.
             },
             snippet = {
                 expand = function(args)
@@ -79,13 +79,16 @@ return {
                 ["<C-e>"] = cmp.mapping.abort(),
                 ["<C-Space>"] = cmp.mapping.complete(),
             }),
-            sources = cmp.config.sources({
-                { name = "nvim_lsp" },
-                { name = "luasnip" },
-            }, {
-                { name = "path" },
-                { name = "buffer" },
-            }),
+            sources = cmp.config.sources(
+                {
+                    { name = "nvim_lsp" },
+                    { name = "luasnip" },
+                },
+                {
+                    { name = "path" },
+                    { name = "buffer" },
+                }
+            ),
             formatting = {
                 format = require("lspkind").cmp_format({
                     mode = "symbol_text",

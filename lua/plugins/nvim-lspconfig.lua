@@ -53,7 +53,7 @@ return {
             if client.server_capabilities.documentSymbolProvider then
                 local navic = require("nvim-navic")
                 navic.attach(client, bufnr)
-                vim.wo.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+                vim.wo.winbar = "%{%v:lua.require'nvim-navic'.get_location()%} %= Codeium:%{v:lua.require('codeium.virtual_text').status_string()}"
             end
 
             vim.api.nvim_create_autocmd("CursorHold", {
