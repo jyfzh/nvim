@@ -1,10 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.o.encoding = "utf-8"
-vim.o.fileencoding = "utf-8"
-vim.o.fileencodings = "utf-8,gb18030,gbk,gb2312,utf-16,cp936,usc-bom,euc-jp"
-
 vim.o.confirm = false
 vim.o.cursorline = false
 vim.o.formatoptions = "jcroqlnt"
