@@ -22,7 +22,7 @@ return {
         }
     },
     keys = {
-        { "<c-\\>", function() Snacks.terminal().open() end,         desc = "Toggle Terminal" },
+        { "<c-\\>", function() Snacks.terminal() end,         desc = "Toggle Terminal" },
         { "]]",     function() Snacks.words.jump(vim.v.count1) end,  desc = "Next Reference" },
         { "[[",     function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
     },

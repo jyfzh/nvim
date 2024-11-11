@@ -50,32 +50,12 @@ return {
         left = {
             -- Neo-tree filesystem always takes half the screen height
             {
-                title = "Neo-Tree",
+                title = "Tree",
                 ft = "neo-tree",
                 filter = function(buf)
                     return vim.b[buf].neo_tree_source == "filesystem"
                 end,
                 size = { height = 0.5 },
-            },
-            {
-                title = "Neo-Tree Git",
-                ft = "neo-tree",
-                filter = function(buf)
-                    return vim.b[buf].neo_tree_source == "git_status"
-                end,
-                pinned = true,
-                collapsed = true, -- show window as closed/collapsed on start
-                open = "Neotree position=right git_status",
-            },
-            {
-                title = "Neo-Tree Buffers",
-                ft = "neo-tree",
-                filter = function(buf)
-                    return vim.b[buf].neo_tree_source == "buffers"
-                end,
-                pinned = true,
-                collapsed = true, -- show window as closed/collapsed on start
-                open = "Neotree position=top buffers",
             },
             {
                 title = function()
@@ -85,10 +65,58 @@ return {
                 ft = "Outline",
                 pinned = true,
                 open = "SymbolsOutlineOpen",
-
             },
-            -- any other neo-tree windows
-            "neo-tree",
+        },
+        animate = { enabled = false },
+        keys = {
+            -- close window
+            ["q"] = function(win)
+                win:close()
+            end,
+            -- hide window
+            ["<c-q>"] = function(win)
+                win:hide()
+            end,
+            -- close sidebar
+            ["Q"] = function(win)
+                win.view.edgebar:close()
+            end,
+            -- next open window
+            ["]w"] = function(win)
+                win:next({ visible = true, focus = true })
+            end,
+            -- previous open window
+            ["[w"] = function(win)
+                win:prev({ visible = true, focus = true })
+            end,
+            -- next loaded window
+            ["]W"] = function(win)
+                win:next({ pinned = false, focus = true })
+            end,
+            -- prev loaded window
+            ["[W"] = function(win)
+                win:prev({ pinned = false, focus = true })
+            end,
+            -- increase width
+            ["<c-w>>"] = function(win)
+                win:resize("width", 2)
+            end,
+            -- decrease width
+            ["<c-w><lt>"] = function(win)
+                win:resize("width", -2)
+            end,
+            -- increase height
+            ["<c-w>+"] = function(win)
+                win:resize("height", 2)
+            end,
+            -- decrease height
+            ["<c-w>-"] = function(win)
+                win:resize("height", -2)
+            end,
+            -- reset all custom sizing
+            ["<c-w>="] = function(win)
+                win.view.edgebar:equalize()
+            end,
         },
     },
 }
