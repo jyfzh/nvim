@@ -5,10 +5,7 @@ return {
     ---@type snacks.Config
     opts = {
         bigfile = { enabled = true },
-        notifier = {
-            enabled = true,
-            timeout = 3000,
-        },
+        notifier = { enabled = true, timeout = 3000 },
         quickfile = { enabled = true },
         statuscolumn = { enabled = true },
         words = { enabled = true },
@@ -22,7 +19,7 @@ return {
         }
     },
     keys = {
-        { "<c-\\>", function() Snacks.terminal() end,         desc = "Toggle Terminal" },
+        { "<c-\\>", function() Snacks.terminal() end,                desc = "Toggle Terminal" },
         { "]]",     function() Snacks.words.jump(vim.v.count1) end,  desc = "Next Reference" },
         { "[[",     function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
     },
@@ -72,12 +69,6 @@ return {
                     'Terminal',
                     "lua require('snacks').terminal()",
                     { desc = "Toggle Terminal" }
-                )
-                -- rename
-                vim.api.nvim_create_user_command(
-                    'Rename',
-                    "lua require('snacks').rename()",
-                    { desc = "Rename File" }
                 )
                 vim.api.nvim_create_user_command(
                     'NotifyClear',

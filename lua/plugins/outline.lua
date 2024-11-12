@@ -9,11 +9,5 @@ return {
             desc = "Toggle outline"
         },
     },
-    config = function()
-        require("outline").setup({
-            symbols = {
-                filter = { 'Function' }
-            },
-        })
-    end
+    config = true
 }

@@ -312,17 +312,17 @@ StatusLine.active = function()
     end
 
     local statusline = {
-        mode(),
-        filename(),
+        -- mode(),
+        -- filename(),
         git(),
-        "%=",
-        "%=",
-        "%S ",
-        lsp_status(),
         diagnostics_error(),
         diagnostics_warns(),
         diagnostics_hint(),
         diagnostics_info(),
+        "%=",
+        "%=",
+        "%S ",
+        lsp_status(),
         -- lsp_active(),
         python_env(),
         lsp_clients(),
