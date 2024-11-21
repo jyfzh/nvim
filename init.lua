@@ -18,7 +18,6 @@ vim.opt.rtp:prepend(lazypath)
 require("config.settings")
 require("config.keybinds")
 require("config.autocmd")
-require("config.statusline")
 
 require("lazy").setup({
     defaults = { lazy = false },
@@ -37,7 +36,7 @@ require("lazy").setup({
     },
     install = {
         missing = true,
-        colorscheme = { "catppuccin" },
+        colorscheme = { "default" },
     },
     ui = {
         size = { width = 0.8, height = 0.8 },

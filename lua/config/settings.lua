@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.o.laststatus = 0
 vim.o.confirm = false
 vim.o.cursorline = false
 vim.o.formatoptions = "jcroqlnt"
