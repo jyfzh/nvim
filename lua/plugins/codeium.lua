@@ -4,6 +4,7 @@ return {
         "nvim-lua/plenary.nvim",
         "hrsh7th/nvim-cmp",
     },
+    event = "LspAttach",
     config = function()
         require("codeium").setup({
             enable_cmp_source = false,
