@@ -81,6 +81,7 @@ return {
             }),
             sources = cmp.config.sources(
                 {
+                    { name = "supermaven" },
                     { name = "nvim_lsp" },
                     { name = "luasnip" },
                 },
@@ -94,7 +95,9 @@ return {
                     mode = "symbol_text",
                     maxwidth = 50,
                     ellipsis_char = '...',
-                    symbol_map = { Codeium = "", }
+                    symbol_map = {
+                        Supermaven = "",
+                    },
                 }),
             },
             sorting = {
