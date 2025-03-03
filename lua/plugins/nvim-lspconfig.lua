@@ -247,7 +247,6 @@ return {
 
         -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
         local servers = {
-            'cmake',
             'pylsp',
             'rust_analyzer',
         }

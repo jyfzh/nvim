@@ -39,6 +39,7 @@ return {
             integrations = {
                 mason = true,
                 neotree = true,
+                blink_cmp = true,
                 native_lsp = {
                     enabled = true,
                     virtual_text = {
