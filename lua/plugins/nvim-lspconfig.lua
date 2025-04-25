@@ -1,9 +1,6 @@
 return {
     "neovim/nvim-lspconfig",
-    dependencies = {
-        "williamboman/mason.nvim",
-        "SmiteshP/nvim-navic"
-    },
+    dependencies = { "SmiteshP/nvim-navic"},
     event = "VeryLazy",
     config = function()
         -- To instead override float border setting globally
@@ -205,30 +202,6 @@ return {
             })
         end
 
-        require("lspconfig").lua_ls.setup({
-            on_attach = on_attach,
-            cmd = { "lua-language-server", "--locale=zh-cn" },
-            settings = {
-                Lua = {
-                    completion = {
-                        callSnippet = "Replace",
-                        autoRequire = false
-                    },
-                    hint = {
-                        enable = true, -- necessary
-                    },
-                    runtime = {
-                        version = "LuaJIT"
-                    },
-                    diagnostics = {
-                        -- Get the language server to recognize the `vim` global
-                        globals = { "vim", "jit" },
-                        disable = { "redefined-local" }
-                    },
-                },
-            },
-        })
-
         require("lspconfig").clangd.setup({
             on_attach = on_attach,
             cmd = {
@@ -247,7 +220,6 @@ return {
 
         -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
         local servers = {
-            'pylsp',
             'rust_analyzer',
         }
         for _, lsp in ipairs(servers) do
