@@ -1,27 +1,7 @@
 return {
     "neovim/nvim-lspconfig",
-    dependencies = { "SmiteshP/nvim-navic"},
     event = "VeryLazy",
     config = function()
-        -- To instead override float border setting globally
-        local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-        function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-            local border = {
-                { "┌", "FloatBorder" },
-                { "─", "FloatBorder" },
-                { "┐", "FloatBorder" },
-                { "│", "FloatBorder" },
-                { "┘", "FloatBorder" },
-                { "─", "FloatBorder" },
-                { "└", "FloatBorder" },
-                { "│", "FloatBorder" },
-            }
-            opts = opts or {}
-            opts.border = opts.border or border
-
-            return orig_util_open_floating_preview(contents, syntax, opts, ...)
-        end
-
         vim.diagnostic.config({
             virtual_text = true,
             signs = true,
@@ -36,22 +16,15 @@ return {
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
         end
 
-        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
-        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help,
-            { border = "single" })
+        local handlers = {
+            ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, { border = "single" }),
+            ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" }),
+        }
 
         local on_attach = function(client, bufnr)
             -- hint
             if vim.lsp.inlay_hint then
-                vim.defer_fn(function() vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end, 1000)
-            end
-
-            -- navic
-            if client.server_capabilities.documentSymbolProvider then
-                local navic = require("nvim-navic")
-                navic.attach(client, bufnr)
-                vim.wo.winbar =
-                "%{%v:lua.require'nvim-navic'.get_location()%}"
+                vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
             end
 
             vim.api.nvim_create_autocmd("CursorHold", {
@@ -161,48 +134,10 @@ return {
                 end,
                 { noremap = true, silent = true, buffer = bufnr, desc = "prev_error" }
             )
-
-            vim.api.nvim_create_autocmd({ "DiagnosticChanged" }, {
-                group = vim.api.nvim_create_augroup("user_diagnostic_qflist", {}),
-                callback = function(args)
-                    -- Use pcall because I was getting inconsistent errors when quitting vim.
-                    -- Possibly timing errors from trying to get/create diagnostics/qflists
-                    -- that don't exist anymore. DiagnosticChanged fires at some strange times.
-                    local has_diagnostics, diagnostics = pcall(vim.diagnostic.get)
-                    local has_qflist, qflist = pcall(vim.fn.getqflist, { title = 0, id = 0, items = 0 })
-                    if not has_diagnostics or not has_qflist then return end
-
-                    -- Sometimes the event fires with an empty diagnostic list in the data.
-                    -- This conditional prevents re-creating the qflist with the same
-                    -- diagnostics, which reverts selection to the first item.
-                    if
-                        #args.data.diagnostics == 0
-                        and #diagnostics > 0
-                        and qflist.title == "All Diagnostics"
-                        and #qflist.items == #diagnostics
-                    then
-                        return
-                    end
-
-                    vim.schedule(function()
-                        -- If the last qflist was created by this autocmd, replace it so other
-                        -- lists (e.g., vimgrep results) aren't buried due to diagnostic changes.
-                        pcall(vim.fn.setqflist, {}, qflist.title == "All Diagnostics" and "r" or " ", {
-                            title = "All Diagnostics",
-                            items = vim.diagnostic.toqflist(diagnostics),
-                        })
-
-                        -- Don't steal focus from other qflists. For example, when working
-                        -- through vimgrep results, you likely want :cnext to take you to the
-                        -- next match, rather than the next diagnostic. Use :cnew to switch to
-                        -- the diagnostic qflist when you want it.
-                        if qflist.id ~= 0 and qflist.title ~= "All Diagnostics" then pcall(vim.cmd.cold) end
-                    end)
-                end,
-            })
         end
 
         require("lspconfig").clangd.setup({
+            handlers = handlers,
             on_attach = on_attach,
             cmd = {
                 "clangd",
@@ -212,7 +147,6 @@ return {
                 "--fallback-style=LLVM",
                 "--function-arg-placeholders=false",
                 "--header-insertion=never",
-                "--offset-encoding=utf-16", -- https://github.com/neovim/neovim/pull/16694
                 "--compile-commands-dir=build"
             },
             filetype = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
@@ -224,6 +158,7 @@ return {
         }
         for _, lsp in ipairs(servers) do
             require 'lspconfig'[lsp].setup {
+                handlers = handlers,
                 on_attach = on_attach,
             }
         end
