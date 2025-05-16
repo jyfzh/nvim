@@ -1,19 +1,25 @@
 return {
     'saghen/blink.cmp',
-    dependencies = "fang2hou/blink-copilot" ,
+    dependencies = {
+        "fang2hou/blink-copilot",
+        after = { "copilot.lua" },
+    } ,
     event = { "BufReadPost", "BufNewFile" },
 
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-        completion = {
-            documentation = {
-                auto_show = true,
-                auto_show_delay_ms = 500,
-                treesitter_highlighting = false,
+        cmdline = { 
+            enabled = false ,
+            completion = {
+                menu = {
+                    auto_show = true
+                }
             },
-            menu = {
-                border = "single",
+        },
+        completion = {
+            keyword = {
+                range = 'prefix'
             },
             ghost_text = {
                 enabled = true
@@ -28,10 +34,6 @@ return {
                     module = "blink-copilot",
                     score_offset = 100,
                     async = true,
-                    opts = {
-                        max_completions = 1,
-                        max_attempts = 2
-                    }
                 },
             },
         },

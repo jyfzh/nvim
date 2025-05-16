@@ -155,6 +155,7 @@ return {
         -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
         local servers = {
             'rust_analyzer',
+            "pylsp"
         }
         for _, lsp in ipairs(servers) do
             require 'lspconfig'[lsp].setup {

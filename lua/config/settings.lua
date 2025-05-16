@@ -47,9 +47,3 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.foldmethod = "indent"
 vim.o.foldlevel = 99
-
-vim.filetype.add({
-    filename = {
-        ["rest$"] = "rest"
-    },
-})
