@@ -52,7 +52,8 @@ return {
                 illuminate = {
                     enabled = true,
                     lsp = true
-                }
+                },
+                fidget = true
             },
         })
         vim.cmd.colorscheme("catppuccin")

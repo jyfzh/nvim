@@ -1,16 +1,12 @@
 return {
     'saghen/blink.cmp',
-    dependencies = {
-        "fang2hou/blink-copilot",
-        after = { "copilot.lua" },
-    } ,
     event = { "BufReadPost", "BufNewFile" },
 
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
         cmdline = { 
-            enabled = false ,
+            enabled = true,
             completion = {
                 menu = {
                     auto_show = true
@@ -22,20 +18,12 @@ return {
                 range = 'prefix'
             },
             ghost_text = {
-                enabled = true
+                enabled = false 
             },
         },
         keymap = { preset = 'enter' },
         sources = {
-            default = { 'copilot', 'lsp', 'path', 'snippets', 'buffer' },
-            providers = {
-                copilot = {
-                    name = "copilot",
-                    module = "blink-copilot",
-                    score_offset = 100,
-                    async = true,
-                },
-            },
+            default = { 'lsp', 'path', 'snippets', 'buffer' },
         },
         fuzzy = { implementation = "lua" }
     },
