@@ -23,7 +23,6 @@ return {
             default_integrations = true,
             integrations = {
                 neotree = true,
-                blink_cmp = true,
                 native_lsp = {
                     enabled = true,
                     virtual_text = {
@@ -44,15 +43,7 @@ return {
                         background = true,
                     },
                 },
-                navic = {
-                    enabled = true,
-                    custom_bg = "NONE",
-                },
                 nvim_surround = true,
-                illuminate = {
-                    enabled = true,
-                    lsp = true
-                },
                 fidget = true
             },
         })

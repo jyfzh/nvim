@@ -47,3 +47,44 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.foldmethod = "indent"
 vim.o.foldlevel = 99
+vim.o.winborder = 'single'
+vim.opt.completeopt = { "menuone", "noselect", "popup" }
+
+vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
+
+vim.filetype.add {
+    pattern = {
+        ['.*'] = {
+            function(path, buf)
+                if vim.bo[buf].filetype ~= 'bigfile' and path and vim.fn.getfsize(path) > vim.g.bigfile_size then
+                    return 'bigfile'
+                else
+                    return nil
+                end
+            end,
+        },
+    },
+}
+
+vim.diagnostic.config({
+        virtual_text = {
+            prefix = "",
+            spacing = 4,
+        },
+        float = { severity_sort = true },
+        severity_sort = true,
+        signs = {
+            text = {
+                [vim.diagnostic.severity.ERROR] = "",
+                [vim.diagnostic.severity.WARN] = "",
+                [vim.diagnostic.severity.INFO] = "",
+                [vim.diagnostic.severity.HINT] = "",
+            }
+        },
+        underline = true,
+        update_in_insert = false,
+    })
+
+vim.lsp.enable "lua_ls"
+vim.lsp.enable "clangd"
+vim.lsp.enable "rust_analyzer"
