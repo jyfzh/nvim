@@ -15,10 +15,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("config.settings")
-require("config.keybinds")
-require("config.autocmd")
-
 require("lazy").setup({
     defaults = { lazy = false },
     spec = {

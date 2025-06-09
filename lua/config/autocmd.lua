@@ -44,14 +44,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
         end
 
-        vim.keymap.set('i', '<cr>', function()
-            return tonumber(vim.fn.pumvisible()) ~= 0 and '<C-y>' or '<cr>'
-        end, { expr = true })
-
         vim.keymap.set("i", "<C-space>",
             vim.lsp.completion.get,
             { desc = "trigger autocompletion" })
-
 
         if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_foldingRange) then
             local win = vim.api.nvim_get_current_win()
@@ -80,6 +75,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
                 callback = function(args2)
                     vim.lsp.buf.clear_references()
+
+
+
                     vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = args2.buf }
                     -- vim.cmd 'setl foldexpr <'
                 end,
