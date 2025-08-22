@@ -22,7 +22,6 @@ return {
             },
             default_integrations = true,
             integrations = {
-                neotree = true,
                 native_lsp = {
                     enabled = true,
                     virtual_text = {
@@ -43,12 +42,12 @@ return {
                         background = true,
                     },
                 },
-                nvim_surround = true,
-                fidget = true
             },
         })
         vim.cmd.colorscheme("catppuccin")
         vim.o.background = "light"
         vim.cmd [[hi LspInlayHint gui=italic]]
+        vim.cmd [[hi NormalFloat guibg=NONE ctermbg=NONE]]
+        vim.cmd [[hi FloatBorder guibg=NONE ctermbg=NONE]]
     end
 }

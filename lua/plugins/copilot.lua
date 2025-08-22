@@ -4,6 +4,9 @@ return {
     event = "InsertEnter",
     config = function()
         require("copilot").setup({
+            server = {
+                type = "binary",
+            },
             suggestion = {
                 auto_trigger = true,
                 keymap = {
