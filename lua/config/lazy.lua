@@ -24,7 +24,6 @@ require("lazy").setup({
     git = {
         log = { "--since=3 days ago" },
         timeout = 120,
-        url_format = "https://xget.xi-xu.me/gh/%s.git",
     },
     dev = {
         path = "~/projects",

@@ -85,6 +85,5 @@ vim.diagnostic.config({
         update_in_insert = false,
     })
 
-vim.lsp.enable "lua_ls"
 vim.lsp.enable "clangd"
 vim.lsp.enable "rust_analyzer"
